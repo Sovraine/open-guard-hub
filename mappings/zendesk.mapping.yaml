@@ -1,0 +1,98 @@
+server: zendesk
+description: "Zendesk customer service and ticketing"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "zendesk-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_tickets:
+    action: list
+    risk: READ-ONLY
+    description: "List tickets"
+  get_ticket:
+    action: read
+    risk: READ-ONLY
+    description: "Get ticket"
+    target_from: ticket_id
+  create_ticket:
+    action: create
+    risk: LOW
+    description: "Create ticket"
+    context_from:
+      subject: subject
+      description: description
+  update_ticket:
+    action: update
+    risk: MEDIUM
+    description: "Update ticket"
+    target_from: ticket_id
+    context_from:
+      fields: fields
+  close_ticket:
+    action: execute
+    risk: MEDIUM
+    description: "Close ticket"
+    target_from: ticket_id
+  delete_ticket:
+    action: delete
+    risk: HIGH
+    description: "Delete ticket"
+    target_from: ticket_id
+  list_comments:
+    action: list
+    risk: READ-ONLY
+    description: "List comments"
+    target_from: ticket_id
+  add_comment:
+    action: create
+    risk: LOW
+    description: "Add comment"
+    target_from: ticket_id
+    context_from:
+      body: body
+  list_users:
+    action: list
+    risk: READ-ONLY
+    description: "List users"
+  get_user:
+    action: read
+    risk: READ-ONLY
+    description: "Get user"
+    target_from: user_id
+  create_user:
+    action: create
+    risk: MEDIUM
+    description: "Create user"
+    context_from:
+      name: name
+      email: email
+  update_user:
+    action: update
+    risk: MEDIUM
+    description: "Update user"
+    target_from: user_id
+    context_from:
+      fields: fields
+  deactivate_user:
+    action: disable
+    risk: MEDIUM
+    description: "Deactivate user"
+    target_from: user_id
+  list_organizations:
+    action: list
+    risk: READ-ONLY
+    description: "List organizations"
+  create_organization:
+    action: create
+    risk: MEDIUM
+    description: "Create organization"
+    context_from:
+      name: name
+  delete_organization:
+    action: delete
+    risk: HIGH
+    description: "Delete organization"
+    target_from: org_id

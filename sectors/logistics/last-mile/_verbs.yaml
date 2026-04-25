@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: CC-BY-SA-4.0
+taxonomy_version: "2026.03.1"
+domain: sectors/logistics/last-mile
+
+verbs:
+  schedule-delivery:
+    risk: MEDIUM
+    description: "Schedule a last-mile delivery"
+  reassign-delivery:
+    risk: HIGH
+    description: "Reassign a delivery to a different courier"
+  mark-delivered:
+    risk: MEDIUM
+    description: "Mark a package as delivered"
+  report-failed-delivery:
+    risk: MEDIUM
+    description: "Report a failed delivery attempt"
+  return-to-sender:
+    risk: HIGH
+    description: "Return a package to the sender"
+  override-delivery-window:
+    risk: HIGH
+    description: "Override the scheduled delivery time window"

@@ -1,0 +1,22 @@
+taxonomy_version: "2026.03.1"
+sub_sector: training
+sector: human-resources
+
+verbs:
+  assign-training:
+    risk: LOW
+    description: "Assign a training course to an employee"
+  revoke-certification:
+    risk: HIGH
+    description: "Revoke an employee's certification"
+  override-completion:
+    risk: HIGH
+    description: "Override training completion status"
+    requires_approval: true
+  mandate-retraining:
+    risk: MEDIUM
+    description: "Mandate retraining for an employee"
+  exempt-from-training:
+    risk: HIGH
+    description: "Exempt an employee from a required training"
+    requires_approval: true

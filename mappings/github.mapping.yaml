@@ -1,0 +1,38 @@
+server: github
+description: "GitHub repository and issue management"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+
+tools:
+  create_issue:
+    action: create
+    target_from: repository
+    context_from:
+      title: title
+    parser: params
+  create_pull_request:
+    action: create
+    target_from: repository
+    parser: params
+  merge_pull_request:
+    action: update
+    target_from: repository
+    context_from:
+      pr_number: pull_number
+    parser: params
+  delete_branch:
+    action: delete
+    target_from: branch
+    parser: params
+  push_files:
+    action: update
+    target_from: repository
+    parser: params
+  search_code:
+    action: search
+    target_from: query
+    parser: params
+  list_commits:
+    action: list
+    target_from: repository
+    parser: params

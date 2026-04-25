@@ -1,0 +1,37 @@
+# Guard Hub — Gatekeeper Constraint Templates Index
+#
+# Curated from CNCF gatekeeper-library (Apache-2.0)
+# https://github.com/open-policy-agent/gatekeeper-library
+#
+# These templates enforce infrastructure-level policies on Kubernetes clusters.
+# They complement Open-Guard's agent-level governance (.guard.md policies).
+#
+# Usage:
+#   kubectl apply -f gates/pod-security/disallow-privileged.yaml
+#   sg guard scan gates/
+
+categories:
+  pod-security:
+    description: "Container and pod security constraints"
+    templates:
+      - disallow-privileged
+      - require-non-root
+      - require-read-only-rootfs
+      - disallow-privilege-escalation
+      - restrict-capabilities
+
+  general:
+    description: "General-purpose cluster governance"
+    templates:
+      - require-labels
+      - allowed-repos
+      - disallowed-tags
+      - container-limits
+      - require-probes
+
+  network:
+    description: "Network security constraints"
+    templates:
+      - https-only
+      - block-nodeport
+      - block-loadbalancer

@@ -1,0 +1,25 @@
+taxonomy_version: "2026.03.1"
+sub_sector: metering
+sector: energy-utilities
+
+verbs:
+  read-meter:
+    risk: READ-ONLY
+    description: "Read current meter value and consumption data"
+  adjust-meter-reading:
+    risk: HIGH
+    description: "Adjust a recorded meter reading"
+    requires_approval: true
+  override-consumption:
+    risk: CRITICAL
+    description: "Override recorded consumption data for a meter"
+    requires_approval: true
+  disconnect-meter:
+    risk: HIGH
+    description: "Remotely disconnect a smart meter from the grid"
+  reconnect-meter:
+    risk: MEDIUM
+    description: "Remotely reconnect a previously disconnected meter"
+  tamper-detect:
+    risk: LOW
+    description: "Run tamper detection diagnostics on a meter"

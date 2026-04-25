@@ -1,0 +1,23 @@
+taxonomy_version: "2026.03.1"
+sub_sector: spectrum
+sector: telecom
+
+verbs:
+  allocate-spectrum:
+    risk: CRITICAL
+    description: "Allocate a frequency spectrum band to an operator"
+    requires_approval: true
+  deallocate-spectrum:
+    risk: CRITICAL
+    description: "Deallocate a frequency spectrum band from an operator"
+    requires_approval: true
+  modify-power-output:
+    risk: HIGH
+    description: "Modify the transmission power output on a spectrum band"
+  interfere-frequency:
+    risk: CRITICAL
+    description: "Intentionally interfere with a frequency band"
+    requires_approval: true
+  lease-spectrum:
+    risk: HIGH
+    description: "Lease spectrum rights to a third party"

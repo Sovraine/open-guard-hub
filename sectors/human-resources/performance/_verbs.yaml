@@ -1,0 +1,28 @@
+taxonomy_version: "2026.03.1"
+sub_sector: performance
+sector: human-resources
+
+verbs:
+  submit-review:
+    risk: MEDIUM
+    description: "Submit a performance review"
+  override-rating:
+    risk: HIGH
+    description: "Override a performance rating"
+    requires_approval: true
+  place-on-pip:
+    risk: HIGH
+    description: "Place an employee on a performance improvement plan"
+    requires_approval: true
+  promote-employee:
+    risk: HIGH
+    description: "Promote an employee"
+    requires_approval: true
+  demote-employee:
+    risk: CRITICAL
+    description: "Demote an employee"
+    requires_approval: true
+  suspend-employee:
+    risk: CRITICAL
+    description: "Suspend an employee"
+    requires_approval: true

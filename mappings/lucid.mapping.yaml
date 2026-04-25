@@ -1,0 +1,26 @@
+server: lucid
+description: "Lucid — Lucidchart/Lucidspark diagram access and analysis (3 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "lucid-mcp-server"
+  registry: npm
+  transport: stdio
+  command: "npx -y lucid-mcp-server"
+tools:
+  search-documents:
+    action: search
+    risk: READ-ONLY
+    description: "Search Lucid documents by keywords"
+    sql_mapping: false
+    target_from: keywords
+  get-document:
+    action: read
+    risk: READ-ONLY
+    description: "Get a specific Lucid document by ID"
+    target_from: documentId
+  get-document-tabs:
+    action: read
+    risk: READ-ONLY
+    description: "Get metadata about all tabs in a document"
+    target_from: documentId

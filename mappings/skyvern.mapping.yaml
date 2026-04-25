@@ -1,0 +1,244 @@
+server: skyvern
+description: "Skyvern — AI browser automation, workflows, credentials (39 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "skyvern"
+  registry: pypi
+  transport: stdio
+  command: "uvx skyvern mcp"
+tools:
+  # --- Browser Sessions ---
+  skyvern_browser_session_create:
+    action: create
+    risk: MEDIUM
+    description: "Create a new browser session"
+  skyvern_browser_session_close:
+    action: close
+    risk: LOW
+    description: "Close a browser session"
+    target_from: session_id
+  skyvern_browser_session_list:
+    action: list
+    risk: READ-ONLY
+    description: "List all active browser sessions"
+  skyvern_browser_session_get:
+    action: read
+    risk: READ-ONLY
+    description: "Get details about a browser session"
+    target_from: session_id
+  skyvern_browser_session_connect:
+    action: configure
+    risk: LOW
+    description: "Connect to an existing browser session"
+    target_from: session_id
+  # --- Primary AI Tools ---
+  skyvern_navigate:
+    action: execute
+    risk: MEDIUM
+    description: "Open a website in a real browser"
+    target_from: url
+    context_from:
+      session_id: session_id
+  skyvern_act:
+    action: execute
+    risk: HIGH
+    description: "Perform actions on a web page via natural language"
+    target_from: prompt
+    context_from:
+      session_id: session_id
+  skyvern_extract:
+    action: read
+    risk: LOW
+    description: "Extract structured data from a website"
+    target_from: prompt
+    context_from:
+      session_id: session_id
+  skyvern_validate:
+    action: read
+    risk: READ-ONLY
+    description: "Check if a condition is true on the current page"
+    target_from: prompt
+    context_from:
+      session_id: session_id
+  skyvern_run_task:
+    action: execute
+    risk: HIGH
+    description: "Run a one-off web task via autonomous AI agent"
+    target_from: prompt
+    context_from:
+      session_id: session_id
+      url: url
+  skyvern_screenshot:
+    action: read
+    risk: READ-ONLY
+    description: "Take a screenshot of the current page"
+    target_from: session_id
+  skyvern_evaluate:
+    action: execute
+    risk: HIGH
+    description: "Run JavaScript on the page"
+    target_from: expression
+    context_from:
+      session_id: session_id
+  skyvern_login:
+    action: execute
+    risk: HIGH
+    description: "Log into a website using stored credentials"
+    target_from: credential_type
+    context_from:
+      session_id: session_id
+      url: url
+  # --- Precision Browser Tools ---
+  skyvern_click:
+    action: execute
+    risk: MEDIUM
+    description: "Click an element on the page"
+    target_from: intent
+    context_from:
+      session_id: session_id
+      selector: selector
+  skyvern_hover:
+    action: execute
+    risk: LOW
+    description: "Hover over an element"
+    target_from: intent
+    context_from:
+      session_id: session_id
+  skyvern_type:
+    action: execute
+    risk: MEDIUM
+    description: "Type text into an input field"
+    target_from: text
+    context_from:
+      session_id: session_id
+      intent: intent
+  skyvern_select_option:
+    action: execute
+    risk: MEDIUM
+    description: "Select an option from a dropdown"
+    target_from: value
+    context_from:
+      session_id: session_id
+      intent: intent
+  skyvern_scroll:
+    action: execute
+    risk: LOW
+    description: "Scroll the page or an element"
+    target_from: direction
+    context_from:
+      session_id: session_id
+  skyvern_press_key:
+    action: execute
+    risk: LOW
+    description: "Press a keyboard key"
+    target_from: key
+    context_from:
+      session_id: session_id
+  skyvern_wait:
+    action: read
+    risk: READ-ONLY
+    description: "Wait for a condition, element, or time delay"
+    target_from: session_id
+  # --- Workflow Management ---
+  skyvern_workflow_list:
+    action: list
+    risk: READ-ONLY
+    description: "List available workflows"
+  skyvern_workflow_get:
+    action: read
+    risk: READ-ONLY
+    description: "Get workflow details"
+    target_from: workflow_id
+  skyvern_workflow_create:
+    action: create
+    risk: MEDIUM
+    description: "Create a new workflow from a definition"
+    target_from: title
+    context_from:
+      definition: definition
+  skyvern_workflow_update:
+    action: update
+    risk: MEDIUM
+    description: "Update a workflow's definition or metadata"
+    target_from: workflow_id
+  skyvern_workflow_delete:
+    action: delete
+    risk: HIGH
+    description: "Permanently delete a workflow"
+    target_from: workflow_id
+  skyvern_workflow_update_folder:
+    action: update
+    risk: LOW
+    description: "Move a workflow to a different folder"
+    target_from: workflow_id
+    context_from:
+      folder_id: folder_id
+  skyvern_workflow_run:
+    action: execute
+    risk: HIGH
+    description: "Execute a workflow with input parameters"
+    target_from: workflow_id
+    context_from:
+      parameters: parameters
+  skyvern_workflow_status:
+    action: read
+    risk: READ-ONLY
+    description: "Check the status of a workflow run"
+    target_from: run_id
+  skyvern_workflow_cancel:
+    action: update
+    risk: MEDIUM
+    description: "Cancel a running workflow"
+    target_from: run_id
+  # --- Credential Management ---
+  skyvern_credential_list:
+    action: list
+    risk: READ-ONLY
+    description: "List stored credentials (never passwords)"
+  skyvern_credential_get:
+    action: read
+    risk: READ-ONLY
+    description: "Get a credential's metadata by ID"
+    target_from: credential_id
+  skyvern_credential_delete:
+    action: delete
+    risk: HIGH
+    description: "Permanently delete a stored credential"
+    target_from: credential_id
+  # --- Folder Management ---
+  skyvern_folder_list:
+    action: list
+    risk: READ-ONLY
+    description: "List folders for organizing workflows"
+  skyvern_folder_create:
+    action: create
+    risk: LOW
+    description: "Create a new folder"
+    target_from: title
+  skyvern_folder_get:
+    action: read
+    risk: READ-ONLY
+    description: "Get folder details"
+    target_from: folder_id
+  skyvern_folder_update:
+    action: update
+    risk: LOW
+    description: "Update a folder's title or description"
+    target_from: folder_id
+  skyvern_folder_delete:
+    action: delete
+    risk: MEDIUM
+    description: "Delete a folder"
+    target_from: folder_id
+  # --- Block Schema ---
+  skyvern_block_schema:
+    action: read
+    risk: READ-ONLY
+    description: "Get schema for a workflow block type"
+    target_from: block_type
+  skyvern_block_validate:
+    action: read
+    risk: READ-ONLY
+    description: "Validate a workflow block definition"
+    target_from: block_json

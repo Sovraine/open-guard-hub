@@ -1,0 +1,98 @@
+server: auth0
+description: "Auth0 identity and access management"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "auth0-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_users:
+    action: list
+    risk: READ-ONLY
+    description: "List users"
+  get_user:
+    action: read
+    risk: READ-ONLY
+    description: "Get user"
+    target_from: user_id
+  create_user:
+    action: create
+    risk: MEDIUM
+    description: "Create user"
+    context_from:
+      email: email
+      password: password
+  update_user:
+    action: update
+    risk: MEDIUM
+    description: "Update user"
+    target_from: user_id
+    context_from:
+      fields: fields
+  delete_user:
+    action: delete
+    risk: HIGH
+    description: "Delete user"
+    target_from: user_id
+  list_roles:
+    action: list
+    risk: READ-ONLY
+    description: "List roles"
+  create_role:
+    action: create
+    risk: MEDIUM
+    description: "Create role"
+    target_from: role_name
+  delete_role:
+    action: delete
+    risk: HIGH
+    description: "Delete role"
+    target_from: role_id
+  assign_role:
+    action: assign
+    risk: MEDIUM
+    description: "Assign role to user"
+    target_from: user_id
+    context_from:
+      role_id: role_id
+  remove_role:
+    action: unassign
+    risk: MEDIUM
+    description: "Remove role from user"
+    target_from: user_id
+    context_from:
+      role_id: role_id
+  list_permissions:
+    action: list
+    risk: READ-ONLY
+    description: "List permissions"
+  add_permission:
+    action: create
+    risk: MEDIUM
+    description: "Add permission"
+    target_from: role_id
+    context_from:
+      permission: permission
+  remove_permission:
+    action: delete
+    risk: MEDIUM
+    description: "Remove permission"
+    target_from: role_id
+    context_from:
+      permission: permission
+  list_connections:
+    action: list
+    risk: READ-ONLY
+    description: "List connections"
+  create_connection:
+    action: create
+    risk: MEDIUM
+    description: "Create connection"
+    target_from: connection_name
+  delete_connection:
+    action: delete
+    risk: HIGH
+    description: "Delete connection"
+    target_from: connection_id

@@ -1,0 +1,21 @@
+server: context7-mcp
+description: "Context7 — up-to-date documentation and code examples for any library"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@upstash/context7-mcp"
+  registry: npm
+  transport: stdio
+  command: "npx -y @upstash/context7-mcp"
+tools:
+  resolve-library-id:
+    action: search
+    risk: READ-ONLY
+    description: "Resolves a package/product name to a Context7-compatible library ID"
+    target_from: libraryName
+  query-docs:
+    action: read
+    risk: READ-ONLY
+    description: "Retrieves documentation and code examples for a library"
+    sql_mapping: false
+    target_from: libraryId

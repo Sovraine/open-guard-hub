@@ -1,0 +1,112 @@
+server: airtable
+description: "Airtable database and automation"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "airtable-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_bases:
+    action: list
+    risk: READ-ONLY
+    description: "List bases"
+  get_base:
+    action: read
+    risk: READ-ONLY
+    description: "Get base details"
+    target_from: base_id
+  list_tables:
+    action: list
+    risk: READ-ONLY
+    description: "List tables in base"
+    target_from: base_id
+  get_table:
+    action: read
+    risk: READ-ONLY
+    description: "Get table schema"
+    target_from: table_id
+  list_records:
+    action: list
+    risk: READ-ONLY
+    description: "List records"
+    target_from: table_id
+    context_from:
+      filter: filter
+      sort: sort
+  get_record:
+    action: read
+    risk: READ-ONLY
+    description: "Get record"
+    target_from: record_id
+  create_record:
+    action: create
+    risk: MEDIUM
+    description: "Create record"
+    target_from: table_id
+    context_from:
+      fields: fields
+  update_record:
+    action: update
+    risk: MEDIUM
+    description: "Update record"
+    target_from: record_id
+    context_from:
+      fields: fields
+  delete_record:
+    action: delete
+    risk: MEDIUM
+    description: "Delete record"
+    target_from: record_id
+  batch_create:
+    action: create
+    risk: MEDIUM
+    description: "Batch create records"
+    target_from: table_id
+    context_from:
+      records: records
+  batch_update:
+    action: update
+    risk: MEDIUM
+    description: "Batch update records"
+    target_from: table_id
+    context_from:
+      records: records
+  batch_delete:
+    action: delete
+    risk: MEDIUM
+    description: "Batch delete records"
+    target_from: table_id
+    context_from:
+      record_ids: record_ids
+  list_fields:
+    action: list
+    risk: READ-ONLY
+    description: "List table fields"
+    target_from: table_id
+  create_field:
+    action: create
+    risk: MEDIUM
+    description: "Create field"
+    target_from: table_id
+    context_from:
+      field_name: field_name
+      field_type: field_type
+  delete_field:
+    action: delete
+    risk: HIGH
+    description: "Delete field"
+    target_from: field_id
+  list_attachments:
+    action: list
+    risk: READ-ONLY
+    description: "List attachments in record"
+    target_from: record_id
+  add_attachment:
+    action: create
+    risk: MEDIUM
+    description: "Add attachment"
+    target_from: record_id
+    context_from:
+      file_url: file_url

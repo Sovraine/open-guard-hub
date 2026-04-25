@@ -1,0 +1,141 @@
+server: openai
+description: "OpenAI API operations for inference and models"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "openai-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_models:
+    action: list
+    risk: READ-ONLY
+    description: "List available models"
+  get_model:
+    action: read
+    risk: READ-ONLY
+    description: "Get model details"
+    target_from: model_id
+  create_completion:
+    action: execute
+    risk: MEDIUM
+    description: "Generate text completion"
+    target_from: model_id
+    context_from:
+      prompt: prompt
+      max_tokens: max_tokens
+  create_chat_completion:
+    action: execute
+    risk: MEDIUM
+    description: "Generate chat response"
+    target_from: model_id
+    context_from:
+      messages: messages
+      max_tokens: max_tokens
+  create_embedding:
+    action: execute
+    risk: MEDIUM
+    description: "Generate embeddings"
+    target_from: model_id
+    context_from:
+      input: input
+  create_transcription:
+    action: execute
+    risk: MEDIUM
+    description: "Transcribe audio file"
+    target_from: model_id
+    context_from:
+      audio_file: audio_file
+  create_translation:
+    action: execute
+    risk: MEDIUM
+    description: "Translate audio file"
+    target_from: model_id
+    context_from:
+      audio_file: audio_file
+  create_image:
+    action: execute
+    risk: MEDIUM
+    description: "Generate image from text"
+    target_from: model_id
+    context_from:
+      prompt: prompt
+      size: size
+  create_image_edit:
+    action: execute
+    risk: MEDIUM
+    description: "Edit image"
+    target_from: model_id
+    context_from:
+      image: image
+      mask: mask
+      prompt: prompt
+  create_image_variation:
+    action: execute
+    risk: MEDIUM
+    description: "Create image variation"
+    target_from: model_id
+    context_from:
+      image: image
+  create_fine_tune:
+    action: create
+    risk: HIGH
+    description: "Create fine-tuning job"
+    target_from: model_id
+    context_from:
+      training_file: training_file
+  list_fine_tunes:
+    action: list
+    risk: READ-ONLY
+    description: "List fine-tuning jobs"
+  get_fine_tune:
+    action: read
+    risk: READ-ONLY
+    description: "Get fine-tuning job status"
+    target_from: fine_tune_id
+  cancel_fine_tune:
+    action: cancel
+    risk: MEDIUM
+    description: "Cancel fine-tuning job"
+    target_from: fine_tune_id
+  delete_fine_tune_model:
+    action: delete
+    risk: HIGH
+    description: "Delete fine-tuned model"
+    target_from: model_id
+  create_moderation:
+    action: execute
+    risk: MEDIUM
+    description: "Check content moderation"
+    context_from:
+      input: input
+  upload_file:
+    action: create
+    risk: MEDIUM
+    description: "Upload file for fine-tuning"
+    context_from:
+      file: file
+  list_files:
+    action: list
+    risk: READ-ONLY
+    description: "List uploaded files"
+  get_file:
+    action: read
+    risk: READ-ONLY
+    description: "Get file details"
+    target_from: file_id
+  delete_file:
+    action: delete
+    risk: MEDIUM
+    description: "Delete uploaded file"
+    target_from: file_id
+  get_file_content:
+    action: read
+    risk: READ-ONLY
+    description: "Get file content"
+    target_from: file_id
+  get_usage:
+    action: read
+    risk: READ-ONLY
+    description: "Get API usage statistics"

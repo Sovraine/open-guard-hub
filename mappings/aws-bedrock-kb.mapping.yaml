@@ -1,0 +1,36 @@
+server: aws-bedrock-kb
+description: "AWS Bedrock Knowledge Base — RAG retrieval and metadata queries (4 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "amazon-bedrock-knowledge-base-mcp"
+  registry: pypi
+  transport: stdio
+  command: "uvx amazon-bedrock-knowledge-base-mcp"
+tools:
+  ListKnowledgeBases:
+    action: list
+    risk: READ-ONLY
+    description: "List available knowledge bases and data sources"
+  DescribeMetadataSchema:
+    action: read
+    risk: READ-ONLY
+    description: "Describe the metadata schema for filtering"
+    target_from: knowledge_base_id
+  QueryKnowledgeBases:
+    action: search
+    risk: READ-ONLY
+    description: "Query a knowledge base and return relevant passages"
+    sql_mapping: false
+    target_from: knowledge_base_id
+    context_from:
+      query: query
+      number_of_results: number_of_results
+  QueryKnowledgeBasesWithMetadata:
+    action: search
+    risk: READ-ONLY
+    description: "Query a knowledge base with metadata in results"
+    sql_mapping: false
+    target_from: knowledge_base_id
+    context_from:
+      query: query

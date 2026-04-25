@@ -1,0 +1,75 @@
+server: segment
+description: "Segment customer data platform"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "segment-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_sources:
+    action: list
+    risk: READ-ONLY
+    description: "List data sources"
+  get_source:
+    action: read
+    risk: READ-ONLY
+    description: "Get source"
+    target_from: source_id
+  create_source:
+    action: create
+    risk: MEDIUM
+    description: "Create source"
+    target_from: source_name
+  delete_source:
+    action: delete
+    risk: HIGH
+    description: "Delete source"
+    target_from: source_id
+  list_destinations:
+    action: list
+    risk: READ-ONLY
+    description: "List destinations"
+  create_destination:
+    action: create
+    risk: MEDIUM
+    description: "Create destination"
+    context_from:
+      source_id: source_id
+      destination_name: destination_name
+  delete_destination:
+    action: delete
+    risk: HIGH
+    description: "Delete destination"
+    target_from: destination_id
+  track_event:
+    action: create
+    risk: LOW
+    description: "Track event"
+    context_from:
+      user_id: user_id
+      event: event
+  identify_user:
+    action: create
+    risk: MEDIUM
+    description: "Identify user"
+    context_from:
+      user_id: user_id
+      traits: traits
+  list_audiences:
+    action: list
+    risk: READ-ONLY
+    description: "List audiences"
+  create_audience:
+    action: create
+    risk: MEDIUM
+    description: "Create audience"
+    context_from:
+      name: name
+      definition: definition
+  delete_audience:
+    action: delete
+    risk: HIGH
+    description: "Delete audience"
+    target_from: audience_id

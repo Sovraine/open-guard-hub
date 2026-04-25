@@ -1,0 +1,63 @@
+taxonomy_version: "2026.03.1"
+domain: core/database
+description: Database operation verbs
+
+verbs:
+  select:
+    risk: READ-ONLY
+    description: "Query data from database"
+  insert:
+    risk: MEDIUM
+    description: "Insert new rows into table"
+  db-update:
+    risk: HIGH
+    description: "Update existing rows in table"
+  db-delete:
+    risk: HIGH
+    description: "Delete rows from table"
+  drop:
+    risk: CRITICAL
+    description: "Drop table or database"
+    reversible: false
+  truncate:
+    risk: CRITICAL
+    description: "Remove all rows from table"
+    reversible: false
+  alter:
+    risk: CRITICAL
+    description: "Alter table schema"
+  db-create:
+    risk: MEDIUM
+    description: "Create table, index, or schema"
+  grant:
+    risk: CRITICAL
+    description: "Grant privileges to role"
+  revoke:
+    risk: CRITICAL
+    description: "Revoke privileges from role"
+  explain:
+    risk: READ-ONLY
+    description: "Explain query execution plan"
+  vacuum:
+    risk: LOW
+    description: "Vacuum table to reclaim storage"
+  reindex:
+    risk: LOW
+    description: "Rebuild indexes"
+  pg-dump:
+    risk: HIGH
+    description: "Export database dump"
+  pg-restore:
+    risk: CRITICAL
+    description: "Restore database from dump"
+    reversible: false
+  create-extension:
+    risk: HIGH
+    description: "Install database extension"
+  create-role:
+    risk: CRITICAL
+    description: "Create database role"
+  drop-role:
+    risk: CRITICAL
+    description: "Drop database role"
+    reversible: false

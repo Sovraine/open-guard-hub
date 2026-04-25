@@ -1,0 +1,28 @@
+taxonomy_version: "2026.03.1"
+sub_sector: defense
+sector: public-sector
+
+verbs:
+  classify-document:
+    risk: CRITICAL
+    description: "Classify a document with a security classification level"
+  declassify-document:
+    risk: CRITICAL
+    description: "Declassify a previously classified document"
+    requires_approval: true
+  authorize-operation:
+    risk: CRITICAL
+    description: "Authorize a military or defense operation"
+    requires_approval: true
+  deploy-asset:
+    risk: CRITICAL
+    description: "Deploy a defense asset to an operational theater"
+    requires_approval: true
+  activate-protocol:
+    risk: CRITICAL
+    description: "Activate a defense or emergency protocol"
+    requires_approval: true
+  override-rules-of-engagement:
+    risk: CRITICAL
+    description: "Override the established rules of engagement"
+    requires_approval: true

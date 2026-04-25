@@ -1,0 +1,23 @@
+taxonomy_version: "2026.03.1"
+sub_sector: valuation
+sector: real-estate
+
+verbs:
+  appraise-property:
+    risk: HIGH
+    description: "Appraise the market value of a property"
+  override-valuation:
+    risk: HIGH
+    description: "Override an automated or third-party property valuation"
+    requires_approval: true
+  mark-to-market:
+    risk: HIGH
+    description: "Mark a property portfolio to current market value"
+  adjust-tax-assessment:
+    risk: HIGH
+    description: "Adjust the tax assessment value of a property"
+    requires_approval: true
+  declare-impairment:
+    risk: CRITICAL
+    description: "Declare an impairment loss on a real estate asset"
+    requires_approval: true

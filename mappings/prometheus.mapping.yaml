@@ -1,0 +1,82 @@
+server: prometheus
+description: "Prometheus metrics monitoring"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "prometheus-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  query_range:
+    action: read
+    risk: READ-ONLY
+    description: "Execute PromQL range query"
+    context_from:
+      query: query
+      start: start
+      end: end
+      step: step
+  query_instant:
+    action: read
+    risk: READ-ONLY
+    description: "Execute instant PromQL query"
+    context_from:
+      query: query
+  query_exemplars:
+    action: read
+    risk: READ-ONLY
+    description: "Query exemplars"
+    context_from:
+      query: query
+  list_label_names:
+    action: list
+    risk: READ-ONLY
+    description: "List label names"
+  list_label_values:
+    action: list
+    risk: READ-ONLY
+    description: "Get label values"
+    target_from: label_name
+  get_targets:
+    action: list
+    risk: READ-ONLY
+    description: "Get scrape targets"
+  get_target_metadata:
+    action: read
+    risk: READ-ONLY
+    description: "Get target metadata"
+  get_metrics:
+    action: list
+    risk: READ-ONLY
+    description: "Get available metrics"
+  query_series:
+    action: search
+    risk: READ-ONLY
+    description: "Find series"
+    context_from:
+      match: match
+  get_alerts:
+    action: list
+    risk: READ-ONLY
+    description: "Get active alerts"
+  get_alerting_rules:
+    action: list
+    risk: READ-ONLY
+    description: "Get alerting rules"
+  get_recording_rules:
+    action: list
+    risk: READ-ONLY
+    description: "Get recording rules"
+  get_config:
+    action: read
+    risk: READ-ONLY
+    description: "Get configuration"
+  get_status:
+    action: read
+    risk: READ-ONLY
+    description: "Get server status"
+  get_buildinfo:
+    action: read
+    risk: READ-ONLY
+    description: "Get build information"

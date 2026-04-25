@@ -1,0 +1,98 @@
+server: vercel
+description: "Vercel — deployments, projects, domains, runtime logs (14 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@vercel/mcp"
+  registry: npm
+  transport: stdio
+  command: "npx -y @vercel/mcp"
+tools:
+  # --- Docs ---
+  search_documentation:
+    action: search
+    risk: READ-ONLY
+    description: "Search Vercel documentation"
+    sql_mapping: false
+    target_from: topic
+  # --- Projects ---
+  list_teams:
+    action: list
+    risk: READ-ONLY
+    description: "List all teams"
+  list_projects:
+    action: list
+    risk: READ-ONLY
+    description: "List projects for a team"
+    target_from: teamId
+  get_project:
+    action: read
+    risk: READ-ONLY
+    description: "Get project details"
+    target_from: projectId
+    context_from:
+      teamId: teamId
+  # --- Deployments ---
+  list_deployments:
+    action: list
+    risk: READ-ONLY
+    description: "List deployments for a project"
+    target_from: projectId
+    context_from:
+      teamId: teamId
+  get_deployment:
+    action: read
+    risk: READ-ONLY
+    description: "Get deployment details"
+    target_from: idOrUrl
+    context_from:
+      teamId: teamId
+  get_deployment_build_logs:
+    action: read
+    risk: READ-ONLY
+    description: "Get deployment build logs"
+    target_from: idOrUrl
+    context_from:
+      teamId: teamId
+  get_runtime_logs:
+    action: read
+    risk: READ-ONLY
+    description: "Get runtime logs for a project"
+    target_from: projectId
+    context_from:
+      teamId: teamId
+  # --- Domains ---
+  check_domain_availability_and_price:
+    action: read
+    risk: READ-ONLY
+    description: "Check domain availability and pricing"
+    target_from: names
+  buy_domain:
+    action: create
+    risk: CRITICAL
+    description: "Purchase a domain name"
+    target_from: name
+    context_from:
+      country: country
+      email: email
+  # --- Access ---
+  get_access_to_vercel_url:
+    action: create
+    risk: MEDIUM
+    description: "Create temporary shareable link for deployment"
+    target_from: url
+  web_fetch_vercel_url:
+    action: read
+    risk: LOW
+    description: "Fetch content from a Vercel deployment URL"
+    target_from: url
+  # --- CLI ---
+  use_vercel_cli:
+    action: execute
+    risk: MEDIUM
+    description: "Run Vercel CLI commands"
+    target_from: action
+  deploy_to_vercel:
+    action: create
+    risk: HIGH
+    description: "Deploy current project to Vercel"

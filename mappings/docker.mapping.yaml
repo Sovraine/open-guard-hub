@@ -1,0 +1,133 @@
+server: docker
+description: "Docker container and image management"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "docker-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_containers:
+    action: list
+    risk: READ-ONLY
+    description: "List running containers"
+  list_images:
+    action: list
+    risk: READ-ONLY
+    description: "List available images"
+  get_container:
+    action: read
+    risk: READ-ONLY
+    description: "Get container details"
+    target_from: container_id
+  get_image:
+    action: read
+    risk: READ-ONLY
+    description: "Get image details"
+    target_from: image_id
+  create_container:
+    action: create
+    risk: MEDIUM
+    description: "Create a new container"
+    target_from: image_name
+    context_from:
+      container_name: container_name
+      ports: ports
+  start_container:
+    action: execute
+    risk: MEDIUM
+    description: "Start a stopped container"
+    target_from: container_id
+  stop_container:
+    action: disable
+    risk: MEDIUM
+    description: "Stop a running container"
+    target_from: container_id
+  restart_container:
+    action: execute
+    risk: MEDIUM
+    description: "Restart a container"
+    target_from: container_id
+  pause_container:
+    action: disable
+    risk: LOW
+    description: "Pause a running container"
+    target_from: container_id
+  unpause_container:
+    action: enable
+    risk: LOW
+    description: "Unpause a paused container"
+    target_from: container_id
+  remove_container:
+    action: delete
+    risk: HIGH
+    description: "Remove a container"
+    target_from: container_id
+  remove_image:
+    action: delete
+    risk: HIGH
+    description: "Remove an image"
+    target_from: image_id
+  pull_image:
+    action: import
+    risk: MEDIUM
+    description: "Pull an image from registry"
+    target_from: image_name
+  push_image:
+    action: export
+    risk: HIGH
+    description: "Push an image to registry"
+    target_from: image_name
+  build_image:
+    action: create
+    risk: MEDIUM
+    description: "Build a Docker image"
+    target_from: dockerfile_path
+    context_from:
+      image_tag: image_tag
+  execute_container_cmd:
+    action: execute
+    risk: HIGH
+    description: "Execute a command in a container"
+    target_from: container_id
+    context_from:
+      cmd: cmd
+  get_container_logs:
+    action: read
+    risk: READ-ONLY
+    description: "Get container logs"
+    target_from: container_id
+  inspect_container:
+    action: read
+    risk: READ-ONLY
+    description: "Inspect container configuration"
+    target_from: container_id
+  list_networks:
+    action: list
+    risk: READ-ONLY
+    description: "List Docker networks"
+  create_network:
+    action: create
+    risk: MEDIUM
+    description: "Create a network"
+    target_from: network_name
+  remove_network:
+    action: delete
+    risk: HIGH
+    description: "Remove a network"
+    target_from: network_id
+  list_volumes:
+    action: list
+    risk: READ-ONLY
+    description: "List Docker volumes"
+  create_volume:
+    action: create
+    risk: MEDIUM
+    description: "Create a volume"
+    target_from: volume_name
+  remove_volume:
+    action: delete
+    risk: HIGH
+    description: "Remove a volume"
+    target_from: volume_id

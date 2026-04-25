@@ -1,0 +1,26 @@
+taxonomy_version: "2026.03.1"
+sub_sector: renewables
+sector: energy-utilities
+
+verbs:
+  curtail-renewables:
+    risk: HIGH
+    description: "Curtail renewable energy generation output"
+  modify-feed-in-tariff:
+    risk: CRITICAL
+    description: "Modify the feed-in tariff rate for renewable generators"
+    requires_approval: true
+  issue-green-certificate:
+    risk: HIGH
+    description: "Issue a renewable energy certificate or guarantee of origin"
+  revoke-green-certificate:
+    risk: CRITICAL
+    description: "Revoke a previously issued green energy certificate"
+    reversible: false
+  connect-generator:
+    risk: HIGH
+    description: "Connect a renewable generator to the grid"
+    requires_approval: true
+  disconnect-generator:
+    risk: HIGH
+    description: "Disconnect a renewable generator from the grid"

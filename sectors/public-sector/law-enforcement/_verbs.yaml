@@ -1,0 +1,38 @@
+taxonomy_version: "2026.03.1"
+sub_sector: law-enforcement
+sector: public-sector
+
+verbs:
+  issue-warrant:
+    risk: CRITICAL
+    description: "Issue an arrest or search warrant"
+    requires_approval: true
+  execute-arrest:
+    risk: CRITICAL
+    description: "Execute an arrest"
+    requires_approval: true
+  classify-intelligence:
+    risk: CRITICAL
+    description: "Classify intelligence material"
+    requires_approval: true
+  authorize-surveillance:
+    risk: CRITICAL
+    description: "Authorize surveillance operation"
+    requires_approval: true
+  seize-asset:
+    risk: CRITICAL
+    description: "Seize assets under legal authority"
+    requires_approval: true
+  grant-clearance:
+    risk: CRITICAL
+    description: "Grant security clearance to individual"
+    requires_approval: true
+  annul-record:
+    risk: CRITICAL
+    description: "Annul an official record"
+    reversible: false
+    requires_approval: true
+  release-detainee:
+    risk: HIGH
+    description: "Release a detained individual"
+    requires_approval: true

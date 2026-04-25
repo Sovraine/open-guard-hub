@@ -1,0 +1,134 @@
+server: twilio
+description: "Twilio SMS and voice communication"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "twilio-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  send_sms:
+    action: create
+    risk: LOW
+    description: "Send SMS message"
+    context_from:
+      to: to
+      message: message
+  send_bulk_sms:
+    action: create
+    risk: MEDIUM
+    description: "Send bulk SMS messages"
+    context_from:
+      recipients: recipients
+      message: message
+  get_message:
+    action: read
+    risk: READ-ONLY
+    description: "Get SMS message details"
+    target_from: message_sid
+  list_messages:
+    action: list
+    risk: READ-ONLY
+    description: "List SMS messages"
+  schedule_sms:
+    action: schedule
+    risk: LOW
+    description: "Schedule SMS for later"
+    context_from:
+      to: to
+      message: message
+      send_time: send_time
+  cancel_scheduled_sms:
+    action: cancel
+    risk: LOW
+    description: "Cancel scheduled SMS"
+    target_from: message_sid
+  make_call:
+    action: create
+    risk: MEDIUM
+    description: "Make voice call"
+    context_from:
+      to: to
+      from: from
+  get_call:
+    action: read
+    risk: READ-ONLY
+    description: "Get call details"
+    target_from: call_sid
+  list_calls:
+    action: list
+    risk: READ-ONLY
+    description: "List calls"
+  record_call:
+    action: enable
+    risk: MEDIUM
+    description: "Enable call recording"
+    target_from: call_sid
+  end_call:
+    action: execute
+    risk: MEDIUM
+    description: "Terminate call"
+    target_from: call_sid
+  transfer_call:
+    action: execute
+    risk: MEDIUM
+    description: "Transfer call to another number"
+    target_from: call_sid
+    context_from:
+      to: to
+  conference_call:
+    action: create
+    risk: MEDIUM
+    description: "Create conference call"
+    context_from:
+      participants: participants
+  add_participant:
+    action: create
+    risk: MEDIUM
+    description: "Add participant to conference"
+    target_from: conference_sid
+    context_from:
+      phone_number: phone_number
+  remove_participant:
+    action: delete
+    risk: MEDIUM
+    description: "Remove conference participant"
+    target_from: conference_sid
+    context_from:
+      participant_sid: participant_sid
+  get_phone_number:
+    action: read
+    risk: READ-ONLY
+    description: "Get phone number details"
+    target_from: phone_number
+  buy_phone_number:
+    action: create
+    risk: HIGH
+    description: "Purchase phone number"
+    target_from: phone_number
+  release_phone_number:
+    action: delete
+    risk: HIGH
+    description: "Release phone number"
+    target_from: phone_number
+  list_phone_numbers:
+    action: list
+    risk: READ-ONLY
+    description: "List owned phone numbers"
+  send_mms:
+    action: create
+    risk: LOW
+    description: "Send MMS message"
+    context_from:
+      to: to
+      message: message
+      media_url: media_url
+  get_account_info:
+    action: read
+    risk: READ-ONLY
+    description: "Get account details"
+  get_balance:
+    action: read
+    risk: READ-ONLY
+    description: "Get account balance"

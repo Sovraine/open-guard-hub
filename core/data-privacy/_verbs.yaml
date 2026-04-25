@@ -1,0 +1,106 @@
+taxonomy_version: "2026.03.1"
+domain: core/data-privacy
+description: Cross-cutting GDPR/CCPA/AI Act verbs — auto-inherited by ALL sectors
+
+verbs:
+  collect-personal-data:
+    risk: MEDIUM
+    description: "Collect personal data from individuals"
+    reversible: false
+    regulatory_reference: "GDPR Art.6"
+  process-personal-data:
+    risk: MEDIUM
+    description: "Process personal data for a specific purpose"
+    reversible: false
+    regulatory_reference: "GDPR Art.6"
+  store-personal-data:
+    risk: MEDIUM
+    description: "Store personal data in a system"
+    reversible: true
+    regulatory_reference: "GDPR Art.5(1)(e)"
+  transfer-personal-data:
+    risk: HIGH
+    description: "Transfer personal data to third party or cross-border"
+    reversible: false
+    regulatory_reference: "GDPR Art.44-49"
+  delete-personal-data:
+    risk: MEDIUM
+    description: "Delete personal data (right to erasure)"
+    reversible: false
+    regulatory_reference: "GDPR Art.17"
+  anonymize:
+    risk: LOW
+    description: "Anonymize data beyond re-identification"
+    reversible: false
+    regulatory_reference: "GDPR Recital 26"
+  pseudonymize:
+    risk: LOW
+    description: "Replace identifiers with pseudonyms"
+    reversible: true
+    regulatory_reference: "GDPR Art.4(5)"
+  export-personal-data:
+    risk: HIGH
+    description: "Export personal data (data portability)"
+    reversible: false
+    regulatory_reference: "GDPR Art.20"
+  consent-record:
+    risk: LOW
+    description: "Record consent from data subject"
+    reversible: false
+    regulatory_reference: "GDPR Art.7"
+  consent-withdraw:
+    risk: MEDIUM
+    description: "Process withdrawal of consent"
+    reversible: false
+    regulatory_reference: "GDPR Art.7(3)"
+  data-breach-notify:
+    risk: CRITICAL
+    description: "Notify authorities/subjects of data breach"
+    reversible: false
+    regulatory_reference: "GDPR Art.33-34"
+  profile-individual:
+    risk: HIGH
+    description: "Create profile based on personal data"
+    reversible: true
+    regulatory_reference: "GDPR Art.22"
+  cross-reference-data:
+    risk: HIGH
+    description: "Cross-reference personal data across sources"
+    reversible: false
+    regulatory_reference: "GDPR Art.5(1)(b)"
+  retain-beyond-policy:
+    risk: HIGH
+    description: "Retain data beyond retention policy period"
+    reversible: false
+    regulatory_reference: "GDPR Art.5(1)(e)"
+  access-minor-data:
+    risk: CRITICAL
+    description: "Access data of minors (under 16)"
+    reversible: false
+    regulatory_reference: "GDPR Art.8"
+  train-model-on-data:
+    risk: HIGH
+    description: "Use personal data for AI model training"
+    reversible: false
+    regulatory_reference: "AI Act Art.10"
+
+  # Privacy-Aware LLM Routing verbs (Sovraine One Couche 1 integration)
+  route-to-cloud:
+    risk: LOW
+    description: "Route LLM call to cloud provider (data classified PUBLIC/INTERNAL)"
+    reversible: false
+    regulatory_reference: "GDPR Art.44-49"
+  route-to-local:
+    risk: READ-ONLY
+    description: "Route LLM call to local provider (data classified SENSITIVE/RESTRICTED)"
+    reversible: false
+  redact-pii:
+    risk: MEDIUM
+    description: "Redact PII from context before sending to cloud LLM"
+    reversible: true
+    regulatory_reference: "GDPR Art.25"
+  override-privacy-route:
+    risk: HIGH
+    description: "Force cloud LLM routing despite sensitive data classification"
+    reversible: false
+    regulatory_reference: "GDPR Art.44-49"

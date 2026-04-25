@@ -1,0 +1,181 @@
+server: snowflake
+description: "Snowflake cloud data warehouse"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "snowflake-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_databases:
+    action: list
+    risk: READ-ONLY
+    description: "List all databases"
+  list_schemas:
+    action: list
+    risk: READ-ONLY
+    description: "List schemas in database"
+    target_from: database_name
+  list_tables:
+    action: list
+    risk: READ-ONLY
+    description: "List tables in schema"
+    target_from: schema_name
+    context_from:
+      database: database
+  get_table_schema:
+    action: read
+    risk: READ-ONLY
+    description: "Get table structure"
+    target_from: table_name
+    context_from:
+      database: database
+      schema: schema
+  execute_query:
+    action: _detect
+    risk: MEDIUM
+    parser: sql
+    description: "Execute SQL query"
+    target_from: database_name
+    sql_mapping:
+      SELECT: read
+      INSERT: create
+      UPDATE: update
+      DELETE: delete
+      CREATE: create
+      DROP: delete
+      ALTER: update
+    context_from:
+      query: query
+  select:
+    action: read
+    risk: READ-ONLY
+    description: "Execute SELECT query"
+    target_from: table_name
+    context_from:
+      database: database
+      schema: schema
+  insert:
+    action: create
+    risk: MEDIUM
+    description: "Insert data"
+    target_from: table_name
+    context_from:
+      database: database
+      schema: schema
+      values: values
+  update:
+    action: update
+    risk: MEDIUM
+    description: "Update data"
+    target_from: table_name
+    context_from:
+      database: database
+      schema: schema
+      where: where
+  delete:
+    action: delete
+    risk: HIGH
+    description: "Delete data"
+    target_from: table_name
+    context_from:
+      database: database
+      schema: schema
+      where: where
+  create_table:
+    action: create
+    risk: MEDIUM
+    description: "Create table"
+    target_from: table_name
+    context_from:
+      database: database
+      schema: schema
+      schema_def: schema_def
+  drop_table:
+    action: delete
+    risk: HIGH
+    description: "Drop table"
+    target_from: table_name
+    context_from:
+      database: database
+      schema: schema
+  create_stage:
+    action: create
+    risk: MEDIUM
+    description: "Create external stage"
+    target_from: stage_name
+    context_from:
+      database: database
+      schema: schema
+  list_stages:
+    action: list
+    risk: READ-ONLY
+    description: "List stages"
+    target_from: schema_name
+  drop_stage:
+    action: delete
+    risk: HIGH
+    description: "Drop stage"
+    target_from: stage_name
+    context_from:
+      database: database
+      schema: schema
+  copy_into_table:
+    action: create
+    risk: MEDIUM
+    description: "Load data into table"
+    target_from: table_name
+    context_from:
+      database: database
+      schema: schema
+      stage: stage
+  unload_table:
+    action: export
+    risk: HIGH
+    description: "Unload table to stage"
+    target_from: table_name
+    context_from:
+      database: database
+      schema: schema
+  create_pipe:
+    action: create
+    risk: MEDIUM
+    description: "Create continuous pipe"
+    target_from: pipe_name
+    context_from:
+      database: database
+      schema: schema
+  list_warehouses:
+    action: list
+    risk: READ-ONLY
+    description: "List warehouses"
+  get_warehouse_info:
+    action: read
+    risk: READ-ONLY
+    description: "Get warehouse details"
+    target_from: warehouse_name
+  suspend_warehouse:
+    action: disable
+    risk: MEDIUM
+    description: "Suspend warehouse"
+    target_from: warehouse_name
+  resume_warehouse:
+    action: enable
+    risk: MEDIUM
+    description: "Resume warehouse"
+    target_from: warehouse_name
+  create_task:
+    action: create
+    risk: MEDIUM
+    description: "Create scheduled task"
+    target_from: task_name
+    context_from:
+      database: database
+      schema: schema
+      schedule: schedule
+  execute_task:
+    action: execute
+    risk: MEDIUM
+    description: "Execute task immediately"
+    target_from: task_name

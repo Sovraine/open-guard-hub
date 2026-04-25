@@ -1,0 +1,114 @@
+server: dynatrace
+description: "Dynatrace — DQL queries, problems, vulnerabilities, Davis AI, K8s events (20 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "dynatrace-mcp"
+  registry: npm
+  transport: stdio
+  command: "npx -y dynatrace-mcp"
+tools:
+  # --- DQL ---
+  execute_dql_query:
+    action: _detect
+    risk: MEDIUM
+    description: "Execute a Dynatrace Query Language query"
+    sql_mapping: true
+    target_from: query
+  # --- Problems ---
+  list_problems:
+    action: list
+    risk: READ-ONLY
+    description: "List detected problems"
+  get_problem:
+    action: read
+    risk: READ-ONLY
+    description: "Get problem details"
+    target_from: problemId
+  close_problem:
+    action: update
+    risk: MEDIUM
+    description: "Close a problem"
+    target_from: problemId
+  add_problem_comment:
+    action: create
+    risk: LOW
+    description: "Add a comment to a problem"
+    target_from: problemId
+  # --- Vulnerabilities ---
+  list_vulnerabilities:
+    action: list
+    risk: READ-ONLY
+    description: "List security vulnerabilities"
+  get_vulnerability:
+    action: read
+    risk: READ-ONLY
+    description: "Get vulnerability details"
+    target_from: vulnerabilityId
+  mute_vulnerability:
+    action: update
+    risk: MEDIUM
+    description: "Mute a vulnerability"
+    target_from: vulnerabilityId
+  unmute_vulnerability:
+    action: update
+    risk: LOW
+    description: "Unmute a vulnerability"
+    target_from: vulnerabilityId
+  # --- Davis AI ---
+  davis_analyze:
+    action: read
+    risk: READ-ONLY
+    description: "Run Davis AI analysis"
+    target_from: query
+  davis_predict:
+    action: read
+    risk: READ-ONLY
+    description: "Get Davis AI predictions"
+    target_from: entityId
+  # --- Kubernetes ---
+  list_k8s_clusters:
+    action: list
+    risk: READ-ONLY
+    description: "List Kubernetes clusters"
+  get_k8s_events:
+    action: read
+    risk: READ-ONLY
+    description: "Get Kubernetes events"
+    target_from: clusterId
+  get_k8s_workloads:
+    action: read
+    risk: READ-ONLY
+    description: "Get Kubernetes workloads"
+    target_from: clusterId
+  # --- Workflows ---
+  list_workflows:
+    action: list
+    risk: READ-ONLY
+    description: "List automation workflows"
+  get_workflow:
+    action: read
+    risk: READ-ONLY
+    description: "Get workflow details"
+    target_from: workflowId
+  run_workflow:
+    action: execute
+    risk: HIGH
+    description: "Execute an automation workflow"
+    target_from: workflowId
+  # --- Notifications ---
+  list_notification_configs:
+    action: list
+    risk: READ-ONLY
+    description: "List notification configurations"
+  get_notification_config:
+    action: read
+    risk: READ-ONLY
+    description: "Get notification configuration details"
+    target_from: configId
+  # --- Entities ---
+  get_entity:
+    action: read
+    risk: READ-ONLY
+    description: "Get monitored entity details"
+    target_from: entityId

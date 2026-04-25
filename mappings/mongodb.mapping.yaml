@@ -1,0 +1,309 @@
+server: mongodb
+description: "MongoDB MCP — database operations and Atlas management (44 tools, 28 core + 16 Atlas-conditional)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "mongodb-mcp-server"
+  registry: npm
+  transport: stdio
+  command: "npx -y mongodb-mcp-server"
+tools:
+  # --- Connection ---
+  connect:
+    action: configure
+    risk: MEDIUM
+    description: "Connect to a MongoDB instance"
+    target_from: connectionString
+  switch-connection:
+    action: configure
+    risk: MEDIUM
+    description: "Switch to a different MongoDB connection"
+    target_from: connectionString
+  # --- Database metadata ---
+  list-databases:
+    action: list
+    risk: READ-ONLY
+    description: "List all databases"
+  list-collections:
+    action: list
+    risk: READ-ONLY
+    description: "List all collections for a database"
+    target_from: database
+  collection-indexes:
+    action: read
+    risk: READ-ONLY
+    description: "Describe indexes for a collection"
+    target_from: collection
+    context_from:
+      database: database
+  collection-schema:
+    action: read
+    risk: READ-ONLY
+    description: "Describe the schema for a collection"
+    target_from: collection
+    context_from:
+      database: database
+  collection-storage-size:
+    action: read
+    risk: READ-ONLY
+    description: "Get the storage size of a collection"
+    target_from: collection
+    context_from:
+      database: database
+  db-stats:
+    action: read
+    risk: READ-ONLY
+    description: "Get database usage statistics"
+    target_from: database
+  mongodb-logs:
+    action: read
+    risk: READ-ONLY
+    description: "Return recent mongod log events"
+  explain:
+    action: read
+    risk: READ-ONLY
+    description: "Explain query execution plan"
+    target_from: collection
+    context_from:
+      database: database
+      method: method
+  # --- Read operations ---
+  find:
+    action: read
+    risk: READ-ONLY
+    description: "Run a find query against a collection"
+    target_from: collection
+    context_from:
+      database: database
+      filter: filter
+  count:
+    action: read
+    risk: READ-ONLY
+    description: "Count documents in a collection"
+    target_from: collection
+    context_from:
+      database: database
+  aggregate:
+    action: read
+    risk: READ-ONLY
+    description: "Run an aggregation pipeline"
+    target_from: collection
+    context_from:
+      database: database
+      pipeline: pipeline
+  export:
+    action: export
+    risk: LOW
+    description: "Export query results in EJSON format"
+    target_from: collection
+    context_from:
+      database: database
+      exportTitle: exportTitle
+  # --- Create operations ---
+  insert-many:
+    action: create
+    risk: MEDIUM
+    description: "Insert documents into a collection"
+    target_from: collection
+    context_from:
+      database: database
+  create-index:
+    action: create
+    risk: MEDIUM
+    description: "Create indexes on a collection"
+    target_from: collection
+    context_from:
+      database: database
+      indexName: indexName
+  create-collection:
+    action: create
+    risk: LOW
+    description: "Create a new collection"
+    target_from: collection
+    context_from:
+      database: database
+  # --- Update operations ---
+  update-many:
+    action: update
+    risk: HIGH
+    description: "Update all documents matching a filter"
+    target_from: collection
+    context_from:
+      database: database
+      filter: filter
+  rename-collection:
+    action: update
+    risk: HIGH
+    description: "Rename a collection"
+    target_from: collection
+    context_from:
+      database: database
+      newName: newName
+  # --- Delete operations ---
+  delete-many:
+    action: delete
+    risk: HIGH
+    description: "Delete all documents matching a filter"
+    target_from: collection
+    context_from:
+      database: database
+      filter: filter
+  drop-index:
+    action: delete
+    risk: HIGH
+    description: "Drop an index from a collection"
+    target_from: collection
+    context_from:
+      database: database
+      indexName: indexName
+  drop-collection:
+    action: delete
+    risk: CRITICAL
+    description: "Drop an entire collection"
+    target_from: collection
+    context_from:
+      database: database
+  drop-database:
+    action: delete
+    risk: CRITICAL
+    description: "Drop an entire database"
+    target_from: database
+  # --- Atlas: Org & Project ---
+  atlas-list-orgs:
+    action: list
+    risk: READ-ONLY
+    description: "List Atlas organizations"
+  atlas-list-projects:
+    action: list
+    risk: READ-ONLY
+    description: "List Atlas projects"
+  atlas-create-project:
+    action: create
+    risk: MEDIUM
+    description: "Create an Atlas project"
+    target_from: projectName
+  # --- Atlas: Clusters ---
+  atlas-list-clusters:
+    action: list
+    risk: READ-ONLY
+    description: "List Atlas clusters"
+  atlas-inspect-cluster:
+    action: read
+    risk: READ-ONLY
+    description: "Inspect Atlas cluster metadata"
+    target_from: clusterName
+    context_from:
+      projectId: projectId
+  atlas-create-free-cluster:
+    action: create
+    risk: MEDIUM
+    description: "Create a free Atlas cluster"
+    target_from: name
+    context_from:
+      projectId: projectId
+  atlas-connect-cluster:
+    action: configure
+    risk: MEDIUM
+    description: "Connect to an Atlas cluster"
+    target_from: clusterName
+    context_from:
+      projectId: projectId
+  # --- Atlas: Users & Access ---
+  atlas-list-db-users:
+    action: list
+    risk: READ-ONLY
+    description: "List Atlas database users"
+    target_from: projectId
+  atlas-create-db-user:
+    action: create
+    risk: HIGH
+    description: "Create an Atlas database user"
+    target_from: username
+    context_from:
+      projectId: projectId
+      roles: roles
+  atlas-inspect-access-list:
+    action: read
+    risk: READ-ONLY
+    description: "Inspect IP access list for a project"
+    target_from: projectId
+  atlas-create-access-list:
+    action: create
+    risk: HIGH
+    description: "Allow IP/CIDR ranges to access clusters"
+    target_from: projectId
+  # --- Atlas: Monitoring ---
+  atlas-list-alerts:
+    action: list
+    risk: READ-ONLY
+    description: "List Atlas alerts"
+    target_from: projectId
+  atlas-get-performance-advisor:
+    action: read
+    risk: READ-ONLY
+    description: "Get performance advisor recommendations"
+    target_from: clusterName
+    context_from:
+      projectId: projectId
+  # --- Atlas: Streams ---
+  atlas-streams-discover:
+    action: read
+    risk: READ-ONLY
+    description: "Discover Atlas Stream Processing resources"
+    target_from: projectId
+    context_from:
+      action: action
+  atlas-streams-build:
+    action: create
+    risk: HIGH
+    description: "Create Atlas Stream Processing resources"
+    target_from: workspaceName
+    context_from:
+      projectId: projectId
+      resource: resource
+  atlas-streams-manage:
+    action: update
+    risk: HIGH
+    description: "Manage Atlas Stream Processing (start/stop/modify)"
+    target_from: workspaceName
+    context_from:
+      projectId: projectId
+      action: action
+  atlas-streams-teardown:
+    action: delete
+    risk: HIGH
+    description: "Delete Atlas Stream Processing resources"
+    target_from: workspaceName
+    context_from:
+      projectId: projectId
+      resource: resource
+  # --- Atlas Local ---
+  atlas-local-create-deployment:
+    action: create
+    risk: LOW
+    description: "Create a local Atlas deployment"
+    target_from: deploymentName
+  atlas-local-list-deployments:
+    action: list
+    risk: READ-ONLY
+    description: "List local Atlas deployments"
+  atlas-local-connect-deployment:
+    action: configure
+    risk: LOW
+    description: "Connect to a local Atlas deployment"
+    target_from: deploymentName
+  atlas-local-delete-deployment:
+    action: delete
+    risk: MEDIUM
+    description: "Delete a local Atlas deployment"
+    target_from: deploymentName
+  # --- Assistant ---
+  list-knowledge-sources:
+    action: list
+    risk: READ-ONLY
+    description: "List MongoDB Assistant knowledge sources"
+  search-knowledge:
+    action: search
+    risk: READ-ONLY
+    description: "Search MongoDB Assistant knowledge base"
+    target_from: query

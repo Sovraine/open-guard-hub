@@ -1,0 +1,25 @@
+taxonomy_version: "2026.03.1"
+sub_sector: marketplace
+sector: retail-ecommerce
+
+verbs:
+  suspend-seller:
+    risk: HIGH
+    description: "Suspend a marketplace seller"
+  ban-seller:
+    risk: CRITICAL
+    description: "Permanently ban a marketplace seller"
+    requires_approval: true
+  override-dispute:
+    risk: HIGH
+    description: "Override a marketplace dispute resolution"
+    requires_approval: true
+  release-escrow:
+    risk: HIGH
+    description: "Release funds held in escrow to the seller"
+  withhold-payout:
+    risk: HIGH
+    description: "Withhold a scheduled payout to a seller"
+  delist-product:
+    risk: HIGH
+    description: "Remove a product listing from the marketplace"

@@ -1,0 +1,159 @@
+server: jira
+description: "Jira project management and issue tracking"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "jira-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_projects:
+    action: list
+    risk: READ-ONLY
+    description: "List all projects"
+  get_project:
+    action: read
+    risk: READ-ONLY
+    description: "Get project details"
+    target_from: project_key
+  create_project:
+    action: create
+    risk: MEDIUM
+    description: "Create new project"
+    target_from: project_name
+    context_from:
+      project_key: project_key
+      project_type: project_type
+  delete_project:
+    action: delete
+    risk: HIGH
+    description: "Delete project"
+    target_from: project_key
+  list_issues:
+    action: list
+    risk: READ-ONLY
+    description: "List issues with JQL"
+    context_from:
+      jql: jql
+  get_issue:
+    action: read
+    risk: READ-ONLY
+    description: "Get issue details"
+    target_from: issue_key
+  create_issue:
+    action: create
+    risk: LOW
+    description: "Create new issue"
+    target_from: project_key
+    context_from:
+      summary: summary
+      issue_type: issue_type
+      description: description
+  update_issue:
+    action: update
+    risk: MEDIUM
+    description: "Update issue fields"
+    target_from: issue_key
+    context_from:
+      fields: fields
+  delete_issue:
+    action: delete
+    risk: HIGH
+    description: "Delete issue"
+    target_from: issue_key
+  transition_issue:
+    action: update
+    risk: MEDIUM
+    description: "Change issue status"
+    target_from: issue_key
+    context_from:
+      transition_name: transition_name
+  assign_issue:
+    action: assign
+    risk: LOW
+    description: "Assign issue to user"
+    target_from: issue_key
+    context_from:
+      assignee: assignee
+  unassign_issue:
+    action: unassign
+    risk: LOW
+    description: "Unassign issue"
+    target_from: issue_key
+  add_comment:
+    action: comment
+    risk: LOW
+    description: "Add comment to issue"
+    target_from: issue_key
+    context_from:
+      comment: comment
+  update_comment:
+    action: update
+    risk: LOW
+    description: "Edit issue comment"
+    target_from: issue_key
+    context_from:
+      comment_id: comment_id
+      text: text
+  delete_comment:
+    action: delete
+    risk: MEDIUM
+    description: "Delete issue comment"
+    target_from: issue_key
+    context_from:
+      comment_id: comment_id
+  list_attachments:
+    action: list
+    risk: READ-ONLY
+    description: "List issue attachments"
+    target_from: issue_key
+  add_attachment:
+    action: create
+    risk: MEDIUM
+    description: "Attach file to issue"
+    target_from: issue_key
+    context_from:
+      file: file
+  delete_attachment:
+    action: delete
+    risk: MEDIUM
+    description: "Remove attachment"
+    target_from: attachment_id
+  list_issue_links:
+    action: list
+    risk: READ-ONLY
+    description: "List issue links"
+    target_from: issue_key
+  create_issue_link:
+    action: create
+    risk: LOW
+    description: "Link issues"
+    target_from: issue_key
+    context_from:
+      target_issue: target_issue
+      link_type: link_type
+  delete_issue_link:
+    action: delete
+    risk: MEDIUM
+    description: "Remove issue link"
+    target_from: link_id
+  list_boards:
+    action: list
+    risk: READ-ONLY
+    description: "List Agile boards"
+  get_board:
+    action: read
+    risk: READ-ONLY
+    description: "Get board details"
+    target_from: board_id
+  list_sprints:
+    action: list
+    risk: READ-ONLY
+    description: "List sprints"
+    target_from: board_id
+  get_sprint:
+    action: read
+    risk: READ-ONLY
+    description: "Get sprint details"
+    target_from: sprint_id

@@ -1,0 +1,10 @@
+name: media-entertainment
+display_name: "Media & Entertainment"
+status: BETA
+regulations: [copyright_law, DMCA, content_moderation, COPPA]
+cross_cutting:
+  - core/data-privacy
+inherits: [core/common]
+overrides:
+  delete: { risk: HIGH }
+sub_sectors: [content, streaming, advertising, gaming]

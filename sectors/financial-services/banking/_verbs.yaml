@@ -1,0 +1,46 @@
+taxonomy_version: "2026.03.1"
+sub_sector: banking
+sector: financial-services
+
+verbs:
+  open-account:
+    risk: MEDIUM
+    description: "Open a new bank account"
+  close-account:
+    risk: HIGH
+    description: "Close a bank account"
+  freeze-account:
+    risk: HIGH
+    description: "Freeze a bank account"
+  kyc-verify:
+    risk: MEDIUM
+    description: "Verify customer identity (KYC)"
+  kyc-override:
+    risk: CRITICAL
+    description: "Override KYC verification requirement"
+    requires_approval: true
+  aml-flag:
+    risk: MEDIUM
+    description: "Flag transaction for anti-money laundering review"
+  aml-dismiss:
+    risk: CRITICAL
+    description: "Dismiss AML flag without investigation"
+    requires_approval: true
+  sanction-override:
+    risk: CRITICAL
+    description: "Override sanctions check result"
+    requires_approval: true
+  transfer-funds:
+    risk: HIGH
+    description: "Transfer money between accounts"
+    reversible: false
+    regulatory_reference: "PSD2"
+  approve-loan:
+    risk: HIGH
+    description: "Approve a loan application"
+  recall-wire:
+    risk: CRITICAL
+    description: "Recall an international wire transfer"
+    reversible: false
+    requires_approval: true
+    regulatory_reference: "PSD2 Art.88"

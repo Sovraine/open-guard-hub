@@ -1,0 +1,156 @@
+server: okta
+description: "Okta identity and access management"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "okta-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_users:
+    action: list
+    risk: READ-ONLY
+    description: "List users"
+    context_from:
+      query: query
+  get_user:
+    action: read
+    risk: READ-ONLY
+    description: "Get user details"
+    target_from: user_id
+  create_user:
+    action: create
+    risk: MEDIUM
+    description: "Create user"
+    context_from:
+      email: email
+      first_name: first_name
+      last_name: last_name
+  update_user:
+    action: update
+    risk: MEDIUM
+    description: "Update user"
+    target_from: user_id
+    context_from:
+      fields: fields
+  delete_user:
+    action: delete
+    risk: HIGH
+    description: "Delete user"
+    target_from: user_id
+  deactivate_user:
+    action: disable
+    risk: MEDIUM
+    description: "Deactivate user"
+    target_from: user_id
+  activate_user:
+    action: enable
+    risk: MEDIUM
+    description: "Activate user"
+    target_from: user_id
+  reset_user_password:
+    action: execute
+    risk: HIGH
+    description: "Reset user password"
+    target_from: user_id
+  set_user_password:
+    action: update
+    risk: HIGH
+    description: "Set user password"
+    target_from: user_id
+    context_from:
+      password: password
+  list_groups:
+    action: list
+    risk: READ-ONLY
+    description: "List groups"
+  get_group:
+    action: read
+    risk: READ-ONLY
+    description: "Get group details"
+    target_from: group_id
+  create_group:
+    action: create
+    risk: MEDIUM
+    description: "Create group"
+    target_from: group_name
+  update_group:
+    action: update
+    risk: MEDIUM
+    description: "Update group"
+    target_from: group_id
+    context_from:
+      fields: fields
+  delete_group:
+    action: delete
+    risk: HIGH
+    description: "Delete group"
+    target_from: group_id
+  add_group_member:
+    action: assign
+    risk: MEDIUM
+    description: "Add user to group"
+    target_from: group_id
+    context_from:
+      user_id: user_id
+  remove_group_member:
+    action: unassign
+    risk: MEDIUM
+    description: "Remove user from group"
+    target_from: group_id
+    context_from:
+      user_id: user_id
+  list_apps:
+    action: list
+    risk: READ-ONLY
+    description: "List applications"
+  get_app:
+    action: read
+    risk: READ-ONLY
+    description: "Get app details"
+    target_from: app_id
+  assign_app_to_user:
+    action: assign
+    risk: MEDIUM
+    description: "Assign app to user"
+    target_from: user_id
+    context_from:
+      app_id: app_id
+  unassign_app_from_user:
+    action: unassign
+    risk: MEDIUM
+    description: "Unassign app from user"
+    target_from: user_id
+    context_from:
+      app_id: app_id
+  assign_app_to_group:
+    action: assign
+    risk: MEDIUM
+    description: "Assign app to group"
+    target_from: group_id
+    context_from:
+      app_id: app_id
+  list_roles:
+    action: list
+    risk: READ-ONLY
+    description: "List admin roles"
+  create_role:
+    action: create
+    risk: HIGH
+    description: "Create admin role"
+    target_from: role_name
+  assign_role_to_user:
+    action: assign
+    risk: HIGH
+    description: "Assign admin role to user"
+    target_from: user_id
+    context_from:
+      role_id: role_id
+  remove_role_from_user:
+    action: unassign
+    risk: MEDIUM
+    description: "Remove admin role from user"
+    target_from: user_id
+    context_from:
+      role_id: role_id

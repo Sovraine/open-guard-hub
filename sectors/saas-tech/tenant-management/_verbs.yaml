@@ -1,0 +1,18 @@
+taxonomy_version: "2026.03.1"
+sub_sector: tenant-management
+sector: saas-tech
+
+verbs:
+  suspend-tenant:
+    risk: HIGH
+    description: "Suspend a tenant account"
+  delete-tenant-data:
+    risk: CRITICAL
+    description: "Permanently delete all tenant data"
+    reversible: false
+  impersonate-tenant:
+    risk: CRITICAL
+    description: "Impersonate a tenant for debugging"
+  migrate-tenant:
+    risk: HIGH
+    description: "Migrate tenant to different infrastructure"

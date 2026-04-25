@@ -1,0 +1,33 @@
+taxonomy_version: "2026.03.1"
+sub_sector: production
+sector: manufacturing
+
+verbs:
+  start-production-run:
+    risk: HIGH
+    description: "Start a production run on manufacturing line"
+  halt-production:
+    risk: CRITICAL
+    description: "Emergency halt of production line"
+  override-quality-check:
+    risk: CRITICAL
+    description: "Override failed quality control check"
+    requires_approval: true
+  release-batch:
+    risk: HIGH
+    description: "Release manufactured batch for distribution"
+  recall-product:
+    risk: CRITICAL
+    description: "Initiate product recall"
+    reversible: false
+    requires_approval: true
+  modify-recipe:
+    risk: HIGH
+    description: "Modify manufacturing recipe or formula"
+  bypass-safety-interlock:
+    risk: CRITICAL
+    description: "Bypass safety interlock on equipment"
+    requires_approval: true
+  certify-batch:
+    risk: HIGH
+    description: "Certify batch meets quality standards"

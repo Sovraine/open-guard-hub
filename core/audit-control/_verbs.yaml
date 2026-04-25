@@ -1,0 +1,42 @@
+taxonomy_version: "2026.03.1"
+domain: core/audit-control
+description: Cross-cutting regulatory audit verbs — inherited by regulated sectors
+
+verbs:
+  create-audit-trail:
+    risk: LOW
+    description: "Create a new audit trail entry"
+  tamper-audit-trail:
+    risk: CRITICAL
+    description: "Modify or tamper with audit trail"
+    reversible: false
+  export-audit-trail:
+    risk: MEDIUM
+    description: "Export audit trail data"
+  delete-audit-record:
+    risk: CRITICAL
+    description: "Delete an audit record"
+    reversible: false
+  set-retention-policy:
+    risk: HIGH
+    description: "Set or modify data retention policy"
+  override-retention:
+    risk: CRITICAL
+    description: "Override retention policy to delete early"
+    reversible: false
+  flag-anomaly:
+    risk: MEDIUM
+    description: "Flag an anomaly for review"
+  dismiss-anomaly:
+    risk: HIGH
+    description: "Dismiss a flagged anomaly without resolution"
+  generate-compliance-report:
+    risk: MEDIUM
+    description: "Generate compliance report"
+  attest-compliance:
+    risk: HIGH
+    description: "Attest to regulatory compliance"
+  revoke-attestation:
+    risk: CRITICAL
+    description: "Revoke a compliance attestation"
+    reversible: false

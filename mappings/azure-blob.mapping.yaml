@@ -1,0 +1,145 @@
+server: azure-blob
+description: "Azure Blob Storage operations"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "azure-blob-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_containers:
+    action: list
+    risk: READ-ONLY
+    description: "List all containers"
+  get_container:
+    action: read
+    risk: READ-ONLY
+    description: "Get container properties"
+    target_from: container_name
+  create_container:
+    action: create
+    risk: MEDIUM
+    description: "Create container"
+    target_from: container_name
+  delete_container:
+    action: delete
+    risk: HIGH
+    description: "Delete container"
+    target_from: container_name
+  list_blobs:
+    action: list
+    risk: READ-ONLY
+    description: "List blobs in container"
+    target_from: container_name
+    context_from:
+      prefix: prefix
+  get_blob:
+    action: read
+    risk: READ-ONLY
+    description: "Get blob content"
+    target_from: container_name
+    context_from:
+      blob_name: blob_name
+  upload_blob:
+    action: create
+    risk: MEDIUM
+    description: "Upload blob"
+    target_from: container_name
+    context_from:
+      blob_name: blob_name
+      content: content
+  delete_blob:
+    action: delete
+    risk: MEDIUM
+    description: "Delete blob"
+    target_from: container_name
+    context_from:
+      blob_name: blob_name
+  copy_blob:
+    action: create
+    risk: MEDIUM
+    description: "Copy blob"
+    target_from: source_container
+    context_from:
+      source_blob: source_blob
+      dest_container: dest_container
+      dest_blob: dest_blob
+  set_blob_properties:
+    action: update
+    risk: MEDIUM
+    description: "Set blob properties"
+    target_from: container_name
+    context_from:
+      blob_name: blob_name
+      properties: properties
+  get_blob_properties:
+    action: read
+    risk: READ-ONLY
+    description: "Get blob properties"
+    target_from: container_name
+    context_from:
+      blob_name: blob_name
+  set_blob_metadata:
+    action: update
+    risk: MEDIUM
+    description: "Set blob metadata"
+    target_from: container_name
+    context_from:
+      blob_name: blob_name
+      metadata: metadata
+  get_blob_metadata:
+    action: read
+    risk: READ-ONLY
+    description: "Get blob metadata"
+    target_from: container_name
+    context_from:
+      blob_name: blob_name
+  snapshot_blob:
+    action: create
+    risk: MEDIUM
+    description: "Create blob snapshot"
+    target_from: container_name
+    context_from:
+      blob_name: blob_name
+  list_blob_snapshots:
+    action: list
+    risk: READ-ONLY
+    description: "List blob snapshots"
+    target_from: container_name
+    context_from:
+      blob_name: blob_name
+  set_container_acl:
+    action: update
+    risk: HIGH
+    description: "Set container access level"
+    target_from: container_name
+    context_from:
+      acl: acl
+  get_container_acl:
+    action: read
+    risk: READ-ONLY
+    description: "Get container access level"
+    target_from: container_name
+  generate_sas_url:
+    action: create
+    risk: HIGH
+    description: "Generate SAS URL for blob"
+    target_from: container_name
+    context_from:
+      blob_name: blob_name
+      expiry: expiry
+  lease_blob:
+    action: lock
+    risk: MEDIUM
+    description: "Lease blob"
+    target_from: container_name
+    context_from:
+      blob_name: blob_name
+  break_blob_lease:
+    action: unlock
+    risk: MEDIUM
+    description: "Break blob lease"
+    target_from: container_name
+    context_from:
+      blob_name: blob_name

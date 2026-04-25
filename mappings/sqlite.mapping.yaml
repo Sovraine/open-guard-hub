@@ -1,0 +1,132 @@
+server: sqlite
+description: "SQLite embedded database operations"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "sqlite-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  execute_query:
+    action: _detect
+    risk: MEDIUM
+    parser: sql
+    description: "Execute SQL query"
+    target_from: database_path
+    sql_mapping:
+      SELECT: read
+      INSERT: create
+      UPDATE: update
+      DELETE: delete
+      DROP: delete
+      CREATE: create
+      ALTER: update
+    context_from:
+      query: query
+  select:
+    action: read
+    risk: READ-ONLY
+    description: "Execute SELECT query"
+    target_from: database_path
+    context_from:
+      query: query
+  insert:
+    action: create
+    risk: MEDIUM
+    description: "Insert rows"
+    target_from: table_name
+    context_from:
+      database_path: database_path
+      values: values
+  update:
+    action: update
+    risk: MEDIUM
+    description: "Update rows"
+    target_from: table_name
+    context_from:
+      database_path: database_path
+      where: where
+      values: values
+  delete:
+    action: delete
+    risk: MEDIUM
+    description: "Delete rows"
+    target_from: table_name
+    context_from:
+      database_path: database_path
+      where: where
+  list_tables:
+    action: list
+    risk: READ-ONLY
+    description: "List all tables"
+    target_from: database_path
+  get_table_info:
+    action: read
+    risk: READ-ONLY
+    description: "Get table schema"
+    target_from: table_name
+    context_from:
+      database_path: database_path
+  create_table:
+    action: create
+    risk: MEDIUM
+    description: "Create new table"
+    target_from: table_name
+    context_from:
+      database_path: database_path
+      schema: schema
+  drop_table:
+    action: delete
+    risk: HIGH
+    description: "Drop table"
+    target_from: table_name
+    context_from:
+      database_path: database_path
+  create_index:
+    action: create
+    risk: LOW
+    description: "Create index"
+    target_from: table_name
+    context_from:
+      database_path: database_path
+      index_name: index_name
+  drop_index:
+    action: delete
+    risk: HIGH
+    description: "Drop index"
+    target_from: index_name
+    context_from:
+      database_path: database_path
+  vacuum:
+    action: execute
+    risk: MEDIUM
+    description: "Optimize database file"
+    target_from: database_path
+  pragma:
+    action: read
+    risk: READ-ONLY
+    description: "Get database pragmas"
+    target_from: database_path
+  create_trigger:
+    action: create
+    risk: MEDIUM
+    description: "Create database trigger"
+    target_from: trigger_name
+    context_from:
+      database_path: database_path
+      definition: definition
+  drop_trigger:
+    action: delete
+    risk: MEDIUM
+    description: "Drop trigger"
+    target_from: trigger_name
+    context_from:
+      database_path: database_path
+  list_indexes:
+    action: list
+    risk: READ-ONLY
+    description: "List indexes"
+    target_from: table_name
+    context_from:
+      database_path: database_path

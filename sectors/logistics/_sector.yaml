@@ -1,0 +1,11 @@
+name: logistics
+display_name: "Logistics & Supply Chain"
+status: BETA
+regulations: [customs_regulations, hazmat, IATA]
+cross_cutting:
+  - core/data-privacy
+  - core/audit-control
+inherits: [core/common]
+overrides:
+  delete: { risk: HIGH }
+sub_sectors: [warehouse, transport, customs, last-mile]

@@ -1,0 +1,104 @@
+server: twitch
+description: "Twitch streaming platform operations"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "twitch-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  get_channel:
+    action: read
+    risk: READ-ONLY
+    description: "Get channel information"
+    target_from: channel_id
+  get_users:
+    action: list
+    risk: READ-ONLY
+    description: "Get user information"
+    context_from:
+      login: login
+  search_channels:
+    action: search
+    risk: READ-ONLY
+    description: "Search channels"
+    context_from:
+      query: query
+  search_videos:
+    action: search
+    risk: READ-ONLY
+    description: "Search videos"
+    context_from:
+      query: query
+  get_videos:
+    action: list
+    risk: READ-ONLY
+    description: "Get videos"
+    target_from: user_id
+  follow_channel:
+    action: create
+    risk: LOW
+    description: "Follow channel"
+    target_from: channel_id
+  unfollow_channel:
+    action: unsubscribe
+    risk: LOW
+    description: "Unfollow channel"
+    target_from: channel_id
+  get_followers:
+    action: list
+    risk: READ-ONLY
+    description: "Get channel followers"
+    target_from: channel_id
+  get_following:
+    action: list
+    risk: READ-ONLY
+    description: "Get channels followed"
+    target_from: user_id
+  create_clip:
+    action: create
+    risk: MEDIUM
+    description: "Create clip of broadcast"
+    target_from: broadcaster_id
+  get_clips:
+    action: list
+    risk: READ-ONLY
+    description: "Get clips"
+    target_from: broadcaster_id
+  delete_clip:
+    action: delete
+    risk: MEDIUM
+    description: "Delete clip"
+    target_from: clip_id
+  ban_user:
+    action: delete
+    risk: HIGH
+    description: "Ban user from channel"
+    target_from: channel_id
+    context_from:
+      user_id: user_id
+  unban_user:
+    action: restore
+    risk: MEDIUM
+    description: "Unban user"
+    target_from: channel_id
+    context_from:
+      user_id: user_id
+  get_badges:
+    action: list
+    risk: READ-ONLY
+    description: "Get badge information"
+  get_emotes:
+    action: list
+    risk: READ-ONLY
+    description: "Get emotes"
+  get_bits_leaderboard:
+    action: list
+    risk: READ-ONLY
+    description: "Get bits leaderboard"
+  get_subscriptions:
+    action: list
+    risk: READ-ONLY
+    description: "Get channel subscriptions"
+    target_from: channel_id

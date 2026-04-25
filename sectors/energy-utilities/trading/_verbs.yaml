@@ -1,0 +1,25 @@
+taxonomy_version: "2026.03.1"
+sub_sector: trading
+sector: energy-utilities
+
+verbs:
+  execute-energy-trade:
+    risk: HIGH
+    description: "Execute a trade on the energy market"
+  cancel-energy-trade:
+    risk: HIGH
+    description: "Cancel a pending or executed energy trade"
+  manipulate-bid:
+    risk: CRITICAL
+    description: "Manipulate a bid on the energy exchange"
+    requires_approval: true
+  override-price-cap:
+    risk: CRITICAL
+    description: "Override the regulatory price cap on energy contracts"
+    requires_approval: true
+  submit-nomination:
+    risk: HIGH
+    description: "Submit a nomination for energy delivery or capacity"
+  balance-portfolio:
+    risk: HIGH
+    description: "Rebalance an energy trading portfolio"

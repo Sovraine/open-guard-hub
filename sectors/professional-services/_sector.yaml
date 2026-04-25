@@ -1,0 +1,12 @@
+name: professional-services
+display_name: "Professional Services"
+status: BETA
+regulations: [SOX, ISA, professional_ethics, GDPR]
+cross_cutting:
+  - core/data-privacy
+  - core/audit-control
+inherits: [core/common]
+overrides:
+  delete: { risk: CRITICAL }
+  export: { risk: CRITICAL }
+sub_sectors: [consulting, accounting, audit, staffing]

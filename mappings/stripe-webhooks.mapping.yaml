@@ -1,0 +1,54 @@
+server: stripe-webhooks
+description: "Stripe webhook event handling"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "stripe-webhooks-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_webhooks:
+    action: list
+    risk: READ-ONLY
+    description: "List webhook endpoints"
+  get_webhook:
+    action: read
+    risk: READ-ONLY
+    description: "Get webhook endpoint"
+    target_from: webhook_id
+  create_webhook:
+    action: create
+    risk: MEDIUM
+    description: "Create webhook endpoint"
+    context_from:
+      url: url
+      events: events
+  update_webhook:
+    action: update
+    risk: MEDIUM
+    description: "Update webhook"
+    target_from: webhook_id
+    context_from:
+      url: url
+      events: events
+  delete_webhook:
+    action: delete
+    risk: MEDIUM
+    description: "Delete webhook"
+    target_from: webhook_id
+  list_webhook_logs:
+    action: list
+    risk: READ-ONLY
+    description: "List webhook logs"
+    target_from: webhook_id
+  get_webhook_log:
+    action: read
+    risk: READ-ONLY
+    description: "Get webhook log"
+    target_from: log_id
+  resend_webhook:
+    action: execute
+    risk: MEDIUM
+    description: "Resend webhook"
+    target_from: webhook_id

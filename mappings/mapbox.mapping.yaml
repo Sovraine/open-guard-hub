@@ -1,0 +1,135 @@
+server: mapbox
+description: "Mapbox MCP — geocoding, directions, spatial analysis (20 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@mapbox/mcp-server"
+  registry: npm
+  transport: stdio
+  command: "npx -y @mapbox/mcp-server"
+tools:
+  search_and_geocode_tool:
+    action: search
+    risk: READ-ONLY
+    description: "Search for POIs, brands, geocode addresses"
+    target_from: q
+  category_search_tool:
+    action: search
+    risk: READ-ONLY
+    description: "Search places by category (museums, coffee shops, etc.)"
+    target_from: category
+  reverse_geocode_tool:
+    action: search
+    risk: READ-ONLY
+    description: "Convert coordinates to address/place names"
+    target_from: longitude
+    context_from:
+      latitude: latitude
+  place_details_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Get detailed info about a place by Mapbox ID"
+    target_from: mapbox_id
+  directions_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Get directions between coordinates"
+    target_from: coordinates
+    context_from:
+      routing_profile: routing_profile
+  isochrone_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Compute reachable areas within travel time"
+    target_from: coordinates
+    context_from:
+      profile: profile
+  matrix_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Calculate travel times/distances between points"
+    target_from: coordinates
+    context_from:
+      profile: profile
+  optimization_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Find optimal route through multiple points (TSP)"
+    target_from: coordinates
+    context_from:
+      profile: profile
+  map_matching_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Snap GPS traces to roads"
+    target_from: coordinates
+    context_from:
+      profile: profile
+  static_map_image_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Generate static map image"
+    target_from: center
+    context_from:
+      zoom: zoom
+  distance_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Calculate distance between two coordinates"
+    target_from: from
+    context_from:
+      to: to
+  bearing_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Calculate compass bearing between points"
+    target_from: from
+    context_from:
+      to: to
+  midpoint_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Calculate midpoint between coordinates"
+    target_from: from
+    context_from:
+      to: to
+  centroid_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Calculate geometric center of polygon"
+    target_from: geometry
+  area_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Calculate area of polygon"
+    target_from: geometry
+  bbox_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Calculate bounding box of geometry"
+    target_from: geometry
+  buffer_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Create buffer zone around geometry"
+    target_from: geometry
+    context_from:
+      distance: distance
+  point_in_polygon_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Test if point is inside polygon"
+    target_from: point
+    context_from:
+      polygon: polygon
+  simplify_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Simplify LineString/Polygon by reducing vertices"
+    target_from: geometry
+    context_from:
+      tolerance: tolerance
+  version_tool:
+    action: read
+    risk: READ-ONLY
+    description: "Get MCP server version info"

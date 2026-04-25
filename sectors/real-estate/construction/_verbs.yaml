@@ -1,0 +1,26 @@
+taxonomy_version: "2026.03.1"
+sub_sector: construction
+sector: real-estate
+
+verbs:
+  issue-building-permit:
+    risk: HIGH
+    description: "Issue a building permit for a construction project"
+  revoke-building-permit:
+    risk: CRITICAL
+    description: "Revoke an issued building permit"
+    requires_approval: true
+  approve-inspection:
+    risk: HIGH
+    description: "Approve a construction inspection milestone"
+  fail-inspection:
+    risk: HIGH
+    description: "Fail a construction inspection milestone"
+  authorize-demolition:
+    risk: CRITICAL
+    description: "Authorize the demolition of a structure"
+    requires_approval: true
+    reversible: false
+  modify-plans:
+    risk: HIGH
+    description: "Modify approved construction plans"

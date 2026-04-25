@@ -1,0 +1,13 @@
+name: legal
+display_name: "Legal & Law"
+status: BETA
+regulations: [attorney_client_privilege, GDPR, bar_association_rules]
+cross_cutting:
+  - core/data-privacy
+  - core/audit-control
+inherits: [core/common]
+overrides:
+  delete: { risk: CRITICAL }
+  export: { risk: CRITICAL }
+  share: { risk: CRITICAL }
+sub_sectors: [litigation, contracts, compliance, intellectual-property]

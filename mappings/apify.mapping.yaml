@@ -1,0 +1,115 @@
+server: apify
+description: "Apify — actor search, runs, datasets, key-value stores, docs (19 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@anthropic-ai/apify-mcp-server"
+  registry: npm
+  transport: stdio
+  command: "npx -y @anthropic-ai/apify-mcp-server"
+tools:
+  # --- Actors ---
+  search_actors:
+    action: search
+    risk: READ-ONLY
+    description: "Search for actors in the Apify store"
+    sql_mapping: false
+    target_from: query
+  get_actor_details:
+    action: read
+    risk: READ-ONLY
+    description: "Get actor details"
+    target_from: actorId
+  call_actor:
+    action: execute
+    risk: HIGH
+    description: "Run an actor with input"
+    target_from: actorId
+  get_actor_default_run:
+    action: read
+    risk: READ-ONLY
+    description: "Get the last run of an actor"
+    target_from: actorId
+  # --- Runs ---
+  list_runs:
+    action: list
+    risk: READ-ONLY
+    description: "List actor runs"
+  get_run:
+    action: read
+    risk: READ-ONLY
+    description: "Get run details"
+    target_from: runId
+  abort_run:
+    action: update
+    risk: MEDIUM
+    description: "Abort a running actor"
+    target_from: runId
+  resurrect_run:
+    action: update
+    risk: MEDIUM
+    description: "Resurrect a finished run"
+    target_from: runId
+  get_run_log:
+    action: read
+    risk: READ-ONLY
+    description: "Get logs for a run"
+    target_from: runId
+  # --- Datasets ---
+  list_datasets:
+    action: list
+    risk: READ-ONLY
+    description: "List datasets"
+  get_dataset_items:
+    action: read
+    risk: READ-ONLY
+    description: "Get items from a dataset"
+    target_from: datasetId
+  push_dataset_items:
+    action: create
+    risk: MEDIUM
+    description: "Push items to a dataset"
+    target_from: datasetId
+  # --- Key-Value Stores ---
+  list_key_value_stores:
+    action: list
+    risk: READ-ONLY
+    description: "List key-value stores"
+  get_key_value_store_record:
+    action: read
+    risk: READ-ONLY
+    description: "Get a record from a key-value store"
+    target_from: storeId
+    context_from:
+      key: key
+  set_key_value_store_record:
+    action: create
+    risk: MEDIUM
+    description: "Set a record in a key-value store"
+    target_from: storeId
+    context_from:
+      key: key
+  delete_key_value_store_record:
+    action: delete
+    risk: MEDIUM
+    description: "Delete a record from a key-value store"
+    target_from: storeId
+    context_from:
+      key: key
+  # --- Docs ---
+  search_docs:
+    action: search
+    risk: READ-ONLY
+    description: "Search Apify documentation"
+    sql_mapping: false
+    target_from: query
+  # --- Schedules ---
+  list_schedules:
+    action: list
+    risk: READ-ONLY
+    description: "List schedules"
+  get_schedule:
+    action: read
+    risk: READ-ONLY
+    description: "Get schedule details"
+    target_from: scheduleId

@@ -1,0 +1,66 @@
+taxonomy_version: "2026.03.1"
+domain: core/kubernetes
+description: Kubernetes cluster and resource management verbs
+
+verbs:
+  get-resource:
+    risk: READ-ONLY
+    description: "Get a Kubernetes resource"
+  list-resources:
+    risk: READ-ONLY
+    description: "List Kubernetes resources"
+  describe-resource:
+    risk: READ-ONLY
+    description: "Describe a Kubernetes resource in detail"
+  create-resource:
+    risk: MEDIUM
+    description: "Create a new Kubernetes resource"
+  apply-manifest:
+    risk: HIGH
+    description: "Apply a Kubernetes manifest"
+  delete-resource:
+    risk: HIGH
+    description: "Delete a Kubernetes resource"
+  delete-namespace:
+    risk: CRITICAL
+    description: "Delete an entire Kubernetes namespace"
+    reversible: false
+  scale:
+    risk: HIGH
+    description: "Scale a deployment or statefulset"
+  rollout-restart:
+    risk: HIGH
+    description: "Restart a rollout"
+  rollout-undo:
+    risk: HIGH
+    description: "Undo a rollout to previous version"
+  exec-in-pod:
+    risk: CRITICAL
+    description: "Execute command inside a running pod"
+  port-forward:
+    risk: MEDIUM
+    description: "Forward local port to pod port"
+  drain-node:
+    risk: CRITICAL
+    description: "Drain all pods from a node"
+  cordon-node:
+    risk: HIGH
+    description: "Mark node as unschedulable"
+  uncordon-node:
+    risk: MEDIUM
+    description: "Mark node as schedulable"
+  taint-node:
+    risk: HIGH
+    description: "Add taint to a node"
+  patch-resource:
+    risk: HIGH
+    description: "Patch a Kubernetes resource"
+  edit-secret:
+    risk: CRITICAL
+    description: "Edit a Kubernetes secret"
+  create-serviceaccount:
+    risk: HIGH
+    description: "Create a service account"
+  bind-clusterrole:
+    risk: CRITICAL
+    description: "Bind a cluster role to a subject"

@@ -1,0 +1,24 @@
+taxonomy_version: "2026.03.1"
+sub_sector: catalog
+sector: retail-ecommerce
+
+verbs:
+  publish-product:
+    risk: MEDIUM
+    description: "Publish a product to the storefront"
+  unpublish-product:
+    risk: MEDIUM
+    description: "Remove a product from the storefront"
+  bulk-delete-products:
+    risk: CRITICAL
+    description: "Bulk delete products from the catalog"
+    reversible: false
+  override-category:
+    risk: MEDIUM
+    description: "Override product category assignment"
+  import-catalog:
+    risk: HIGH
+    description: "Import a product catalog from an external source"
+  archive-product:
+    risk: LOW
+    description: "Archive a product"

@@ -1,0 +1,27 @@
+taxonomy_version: "2026.03.1"
+sub_sector: research
+sector: education
+
+verbs:
+  approve-ethics-review:
+    risk: HIGH
+    description: "Approve an ethics review for a research study"
+  retract-publication:
+    risk: CRITICAL
+    description: "Retract a published research paper or dataset"
+    reversible: false
+    requires_approval: true
+  embargo-results:
+    risk: HIGH
+    description: "Place an embargo on research results before publication"
+  release-dataset:
+    risk: HIGH
+    description: "Release a research dataset for public or institutional access"
+  modify-informed-consent:
+    risk: CRITICAL
+    description: "Modify informed consent terms for an active study"
+    requires_approval: true
+  terminate-study:
+    risk: CRITICAL
+    description: "Terminate an active research study"
+    requires_approval: true

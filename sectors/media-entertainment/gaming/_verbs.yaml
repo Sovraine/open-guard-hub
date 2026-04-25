@@ -1,0 +1,25 @@
+taxonomy_version: "2026.03.1"
+sub_sector: gaming
+sector: media-entertainment
+
+verbs:
+  ban-player:
+    risk: HIGH
+    description: "Ban a player from the game platform"
+    requires_approval: true
+  rollback-transaction:
+    risk: HIGH
+    description: "Roll back an in-game transaction or purchase"
+  grant-virtual-currency:
+    risk: HIGH
+    description: "Grant virtual currency or items to a player account"
+  modify-drop-rate:
+    risk: HIGH
+    description: "Modify loot drop rates or reward probabilities"
+  disable-matchmaking:
+    risk: HIGH
+    description: "Disable the matchmaking system for a game mode or region"
+  override-age-gate:
+    risk: CRITICAL
+    description: "Override age verification gate for restricted content"
+    requires_approval: true

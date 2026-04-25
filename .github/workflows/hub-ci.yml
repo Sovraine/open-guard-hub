@@ -1,0 +1,106 @@
+name: Hub CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  yaml-lint:
+    name: YAML validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Reject YAML bombs (files > 1MB)
+        run: |
+          find . -name '*.yaml' -o -name '*.yml' | while read f; do
+            size=$(stat -c%s "$f" 2>/dev/null || stat -f%z "$f")
+            if [ "$size" -gt 1048576 ]; then
+              echo "::error file=$f::YAML file exceeds 1MB ($size bytes)"
+              exit 1
+            fi
+          done
+
+      - name: Validate YAML syntax
+        run: |
+          pip install pyyaml
+          python -c "
+          import yaml, glob, sys
+          errors = 0
+          for pattern in ['**/*.yaml', '**/*.yml']:
+              for f in glob.glob(pattern, recursive=True):
+                  if '.git/' in f:
+                      continue
+                  try:
+                      with open(f) as fh:
+                          yaml.safe_load(fh)
+                  except yaml.YAMLError as e:
+                      print(f'::error file={f}::{e}')
+                      errors += 1
+          sys.exit(1 if errors else 0)
+          "
+
+  self-cert:
+    name: Self-certification check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Reject certified or signed community content
+        run: |
+          errors=0
+          for f in $(find . -name '*.guard.md' -o -name '*.agent.md' -o -name '*.soul.md' -o -name '*.skill.md' | grep -v '.git/'); do
+            if grep -qP 'certified:\s*true' "$f"; then
+              echo "::error file=$f::Community content cannot set certified: true"
+              errors=$((errors + 1))
+            fi
+            if grep -qP 'signature:\s+\S' "$f" && ! grep -qP 'signature:\s*null' "$f"; then
+              echo "::error file=$f::Community content cannot set a non-null signature"
+              errors=$((errors + 1))
+            fi
+          done
+          exit $errors
+
+  grade-a-scan:
+    name: Guard scan (Grade A)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download sg binary
+        run: |
+          # Download latest sg binary from releases
+          curl -sL "https://github.com/Sovraine/open-guard-cli/releases/latest/download/sg-linux-amd64" -o sg
+          chmod +x sg
+
+      - name: Run sg guard scan
+        run: |
+          ./sg guard scan . --format text
+          # Grade A = exit 0; anything below = non-zero exit
+
+  dco-check:
+    name: DCO sign-off
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify Signed-off-by
+        run: |
+          base="${{ github.event.pull_request.base.sha }}"
+          head="${{ github.event.pull_request.head.sha }}"
+          errors=0
+          for sha in $(git log --format='%H' "$base".."$head"); do
+            if ! git log -1 --format='%B' "$sha" | grep -q '^Signed-off-by:'; then
+              echo "::error::Commit $sha is missing Signed-off-by trailer. Use: git commit -s"
+              errors=$((errors + 1))
+            fi
+          done
+          exit $errors

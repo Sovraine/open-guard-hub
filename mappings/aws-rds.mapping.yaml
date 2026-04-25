@@ -1,0 +1,89 @@
+server: aws-rds
+description: "AWS RDS managed relational databases"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "aws-rds-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  describe_db_instances:
+    action: list
+    risk: READ-ONLY
+    description: "List DB instances"
+  get_db_instance:
+    action: read
+    risk: READ-ONLY
+    description: "Get DB instance"
+    target_from: db_instance_id
+  create_db_instance:
+    action: create
+    risk: MEDIUM
+    description: "Create DB instance"
+    target_from: db_instance_id
+    context_from:
+      engine: engine
+      master_username: master_username
+  delete_db_instance:
+    action: delete
+    risk: CRITICAL
+    description: "Delete DB instance"
+    target_from: db_instance_id
+  modify_db_instance:
+    action: update
+    risk: HIGH
+    description: "Modify DB instance"
+    target_from: db_instance_id
+    context_from:
+      parameters: parameters
+  reboot_db_instance:
+    action: execute
+    risk: MEDIUM
+    description: "Reboot DB instance"
+    target_from: db_instance_id
+  start_db_instance:
+    action: execute
+    risk: MEDIUM
+    description: "Start DB instance"
+    target_from: db_instance_id
+  stop_db_instance:
+    action: disable
+    risk: MEDIUM
+    description: "Stop DB instance"
+    target_from: db_instance_id
+  describe_db_clusters:
+    action: list
+    risk: READ-ONLY
+    description: "List DB clusters"
+  create_db_cluster:
+    action: create
+    risk: MEDIUM
+    description: "Create DB cluster"
+    target_from: cluster_id
+    context_from:
+      engine: engine
+  delete_db_cluster:
+    action: delete
+    risk: CRITICAL
+    description: "Delete DB cluster"
+    target_from: cluster_id
+  create_db_snapshot:
+    action: create
+    risk: LOW
+    description: "Create snapshot"
+    target_from: db_instance_id
+    context_from:
+      snapshot_id: snapshot_id
+  restore_db_from_snapshot:
+    action: create
+    risk: HIGH
+    description: "Restore from snapshot"
+    target_from: snapshot_id
+    context_from:
+      db_instance_id: db_instance_id
+  delete_db_snapshot:
+    action: delete
+    risk: HIGH
+    description: "Delete snapshot"
+    target_from: snapshot_id

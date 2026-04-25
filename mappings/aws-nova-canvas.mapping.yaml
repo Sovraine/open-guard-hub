@@ -1,0 +1,27 @@
+server: aws-nova-canvas
+description: "AWS Nova Canvas — AI image generation and editing (3 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "aws-nova-canvas-mcp"
+  registry: pypi
+  transport: stdio
+  command: "uvx aws-nova-canvas-mcp"
+tools:
+  text_to_image:
+    action: create
+    risk: LOW
+    description: "Generate an image from a text prompt"
+    target_from: prompt
+  color_guided_generation:
+    action: create
+    risk: LOW
+    description: "Generate an image using a color palette"
+    target_from: prompt
+    context_from:
+      colors: colors
+  background_removal:
+    action: update
+    risk: LOW
+    description: "Remove the background of an image"
+    target_from: image_path

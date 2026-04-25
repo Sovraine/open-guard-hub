@@ -1,0 +1,104 @@
+server: circleci
+description: "CircleCI — CI/CD pipelines, tests, workflows, rollbacks (16 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@anthropic-ai/circleci-mcp-server"
+  registry: npm
+  transport: stdio
+  command: "npx -y @anthropic-ai/circleci-mcp-server"
+tools:
+  # --- Build & Pipeline ---
+  get_build_failure_logs:
+    action: read
+    risk: READ-ONLY
+    description: "Retrieve failure logs for debugging"
+    target_from: projectSlug
+  get_latest_pipeline_status:
+    action: read
+    risk: READ-ONLY
+    description: "Get status of latest pipeline"
+    target_from: projectSlug
+  run_pipeline:
+    action: execute
+    risk: HIGH
+    description: "Trigger a new pipeline"
+    target_from: projectSlug
+    context_from:
+      branch: branch
+  run_rollback_pipeline:
+    action: execute
+    risk: CRITICAL
+    description: "Run a rollback pipeline"
+    target_from: projectSlug
+    context_from:
+      environmentName: environmentName
+      targetVersion: targetVersion
+  # --- Tests ---
+  find_flaky_tests:
+    action: read
+    risk: READ-ONLY
+    description: "Find flaky tests in a project"
+    target_from: projectSlug
+  get_job_test_results:
+    action: read
+    risk: READ-ONLY
+    description: "Get test metadata for jobs"
+    target_from: projectSlug
+  # --- Config ---
+  config_helper:
+    action: read
+    risk: READ-ONLY
+    description: "Validate and analyze CircleCI config"
+    target_from: configFile
+  # --- Workflows ---
+  rerun_workflow:
+    action: execute
+    risk: HIGH
+    description: "Rerun a workflow from start or failed job"
+    target_from: workflowId
+  # --- Projects ---
+  list_followed_projects:
+    action: list
+    risk: READ-ONLY
+    description: "List followed projects"
+  list_component_versions:
+    action: list
+    risk: READ-ONLY
+    description: "List versions for a component"
+    target_from: projectSlug
+  # --- Usage ---
+  download_usage_api_data:
+    action: export
+    risk: LOW
+    description: "Download usage data CSV"
+    target_from: orgId
+    context_from:
+      outputDir: outputDir
+  find_underused_resource_classes:
+    action: read
+    risk: READ-ONLY
+    description: "Analyze usage data for underused resources"
+    target_from: csvFilePath
+  # --- Prompt Workbench ---
+  create_prompt_template:
+    action: create
+    risk: LOW
+    description: "Generate a structured prompt template"
+    target_from: prompt
+  recommend_prompt_template_tests:
+    action: read
+    risk: READ-ONLY
+    description: "Generate test cases for a prompt template"
+    target_from: template
+  run_evaluation_tests:
+    action: execute
+    risk: MEDIUM
+    description: "Run evaluation tests on a pipeline"
+    target_from: projectSlug
+  # --- Analysis ---
+  analyze_diff:
+    action: read
+    risk: READ-ONLY
+    description: "Analyze git diff against rules"
+    target_from: diff

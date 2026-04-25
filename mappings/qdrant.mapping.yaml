@@ -1,0 +1,25 @@
+server: qdrant
+description: "Qdrant — vector database memory store and search (2 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "mcp-server-qdrant"
+  registry: pypi
+  transport: stdio
+  command: "uvx mcp-server-qdrant"
+tools:
+  qdrant-find:
+    action: search
+    risk: READ-ONLY
+    description: "Search memories in Qdrant by content"
+    sql_mapping: false
+    target_from: query
+    context_from:
+      collection_name: collection_name
+  qdrant-store:
+    action: create
+    risk: LOW
+    description: "Store a memory for later retrieval"
+    target_from: information
+    context_from:
+      collection_name: collection_name

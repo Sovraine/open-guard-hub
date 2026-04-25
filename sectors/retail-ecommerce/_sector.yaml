@@ -1,0 +1,10 @@
+name: retail-ecommerce
+display_name: "Retail & E-Commerce"
+status: STABLE
+regulations: [PCI_DSS, GDPR, consumer_protection]
+cross_cutting:
+  - core/data-privacy
+inherits: [core/common]
+overrides:
+  delete: { risk: HIGH }
+sub_sectors: [catalog, orders, pricing, loyalty, marketplace]

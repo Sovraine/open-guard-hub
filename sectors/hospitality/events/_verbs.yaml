@@ -1,0 +1,25 @@
+taxonomy_version: "2026.03.1"
+sub_sector: events
+sector: hospitality
+
+verbs:
+  cancel-event:
+    risk: CRITICAL
+    description: "Cancel a scheduled event"
+    reversible: false
+  evacuate-venue:
+    risk: CRITICAL
+    description: "Initiate an emergency evacuation of a venue"
+  override-capacity:
+    risk: CRITICAL
+    description: "Override the maximum capacity limit for a venue"
+    requires_approval: true
+  suspend-ticket-sales:
+    risk: HIGH
+    description: "Suspend ticket sales for an event"
+  transfer-event:
+    risk: HIGH
+    description: "Transfer an event to a different venue or date"
+  modify-lineup:
+    risk: MEDIUM
+    description: "Modify the event lineup or schedule"

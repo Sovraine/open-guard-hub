@@ -1,0 +1,29 @@
+taxonomy_version: "2026.03.1"
+sub_sector: red-team
+sector: cybersecurity
+
+verbs:
+  exploit-vulnerability:
+    risk: CRITICAL
+    description: "Exploit a known vulnerability during engagement"
+    requires_approval: true
+  lateral-move:
+    risk: CRITICAL
+    description: "Perform lateral movement within the network"
+    requires_approval: true
+  exfiltrate-test:
+    risk: CRITICAL
+    description: "Test data exfiltration paths"
+    requires_approval: true
+  social-engineer:
+    risk: CRITICAL
+    description: "Execute a social engineering attack simulation"
+    requires_approval: true
+  escalate-privileges:
+    risk: CRITICAL
+    description: "Escalate privileges on a compromised system"
+    requires_approval: true
+  plant-implant:
+    risk: CRITICAL
+    description: "Plant a test implant or persistence mechanism"
+    requires_approval: true

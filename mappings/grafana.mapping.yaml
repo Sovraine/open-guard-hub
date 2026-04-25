@@ -1,0 +1,101 @@
+# SPDX-License-Identifier: CC-BY-SA-4.0
+# Grafana MCP server action mapping
+server: grafana
+description: "Grafana observability platform — dashboards, alerts, and data sources"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "@grafana/mcp-server"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_dashboards:
+    action: list
+    risk: READ-ONLY
+    description: "List all dashboards"
+
+  get_dashboard:
+    action: read
+    risk: READ-ONLY
+    description: "Get dashboard by UID"
+    target_from: uid
+
+  create_dashboard:
+    action: create
+    risk: MEDIUM
+    description: "Create a new dashboard"
+    target_from: title
+
+  update_dashboard:
+    action: update
+    risk: MEDIUM
+    description: "Update an existing dashboard"
+    target_from: uid
+
+  delete_dashboard:
+    action: delete
+    risk: HIGH
+    description: "Delete a dashboard"
+    target_from: uid
+
+  search_dashboards:
+    action: search
+    risk: READ-ONLY
+    description: "Search dashboards by query"
+
+  list_datasources:
+    action: list
+    risk: READ-ONLY
+    description: "List all data sources"
+
+  get_datasource:
+    action: read
+    risk: READ-ONLY
+    description: "Get data source by ID or name"
+    target_from: id
+
+  create_datasource:
+    action: create
+    risk: HIGH
+    description: "Create a new data source"
+    target_from: name
+    context_from:
+      type: type
+      url: url
+
+  delete_datasource:
+    action: delete
+    risk: CRITICAL
+    description: "Delete a data source"
+    target_from: id
+
+  list_alerts:
+    action: list
+    risk: READ-ONLY
+    description: "List alert rules"
+
+  create_alert_rule:
+    action: create
+    risk: HIGH
+    description: "Create a new alert rule"
+    target_from: title
+
+  update_alert_rule:
+    action: update
+    risk: HIGH
+    description: "Update an alert rule"
+    target_from: uid
+
+  delete_alert_rule:
+    action: delete
+    risk: HIGH
+    description: "Delete an alert rule"
+    target_from: uid
+
+  query_prometheus:
+    action: execute
+    risk: LOW
+    description: "Execute a PromQL query"
+    context_from:
+      query: expr

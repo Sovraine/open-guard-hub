@@ -1,0 +1,85 @@
+server: datadog
+description: "Datadog — monitoring, logs, metrics, CI pipelines, SLOs (13 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "datadog-mcp"
+  registry: pypi
+  transport: stdio
+  command: "uvx datadog-mcp"
+tools:
+  # --- CI Pipelines ---
+  list_ci_pipelines:
+    action: list
+    risk: READ-ONLY
+    description: "List CI pipelines from Datadog CI Visibility"
+  get_pipeline_fingerprints:
+    action: read
+    risk: READ-ONLY
+    description: "Get unique pipeline fingerprints for repositories"
+    target_from: repositories
+  # --- Logs ---
+  get_logs:
+    action: search
+    risk: READ-ONLY
+    description: "Search and retrieve logs with flexible filtering"
+    sql_mapping: false
+    target_from: query
+    context_from:
+      time_range: time_range
+      filters: filters
+  get_logs_field_values:
+    action: read
+    risk: READ-ONLY
+    description: "Get possible values for a specific log field"
+    target_from: field_name
+  # --- Teams ---
+  get_teams:
+    action: read
+    risk: READ-ONLY
+    description: "Get Datadog teams and their members"
+    target_from: team_name
+  # --- Metrics ---
+  get_metrics:
+    action: read
+    risk: READ-ONLY
+    description: "Execute metric queries with filters and aggregations"
+    target_from: metric_name
+    context_from:
+      time_range: time_range
+      aggregation: aggregation
+  get_metric_fields:
+    action: read
+    risk: READ-ONLY
+    description: "Get available fields/tags for a specific metric"
+    target_from: metric_name
+  get_metric_field_values:
+    action: read
+    risk: READ-ONLY
+    description: "Get all possible values for a metric field"
+    target_from: metric_name
+    context_from:
+      field_name: field_name
+  list_metrics:
+    action: list
+    risk: READ-ONLY
+    description: "List all available metrics"
+  # --- Services ---
+  list_service_definitions:
+    action: list
+    risk: READ-ONLY
+    description: "List all service definitions"
+  get_service_definition:
+    action: read
+    risk: READ-ONLY
+    description: "Retrieve a specific service definition"
+    target_from: service_name
+  # --- Monitoring ---
+  list_monitors:
+    action: list
+    risk: READ-ONLY
+    description: "List all monitors for alerting"
+  list_slos:
+    action: list
+    risk: READ-ONLY
+    description: "List Service Level Objectives"

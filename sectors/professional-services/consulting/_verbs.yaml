@@ -1,0 +1,25 @@
+taxonomy_version: "2026.03.1"
+sub_sector: consulting
+sector: professional-services
+
+verbs:
+  accept-engagement:
+    risk: HIGH
+    description: "Accept a new consulting engagement"
+  terminate-engagement:
+    risk: HIGH
+    description: "Terminate an active consulting engagement"
+  modify-scope:
+    risk: HIGH
+    description: "Modify the scope of a consulting engagement"
+  approve-deliverable:
+    risk: HIGH
+    description: "Approve a consulting deliverable for client handover"
+  escalate-conflict-of-interest:
+    risk: CRITICAL
+    description: "Escalate a conflict of interest for review"
+    requires_approval: true
+  waive-independence:
+    risk: CRITICAL
+    description: "Waive an independence requirement for a consulting engagement"
+    requires_approval: true

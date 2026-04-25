@@ -1,0 +1,131 @@
+server: huggingface
+description: "Hugging Face models and inference API"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "huggingface-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_models:
+    action: list
+    risk: READ-ONLY
+    description: "List models from Hugging Face Hub"
+    context_from:
+      filter: filter
+      limit: limit
+  get_model:
+    action: read
+    risk: READ-ONLY
+    description: "Get model details"
+    target_from: model_id
+  search_models:
+    action: search
+    risk: READ-ONLY
+    description: "Search for models"
+    context_from:
+      query: query
+  download_model:
+    action: import
+    risk: MEDIUM
+    description: "Download model from Hub"
+    target_from: model_id
+  upload_model:
+    action: create
+    risk: MEDIUM
+    description: "Upload model to Hub"
+    target_from: model_id
+    context_from:
+      model_path: model_path
+  delete_model:
+    action: delete
+    risk: HIGH
+    description: "Delete model from Hub"
+    target_from: model_id
+  inference_text_classification:
+    action: execute
+    risk: MEDIUM
+    description: "Run text classification inference"
+    target_from: model_id
+    context_from:
+      text: text
+  inference_text_generation:
+    action: execute
+    risk: MEDIUM
+    description: "Run text generation inference"
+    target_from: model_id
+    context_from:
+      prompt: prompt
+  inference_question_answering:
+    action: execute
+    risk: MEDIUM
+    description: "Run Q&A inference"
+    target_from: model_id
+    context_from:
+      question: question
+      context: context
+  inference_summarization:
+    action: execute
+    risk: MEDIUM
+    description: "Summarize text"
+    target_from: model_id
+    context_from:
+      text: text
+  inference_translation:
+    action: execute
+    risk: MEDIUM
+    description: "Translate text"
+    target_from: model_id
+    context_from:
+      text: text
+  inference_named_entity_recognition:
+    action: execute
+    risk: MEDIUM
+    description: "Extract named entities"
+    target_from: model_id
+    context_from:
+      text: text
+  inference_sentiment_analysis:
+    action: execute
+    risk: MEDIUM
+    description: "Analyze sentiment"
+    target_from: model_id
+    context_from:
+      text: text
+  inference_zero_shot_classification:
+    action: execute
+    risk: MEDIUM
+    description: "Zero-shot classification"
+    target_from: model_id
+    context_from:
+      text: text
+      labels: labels
+  inference_image_classification:
+    action: execute
+    risk: MEDIUM
+    description: "Classify image"
+    target_from: model_id
+    context_from:
+      image: image
+  inference_object_detection:
+    action: execute
+    risk: MEDIUM
+    description: "Detect objects in image"
+    target_from: model_id
+    context_from:
+      image: image
+  list_datasets:
+    action: list
+    risk: READ-ONLY
+    description: "List datasets from Hub"
+  get_dataset:
+    action: read
+    risk: READ-ONLY
+    description: "Get dataset details"
+    target_from: dataset_id
+  download_dataset:
+    action: import
+    risk: MEDIUM
+    description: "Download dataset"
+    target_from: dataset_id

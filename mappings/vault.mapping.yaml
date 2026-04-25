@@ -1,0 +1,129 @@
+server: vault
+description: "HashiCorp Vault secrets management"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "vault-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_secrets:
+    action: list
+    risk: READ-ONLY
+    description: "List secrets in path"
+    target_from: path
+  read_secret:
+    action: read
+    risk: READ-ONLY
+    description: "Read secret value"
+    target_from: secret_path
+  write_secret:
+    action: create
+    risk: MEDIUM
+    description: "Create or update secret"
+    target_from: secret_path
+    context_from:
+      data: data
+  update_secret:
+    action: update
+    risk: MEDIUM
+    description: "Update secret"
+    target_from: secret_path
+    context_from:
+      data: data
+  delete_secret:
+    action: delete
+    risk: HIGH
+    description: "Delete secret"
+    target_from: secret_path
+  list_mounts:
+    action: list
+    risk: READ-ONLY
+    description: "List secret engines"
+  create_mount:
+    action: create
+    risk: MEDIUM
+    description: "Mount secret engine"
+    target_from: path
+    context_from:
+      type: type
+  delete_mount:
+    action: delete
+    risk: HIGH
+    description: "Unmount secret engine"
+    target_from: path
+  list_policies:
+    action: list
+    risk: READ-ONLY
+    description: "List policies"
+  read_policy:
+    action: read
+    risk: READ-ONLY
+    description: "Get policy content"
+    target_from: policy_name
+  write_policy:
+    action: create
+    risk: HIGH
+    description: "Create or update policy"
+    target_from: policy_name
+    context_from:
+      rules: rules
+  delete_policy:
+    action: delete
+    risk: HIGH
+    description: "Delete policy"
+    target_from: policy_name
+  list_users:
+    action: list
+    risk: READ-ONLY
+    description: "List users"
+  create_user:
+    action: create
+    risk: MEDIUM
+    description: "Create user"
+    target_from: username
+    context_from:
+      password: password
+  update_user:
+    action: update
+    risk: MEDIUM
+    description: "Update user"
+    target_from: username
+  delete_user:
+    action: delete
+    risk: HIGH
+    description: "Delete user"
+    target_from: username
+  generate_token:
+    action: create
+    risk: HIGH
+    description: "Generate authentication token"
+    context_from:
+      policies: policies
+      ttl: ttl
+  list_tokens:
+    action: list
+    risk: READ-ONLY
+    description: "List tokens"
+  revoke_token:
+    action: delete
+    risk: HIGH
+    description: "Revoke token"
+    target_from: token
+  enable_audit_backend:
+    action: enable
+    risk: MEDIUM
+    description: "Enable audit backend"
+    target_from: path
+    context_from:
+      type: type
+  disable_audit_backend:
+    action: disable
+    risk: MEDIUM
+    description: "Disable audit backend"
+    target_from: path
+  list_audit_backends:
+    action: list
+    risk: READ-ONLY
+    description: "List audit backends"

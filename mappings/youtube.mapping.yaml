@@ -1,0 +1,139 @@
+server: youtube
+description: "YouTube video platform operations"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "youtube-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  search_videos:
+    action: search
+    risk: READ-ONLY
+    description: "Search for videos"
+    context_from:
+      query: query
+  get_video:
+    action: read
+    risk: READ-ONLY
+    description: "Get video details"
+    target_from: video_id
+  list_videos:
+    action: list
+    risk: READ-ONLY
+    description: "List videos for channel"
+    target_from: channel_id
+  upload_video:
+    action: create
+    risk: MEDIUM
+    description: "Upload video"
+    target_from: video_file
+    context_from:
+      title: title
+      description: description
+  update_video:
+    action: update
+    risk: MEDIUM
+    description: "Update video metadata"
+    target_from: video_id
+    context_from:
+      fields: fields
+  delete_video:
+    action: delete
+    risk: HIGH
+    description: "Delete video"
+    target_from: video_id
+  publish_video:
+    action: execute
+    risk: MEDIUM
+    description: "Publish video"
+    target_from: video_id
+  get_channel:
+    action: read
+    risk: READ-ONLY
+    description: "Get channel information"
+    target_from: channel_id
+  list_channels:
+    action: list
+    risk: READ-ONLY
+    description: "List user channels"
+  update_channel:
+    action: update
+    risk: MEDIUM
+    description: "Update channel metadata"
+    target_from: channel_id
+    context_from:
+      fields: fields
+  get_comments:
+    action: list
+    risk: READ-ONLY
+    description: "Get video comments"
+    target_from: video_id
+  add_comment:
+    action: create
+    risk: LOW
+    description: "Post comment"
+    target_from: video_id
+    context_from:
+      text: text
+  update_comment:
+    action: update
+    risk: LOW
+    description: "Edit comment"
+    target_from: comment_id
+    context_from:
+      text: text
+  delete_comment:
+    action: delete
+    risk: MEDIUM
+    description: "Delete comment"
+    target_from: comment_id
+  like_video:
+    action: create
+    risk: LOW
+    description: "Like video"
+    target_from: video_id
+  unlike_video:
+    action: unsubscribe
+    risk: LOW
+    description: "Remove like"
+    target_from: video_id
+  get_likes:
+    action: list
+    risk: READ-ONLY
+    description: "Get liked videos"
+  subscribe_channel:
+    action: create
+    risk: LOW
+    description: "Subscribe to channel"
+    target_from: channel_id
+  unsubscribe_channel:
+    action: unsubscribe
+    risk: LOW
+    description: "Unsubscribe from channel"
+    target_from: channel_id
+  create_playlist:
+    action: create
+    risk: MEDIUM
+    description: "Create playlist"
+    target_from: playlist_name
+  delete_playlist:
+    action: delete
+    risk: MEDIUM
+    description: "Delete playlist"
+    target_from: playlist_id
+  add_to_playlist:
+    action: create
+    risk: MEDIUM
+    description: "Add video to playlist"
+    target_from: playlist_id
+    context_from:
+      video_id: video_id
+  remove_from_playlist:
+    action: delete
+    risk: MEDIUM
+    description: "Remove video from playlist"
+    target_from: playlist_id
+    context_from:
+      video_id: video_id

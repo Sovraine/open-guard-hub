@@ -1,0 +1,38 @@
+server: bigquery
+description: "BigQuery — SQL queries, datasets, tables, schema inspection (5 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "bigquery-mcp-server"
+  registry: npm
+  transport: stdio
+  command: "npx -y bigquery-mcp-server"
+tools:
+  query:
+    action: _detect
+    risk: MEDIUM
+    description: "Execute a SQL query"
+    sql_mapping: true
+    target_from: sql
+  dry_run:
+    action: read
+    risk: READ-ONLY
+    description: "Validate and estimate query cost without executing"
+    sql_mapping: true
+    target_from: sql
+  list_datasets:
+    action: list
+    risk: READ-ONLY
+    description: "List all datasets in the project"
+  list_tables:
+    action: list
+    risk: READ-ONLY
+    description: "List tables in a dataset"
+    target_from: datasetId
+  get_table_info:
+    action: read
+    risk: READ-ONLY
+    description: "Get table schema and metadata"
+    target_from: tableId
+    context_from:
+      datasetId: datasetId

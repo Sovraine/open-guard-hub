@@ -1,0 +1,26 @@
+taxonomy_version: "2026.03.1"
+sub_sector: civil-registry
+sector: public-sector
+
+verbs:
+  register-birth:
+    risk: HIGH
+    description: "Register a birth in the civil registry"
+  register-death:
+    risk: CRITICAL
+    description: "Register a death in the civil registry"
+  modify-civil-status:
+    risk: CRITICAL
+    description: "Modify the civil status of a person (marriage, divorce, etc.)"
+    requires_approval: true
+  issue-identity-document:
+    risk: HIGH
+    description: "Issue an official identity document to a citizen"
+  revoke-identity-document:
+    risk: CRITICAL
+    description: "Revoke an official identity document"
+    requires_approval: true
+  correct-record:
+    risk: HIGH
+    description: "Correct an error in a civil registry record"
+    requires_approval: true

@@ -1,0 +1,28 @@
+taxonomy_version: "2026.03.1"
+sub_sector: audit
+sector: professional-services
+
+verbs:
+  issue-qualified-opinion:
+    risk: CRITICAL
+    description: "Issue a qualified audit opinion"
+    requires_approval: true
+  dismiss-finding:
+    risk: CRITICAL
+    description: "Dismiss an audit finding without remediation"
+    requires_approval: true
+  modify-materiality-threshold:
+    risk: HIGH
+    description: "Modify the materiality threshold for an audit"
+    requires_approval: true
+  extend-audit-scope:
+    risk: HIGH
+    description: "Extend the scope of an ongoing audit"
+  report-fraud:
+    risk: CRITICAL
+    description: "Report suspected fraud discovered during an audit"
+  withdraw-opinion:
+    risk: CRITICAL
+    description: "Withdraw a previously issued audit opinion"
+    reversible: false
+    requires_approval: true

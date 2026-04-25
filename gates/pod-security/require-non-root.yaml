@@ -1,0 +1,60 @@
+# Source: gatekeeper-library/src/pod-security-policy/users
+# License: Apache-2.0 (CNCF)
+# Open-Guard mapping: actions=["create","update"], targets=["pod"], verdict=DENY
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8spspallowedusers
+  annotations:
+    metadata.gatekeeper.sh/title: "Require Non-Root User"
+    metadata.gatekeeper.sh/version: 1.0.0
+    description: >-
+      Requires containers to run as non-root user.
+      Corresponds to the `runAsUser` field in a PodSecurityPolicy.
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sPSPAllowedUsers
+      validation:
+        openAPIV3Schema:
+          type: object
+          description: >-
+            Requires containers to run as non-root.
+          properties:
+            exemptImages:
+              description: Images excluded from enforcement.
+              type: array
+              items:
+                type: string
+            runAsUser:
+              type: object
+              properties:
+                rule:
+                  type: string
+                  enum: [MustRunAs, MustRunAsNonRoot, RunAsAny]
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8spspalloweduserranges
+
+        import data.lib.exclude_update.is_update
+        import data.lib.exempt_container.is_exempt
+
+        violation[{"msg": msg}] {
+            not is_update(input)
+            rule := input.parameters.runAsUser.rule
+            rule == "MustRunAsNonRoot"
+            c := input_containers[_]
+            not is_exempt(c)
+            not c.securityContext.runAsNonRoot
+            msg := sprintf("Container %v must run as non-root", [c.name])
+        }
+
+        input_containers[c] {
+            c := input.review.object.spec.containers[_]
+        }
+
+        input_containers[c] {
+            c := input.review.object.spec.initContainers[_]
+        }

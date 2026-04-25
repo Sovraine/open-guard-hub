@@ -1,0 +1,36 @@
+taxonomy_version: "2026.03.1"
+sub_sector: property
+sector: real-estate
+
+verbs:
+  transfer-ownership:
+    risk: CRITICAL
+    description: "Transfer property ownership"
+    reversible: false
+    requires_approval: true
+  register-deed:
+    risk: CRITICAL
+    description: "Register a property deed"
+    reversible: false
+  modify-zoning:
+    risk: CRITICAL
+    description: "Apply for zoning modification"
+    requires_approval: true
+  evict-tenant:
+    risk: CRITICAL
+    description: "Initiate tenant eviction process"
+    requires_approval: true
+  approve-construction-permit:
+    risk: HIGH
+    description: "Approve a construction permit"
+  override-valuation:
+    risk: HIGH
+    description: "Override automated property valuation"
+    requires_approval: true
+  terminate-lease:
+    risk: HIGH
+    description: "Terminate a lease agreement"
+  condemn-property:
+    risk: CRITICAL
+    description: "Condemn a property as uninhabitable"
+    reversible: false

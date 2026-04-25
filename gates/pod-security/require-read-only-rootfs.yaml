@@ -1,0 +1,52 @@
+# Source: gatekeeper-library/src/pod-security-policy/read-only-root-filesystem
+# License: Apache-2.0 (CNCF)
+# Open-Guard mapping: actions=["create","update"], targets=["pod"], verdict=DENY
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8spspreadonlyrootfilesystem
+  annotations:
+    metadata.gatekeeper.sh/title: "Read Only Root Filesystem"
+    metadata.gatekeeper.sh/version: 1.1.0
+    description: >-
+      Requires the use of a read-only root file system by pod containers.
+      Corresponds to the `readOnlyRootFilesystem` field in a PodSecurityPolicy.
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sPSPReadOnlyRootFilesystem
+      validation:
+        openAPIV3Schema:
+          type: object
+          description: >-
+            Requires the use of a read-only root file system.
+          properties:
+            exemptImages:
+              description: Images excluded from enforcement.
+              type: array
+              items:
+                type: string
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8spspreadonlyrootfilesystem
+
+        import data.lib.exclude_update.is_update
+        import data.lib.exempt_container.is_exempt
+
+        violation[{"msg": msg}] {
+            not is_update(input)
+            c := input_containers[_]
+            not is_exempt(c)
+            not c.securityContext.readOnlyRootFilesystem
+            msg := sprintf("Container %v must have a read-only root filesystem", [c.name])
+        }
+
+        input_containers[c] {
+            c := input.review.object.spec.containers[_]
+        }
+
+        input_containers[c] {
+            c := input.review.object.spec.initContainers[_]
+        }

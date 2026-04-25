@@ -1,0 +1,27 @@
+taxonomy_version: "2026.03.1"
+sub_sector: clinical
+sector: healthcare
+
+verbs:
+  access-patient-record:
+    risk: HIGH
+    description: "Access patient medical record"
+    regulatory_reference: "HIPAA"
+  break-glass-access:
+    risk: CRITICAL
+    description: "Emergency access bypassing normal authorization"
+    requires_approval: true
+  prescribe-medication:
+    risk: HIGH
+    description: "Prescribe medication to patient"
+  declare-death:
+    risk: CRITICAL
+    description: "Officially declare patient death"
+    reversible: false
+  override-interaction-alert:
+    risk: CRITICAL
+    description: "Override drug interaction alert"
+    requires_approval: true
+  check-drug-interaction:
+    risk: MEDIUM
+    description: "Check drug-drug and drug-allergy interactions"

@@ -1,0 +1,24 @@
+taxonomy_version: "2026.03.1"
+sub_sector: facilities
+sector: real-estate
+
+verbs:
+  grant-building-access:
+    risk: MEDIUM
+    description: "Grant physical access to a building or zone"
+  revoke-building-access:
+    risk: HIGH
+    description: "Revoke physical access to a building or zone"
+  override-hvac:
+    risk: HIGH
+    description: "Override HVAC system settings in a building"
+  trigger-fire-alarm:
+    risk: CRITICAL
+    description: "Manually trigger the fire alarm system"
+  disable-alarm-system:
+    risk: CRITICAL
+    description: "Disable a building alarm or security system"
+    requires_approval: true
+  evacuate-building:
+    risk: CRITICAL
+    description: "Initiate a building evacuation procedure"

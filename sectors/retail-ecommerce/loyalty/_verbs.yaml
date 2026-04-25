@@ -1,0 +1,25 @@
+taxonomy_version: "2026.03.1"
+sub_sector: loyalty
+sector: retail-ecommerce
+
+verbs:
+  issue-points:
+    risk: LOW
+    description: "Issue loyalty points to a member"
+  redeem-points:
+    risk: MEDIUM
+    description: "Redeem loyalty points for a reward"
+  expire-points:
+    risk: HIGH
+    description: "Expire accumulated loyalty points"
+  void-redemption:
+    risk: HIGH
+    description: "Void a loyalty points redemption"
+  adjust-tier:
+    risk: HIGH
+    description: "Adjust a member's loyalty tier"
+    requires_approval: true
+  ban-member:
+    risk: HIGH
+    description: "Ban a member from the loyalty program"
+    requires_approval: true

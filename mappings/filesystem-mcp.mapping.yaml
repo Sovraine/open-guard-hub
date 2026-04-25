@@ -1,0 +1,61 @@
+server: filesystem-mcp
+description: Mapping for MCP Filesystem Server (@modelcontextprotocol/server-filesystem)
+version: 1.0.0
+license: CC-BY-SA-4.0
+tools:
+  read_file:
+    action: read
+    description: Read the complete contents of a file as text (deprecated)
+    target_from: path
+  read_text_file:
+    action: read
+    description: Read the complete contents of a text file
+    target_from: path
+  read_media_file:
+    action: read
+    description: Read an image or audio file as base64
+    target_from: path
+  read_multiple_files:
+    action: read
+    description: Read contents of multiple files simultaneously
+    target_from: ""
+  write_file:
+    action: create
+    description: Create or overwrite a file with new content
+    target_from: path
+  edit_file:
+    action: update
+    description: Make line-based edits to a text file
+    target_from: path
+  create_directory:
+    action: create
+    description: Create a new directory or ensure it exists
+    target_from: path
+  list_directory:
+    action: list
+    description: List files and directories in a path
+    target_from: path
+  list_directory_with_sizes:
+    action: list
+    description: List files and directories with sizes
+    target_from: path
+  directory_tree:
+    action: list
+    description: Get recursive tree view as JSON
+    target_from: path
+  move_file:
+    action: update
+    description: Move or rename files and directories
+    target_from: source
+  search_files:
+    action: search
+    description: Recursively search for files matching a pattern
+    target_from: path
+  get_file_info:
+    action: read
+    description: Get detailed metadata about a file or directory
+    target_from: path
+  list_allowed_directories:
+    action: list
+    description: List directories the server is allowed to access
+    target_from: ""

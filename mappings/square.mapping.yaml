@@ -1,0 +1,109 @@
+server: square
+description: "Square payments and point of sale"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "square-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_customers:
+    action: list
+    risk: READ-ONLY
+    description: "List customers"
+  get_customer:
+    action: read
+    risk: READ-ONLY
+    description: "Get customer"
+    target_from: customer_id
+  create_customer:
+    action: create
+    risk: MEDIUM
+    description: "Create customer"
+    context_from:
+      given_name: given_name
+      family_name: family_name
+      email_address: email_address
+  update_customer:
+    action: update
+    risk: MEDIUM
+    description: "Update customer"
+    target_from: customer_id
+    context_from:
+      fields: fields
+  delete_customer:
+    action: delete
+    risk: HIGH
+    description: "Delete customer"
+    target_from: customer_id
+  list_orders:
+    action: list
+    risk: READ-ONLY
+    description: "List orders"
+  get_order:
+    action: read
+    risk: READ-ONLY
+    description: "Get order"
+    target_from: order_id
+  create_order:
+    action: create
+    risk: HIGH
+    description: "Create order"
+    context_from:
+      customer_id: customer_id
+      line_items: line_items
+  update_order:
+    action: update
+    risk: MEDIUM
+    description: "Update order"
+    target_from: order_id
+    context_from:
+      fields: fields
+  pay_order:
+    action: execute
+    risk: HIGH
+    description: "Pay order"
+    target_from: order_id
+  cancel_order:
+    action: delete
+    risk: MEDIUM
+    description: "Cancel order"
+    target_from: order_id
+  list_payments:
+    action: list
+    risk: READ-ONLY
+    description: "List payments"
+  get_payment:
+    action: read
+    risk: READ-ONLY
+    description: "Get payment"
+    target_from: payment_id
+  create_payment:
+    action: create
+    risk: HIGH
+    description: "Create payment"
+    context_from:
+      source_id: source_id
+      amount_money: amount_money
+  refund_payment:
+    action: delete
+    risk: MEDIUM
+    description: "Refund payment"
+    target_from: payment_id
+  list_catalogs:
+    action: list
+    risk: READ-ONLY
+    description: "List catalog items"
+  create_catalog_item:
+    action: create
+    risk: MEDIUM
+    description: "Create catalog item"
+    context_from:
+      name: name
+      price: price
+  delete_catalog_item:
+    action: delete
+    risk: MEDIUM
+    description: "Delete catalog item"
+    target_from: item_id

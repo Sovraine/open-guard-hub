@@ -1,0 +1,25 @@
+taxonomy_version: "2026.03.1"
+sub_sector: permits
+sector: public-sector
+
+verbs:
+  issue-permit:
+    risk: HIGH
+    description: "Issue a government permit or license"
+  revoke-permit:
+    risk: CRITICAL
+    description: "Revoke a government permit or license"
+    requires_approval: true
+  suspend-permit:
+    risk: HIGH
+    description: "Temporarily suspend a government permit or license"
+  renew-permit:
+    risk: MEDIUM
+    description: "Renew an expiring government permit or license"
+  transfer-permit:
+    risk: HIGH
+    description: "Transfer a permit or license to another entity"
+  override-condition:
+    risk: CRITICAL
+    description: "Override a condition attached to a permit"
+    requires_approval: true

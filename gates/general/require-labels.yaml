@@ -1,0 +1,72 @@
+# Source: gatekeeper-library/src/general/requiredlabels
+# License: Apache-2.0 (CNCF)
+# Open-Guard mapping: actions=["create","update"], targets=["*"], verdict=DENY
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8srequiredlabels
+  annotations:
+    metadata.gatekeeper.sh/title: "Required Labels"
+    metadata.gatekeeper.sh/version: 1.1.0
+    description: >-
+      Requires resources to contain specified labels, with values matching
+      provided regular expressions.
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sRequiredLabels
+      validation:
+        openAPIV3Schema:
+          type: object
+          properties:
+            message:
+              type: string
+            labels:
+              type: array
+              description: List of required labels.
+              items:
+                type: object
+                properties:
+                  key:
+                    type: string
+                    description: The required label key.
+                  allowedRegex:
+                    type: string
+                    description: >-
+                      Optional regex for the label value. If unset, any value is accepted.
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8srequiredlabels
+
+        import data.lib.exclude_update.is_update
+
+        get_message(parameters, _default) = msg {
+            not parameters.message
+            msg := _default
+        }
+
+        get_message(parameters, _default) = msg {
+            msg := parameters.message
+        }
+
+        violation[{"msg": msg, "details": {"missing_labels": missing}}] {
+            not is_update(input)
+            provided := {label | input.review.object.metadata.labels[label]}
+            required := {label | label := input.parameters.labels[_].key}
+            missing := required - provided
+            count(missing) > 0
+            def_msg := sprintf("Missing required labels: %v", [missing])
+            msg := get_message(input.parameters, def_msg)
+        }
+
+        violation[{"msg": msg}] {
+            not is_update(input)
+            value := input.review.object.metadata.labels[key]
+            expected := input.parameters.labels[_]
+            expected.key == key
+            expected.allowedRegex != ""
+            not re_match(expected.allowedRegex, value)
+            msg := sprintf("Label <%v: %v> does not match regex %v", [key, value, expected.allowedRegex])
+        }

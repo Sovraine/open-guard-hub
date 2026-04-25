@@ -1,0 +1,30 @@
+taxonomy_version: "2026.03.1"
+sub_sector: payments
+sector: financial-services
+
+verbs:
+  process-payment:
+    risk: HIGH
+    description: "Process a payment transaction"
+  reverse-payment:
+    risk: CRITICAL
+    description: "Reverse a completed payment"
+    reversible: false
+  authorize-payment:
+    risk: HIGH
+    description: "Authorize a pending payment"
+  block-merchant:
+    risk: HIGH
+    description: "Block a merchant from receiving payments"
+  chargeback:
+    risk: HIGH
+    description: "Initiate a chargeback on a transaction"
+  release-held-funds:
+    risk: HIGH
+    description: "Release funds held in escrow or review"
+  set-transaction-limit:
+    risk: HIGH
+    description: "Set or modify transaction limits"
+  flag-suspicious-transaction:
+    risk: MEDIUM
+    description: "Flag a transaction as suspicious for review"

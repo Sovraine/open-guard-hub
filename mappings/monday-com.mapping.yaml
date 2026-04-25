@@ -1,0 +1,90 @@
+server: monday-com
+description: "monday.com project and work management"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "monday-com-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_workspaces:
+    action: list
+    risk: READ-ONLY
+    description: "List workspaces"
+  get_workspace:
+    action: read
+    risk: READ-ONLY
+    description: "Get workspace"
+    target_from: workspace_id
+  list_boards:
+    action: list
+    risk: READ-ONLY
+    description: "List boards"
+    target_from: workspace_id
+  get_board:
+    action: read
+    risk: READ-ONLY
+    description: "Get board"
+    target_from: board_id
+  create_board:
+    action: create
+    risk: MEDIUM
+    description: "Create board"
+    target_from: workspace_id
+    context_from:
+      board_name: board_name
+  delete_board:
+    action: delete
+    risk: HIGH
+    description: "Delete board"
+    target_from: board_id
+  list_items:
+    action: list
+    risk: READ-ONLY
+    description: "List items"
+    target_from: board_id
+  get_item:
+    action: read
+    risk: READ-ONLY
+    description: "Get item"
+    target_from: item_id
+  create_item:
+    action: create
+    risk: LOW
+    description: "Create item"
+    target_from: board_id
+    context_from:
+      item_name: item_name
+  update_item:
+    action: update
+    risk: MEDIUM
+    description: "Update item"
+    target_from: item_id
+    context_from:
+      fields: fields
+  delete_item:
+    action: delete
+    risk: MEDIUM
+    description: "Delete item"
+    target_from: item_id
+  add_update:
+    action: create
+    risk: LOW
+    description: "Add update to item"
+    target_from: item_id
+    context_from:
+      body: body
+  list_columns:
+    action: list
+    risk: READ-ONLY
+    description: "List columns"
+    target_from: board_id
+  create_column:
+    action: create
+    risk: MEDIUM
+    description: "Create column"
+    target_from: board_id
+    context_from:
+      title: title
+      type: type

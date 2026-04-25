@@ -1,0 +1,142 @@
+server: linear
+description: "Linear — issue tracking, projects, milestones, comments (24 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "mcp-server-linear"
+  registry: npm
+  transport: stdio
+  command: "npx -y mcp-server-linear"
+tools:
+  # --- Auth ---
+  linear_auth_callback:
+    action: configure
+    risk: LOW
+    description: "Handle OAuth callback"
+    target_from: code
+  # --- Issues ---
+  linear_create_issue:
+    action: create
+    risk: MEDIUM
+    description: "Create a new issue"
+    target_from: title
+    context_from:
+      teamId: teamId
+      assigneeId: assigneeId
+  linear_edit_issue:
+    action: update
+    risk: MEDIUM
+    description: "Edit an existing issue"
+    target_from: issueId
+  linear_create_issues:
+    action: create
+    risk: MEDIUM
+    description: "Create multiple issues at once"
+  linear_bulk_update_issues:
+    action: update
+    risk: HIGH
+    description: "Update multiple issues at once"
+    target_from: issueIds
+  linear_delete_issue:
+    action: delete
+    risk: HIGH
+    description: "Delete an issue"
+    target_from: id
+  linear_search_issues:
+    action: search
+    risk: READ-ONLY
+    description: "Search issues with filtering and pagination"
+    sql_mapping: false
+    target_from: query
+  linear_search_issues_by_identifier:
+    action: search
+    risk: READ-ONLY
+    description: "Search issues by identifiers (e.g. ENG-78)"
+    sql_mapping: false
+    target_from: identifiers
+  linear_get_issue:
+    action: read
+    risk: READ-ONLY
+    description: "Get a single issue by identifier"
+    target_from: identifier
+  # --- Projects ---
+  linear_create_project_with_issues:
+    action: create
+    risk: MEDIUM
+    description: "Create a project with associated issues"
+    target_from: project
+  linear_get_project:
+    action: read
+    risk: READ-ONLY
+    description: "Get project information"
+    target_from: id
+  linear_list_projects:
+    action: list
+    risk: READ-ONLY
+    description: "List all projects"
+  # --- Milestones ---
+  linear_get_project_milestones:
+    action: list
+    risk: READ-ONLY
+    description: "Get milestones for a project"
+    target_from: projectId
+  linear_create_project_milestone:
+    action: create
+    risk: LOW
+    description: "Create a project milestone"
+    target_from: name
+    context_from:
+      projectId: projectId
+  linear_update_project_milestone:
+    action: update
+    risk: LOW
+    description: "Update a project milestone"
+    target_from: id
+  linear_delete_project_milestone:
+    action: delete
+    risk: MEDIUM
+    description: "Delete a project milestone"
+    target_from: id
+  # --- Comments ---
+  linear_create_comment:
+    action: create
+    risk: LOW
+    description: "Create a comment on an issue"
+    target_from: issueId
+    context_from:
+      body: body
+  linear_update_comment:
+    action: update
+    risk: LOW
+    description: "Update an existing comment"
+    target_from: id
+  linear_delete_comment:
+    action: delete
+    risk: MEDIUM
+    description: "Delete a comment"
+    target_from: id
+  linear_resolve_comment:
+    action: update
+    risk: LOW
+    description: "Resolve a comment"
+    target_from: id
+  linear_unresolve_comment:
+    action: update
+    risk: LOW
+    description: "Unresolve a comment"
+    target_from: id
+  # --- Teams & Users ---
+  linear_get_teams:
+    action: list
+    risk: READ-ONLY
+    description: "Get all teams with states and labels"
+  linear_get_user:
+    action: read
+    risk: READ-ONLY
+    description: "Get current user information"
+  # --- Customer Needs ---
+  linear_create_customer_need_from_attachment:
+    action: create
+    risk: LOW
+    description: "Create a customer need from an attachment"
+    target_from: attachmentId

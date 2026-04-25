@@ -1,0 +1,24 @@
+taxonomy_version: "2026.03.1"
+sub_sector: staffing
+sector: professional-services
+
+verbs:
+  place-contractor:
+    risk: MEDIUM
+    description: "Place a contractor at a client site"
+  terminate-placement:
+    risk: HIGH
+    description: "Terminate an active contractor placement"
+  override-background-check:
+    risk: CRITICAL
+    description: "Override a failed background check for a candidate"
+    requires_approval: true
+  modify-rate:
+    risk: HIGH
+    description: "Modify the billing rate for a contractor placement"
+  extend-contract:
+    risk: MEDIUM
+    description: "Extend a contractor's contract term"
+  convert-to-permanent:
+    risk: HIGH
+    description: "Convert a contractor placement to a permanent hire"

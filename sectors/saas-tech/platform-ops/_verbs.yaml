@@ -1,0 +1,26 @@
+taxonomy_version: "2026.03.1"
+sub_sector: platform-ops
+sector: saas-tech
+
+verbs:
+  rotate-credentials:
+    risk: HIGH
+    description: "Rotate service credentials or API keys"
+  purge-cache:
+    risk: MEDIUM
+    description: "Purge application or CDN cache"
+  migrate-database:
+    risk: CRITICAL
+    description: "Run a database migration"
+    requires_approval: true
+  backup-tenant-data:
+    risk: LOW
+    description: "Create a backup of tenant data"
+  restore-tenant-data:
+    risk: CRITICAL
+    description: "Restore tenant data from a backup"
+    requires_approval: true
+  decommission-service:
+    risk: CRITICAL
+    description: "Permanently decommission a service"
+    reversible: false

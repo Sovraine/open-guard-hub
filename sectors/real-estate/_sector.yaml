@@ -1,0 +1,11 @@
+name: real-estate
+display_name: "Real Estate & Construction"
+status: BETA
+regulations: [property_law, building_codes, AML_real_estate]
+cross_cutting:
+  - core/data-privacy
+  - core/audit-control
+inherits: [core/common]
+overrides:
+  delete: { risk: HIGH }
+sub_sectors: [property, construction, facilities, valuation]

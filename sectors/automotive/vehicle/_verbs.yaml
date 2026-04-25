@@ -1,0 +1,37 @@
+taxonomy_version: "2026.03.1"
+sub_sector: vehicle
+sector: automotive
+
+verbs:
+  update-firmware-ota:
+    risk: CRITICAL
+    description: "Push over-the-air firmware update to vehicles"
+    requires_approval: true
+  disable-safety-feature:
+    risk: CRITICAL
+    description: "Disable a vehicle safety feature"
+    requires_approval: true
+    reversible: true
+  recall-vehicle:
+    risk: CRITICAL
+    description: "Initiate vehicle recall campaign"
+    reversible: false
+    requires_approval: true
+  override-speed-limiter:
+    risk: CRITICAL
+    description: "Override vehicle speed limiter"
+    requires_approval: true
+  remote-lock:
+    risk: HIGH
+    description: "Remotely lock a vehicle"
+  remote-unlock:
+    risk: HIGH
+    description: "Remotely unlock a vehicle"
+  disable-telematics:
+    risk: HIGH
+    description: "Disable vehicle telematics reporting"
+  modify-emission-parameters:
+    risk: CRITICAL
+    description: "Modify vehicle emission control parameters"
+    requires_approval: true
+    regulatory_reference: "emissions regulations"

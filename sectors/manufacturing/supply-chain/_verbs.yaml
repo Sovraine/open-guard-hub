@@ -1,0 +1,24 @@
+taxonomy_version: "2026.03.1"
+sub_sector: supply-chain
+sector: manufacturing
+
+verbs:
+  approve-supplier:
+    risk: HIGH
+    description: "Approve a new supplier for the approved vendor list"
+  blacklist-supplier:
+    risk: CRITICAL
+    description: "Blacklist a supplier from all future procurement"
+    requires_approval: true
+  modify-bom:
+    risk: HIGH
+    description: "Modify a bill of materials for a product"
+  expedite-order:
+    risk: MEDIUM
+    description: "Expedite a purchase order for faster delivery"
+  cancel-purchase-order:
+    risk: HIGH
+    description: "Cancel an existing purchase order"
+  override-lead-time:
+    risk: HIGH
+    description: "Override the standard lead time for a component or material"

@@ -1,0 +1,12 @@
+name: human-resources
+display_name: "Human Resources"
+status: STABLE
+regulations: [labor_law, GDPR, equal_employment, ADA]
+cross_cutting:
+  - core/data-privacy
+  - core/audit-control
+inherits: [core/common]
+overrides:
+  delete: { risk: CRITICAL }
+  export: { risk: HIGH }
+sub_sectors: [recruitment, payroll, performance, training]

@@ -1,0 +1,51 @@
+server: motherduck
+description: "MotherDuck/DuckDB — SQL analytics database (5 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "mcp-server-motherduck"
+  registry: pypi
+  transport: stdio
+  command: "uvx mcp-server-motherduck"
+tools:
+  # --- Query ---
+  execute_query:
+    action: _detect
+    risk: CRITICAL
+    parser: sql
+    description: "Execute a SQL query on DuckDB or MotherDuck"
+    sql_mapping:
+      SELECT: read
+      INSERT: create
+      UPDATE: update
+      DELETE: delete
+      DROP: delete
+      TRUNCATE: delete
+      ALTER: update
+      CREATE: create
+      COPY: export
+    target_from: sql
+  # --- Metadata ---
+  list_databases:
+    action: list
+    risk: READ-ONLY
+    description: "List all databases in the connection"
+  list_tables:
+    action: list
+    risk: READ-ONLY
+    description: "List all tables and views in a database"
+    target_from: database
+  list_columns:
+    action: read
+    risk: READ-ONLY
+    description: "List all columns of a table with types"
+    target_from: table
+    context_from:
+      database: database
+      schema: schema
+  # --- Connection (conditional: --allow-switch-databases) ---
+  switch_database_connection:
+    action: configure
+    risk: MEDIUM
+    description: "Switch to a different database connection"
+    target_from: path

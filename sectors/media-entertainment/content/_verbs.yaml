@@ -1,0 +1,31 @@
+taxonomy_version: "2026.03.1"
+sub_sector: content
+sector: media-entertainment
+
+verbs:
+  publish-content:
+    risk: MEDIUM
+    description: "Publish content to public audience"
+  unpublish-content:
+    risk: HIGH
+    description: "Remove published content from public access"
+  takedown-content:
+    risk: HIGH
+    description: "Execute DMCA or legal takedown"
+    regulatory_reference: "DMCA"
+  moderate-content:
+    risk: MEDIUM
+    description: "Apply content moderation decision"
+  override-moderation:
+    risk: HIGH
+    description: "Override automated content moderation"
+    requires_approval: true
+  age-restrict:
+    risk: HIGH
+    description: "Apply age restriction to content"
+  monetize-content:
+    risk: MEDIUM
+    description: "Enable monetization on content"
+  strike-account:
+    risk: HIGH
+    description: "Issue copyright strike against account"

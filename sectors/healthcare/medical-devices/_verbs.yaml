@@ -1,0 +1,27 @@
+taxonomy_version: "2026.03.1"
+sub_sector: medical-devices
+sector: healthcare
+
+verbs:
+  update-firmware-device:
+    risk: CRITICAL
+    description: "Update firmware on a medical device"
+    requires_approval: true
+  override-device-alarm:
+    risk: CRITICAL
+    description: "Override or silence a medical device alarm"
+    requires_approval: true
+  calibrate-device:
+    risk: HIGH
+    description: "Calibrate a medical device"
+  decommission-device:
+    risk: HIGH
+    description: "Decommission a medical device from service"
+  modify-device-parameters:
+    risk: CRITICAL
+    description: "Modify operating parameters of a medical device"
+    requires_approval: true
+  recall-device:
+    risk: CRITICAL
+    description: "Initiate a medical device recall"
+    reversible: false
