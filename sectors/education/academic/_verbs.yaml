@@ -1,0 +1,40 @@
+taxonomy_version: "2026.03.1"
+sub_sector: academic
+sector: education
+
+verbs:
+  modify-grade:
+    risk: CRITICAL
+    description: "Modify a student grade"
+    requires_approval: true
+    regulatory_reference: "FERPA"
+  expel-student:
+    risk: CRITICAL
+    description: "Expel a student from institution"
+    reversible: false
+    requires_approval: true
+  revoke-diploma:
+    risk: CRITICAL
+    description: "Revoke a granted diploma"
+    reversible: false
+    requires_approval: true
+  retract-publication:
+    risk: CRITICAL
+    description: "Retract a published research paper"
+    reversible: false
+    requires_approval: true
+  override-ai-detection:
+    risk: CRITICAL
+    description: "Override AI plagiarism detection result"
+    requires_approval: true
+  access-student-record:
+    risk: HIGH
+    description: "Access student academic record"
+    regulatory_reference: "FERPA"
+  suspend-student:
+    risk: HIGH
+    description: "Suspend a student"
+    requires_approval: true
+  approve-research-ethics:
+    risk: HIGH
+    description: "Approve research ethics application"

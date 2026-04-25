@@ -1,0 +1,26 @@
+server: notion-ai
+description: "Notion AI and smart features"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "notion-ai-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  ask_ai:
+    action: execute
+    risk: MEDIUM
+    description: "Ask Notion AI"
+    context_from:
+      question: question
+  generate_summary:
+    action: read
+    risk: READ-ONLY
+    description: "Generate summary"
+    target_from: block_id
+  generate_outline:
+    action: read
+    risk: READ-ONLY
+    description: "Generate outline"
+    target_from: block_id

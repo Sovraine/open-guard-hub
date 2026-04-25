@@ -1,0 +1,81 @@
+server: firecrawl
+description: "Firecrawl — web scraping, crawling, search, and extraction (12 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "firecrawl-mcp"
+  registry: npm
+  transport: stdio
+  command: "npx -y firecrawl-mcp"
+tools:
+  firecrawl_scrape:
+    action: read
+    risk: LOW
+    description: "Scrape content from a single URL"
+    target_from: url
+    context_from:
+      formats: formats
+  firecrawl_map:
+    action: search
+    risk: READ-ONLY
+    description: "Map a website to discover all indexed URLs"
+    target_from: url
+  firecrawl_search:
+    action: search
+    risk: READ-ONLY
+    description: "Search the web and optionally extract content"
+    target_from: query
+  firecrawl_crawl:
+    action: read
+    risk: MEDIUM
+    description: "Crawl a website and extract content from all pages"
+    target_from: url
+    context_from:
+      limit: limit
+      maxDiscoveryDepth: maxDiscoveryDepth
+  firecrawl_check_crawl_status:
+    action: read
+    risk: READ-ONLY
+    description: "Check the status of a crawl job"
+    target_from: id
+  firecrawl_extract:
+    action: read
+    risk: LOW
+    description: "Extract structured information from web pages using LLM"
+    target_from: urls
+    context_from:
+      prompt: prompt
+  firecrawl_agent:
+    action: execute
+    risk: HIGH
+    description: "Autonomous web research agent that browses and extracts data"
+    target_from: prompt
+    context_from:
+      urls: urls
+  firecrawl_agent_status:
+    action: read
+    risk: READ-ONLY
+    description: "Check the status of an agent job"
+    target_from: id
+  firecrawl_browser_create:
+    action: create
+    risk: MEDIUM
+    description: "Create a browser session via CDP"
+  firecrawl_browser_execute:
+    action: execute
+    risk: HIGH
+    description: "Execute code in a browser session"
+    sql_mapping: false
+    target_from: sessionId
+    context_from:
+      code: code
+      language: language
+  firecrawl_browser_delete:
+    action: delete
+    risk: MEDIUM
+    description: "Destroy a browser session"
+    target_from: sessionId
+  firecrawl_browser_list:
+    action: list
+    risk: READ-ONLY
+    description: "List browser sessions"

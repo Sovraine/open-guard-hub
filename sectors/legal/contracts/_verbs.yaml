@@ -1,0 +1,30 @@
+taxonomy_version: "2026.03.1"
+sub_sector: contracts
+sector: legal
+
+verbs:
+  execute-contract:
+    risk: CRITICAL
+    description: "Execute and sign a contract"
+    reversible: false
+    requires_approval: true
+  terminate-contract:
+    risk: CRITICAL
+    description: "Terminate a contract"
+    requires_approval: true
+  amend-contract:
+    risk: HIGH
+    description: "Amend terms of an existing contract"
+  assign-contract:
+    risk: HIGH
+    description: "Assign contract rights to a third party"
+  novate-contract:
+    risk: CRITICAL
+    description: "Novate a contract to a new party"
+    requires_approval: true
+  breach-notice:
+    risk: HIGH
+    description: "Issue a notice of breach"
+  sign-nda:
+    risk: MEDIUM
+    description: "Sign a non-disclosure agreement"

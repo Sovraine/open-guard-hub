@@ -1,0 +1,27 @@
+taxonomy_version: "2026.03.1"
+sub_sector: billing
+sector: saas-tech
+
+verbs:
+  charge-customer:
+    risk: HIGH
+    description: "Charge a customer for a service or product"
+  refund:
+    risk: HIGH
+    description: "Issue a refund to a customer"
+  adjust-invoice:
+    risk: MEDIUM
+    description: "Adjust an invoice amount or line items"
+  cancel-subscription:
+    risk: HIGH
+    description: "Cancel a customer subscription"
+  apply-credit:
+    risk: MEDIUM
+    description: "Apply a credit to a customer account"
+  override-pricing:
+    risk: HIGH
+    description: "Override standard pricing for a customer"
+    requires_approval: true
+  write-off-balance:
+    risk: HIGH
+    description: "Write off an outstanding balance"

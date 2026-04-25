@@ -1,0 +1,103 @@
+server: mailchimp
+description: "Mailchimp email marketing and automation"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "mailchimp-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_audiences:
+    action: list
+    risk: READ-ONLY
+    description: "List audiences"
+  get_audience:
+    action: read
+    risk: READ-ONLY
+    description: "Get audience"
+    target_from: audience_id
+  create_audience:
+    action: create
+    risk: MEDIUM
+    description: "Create audience"
+    target_from: audience_name
+  delete_audience:
+    action: delete
+    risk: HIGH
+    description: "Delete audience"
+    target_from: audience_id
+  list_members:
+    action: list
+    risk: READ-ONLY
+    description: "List members"
+    target_from: audience_id
+  get_member:
+    action: read
+    risk: READ-ONLY
+    description: "Get member"
+    target_from: member_id
+  add_member:
+    action: create
+    risk: MEDIUM
+    description: "Add member"
+    target_from: audience_id
+    context_from:
+      email: email
+      status: status
+  update_member:
+    action: update
+    risk: MEDIUM
+    description: "Update member"
+    target_from: member_id
+    context_from:
+      fields: fields
+  delete_member:
+    action: delete
+    risk: MEDIUM
+    description: "Delete member"
+    target_from: member_id
+  list_campaigns:
+    action: list
+    risk: READ-ONLY
+    description: "List campaigns"
+  get_campaign:
+    action: read
+    risk: READ-ONLY
+    description: "Get campaign"
+    target_from: campaign_id
+  create_campaign:
+    action: create
+    risk: MEDIUM
+    description: "Create campaign"
+    target_from: audience_id
+    context_from:
+      type: type
+      title: title
+      subject: subject
+  send_campaign:
+    action: execute
+    risk: MEDIUM
+    description: "Send campaign"
+    target_from: campaign_id
+  delete_campaign:
+    action: delete
+    risk: MEDIUM
+    description: "Delete campaign"
+    target_from: campaign_id
+  list_automations:
+    action: list
+    risk: READ-ONLY
+    description: "List automations"
+  create_automation:
+    action: create
+    risk: MEDIUM
+    description: "Create automation"
+    target_from: audience_id
+    context_from:
+      trigger: trigger
+  delete_automation:
+    action: delete
+    risk: HIGH
+    description: "Delete automation"
+    target_from: automation_id

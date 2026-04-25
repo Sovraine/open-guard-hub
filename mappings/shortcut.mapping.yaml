@@ -1,0 +1,296 @@
+server: shortcut
+description: "Shortcut — stories, iterations, epics, objectives, teams, workflows (55 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@anthropic-ai/shortcut-mcp-server"
+  registry: npm
+  transport: stdio
+  command: "npx -y @anthropic-ai/shortcut-mcp-server"
+tools:
+  # --- Stories ---
+  list_stories:
+    action: list
+    risk: READ-ONLY
+    description: "List stories"
+  get_story:
+    action: read
+    risk: READ-ONLY
+    description: "Get story details"
+    target_from: story_id
+  create_story:
+    action: create
+    risk: LOW
+    description: "Create a new story"
+    target_from: name
+  update_story:
+    action: update
+    risk: LOW
+    description: "Update a story"
+    target_from: story_id
+  delete_story:
+    action: delete
+    risk: MEDIUM
+    description: "Delete a story"
+    target_from: story_id
+  search_stories:
+    action: search
+    risk: READ-ONLY
+    description: "Search stories with query"
+    sql_mapping: false
+    target_from: query
+  move_story:
+    action: update
+    risk: LOW
+    description: "Move a story to a different state"
+    target_from: story_id
+  add_story_comment:
+    action: create
+    risk: LOW
+    description: "Add a comment to a story"
+    target_from: story_id
+  list_story_comments:
+    action: list
+    risk: READ-ONLY
+    description: "List comments on a story"
+    target_from: story_id
+  update_story_comment:
+    action: update
+    risk: LOW
+    description: "Update a story comment"
+    target_from: comment_id
+    context_from:
+      story_id: story_id
+  delete_story_comment:
+    action: delete
+    risk: MEDIUM
+    description: "Delete a story comment"
+    target_from: comment_id
+    context_from:
+      story_id: story_id
+  add_story_task:
+    action: create
+    risk: LOW
+    description: "Add a task to a story"
+    target_from: story_id
+  update_story_task:
+    action: update
+    risk: LOW
+    description: "Update a story task"
+    target_from: task_id
+    context_from:
+      story_id: story_id
+  delete_story_task:
+    action: delete
+    risk: MEDIUM
+    description: "Delete a story task"
+    target_from: task_id
+    context_from:
+      story_id: story_id
+  link_stories:
+    action: create
+    risk: LOW
+    description: "Create a link between stories"
+    target_from: subject_id
+    context_from:
+      object_id: object_id
+  # --- Iterations ---
+  list_iterations:
+    action: list
+    risk: READ-ONLY
+    description: "List iterations"
+  get_iteration:
+    action: read
+    risk: READ-ONLY
+    description: "Get iteration details"
+    target_from: iteration_id
+  create_iteration:
+    action: create
+    risk: LOW
+    description: "Create a new iteration"
+    target_from: name
+  update_iteration:
+    action: update
+    risk: LOW
+    description: "Update an iteration"
+    target_from: iteration_id
+  delete_iteration:
+    action: delete
+    risk: MEDIUM
+    description: "Delete an iteration"
+    target_from: iteration_id
+  list_iteration_stories:
+    action: list
+    risk: READ-ONLY
+    description: "List stories in an iteration"
+    target_from: iteration_id
+  # --- Epics ---
+  list_epics:
+    action: list
+    risk: READ-ONLY
+    description: "List epics"
+  get_epic:
+    action: read
+    risk: READ-ONLY
+    description: "Get epic details"
+    target_from: epic_id
+  create_epic:
+    action: create
+    risk: LOW
+    description: "Create a new epic"
+    target_from: name
+  update_epic:
+    action: update
+    risk: LOW
+    description: "Update an epic"
+    target_from: epic_id
+  delete_epic:
+    action: delete
+    risk: MEDIUM
+    description: "Delete an epic"
+    target_from: epic_id
+  list_epic_stories:
+    action: list
+    risk: READ-ONLY
+    description: "List stories in an epic"
+    target_from: epic_id
+  add_epic_comment:
+    action: create
+    risk: LOW
+    description: "Add a comment to an epic"
+    target_from: epic_id
+  # --- Objectives ---
+  list_objectives:
+    action: list
+    risk: READ-ONLY
+    description: "List objectives"
+  get_objective:
+    action: read
+    risk: READ-ONLY
+    description: "Get objective details"
+    target_from: objective_id
+  create_objective:
+    action: create
+    risk: LOW
+    description: "Create an objective"
+    target_from: name
+  update_objective:
+    action: update
+    risk: LOW
+    description: "Update an objective"
+    target_from: objective_id
+  delete_objective:
+    action: delete
+    risk: MEDIUM
+    description: "Delete an objective"
+    target_from: objective_id
+  # --- Teams ---
+  list_groups:
+    action: list
+    risk: READ-ONLY
+    description: "List teams/groups"
+  get_group:
+    action: read
+    risk: READ-ONLY
+    description: "Get team/group details"
+    target_from: group_id
+  # --- Workflows ---
+  list_workflows:
+    action: list
+    risk: READ-ONLY
+    description: "List workflows"
+  get_workflow:
+    action: read
+    risk: READ-ONLY
+    description: "Get workflow details"
+    target_from: workflow_id
+  # --- Documents ---
+  list_documents:
+    action: list
+    risk: READ-ONLY
+    description: "List documents"
+  get_document:
+    action: read
+    risk: READ-ONLY
+    description: "Get document details"
+    target_from: document_id
+  create_document:
+    action: create
+    risk: LOW
+    description: "Create a document"
+    target_from: name
+  update_document:
+    action: update
+    risk: LOW
+    description: "Update a document"
+    target_from: document_id
+  delete_document:
+    action: delete
+    risk: MEDIUM
+    description: "Delete a document"
+    target_from: document_id
+  # --- Labels ---
+  list_labels:
+    action: list
+    risk: READ-ONLY
+    description: "List labels"
+  get_label:
+    action: read
+    risk: READ-ONLY
+    description: "Get label details"
+    target_from: label_id
+  create_label:
+    action: create
+    risk: LOW
+    description: "Create a label"
+    target_from: name
+  update_label:
+    action: update
+    risk: LOW
+    description: "Update a label"
+    target_from: label_id
+  delete_label:
+    action: delete
+    risk: MEDIUM
+    description: "Delete a label"
+    target_from: label_id
+  # --- Projects ---
+  list_projects:
+    action: list
+    risk: READ-ONLY
+    description: "List projects"
+  get_project:
+    action: read
+    risk: READ-ONLY
+    description: "Get project details"
+    target_from: project_id
+  # --- Custom Fields ---
+  list_custom_fields:
+    action: list
+    risk: READ-ONLY
+    description: "List custom fields"
+  get_custom_field:
+    action: read
+    risk: READ-ONLY
+    description: "Get custom field details"
+    target_from: field_id
+  # --- Members ---
+  list_members:
+    action: list
+    risk: READ-ONLY
+    description: "List workspace members"
+  get_member:
+    action: read
+    risk: READ-ONLY
+    description: "Get member details"
+    target_from: member_id
+  # --- Categories ---
+  list_categories:
+    action: list
+    risk: READ-ONLY
+    description: "List categories"
+  get_category:
+    action: read
+    risk: READ-ONLY
+    description: "Get category details"
+    target_from: category_id

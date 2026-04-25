@@ -1,0 +1,75 @@
+# Source: gatekeeper-library/src/pod-security-policy/capabilities
+# License: Apache-2.0 (CNCF)
+# Open-Guard mapping: actions=["create","update"], targets=["pod"], verdict=DENY
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8spspcapabilities
+  annotations:
+    metadata.gatekeeper.sh/title: "Restrict Capabilities"
+    metadata.gatekeeper.sh/version: 1.0.0
+    description: >-
+      Controls Linux capabilities on containers. Restricts which capabilities
+      can be added and requires dropping ALL capabilities.
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sPSPCapabilities
+      validation:
+        openAPIV3Schema:
+          type: object
+          description: >-
+            Controls Linux capabilities on containers.
+          properties:
+            exemptImages:
+              description: Images excluded from enforcement.
+              type: array
+              items:
+                type: string
+            allowedCapabilities:
+              description: List of capabilities that containers can add.
+              type: array
+              items:
+                type: string
+            requiredDropCapabilities:
+              description: List of capabilities that must be dropped.
+              type: array
+              items:
+                type: string
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8spspcapabilities
+
+        import data.lib.exclude_update.is_update
+        import data.lib.exempt_container.is_exempt
+
+        violation[{"msg": msg}] {
+            not is_update(input)
+            c := input_containers[_]
+            not is_exempt(c)
+            cap := c.securityContext.capabilities.add[_]
+            allowedCaps := {x | x := input.parameters.allowedCapabilities[_]}
+            not allowedCaps[cap]
+            msg := sprintf("Container %v has disallowed capability: %v", [c.name, cap])
+        }
+
+        violation[{"msg": msg}] {
+            not is_update(input)
+            c := input_containers[_]
+            not is_exempt(c)
+            requiredDrop := {x | x := input.parameters.requiredDropCapabilities[_]}
+            dropped := {x | x := c.securityContext.capabilities.drop[_]}
+            missing := requiredDrop - dropped
+            count(missing) > 0
+            msg := sprintf("Container %v must drop capabilities: %v", [c.name, missing])
+        }
+
+        input_containers[c] {
+            c := input.review.object.spec.containers[_]
+        }
+
+        input_containers[c] {
+            c := input.review.object.spec.initContainers[_]
+        }

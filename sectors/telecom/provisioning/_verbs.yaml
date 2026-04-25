@@ -1,0 +1,24 @@
+taxonomy_version: "2026.03.1"
+sub_sector: provisioning
+sector: telecom
+
+verbs:
+  provision-sim:
+    risk: MEDIUM
+    description: "Provision a new SIM card for a subscriber"
+  activate-service:
+    risk: MEDIUM
+    description: "Activate a telecom service on a subscriber line"
+  deactivate-service:
+    risk: HIGH
+    description: "Deactivate a telecom service on a subscriber line"
+  port-number:
+    risk: HIGH
+    description: "Port a phone number to or from another carrier"
+  clone-sim:
+    risk: CRITICAL
+    description: "Clone a SIM card profile to a new physical SIM"
+    requires_approval: true
+  swap-device:
+    risk: MEDIUM
+    description: "Swap the device associated with a subscriber line"

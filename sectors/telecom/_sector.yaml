@@ -1,0 +1,11 @@
+name: telecom
+display_name: "Telecommunications"
+status: BETA
+regulations: [ePrivacy, BEREC, GDPR, spectrum_regulations]
+cross_cutting:
+  - core/data-privacy
+  - core/audit-control
+inherits: [core/common]
+overrides:
+  delete: { risk: HIGH }
+sub_sectors: [network-ops, billing, provisioning, spectrum]

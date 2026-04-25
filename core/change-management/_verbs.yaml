@@ -1,0 +1,36 @@
+taxonomy_version: "2026.03.1"
+domain: core/change-management
+description: Cross-cutting production change management verbs
+
+verbs:
+  request-change:
+    risk: LOW
+    description: "Request a change to production systems"
+  approve-change:
+    risk: HIGH
+    description: "Approve a change request"
+  reject-change:
+    risk: MEDIUM
+    description: "Reject a change request"
+  implement-change:
+    risk: HIGH
+    description: "Implement an approved change"
+  rollback-change:
+    risk: HIGH
+    description: "Rollback a previously implemented change"
+  emergency-change:
+    risk: CRITICAL
+    description: "Implement emergency change bypassing normal process"
+    reversible: false
+  freeze-changes:
+    risk: HIGH
+    description: "Freeze all changes to production"
+  unfreeze-changes:
+    risk: HIGH
+    description: "Unfreeze production changes"
+  schedule-maintenance:
+    risk: MEDIUM
+    description: "Schedule maintenance window"
+  cancel-maintenance:
+    risk: MEDIUM
+    description: "Cancel scheduled maintenance"

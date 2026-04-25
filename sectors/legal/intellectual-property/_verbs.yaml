@@ -1,0 +1,28 @@
+taxonomy_version: "2026.03.1"
+sub_sector: intellectual-property
+sector: legal
+
+verbs:
+  abandon-patent:
+    risk: CRITICAL
+    description: "Abandon a patent application or granted patent"
+    reversible: false
+    requires_approval: true
+  transfer-ip:
+    risk: CRITICAL
+    description: "Transfer intellectual property ownership"
+    reversible: false
+    requires_approval: true
+  license-ip:
+    risk: HIGH
+    description: "Grant a license for intellectual property"
+  file-patent:
+    risk: HIGH
+    description: "File a patent application"
+  register-trademark:
+    risk: HIGH
+    description: "Register a trademark"
+  revoke-license:
+    risk: CRITICAL
+    description: "Revoke an intellectual property license"
+    requires_approval: true

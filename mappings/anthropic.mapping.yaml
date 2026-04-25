@@ -1,0 +1,44 @@
+server: anthropic
+description: "Anthropic Claude API operations"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "anthropic-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_models:
+    action: list
+    risk: READ-ONLY
+    description: "List available Claude models"
+  get_model:
+    action: read
+    risk: READ-ONLY
+    description: "Get model details"
+    target_from: model_id
+  create_message:
+    action: execute
+    risk: MEDIUM
+    description: "Create Claude message"
+    target_from: model_id
+    context_from:
+      messages: messages
+      max_tokens: max_tokens
+  batch_messages:
+    action: execute
+    risk: MEDIUM
+    description: "Process batch of messages"
+    target_from: model_id
+    context_from:
+      requests: requests
+  count_tokens:
+    action: read
+    risk: READ-ONLY
+    description: "Count tokens for text"
+    context_from:
+      text: text
+  get_usage:
+    action: read
+    risk: READ-ONLY
+    description: "Get API usage statistics"

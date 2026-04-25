@@ -1,0 +1,101 @@
+server: ipgeolocation
+description: "ipgeolocation.io — IP geolocation, timezone, astronomy, security (16 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "ipgeolocation-io-mcp"
+  registry: npm
+  transport: stdio
+  command: "npx -y ipgeolocation-io-mcp"
+tools:
+  lookup_ip:
+    action: read
+    risk: READ-ONLY
+    description: "Lookup geolocation for an IP address"
+    target_from: ip
+  bulk_lookup_ip:
+    action: read
+    risk: READ-ONLY
+    description: "Bulk lookup geolocation for multiple IPs"
+    target_from: ips
+  get_my_ip:
+    action: read
+    risk: READ-ONLY
+    description: "Get the server's own public IP address"
+  lookup_company:
+    action: read
+    risk: READ-ONLY
+    description: "Lookup company info for an IP"
+    target_from: ip
+  lookup_currency:
+    action: read
+    risk: READ-ONLY
+    description: "Lookup currency info for an IP's country"
+    target_from: ip
+  lookup_network:
+    action: read
+    risk: READ-ONLY
+    description: "Lookup network/ISP info for an IP"
+    target_from: ip
+  check_security:
+    action: read
+    risk: READ-ONLY
+    description: "Check security threats for an IP (proxy, VPN, tor, bot)"
+    target_from: ip
+  bulk_security_check:
+    action: read
+    risk: READ-ONLY
+    description: "Bulk security check for multiple IPs"
+    target_from: ips
+  get_timezone:
+    action: read
+    risk: READ-ONLY
+    description: "Get timezone info by location, IP, or airport code"
+    target_from: tz
+    context_from:
+      ip: ip
+  convert_timezone:
+    action: read
+    risk: READ-ONLY
+    description: "Convert time between two timezones"
+    target_from: tz_from
+    context_from:
+      tz_to: tz_to
+      time: time
+  get_astronomy:
+    action: read
+    risk: READ-ONLY
+    description: "Get sun/moon rise and set times for a location"
+    target_from: location
+    context_from:
+      date: date
+  get_astronomy_time_series:
+    action: read
+    risk: READ-ONLY
+    description: "Get astronomy data for a date range"
+    target_from: location
+    context_from:
+      dateStart: dateStart
+      dateEnd: dateEnd
+  lookup_asn:
+    action: read
+    risk: READ-ONLY
+    description: "Lookup ASN info by ASN number or IP"
+    target_from: asn
+    context_from:
+      ip: ip
+  get_abuse_contact:
+    action: read
+    risk: READ-ONLY
+    description: "Get abuse contact info for an IP"
+    target_from: ip
+  parse_user_agent:
+    action: read
+    risk: READ-ONLY
+    description: "Parse a user agent string"
+    target_from: uaString
+  bulk_parse_user_agent:
+    action: read
+    risk: READ-ONLY
+    description: "Bulk parse multiple user agent strings"
+    target_from: uaStrings

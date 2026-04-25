@@ -1,0 +1,56 @@
+taxonomy_version: "2026.03.1"
+domain: core/cloud
+description: Cloud infrastructure management verbs
+
+verbs:
+  provision-instance:
+    risk: HIGH
+    description: "Provision a new compute instance"
+  terminate-instance:
+    risk: CRITICAL
+    description: "Terminate a compute instance"
+    reversible: false
+  create-vpc:
+    risk: HIGH
+    description: "Create a virtual private cloud"
+  delete-vpc:
+    risk: CRITICAL
+    description: "Delete a virtual private cloud"
+    reversible: false
+  modify-security-group:
+    risk: CRITICAL
+    description: "Modify security group rules"
+  create-bucket:
+    risk: MEDIUM
+    description: "Create object storage bucket"
+  delete-bucket:
+    risk: HIGH
+    description: "Delete object storage bucket"
+  set-bucket-policy:
+    risk: CRITICAL
+    description: "Set bucket access policy"
+  create-iam-role:
+    risk: HIGH
+    description: "Create IAM role"
+  delete-iam-role:
+    risk: CRITICAL
+    description: "Delete IAM role"
+    reversible: false
+  attach-policy:
+    risk: CRITICAL
+    description: "Attach policy to IAM role"
+  create-snapshot:
+    risk: LOW
+    description: "Create volume/instance snapshot"
+  delete-snapshot:
+    risk: HIGH
+    description: "Delete a snapshot"
+  modify-dns:
+    risk: HIGH
+    description: "Modify DNS records"
+  issue-certificate:
+    risk: HIGH
+    description: "Issue TLS/SSL certificate"
+  revoke-certificate:
+    risk: CRITICAL
+    description: "Revoke TLS/SSL certificate"

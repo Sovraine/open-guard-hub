@@ -1,0 +1,312 @@
+server: pagerduty
+description: "PagerDuty — incidents, services, teams, schedules, escalation policies (58 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@anthropic-ai/pagerduty-mcp-server"
+  registry: npm
+  transport: stdio
+  command: "npx -y @anthropic-ai/pagerduty-mcp-server"
+tools:
+  # --- Incidents ---
+  list_incidents:
+    action: list
+    risk: READ-ONLY
+    description: "List incidents"
+  get_incident:
+    action: read
+    risk: READ-ONLY
+    description: "Get incident details"
+    target_from: incident_id
+  create_incident:
+    action: create
+    risk: HIGH
+    description: "Create a new incident"
+    target_from: title
+    context_from:
+      service_id: service_id
+  update_incident:
+    action: update
+    risk: MEDIUM
+    description: "Update an incident"
+    target_from: incident_id
+  acknowledge_incident:
+    action: update
+    risk: LOW
+    description: "Acknowledge an incident"
+    target_from: incident_id
+  resolve_incident:
+    action: update
+    risk: MEDIUM
+    description: "Resolve an incident"
+    target_from: incident_id
+  merge_incidents:
+    action: update
+    risk: MEDIUM
+    description: "Merge incidents together"
+    target_from: incident_id
+  snooze_incident:
+    action: update
+    risk: LOW
+    description: "Snooze an incident"
+    target_from: incident_id
+  reassign_incident:
+    action: update
+    risk: MEDIUM
+    description: "Reassign an incident to another user/team"
+    target_from: incident_id
+    context_from:
+      assignee_id: assignee_id
+  add_incident_note:
+    action: create
+    risk: LOW
+    description: "Add a note to an incident"
+    target_from: incident_id
+  list_incident_notes:
+    action: list
+    risk: READ-ONLY
+    description: "List notes on an incident"
+    target_from: incident_id
+  list_incident_alerts:
+    action: list
+    risk: READ-ONLY
+    description: "List alerts on an incident"
+    target_from: incident_id
+  list_incident_log_entries:
+    action: list
+    risk: READ-ONLY
+    description: "List log entries for an incident"
+    target_from: incident_id
+  run_incident_workflow:
+    action: execute
+    risk: HIGH
+    description: "Run an incident workflow"
+    target_from: incident_id
+    context_from:
+      workflow_id: workflow_id
+  # --- Services ---
+  list_services:
+    action: list
+    risk: READ-ONLY
+    description: "List services"
+  get_service:
+    action: read
+    risk: READ-ONLY
+    description: "Get service details"
+    target_from: service_id
+  create_service:
+    action: create
+    risk: MEDIUM
+    description: "Create a new service"
+    target_from: name
+  update_service:
+    action: update
+    risk: MEDIUM
+    description: "Update a service"
+    target_from: service_id
+  delete_service:
+    action: delete
+    risk: HIGH
+    description: "Delete a service"
+    target_from: service_id
+  # --- Teams ---
+  list_teams:
+    action: list
+    risk: READ-ONLY
+    description: "List teams"
+  get_team:
+    action: read
+    risk: READ-ONLY
+    description: "Get team details"
+    target_from: team_id
+  create_team:
+    action: create
+    risk: MEDIUM
+    description: "Create a team"
+    target_from: name
+  update_team:
+    action: update
+    risk: LOW
+    description: "Update a team"
+    target_from: team_id
+  delete_team:
+    action: delete
+    risk: HIGH
+    description: "Delete a team"
+    target_from: team_id
+  add_team_member:
+    action: update
+    risk: MEDIUM
+    description: "Add a user to a team"
+    target_from: team_id
+    context_from:
+      user_id: user_id
+  remove_team_member:
+    action: update
+    risk: MEDIUM
+    description: "Remove a user from a team"
+    target_from: team_id
+    context_from:
+      user_id: user_id
+  # --- Escalation Policies ---
+  list_escalation_policies:
+    action: list
+    risk: READ-ONLY
+    description: "List escalation policies"
+  get_escalation_policy:
+    action: read
+    risk: READ-ONLY
+    description: "Get escalation policy details"
+    target_from: policy_id
+  create_escalation_policy:
+    action: create
+    risk: MEDIUM
+    description: "Create an escalation policy"
+    target_from: name
+  update_escalation_policy:
+    action: update
+    risk: MEDIUM
+    description: "Update an escalation policy"
+    target_from: policy_id
+  delete_escalation_policy:
+    action: delete
+    risk: HIGH
+    description: "Delete an escalation policy"
+    target_from: policy_id
+  # --- Schedules ---
+  list_schedules:
+    action: list
+    risk: READ-ONLY
+    description: "List on-call schedules"
+  get_schedule:
+    action: read
+    risk: READ-ONLY
+    description: "Get schedule details"
+    target_from: schedule_id
+  create_schedule:
+    action: create
+    risk: MEDIUM
+    description: "Create an on-call schedule"
+    target_from: name
+  update_schedule:
+    action: update
+    risk: MEDIUM
+    description: "Update an on-call schedule"
+    target_from: schedule_id
+  delete_schedule:
+    action: delete
+    risk: HIGH
+    description: "Delete an on-call schedule"
+    target_from: schedule_id
+  list_oncalls:
+    action: list
+    risk: READ-ONLY
+    description: "List current on-call users"
+  # --- Users ---
+  list_users:
+    action: list
+    risk: READ-ONLY
+    description: "List users"
+  get_user:
+    action: read
+    risk: READ-ONLY
+    description: "Get user details"
+    target_from: user_id
+  get_current_user:
+    action: read
+    risk: READ-ONLY
+    description: "Get current authenticated user"
+  # --- Status Pages ---
+  list_status_pages:
+    action: list
+    risk: READ-ONLY
+    description: "List status pages"
+  get_status_page:
+    action: read
+    risk: READ-ONLY
+    description: "Get status page details"
+    target_from: status_page_id
+  create_status_update:
+    action: create
+    risk: MEDIUM
+    description: "Create a status page update"
+    target_from: status_page_id
+  # --- Alert Grouping ---
+  get_alert_grouping:
+    action: read
+    risk: READ-ONLY
+    description: "Get alert grouping settings"
+    target_from: service_id
+  update_alert_grouping:
+    action: update
+    risk: MEDIUM
+    description: "Update alert grouping settings"
+    target_from: service_id
+  # --- Event Orchestrations ---
+  list_event_orchestrations:
+    action: list
+    risk: READ-ONLY
+    description: "List event orchestrations"
+  get_event_orchestration:
+    action: read
+    risk: READ-ONLY
+    description: "Get event orchestration details"
+    target_from: orchestration_id
+  create_event_orchestration:
+    action: create
+    risk: MEDIUM
+    description: "Create an event orchestration"
+    target_from: name
+  update_event_orchestration:
+    action: update
+    risk: MEDIUM
+    description: "Update an event orchestration"
+    target_from: orchestration_id
+  delete_event_orchestration:
+    action: delete
+    risk: HIGH
+    description: "Delete an event orchestration"
+    target_from: orchestration_id
+  # --- Integrations ---
+  list_integrations:
+    action: list
+    risk: READ-ONLY
+    description: "List service integrations"
+    target_from: service_id
+  get_integration:
+    action: read
+    risk: READ-ONLY
+    description: "Get integration details"
+    target_from: integration_id
+    context_from:
+      service_id: service_id
+  create_integration:
+    action: create
+    risk: MEDIUM
+    description: "Create a service integration"
+    target_from: service_id
+  # --- Maintenance Windows ---
+  list_maintenance_windows:
+    action: list
+    risk: READ-ONLY
+    description: "List maintenance windows"
+  create_maintenance_window:
+    action: create
+    risk: MEDIUM
+    description: "Create a maintenance window"
+    target_from: description
+  delete_maintenance_window:
+    action: delete
+    risk: MEDIUM
+    description: "Delete a maintenance window"
+    target_from: maintenance_window_id
+  # --- Analytics ---
+  get_incident_analytics:
+    action: read
+    risk: READ-ONLY
+    description: "Get incident analytics"
+  get_service_analytics:
+    action: read
+    risk: READ-ONLY
+    description: "Get service analytics"
+    target_from: service_id

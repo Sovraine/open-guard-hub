@@ -1,0 +1,140 @@
+server: google-drive
+description: "Google Drive file management"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "google-drive-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_files:
+    action: list
+    risk: READ-ONLY
+    description: "List files and folders"
+    context_from:
+      parent_id: parent_id
+      query: query
+  get_file:
+    action: read
+    risk: READ-ONLY
+    description: "Get file details"
+    target_from: file_id
+  create_folder:
+    action: create
+    risk: MEDIUM
+    description: "Create folder"
+    target_from: folder_name
+    context_from:
+      parent_id: parent_id
+  upload_file:
+    action: create
+    risk: MEDIUM
+    description: "Upload file"
+    target_from: file_path
+    context_from:
+      parent_id: parent_id
+  download_file:
+    action: read
+    risk: READ-ONLY
+    description: "Download file content"
+    target_from: file_id
+  delete_file:
+    action: delete
+    risk: MEDIUM
+    description: "Delete file"
+    target_from: file_id
+  copy_file:
+    action: clone
+    risk: MEDIUM
+    description: "Copy file"
+    target_from: file_id
+    context_from:
+      destination_parent_id: destination_parent_id
+  move_file:
+    action: update
+    risk: MEDIUM
+    description: "Move file to another folder"
+    target_from: file_id
+    context_from:
+      new_parent_id: new_parent_id
+  rename_file:
+    action: update
+    risk: MEDIUM
+    description: "Rename file"
+    target_from: file_id
+    context_from:
+      new_name: new_name
+  share_file:
+    action: share
+    risk: MEDIUM
+    description: "Share file with users"
+    target_from: file_id
+    context_from:
+      email: email
+      role: role
+  revoke_access:
+    action: delete
+    risk: MEDIUM
+    description: "Revoke file access"
+    target_from: file_id
+    context_from:
+      permission_id: permission_id
+  change_ownership:
+    action: update
+    risk: HIGH
+    description: "Transfer file ownership"
+    target_from: file_id
+    context_from:
+      new_owner: new_owner
+  get_permissions:
+    action: read
+    risk: READ-ONLY
+    description: "Get file sharing permissions"
+    target_from: file_id
+  set_permissions:
+    action: update
+    risk: HIGH
+    description: "Change file permissions"
+    target_from: file_id
+    context_from:
+      role: role
+      type: type
+  star_file:
+    action: tag
+    risk: LOW
+    description: "Star file"
+    target_from: file_id
+  unstar_file:
+    action: tag
+    risk: LOW
+    description: "Unstar file"
+    target_from: file_id
+  trash_file:
+    action: delete
+    risk: MEDIUM
+    description: "Move file to trash"
+    target_from: file_id
+  restore_file:
+    action: restore
+    risk: MEDIUM
+    description: "Restore file from trash"
+    target_from: file_id
+  permanently_delete_file:
+    action: delete
+    risk: HIGH
+    description: "Permanently delete file"
+    target_from: file_id
+  search_files:
+    action: search
+    risk: READ-ONLY
+    description: "Search for files"
+    context_from:
+      query: query
+  create_shortcut:
+    action: create
+    risk: LOW
+    description: "Create shortcut to file"
+    target_from: file_id
+    context_from:
+      parent_id: parent_id

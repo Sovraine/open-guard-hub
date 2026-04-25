@@ -1,0 +1,25 @@
+taxonomy_version: "2026.03.1"
+sub_sector: travel
+sector: hospitality
+
+verbs:
+  cancel-booking:
+    risk: MEDIUM
+    description: "Cancel a travel booking or reservation"
+  issue-refund:
+    risk: HIGH
+    description: "Issue a refund for a travel booking"
+  override-cancellation-policy:
+    risk: HIGH
+    description: "Override the standard cancellation policy for a booking"
+    requires_approval: true
+  blacklist-traveler:
+    risk: HIGH
+    description: "Blacklist a traveler from booking services"
+    requires_approval: true
+  modify-itinerary:
+    risk: MEDIUM
+    description: "Modify an existing travel itinerary"
+  upgrade-class:
+    risk: LOW
+    description: "Upgrade a traveler to a higher service class"

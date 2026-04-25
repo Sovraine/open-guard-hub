@@ -1,0 +1,11 @@
+name: cybersecurity
+display_name: "Cybersecurity & SOC"
+status: BETA
+regulations: [NIS2, ISO_27001, SOC2]
+cross_cutting:
+  - core/data-privacy
+  - core/audit-control
+inherits: [core/common]
+overrides:
+  execute: { risk: CRITICAL }
+sub_sectors: [incident-response, threat-hunting, vulnerability-mgmt, red-team]

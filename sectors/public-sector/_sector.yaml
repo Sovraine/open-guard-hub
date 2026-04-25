@@ -1,0 +1,14 @@
+name: public-sector
+display_name: "Public Sector & Government"
+status: BETA
+regulations: [FOIA, classification_rules, procurement_law, electoral_law]
+cross_cutting:
+  - core/data-privacy
+  - core/audit-control
+  - core/change-management
+inherits: [core/common]
+overrides:
+  delete: { risk: CRITICAL }
+  export: { risk: CRITICAL }
+  execute: { risk: CRITICAL }
+sub_sectors: [civil-registry, permits, taxation, law-enforcement, defense]

@@ -1,0 +1,12 @@
+name: healthcare
+display_name: "Healthcare"
+status: STABLE
+regulations: [HIPAA, GDPR, MDR, GxP]
+cross_cutting:
+  - core/data-privacy
+  - core/audit-control
+inherits: [core/common]
+overrides:
+  delete: { risk: CRITICAL }
+  export: { risk: CRITICAL }
+sub_sectors: [clinical, pharmacy, medical-devices, health-insurance]

@@ -1,0 +1,15 @@
+name: financial-services
+display_name: "Financial Services"
+status: STABLE
+regulations: [DORA, MiFID_II, PSD2, Basel_III, AML_6AMLD]
+cross_cutting:
+  - core/data-privacy
+  - core/audit-control
+  - core/change-management
+inherits: [core/common]
+overrides:
+  delete: { risk: CRITICAL }
+  export: { risk: CRITICAL }
+  execute: { risk: CRITICAL }
+  share: { risk: HIGH }
+sub_sectors: [banking, insurance, asset-management, payments, crypto]

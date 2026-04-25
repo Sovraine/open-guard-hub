@@ -1,0 +1,28 @@
+taxonomy_version: "2026.03.1"
+sub_sector: taxation
+sector: public-sector
+
+verbs:
+  assess-tax:
+    risk: HIGH
+    description: "Assess tax liability for a taxpayer"
+  adjust-assessment:
+    risk: HIGH
+    description: "Adjust an existing tax assessment"
+    requires_approval: true
+  issue-refund:
+    risk: HIGH
+    description: "Issue a tax refund to a taxpayer"
+  seize-asset-for-tax:
+    risk: CRITICAL
+    description: "Seize assets to satisfy a tax debt"
+    requires_approval: true
+    reversible: false
+  waive-penalty:
+    risk: HIGH
+    description: "Waive a tax penalty or late fee"
+    requires_approval: true
+  freeze-account-for-tax:
+    risk: CRITICAL
+    description: "Freeze a bank account for tax enforcement"
+    requires_approval: true

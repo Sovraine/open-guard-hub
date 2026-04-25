@@ -1,0 +1,82 @@
+# SPDX-License-Identifier: CC-BY-SA-4.0
+# Slack MCP server action mapping
+server: slack
+description: "Slack workspace — channels, messages, users, and reactions"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "@anthropic/mcp-server-slack"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_channels:
+    action: list
+    risk: READ-ONLY
+    description: "List public and private channels"
+
+  get_channel_history:
+    action: read
+    risk: READ-ONLY
+    description: "Read channel message history"
+    target_from: channel_id
+
+  search_messages:
+    action: search
+    risk: READ-ONLY
+    description: "Search messages across channels"
+
+  post_message:
+    action: notify
+    risk: LOW
+    description: "Send a message to a channel"
+    target_from: channel_id
+
+  reply_to_thread:
+    action: comment
+    risk: LOW
+    description: "Reply to a message thread"
+    target_from: thread_ts
+
+  add_reaction:
+    action: tag
+    risk: READ-ONLY
+    description: "Add an emoji reaction to a message"
+    target_from: timestamp
+
+  list_users:
+    action: list
+    risk: READ-ONLY
+    description: "List workspace users"
+
+  get_user_profile:
+    action: read
+    risk: READ-ONLY
+    description: "Get user profile details"
+    target_from: user_id
+
+  create_channel:
+    action: create
+    risk: MEDIUM
+    description: "Create a new channel"
+    target_from: name
+
+  archive_channel:
+    action: archive
+    risk: HIGH
+    description: "Archive a channel"
+    target_from: channel_id
+
+  invite_to_channel:
+    action: share
+    risk: LOW
+    description: "Invite a user to a channel"
+    target_from: channel_id
+    context_from:
+      user: user_id
+
+  upload_file:
+    action: create
+    risk: MEDIUM
+    description: "Upload a file to a channel"
+    target_from: channel_id

@@ -1,0 +1,24 @@
+taxonomy_version: "2026.03.1"
+sub_sector: advertising
+sector: media-entertainment
+
+verbs:
+  publish-ad:
+    risk: MEDIUM
+    description: "Publish an advertisement to a media channel"
+  suspend-ad-campaign:
+    risk: HIGH
+    description: "Suspend an active advertising campaign"
+  target-audience:
+    risk: MEDIUM
+    description: "Define or modify audience targeting for an ad campaign"
+  override-ad-policy:
+    risk: HIGH
+    description: "Override advertising content or placement policy"
+    requires_approval: true
+  block-advertiser:
+    risk: HIGH
+    description: "Block an advertiser from the platform"
+  adjust-bid:
+    risk: MEDIUM
+    description: "Adjust the bid amount for a programmatic ad placement"

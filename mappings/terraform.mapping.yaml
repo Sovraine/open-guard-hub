@@ -1,0 +1,102 @@
+server: terraform
+description: "Terraform Registry — providers, modules, docs search (12 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "terraform-registry-mcp-server"
+  registry: pypi
+  transport: stdio
+  command: "uvx terraform-registry-mcp-server"
+tools:
+  # --- Modules ---
+  search_modules:
+    action: search
+    risk: READ-ONLY
+    description: "Search for Terraform modules in the registry"
+    sql_mapping: false
+    target_from: query
+  get_module_details:
+    action: read
+    risk: READ-ONLY
+    description: "Get detailed module information"
+    target_from: name
+    context_from:
+      namespace: namespace
+      provider: provider
+  get_latest_module_version:
+    action: read
+    risk: READ-ONLY
+    description: "Get latest version of a module"
+    target_from: name
+    context_from:
+      namespace: namespace
+      provider: provider
+  list_module_versions:
+    action: list
+    risk: READ-ONLY
+    description: "List all versions of a module"
+    target_from: name
+    context_from:
+      namespace: namespace
+      provider: provider
+  # --- Providers ---
+  search_providers:
+    action: search
+    risk: READ-ONLY
+    description: "Search for Terraform providers"
+    sql_mapping: false
+    target_from: query
+  get_provider_details:
+    action: read
+    risk: READ-ONLY
+    description: "Get detailed provider information"
+    target_from: name
+    context_from:
+      namespace: namespace
+  get_latest_provider_version:
+    action: read
+    risk: READ-ONLY
+    description: "Get latest version of a provider"
+    target_from: name
+    context_from:
+      namespace: namespace
+  list_provider_versions:
+    action: list
+    risk: READ-ONLY
+    description: "List all versions of a provider"
+    target_from: name
+    context_from:
+      namespace: namespace
+  # --- Docs ---
+  get_provider_docs:
+    action: read
+    risk: READ-ONLY
+    description: "Get provider overview documentation"
+    target_from: name
+    context_from:
+      namespace: namespace
+  get_provider_resource_docs:
+    action: read
+    risk: READ-ONLY
+    description: "Get resource documentation for a provider"
+    target_from: resource_name
+    context_from:
+      namespace: namespace
+      name: name
+  get_provider_data_source_docs:
+    action: read
+    risk: READ-ONLY
+    description: "Get data source documentation for a provider"
+    target_from: data_source_name
+    context_from:
+      namespace: namespace
+      name: name
+  search_provider_docs:
+    action: search
+    risk: READ-ONLY
+    description: "Search within provider documentation"
+    sql_mapping: false
+    target_from: query
+    context_from:
+      namespace: namespace
+      name: name

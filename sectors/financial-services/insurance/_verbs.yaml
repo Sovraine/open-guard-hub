@@ -1,0 +1,31 @@
+taxonomy_version: "2026.03.1"
+sub_sector: insurance
+sector: financial-services
+
+verbs:
+  underwrite-policy:
+    risk: HIGH
+    description: "Underwrite an insurance policy"
+  cancel-policy:
+    risk: HIGH
+    description: "Cancel an insurance policy"
+  deny-claim:
+    risk: CRITICAL
+    description: "Deny an insurance claim"
+    requires_approval: true
+  approve-claim:
+    risk: HIGH
+    description: "Approve an insurance claim payout"
+  adjust-premium:
+    risk: MEDIUM
+    description: "Adjust insurance premium"
+  override-risk-score:
+    risk: HIGH
+    description: "Override automated risk scoring"
+    requires_approval: true
+  lapse-policy:
+    risk: HIGH
+    description: "Allow policy to lapse due to non-payment"
+  reinstate-policy:
+    risk: MEDIUM
+    description: "Reinstate a lapsed policy"

@@ -1,0 +1,59 @@
+server: mixpanel
+description: "Mixpanel product analytics"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "mixpanel-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  track_event:
+    action: create
+    risk: LOW
+    description: "Track event"
+    context_from:
+      user_id: user_id
+      event_name: event_name
+      properties: properties
+  get_user_profile:
+    action: read
+    risk: READ-ONLY
+    description: "Get user profile"
+    target_from: user_id
+  set_user_properties:
+    action: update
+    risk: MEDIUM
+    description: "Set user properties"
+    target_from: user_id
+    context_from:
+      properties: properties
+  get_events:
+    action: list
+    risk: READ-ONLY
+    description: "Get events"
+    context_from:
+      from_date: from_date
+      to_date: to_date
+  query_events:
+    action: search
+    risk: READ-ONLY
+    description: "Query events"
+    context_from:
+      query: query
+  create_cohort:
+    action: create
+    risk: MEDIUM
+    description: "Create cohort"
+    target_from: cohort_name
+    context_from:
+      definition: definition
+  delete_cohort:
+    action: delete
+    risk: MEDIUM
+    description: "Delete cohort"
+    target_from: cohort_id
+  list_cohorts:
+    action: list
+    risk: READ-ONLY
+    description: "List cohorts"

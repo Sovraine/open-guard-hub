@@ -1,0 +1,29 @@
+taxonomy_version: "2026.03.1"
+sub_sector: threat-hunting
+sector: cybersecurity
+
+verbs:
+  scan-network:
+    risk: MEDIUM
+    description: "Scan network for threats and anomalies"
+  query-siem:
+    risk: READ-ONLY
+    description: "Query SIEM for security events"
+  correlate-events:
+    risk: LOW
+    description: "Correlate security events across sources"
+  create-detection-rule:
+    risk: MEDIUM
+    description: "Create a new threat detection rule"
+  disable-detection-rule:
+    risk: HIGH
+    description: "Disable an active threat detection rule"
+  deploy-honeypot:
+    risk: HIGH
+    description: "Deploy a honeypot for threat intelligence"
+  collect-indicators:
+    risk: LOW
+    description: "Collect indicators of compromise (IOCs)"
+  threat-hunt:
+    risk: MEDIUM
+    description: "Execute a proactive threat hunting query"

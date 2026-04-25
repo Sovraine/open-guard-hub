@@ -1,0 +1,164 @@
+server: redis
+description: "Redis cache and key-value store operations"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "redis-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  get_key:
+    action: read
+    risk: READ-ONLY
+    description: "Get value for key"
+    target_from: key
+  set_key:
+    action: create
+    risk: MEDIUM
+    description: "Set key-value pair"
+    target_from: key
+    context_from:
+      value: value
+  del_key:
+    action: delete
+    risk: MEDIUM
+    description: "Delete a key"
+    target_from: key
+  exists:
+    action: read
+    risk: READ-ONLY
+    description: "Check if key exists"
+    target_from: key
+  list_keys:
+    action: list
+    risk: READ-ONLY
+    description: "List keys matching pattern"
+    target_from: pattern
+  get_type:
+    action: read
+    risk: READ-ONLY
+    description: "Get type of key"
+    target_from: key
+  expire:
+    action: update
+    risk: MEDIUM
+    description: "Set key expiration"
+    target_from: key
+    context_from:
+      ttl: ttl
+  ttl:
+    action: read
+    risk: READ-ONLY
+    description: "Get remaining time to live"
+    target_from: key
+  flush_db:
+    action: delete
+    risk: CRITICAL
+    target_from: db
+    description: "Flush current database"
+  flush_all:
+    action: delete
+    risk: CRITICAL
+    target_from: "*"
+    description: "Flush all databases"
+  push_list:
+    action: create
+    risk: MEDIUM
+    description: "Push element to list"
+    target_from: key
+    context_from:
+      values: values
+  pop_list:
+    action: delete
+    risk: MEDIUM
+    description: "Pop element from list"
+    target_from: key
+  get_list:
+    action: read
+    risk: READ-ONLY
+    description: "Get list range"
+    target_from: key
+    context_from:
+      start: start
+      stop: stop
+  hash_set:
+    action: create
+    risk: MEDIUM
+    description: "Set hash field value"
+    target_from: key
+    context_from:
+      field: field
+      value: value
+  hash_get:
+    action: read
+    risk: READ-ONLY
+    description: "Get hash field value"
+    target_from: key
+    context_from:
+      field: field
+  hash_get_all:
+    action: read
+    risk: READ-ONLY
+    description: "Get all hash fields"
+    target_from: key
+  hash_del:
+    action: delete
+    risk: MEDIUM
+    description: "Delete hash field"
+    target_from: key
+    context_from:
+      field: field
+  set_add:
+    action: create
+    risk: MEDIUM
+    description: "Add to set"
+    target_from: key
+    context_from:
+      members: members
+  set_members:
+    action: read
+    risk: READ-ONLY
+    description: "Get set members"
+    target_from: key
+  set_remove:
+    action: delete
+    risk: MEDIUM
+    description: "Remove from set"
+    target_from: key
+    context_from:
+      members: members
+  sorted_set_add:
+    action: create
+    risk: MEDIUM
+    description: "Add to sorted set"
+    target_from: key
+    context_from:
+      members: members
+  sorted_set_range:
+    action: read
+    risk: READ-ONLY
+    description: "Get sorted set range"
+    target_from: key
+  sorted_set_remove:
+    action: delete
+    risk: MEDIUM
+    description: "Remove from sorted set"
+    target_from: key
+    context_from:
+      members: members
+  increment:
+    action: update
+    risk: MEDIUM
+    description: "Increment numeric value"
+    target_from: key
+    context_from:
+      amount: amount
+  dbsize:
+    action: read
+    risk: READ-ONLY
+    description: "Get number of keys in database"
+  info:
+    action: read
+    risk: READ-ONLY
+    description: "Get Redis server info"

@@ -1,0 +1,68 @@
+# Source: gatekeeper-library/src/general/requiredprobes
+# License: Apache-2.0 (CNCF)
+# Open-Guard mapping: actions=["create","update"], targets=["pod"], verdict=DENY
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8srequiredprobes
+  annotations:
+    metadata.gatekeeper.sh/title: "Required Probes"
+    metadata.gatekeeper.sh/version: 1.0.0
+    description: >-
+      Requires pods to have readiness and/or liveness probes configured.
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sRequiredProbes
+      validation:
+        openAPIV3Schema:
+          type: object
+          properties:
+            exemptImages:
+              description: Images excluded from enforcement.
+              type: array
+              items:
+                type: string
+            probes:
+              description: List of required probes (readinessProbe, livenessProbe, startupProbe).
+              type: array
+              items:
+                type: string
+            probeTypes:
+              description: Accepted probe configuration types (tcpSocket, httpGet, exec).
+              type: array
+              items:
+                type: string
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8srequiredprobes
+
+        import data.lib.exclude_update.is_update
+        import data.lib.exempt_container.is_exempt
+
+        violation[{"msg": msg}] {
+            not is_update(input)
+            c := input_containers[_]
+            not is_exempt(c)
+            probe := input.parameters.probes[_]
+            probe_missing(c, probe)
+            msg := sprintf("Container <%v> is missing required probe: %v", [c.name, probe])
+        }
+
+        probe_missing(c, "readinessProbe") {
+            not c.readinessProbe
+        }
+
+        probe_missing(c, "livenessProbe") {
+            not c.livenessProbe
+        }
+
+        probe_missing(c, "startupProbe") {
+            not c.startupProbe
+        }
+
+        input_containers[c] {
+            c := input.review.object.spec.containers[_]
+        }

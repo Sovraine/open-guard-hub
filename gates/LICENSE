@@ -1,0 +1,11 @@
+Apache License 2.0
+
+The constraint templates in this directory are derived from the
+CNCF gatekeeper-library project:
+https://github.com/open-policy-agent/gatekeeper-library
+
+Licensed under the Apache License, Version 2.0.
+See https://www.apache.org/licenses/LICENSE-2.0 for full text.
+
+Modifications and additions by SOVRAINE PTE.LTD are also licensed under Apache-2.0
+to maintain compatibility with the upstream project.

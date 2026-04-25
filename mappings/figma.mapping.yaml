@@ -1,0 +1,86 @@
+server: figma
+description: "Figma — design extraction, Code Connect, screenshots, diagrams (13 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@anthropic-ai/figma-mcp-server"
+  registry: npm
+  transport: stdio
+  command: "npx -y @anthropic-ai/figma-mcp-server"
+tools:
+  # --- Design Extraction ---
+  get_design_context:
+    action: read
+    risk: READ-ONLY
+    description: "Extract structured design representation from selected frames"
+    target_from: selection
+  get_variable_defs:
+    action: read
+    risk: READ-ONLY
+    description: "Get variables and styles used in selection"
+    target_from: selection
+  get_metadata:
+    action: read
+    risk: READ-ONLY
+    description: "Get XML node structure with layer info"
+    target_from: selection
+  get_screenshot:
+    action: read
+    risk: READ-ONLY
+    description: "Take a screenshot of a selection"
+    target_from: selection
+  # --- Code Connect ---
+  get_code_connect_map:
+    action: read
+    risk: READ-ONLY
+    description: "Get mappings between Figma nodes and code components"
+    target_from: file_id
+  add_code_connect_map:
+    action: create
+    risk: LOW
+    description: "Create mapping between Figma node and code component"
+    target_from: node_id
+    context_from:
+      code_component_path: code_component_path
+      component_name: component_name
+  get_code_connect_suggestions:
+    action: read
+    risk: READ-ONLY
+    description: "Detect and suggest automatic Code Connect mappings"
+    target_from: file_id
+  send_code_connect_mappings:
+    action: create
+    risk: LOW
+    description: "Confirm and finalize Code Connect mappings"
+    target_from: mappings
+  # --- Generation ---
+  generate_figma_design:
+    action: create
+    risk: MEDIUM
+    description: "Convert web pages into Figma design files"
+    target_from: design_input
+    context_from:
+      target: target
+  generate_diagram:
+    action: create
+    risk: LOW
+    description: "Generate FigJam diagram from Mermaid syntax"
+    target_from: mermaid_syntax
+    context_from:
+      diagram_type: diagram_type
+  # --- FigJam ---
+  get_figjam:
+    action: read
+    risk: READ-ONLY
+    description: "Extract metadata from FigJam diagrams"
+    target_from: selection
+  # --- Utility ---
+  create_design_system_rules:
+    action: create
+    risk: LOW
+    description: "Create rule files for consistent code generation"
+    target_from: output_path
+  whoami:
+    action: read
+    risk: READ-ONLY
+    description: "Get authenticated Figma user identity"

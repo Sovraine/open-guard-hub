@@ -1,0 +1,34 @@
+taxonomy_version: "2026.03.1"
+sub_sector: grid
+sector: energy-utilities
+
+verbs:
+  shed-load:
+    risk: CRITICAL
+    description: "Shed electrical load to prevent grid failure"
+    reversible: false
+  isolate-section:
+    risk: CRITICAL
+    description: "Isolate a section of the power grid"
+  energize-line:
+    risk: CRITICAL
+    description: "Energize a power line"
+    requires_approval: true
+  override-scada-alarm:
+    risk: CRITICAL
+    description: "Override SCADA system alarm"
+    requires_approval: true
+  disconnect-supply:
+    risk: CRITICAL
+    description: "Disconnect power supply to customer"
+    reversible: true
+  curtail-generation:
+    risk: HIGH
+    description: "Curtail power generation output"
+  switch-feed:
+    risk: HIGH
+    description: "Switch power feed between sources"
+  authorize-maintenance:
+    risk: HIGH
+    description: "Authorize maintenance on live equipment"
+    requires_approval: true

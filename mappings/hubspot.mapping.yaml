@@ -1,0 +1,561 @@
+server: hubspot
+description: "HubSpot — CRM contacts, companies, deals, meetings, tasks (112 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "hubspot-mcp"
+  registry: npm
+  transport: stdio
+  command: "npx -y hubspot-mcp"
+tools:
+  # --- Companies ---
+  crm_create_company:
+    action: create
+    risk: MEDIUM
+    description: "Create a new company"
+    target_from: properties
+  crm_update_company:
+    action: update
+    risk: MEDIUM
+    description: "Update an existing company"
+    target_from: companyId
+  crm_get_company:
+    action: read
+    risk: READ-ONLY
+    description: "Get a company by ID"
+    target_from: companyId
+  crm_search_companies:
+    action: search
+    risk: READ-ONLY
+    description: "Search companies with filters"
+    sql_mapping: false
+  crm_batch_create_companies:
+    action: create
+    risk: MEDIUM
+    description: "Create multiple companies"
+  crm_batch_update_companies:
+    action: update
+    risk: MEDIUM
+    description: "Update multiple companies"
+  crm_get_company_properties:
+    action: read
+    risk: READ-ONLY
+    description: "Get all company properties"
+  crm_create_company_property:
+    action: create
+    risk: LOW
+    description: "Create a company property"
+    target_from: name
+  # --- Contacts ---
+  crm_create_contact:
+    action: create
+    risk: MEDIUM
+    description: "Create a new contact"
+    target_from: properties
+  crm_update_contact:
+    action: update
+    risk: MEDIUM
+    description: "Update an existing contact"
+    target_from: contactId
+  crm_get_contact:
+    action: read
+    risk: READ-ONLY
+    description: "Get a contact by ID"
+    target_from: contactId
+  crm_search_contacts:
+    action: search
+    risk: READ-ONLY
+    description: "Search contacts with filters"
+    sql_mapping: false
+  crm_batch_create_contacts:
+    action: create
+    risk: MEDIUM
+    description: "Create multiple contacts"
+  crm_batch_update_contacts:
+    action: update
+    risk: MEDIUM
+    description: "Update multiple contacts"
+  crm_get_contact_properties:
+    action: read
+    risk: READ-ONLY
+    description: "Get all contact properties"
+  crm_create_contact_property:
+    action: create
+    risk: LOW
+    description: "Create a contact property"
+    target_from: name
+  # --- Leads ---
+  crm_create_lead:
+    action: create
+    risk: MEDIUM
+    description: "Create a new lead"
+    target_from: properties
+  crm_update_lead:
+    action: update
+    risk: MEDIUM
+    description: "Update an existing lead"
+    target_from: leadId
+  crm_get_lead:
+    action: read
+    risk: READ-ONLY
+    description: "Get a lead by ID"
+    target_from: leadId
+  crm_search_leads:
+    action: search
+    risk: READ-ONLY
+    description: "Search leads with filters"
+    sql_mapping: false
+  crm_batch_create_leads:
+    action: create
+    risk: MEDIUM
+    description: "Create multiple leads"
+  crm_batch_update_leads:
+    action: update
+    risk: MEDIUM
+    description: "Update multiple leads"
+  crm_get_lead_properties:
+    action: read
+    risk: READ-ONLY
+    description: "Get all lead properties"
+  crm_create_lead_property:
+    action: create
+    risk: LOW
+    description: "Create a lead property"
+    target_from: name
+  # --- Generic CRM Objects ---
+  crm_list_objects:
+    action: list
+    risk: READ-ONLY
+    description: "List CRM objects of a type"
+    target_from: objectType
+  crm_get_object:
+    action: read
+    risk: READ-ONLY
+    description: "Get a CRM object by ID"
+    target_from: objectId
+    context_from:
+      objectType: objectType
+  crm_create_object:
+    action: create
+    risk: MEDIUM
+    description: "Create a CRM object"
+    target_from: objectType
+  crm_update_object:
+    action: update
+    risk: MEDIUM
+    description: "Update a CRM object"
+    target_from: objectId
+    context_from:
+      objectType: objectType
+  crm_archive_object:
+    action: delete
+    risk: HIGH
+    description: "Archive a CRM object"
+    target_from: objectId
+    context_from:
+      objectType: objectType
+  crm_search_objects:
+    action: search
+    risk: READ-ONLY
+    description: "Search CRM objects with filters"
+    sql_mapping: false
+    target_from: objectType
+  crm_batch_create_objects:
+    action: create
+    risk: MEDIUM
+    description: "Create multiple CRM objects"
+    target_from: objectType
+  crm_batch_read_objects:
+    action: read
+    risk: READ-ONLY
+    description: "Read multiple CRM objects"
+    target_from: objectType
+  crm_batch_update_objects:
+    action: update
+    risk: MEDIUM
+    description: "Update multiple CRM objects"
+    target_from: objectType
+  crm_batch_archive_objects:
+    action: delete
+    risk: HIGH
+    description: "Archive multiple CRM objects"
+    target_from: objectType
+  # --- Associations ---
+  crm_list_association_types:
+    action: list
+    risk: READ-ONLY
+    description: "List association types for object pair"
+    target_from: fromObjectType
+    context_from:
+      toObjectType: toObjectType
+  crm_get_associations:
+    action: read
+    risk: READ-ONLY
+    description: "Get associations between objects"
+    target_from: fromObjectId
+    context_from:
+      fromObjectType: fromObjectType
+      toObjectType: toObjectType
+  crm_create_association:
+    action: create
+    risk: LOW
+    description: "Create association between objects"
+    target_from: fromObjectId
+    context_from:
+      toObjectId: toObjectId
+  crm_archive_association:
+    action: delete
+    risk: MEDIUM
+    description: "Delete association between objects"
+    target_from: fromObjectId
+    context_from:
+      toObjectId: toObjectId
+  crm_batch_create_associations:
+    action: create
+    risk: MEDIUM
+    description: "Create multiple associations"
+    target_from: fromObjectType
+  crm_batch_archive_associations:
+    action: delete
+    risk: MEDIUM
+    description: "Delete multiple associations"
+    target_from: fromObjectType
+  # --- Meetings ---
+  meetings_list:
+    action: list
+    risk: READ-ONLY
+    description: "List all meetings"
+  meetings_get:
+    action: read
+    risk: READ-ONLY
+    description: "Get meeting details"
+    target_from: meetingId
+  meetings_create:
+    action: create
+    risk: MEDIUM
+    description: "Create a meeting"
+  meetings_update:
+    action: update
+    risk: LOW
+    description: "Update a meeting"
+    target_from: meetingId
+  meetings_archive:
+    action: delete
+    risk: MEDIUM
+    description: "Archive a meeting"
+    target_from: meetingId
+  meetings_search:
+    action: search
+    risk: READ-ONLY
+    description: "Search meetings"
+    sql_mapping: false
+  meetings_batch_create:
+    action: create
+    risk: MEDIUM
+    description: "Create multiple meetings"
+  meetings_batch_update:
+    action: update
+    risk: MEDIUM
+    description: "Update multiple meetings"
+  meetings_batch_archive:
+    action: delete
+    risk: MEDIUM
+    target_from: inputs
+    description: "Archive multiple meetings"
+  # --- Notes ---
+  notes_create:
+    action: create
+    risk: LOW
+    description: "Create a note"
+    target_from: properties
+  notes_get:
+    action: read
+    risk: READ-ONLY
+    description: "Get a note"
+    target_from: noteId
+  notes_update:
+    action: update
+    risk: LOW
+    description: "Update a note"
+    target_from: noteId
+  notes_archive:
+    action: archive
+    risk: LOW
+    description: "Archive a note"
+    target_from: noteId
+  notes_list:
+    action: list
+    risk: READ-ONLY
+    description: "List all notes"
+  notes_search:
+    action: search
+    risk: READ-ONLY
+    description: "Search notes"
+    sql_mapping: false
+  notes_batch_create:
+    action: create
+    risk: LOW
+    description: "Create multiple notes"
+  notes_batch_read:
+    action: read
+    risk: READ-ONLY
+    description: "Read multiple notes"
+  notes_batch_update:
+    action: update
+    risk: LOW
+    description: "Update multiple notes"
+  notes_batch_archive:
+    action: archive
+    risk: LOW
+    description: "Archive multiple notes"
+  # --- Tasks ---
+  tasks_create:
+    action: create
+    risk: LOW
+    description: "Create a task"
+    target_from: properties
+  tasks_get:
+    action: read
+    risk: READ-ONLY
+    description: "Get a task"
+    target_from: taskId
+  tasks_update:
+    action: update
+    risk: LOW
+    description: "Update a task"
+    target_from: taskId
+  tasks_archive:
+    action: archive
+    risk: LOW
+    description: "Archive a task"
+    target_from: taskId
+  tasks_list:
+    action: list
+    risk: READ-ONLY
+    description: "List all tasks"
+  tasks_search:
+    action: search
+    risk: READ-ONLY
+    description: "Search tasks"
+    sql_mapping: false
+  tasks_batch_create:
+    action: create
+    risk: LOW
+    description: "Create multiple tasks"
+  tasks_batch_read:
+    action: read
+    risk: READ-ONLY
+    description: "Read multiple tasks"
+  tasks_batch_update:
+    action: update
+    risk: LOW
+    description: "Update multiple tasks"
+  tasks_batch_archive:
+    action: archive
+    risk: LOW
+    description: "Archive multiple tasks"
+  # --- Calls ---
+  calls_create:
+    action: create
+    risk: LOW
+    description: "Create a call record"
+    target_from: properties
+  calls_get:
+    action: read
+    risk: READ-ONLY
+    description: "Get a call record"
+    target_from: callId
+  calls_update:
+    action: update
+    risk: LOW
+    description: "Update a call record"
+    target_from: callId
+  calls_archive:
+    action: archive
+    risk: LOW
+    description: "Archive a call record"
+    target_from: callId
+  calls_list:
+    action: list
+    risk: READ-ONLY
+    description: "List all calls"
+  calls_search:
+    action: search
+    risk: READ-ONLY
+    description: "Search calls"
+    sql_mapping: false
+  calls_batch_create:
+    action: create
+    risk: LOW
+    description: "Create multiple call records"
+  calls_batch_read:
+    action: read
+    risk: READ-ONLY
+    description: "Read multiple call records"
+  calls_batch_update:
+    action: update
+    risk: LOW
+    description: "Update multiple call records"
+  calls_batch_archive:
+    action: archive
+    risk: LOW
+    description: "Archive multiple call records"
+  # --- Emails ---
+  emails_create:
+    action: create
+    risk: MEDIUM
+    description: "Create an email record"
+    target_from: properties
+  emails_get:
+    action: read
+    risk: READ-ONLY
+    description: "Get an email record"
+    target_from: emailId
+  emails_update:
+    action: update
+    risk: LOW
+    description: "Update an email record"
+    target_from: emailId
+  emails_archive:
+    action: archive
+    risk: LOW
+    description: "Archive an email record"
+    target_from: emailId
+  emails_list:
+    action: list
+    risk: READ-ONLY
+    description: "List all emails"
+  emails_search:
+    action: search
+    risk: READ-ONLY
+    description: "Search emails"
+    sql_mapping: false
+  emails_batch_create:
+    action: create
+    risk: MEDIUM
+    description: "Create multiple email records"
+  emails_batch_read:
+    action: read
+    risk: READ-ONLY
+    description: "Read multiple email records"
+  emails_batch_update:
+    action: update
+    risk: LOW
+    description: "Update multiple email records"
+  emails_batch_archive:
+    action: archive
+    risk: LOW
+    description: "Archive multiple email records"
+  # --- Communications ---
+  communications_get_preferences:
+    action: read
+    risk: READ-ONLY
+    description: "Get communication preferences"
+    target_from: contactId
+  communications_update_preferences:
+    action: update
+    risk: MEDIUM
+    description: "Update communication preferences"
+    target_from: contactId
+  communications_unsubscribe_contact:
+    action: update
+    risk: MEDIUM
+    description: "Unsubscribe a contact"
+    target_from: contactId
+  communications_subscribe_contact:
+    action: update
+    risk: MEDIUM
+    description: "Subscribe a contact"
+    target_from: contactId
+  communications_get_subscription_definitions:
+    action: list
+    risk: READ-ONLY
+    description: "Get subscription definitions"
+  communications_get_subscription_status:
+    action: read
+    risk: READ-ONLY
+    description: "Get subscription status"
+    target_from: subscriptionId
+  communications_update_subscription_status:
+    action: update
+    risk: MEDIUM
+    description: "Update subscription status"
+    target_from: subscriptionId
+  # --- Engagements ---
+  engagement_details_get:
+    action: read
+    risk: READ-ONLY
+    description: "Get engagement details"
+    target_from: engagementId
+  engagement_details_create:
+    action: create
+    risk: MEDIUM
+    description: "Create an engagement"
+  engagement_details_update:
+    action: update
+    risk: LOW
+    description: "Update an engagement"
+    target_from: engagementId
+  engagement_details_list:
+    action: list
+    risk: READ-ONLY
+    description: "List engagements"
+  engagement_details_archive:
+    action: delete
+    risk: MEDIUM
+    description: "Archive an engagement"
+    target_from: engagementId
+  engagement_details_get_associated:
+    action: read
+    risk: READ-ONLY
+    description: "Get engagements for an object"
+    target_from: objectId
+    context_from:
+      objectType: objectType
+  # --- Products ---
+  products_list:
+    action: list
+    risk: READ-ONLY
+    description: "List products"
+  products_read:
+    action: read
+    risk: READ-ONLY
+    description: "Get a product by ID"
+    target_from: productId
+  products_create:
+    action: create
+    risk: LOW
+    description: "Create a product"
+    target_from: properties
+  products_update:
+    action: update
+    risk: LOW
+    description: "Update a product"
+    target_from: productId
+  products_archive:
+    action: delete
+    risk: MEDIUM
+    description: "Archive a product"
+    target_from: productId
+  products_search:
+    action: search
+    risk: READ-ONLY
+    description: "Search products"
+    sql_mapping: false
+  products_batch_archive:
+    action: delete
+    risk: MEDIUM
+    target_from: inputs
+    description: "Archive multiple products"
+  products_batch_create:
+    action: create
+    risk: LOW
+    description: "Create multiple products"
+  products_batch_read:
+    action: read
+    risk: READ-ONLY
+    description: "Read multiple products"
+  products_batch_update:
+    action: update
+    risk: LOW
+    description: "Update multiple products"

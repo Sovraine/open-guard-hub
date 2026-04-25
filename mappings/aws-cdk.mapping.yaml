@@ -1,0 +1,57 @@
+server: aws-cdk
+description: "AWS CDK — IaC guidance, CDK Nag, Solutions Constructs, GenAI (7 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@anthropic-ai/cdk-mcp-server"
+  registry: npm
+  transport: stdio
+  command: "npx -y @anthropic-ai/cdk-mcp-server"
+tools:
+  # --- Guidance ---
+  CDKGeneralGuidance:
+    action: read
+    risk: READ-ONLY
+    description: "Get prescriptive CDK advice for building on AWS"
+  # --- CDK Nag ---
+  ExplainCDKNagRule:
+    action: read
+    risk: READ-ONLY
+    description: "Explain a CDK Nag rule with Well-Architected guidance"
+    target_from: rule_id
+  CheckCDKNagSuppressions:
+    action: read
+    risk: READ-ONLY
+    description: "Check CDK code for Nag suppressions requiring review"
+    target_from: file_path
+  # --- Bedrock ---
+  GenerateBedrockAgentSchema:
+    action: create
+    risk: LOW
+    description: "Generate OpenAPI schema for Bedrock Agent Action Groups"
+    target_from: lambda_code_path
+    context_from:
+      output_path: output_path
+  # --- Constructs ---
+  GetAwsSolutionsConstructPattern:
+    action: search
+    risk: READ-ONLY
+    description: "Search AWS Solutions Constructs patterns"
+    sql_mapping: false
+    target_from: pattern_name
+    context_from:
+      services: services
+  SearchGenAICDKConstructs:
+    action: search
+    risk: READ-ONLY
+    description: "Search GenAI CDK constructs by name or type"
+    sql_mapping: false
+    target_from: query
+    context_from:
+      construct_type: construct_type
+  # --- Lambda ---
+  LambdaLayerDocumentationProvider:
+    action: read
+    risk: READ-ONLY
+    description: "Provide documentation sources for Lambda layers"
+    target_from: layer_type

@@ -1,0 +1,29 @@
+taxonomy_version: "2026.03.1"
+sub_sector: pharmacy
+sector: healthcare
+
+verbs:
+  dispense-medication:
+    risk: HIGH
+    description: "Dispense a prescribed medication"
+  dispense-controlled-substance:
+    risk: CRITICAL
+    description: "Dispense a controlled substance (Schedule II-V)"
+    requires_approval: true
+  override-drug-interaction:
+    risk: CRITICAL
+    description: "Override a drug interaction warning"
+    requires_approval: true
+  recall-medication:
+    risk: CRITICAL
+    description: "Initiate a medication recall"
+    reversible: false
+  substitute-medication:
+    risk: HIGH
+    description: "Substitute a medication with a therapeutic equivalent"
+  adjust-dosage:
+    risk: HIGH
+    description: "Adjust medication dosage"
+  compound-medication:
+    risk: HIGH
+    description: "Compound a custom medication preparation"

@@ -1,0 +1,36 @@
+server: filesystem
+description: "File system operations"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+
+tools:
+  read_file:
+    action: read
+    target_from: path
+    parser: params
+  write_file:
+    action: update
+    target_from: path
+    parser: params
+  create_directory:
+    action: create
+    target_from: path
+    parser: params
+  list_directory:
+    action: list
+    target_from: path
+    parser: params
+  delete_file:
+    action: delete
+    target_from: path
+    parser: params
+  move_file:
+    action: update
+    target_from: source
+    context_from:
+      destination: destination
+    parser: params
+  search_files:
+    action: search
+    target_from: pattern
+    parser: params

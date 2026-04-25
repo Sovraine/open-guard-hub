@@ -1,0 +1,25 @@
+taxonomy_version: "2026.03.1"
+sub_sector: connected-car
+sector: automotive
+
+verbs:
+  push-ota-update:
+    risk: CRITICAL
+    description: "Push an over-the-air software update to a vehicle"
+    requires_approval: true
+  remote-start:
+    risk: HIGH
+    description: "Remotely start a vehicle engine or drive system"
+  remote-shutdown:
+    risk: CRITICAL
+    description: "Remotely shut down a vehicle engine or drive system"
+  track-location:
+    risk: HIGH
+    description: "Track the real-time GPS location of a connected vehicle"
+  disable-tracking:
+    risk: HIGH
+    description: "Disable location tracking on a connected vehicle"
+  override-geofence:
+    risk: HIGH
+    description: "Override a geofence restriction on a vehicle"
+    requires_approval: true

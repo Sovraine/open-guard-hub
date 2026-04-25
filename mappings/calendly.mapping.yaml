@@ -1,0 +1,110 @@
+server: calendly
+description: "Calendly scheduling and meeting platform"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "calendly-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_users:
+    action: list
+    risk: READ-ONLY
+    description: "List users"
+  get_user:
+    action: read
+    risk: READ-ONLY
+    description: "Get user information"
+  list_event_types:
+    action: list
+    risk: READ-ONLY
+    description: "List event types"
+  get_event_type:
+    action: read
+    risk: READ-ONLY
+    description: "Get event type details"
+    target_from: event_type_id
+  create_event_type:
+    action: create
+    risk: MEDIUM
+    description: "Create event type"
+    context_from:
+      name: name
+      duration: duration
+  update_event_type:
+    action: update
+    risk: MEDIUM
+    description: "Update event type"
+    target_from: event_type_id
+    context_from:
+      fields: fields
+  delete_event_type:
+    action: delete
+    risk: HIGH
+    description: "Delete event type"
+    target_from: event_type_id
+  list_scheduled_events:
+    action: list
+    risk: READ-ONLY
+    description: "List scheduled events"
+  get_scheduled_event:
+    action: read
+    risk: READ-ONLY
+    description: "Get event details"
+    target_from: event_id
+  cancel_scheduled_event:
+    action: delete
+    risk: MEDIUM
+    description: "Cancel scheduled event"
+    target_from: event_id
+  reschedule_event:
+    action: update
+    risk: MEDIUM
+    description: "Reschedule event"
+    target_from: event_id
+    context_from:
+      new_time: new_time
+  list_invitees:
+    action: list
+    risk: READ-ONLY
+    description: "List event invitees"
+    target_from: event_id
+  get_invitee:
+    action: read
+    risk: READ-ONLY
+    description: "Get invitee details"
+    target_from: invitee_id
+  list_event_invitations:
+    action: list
+    risk: READ-ONLY
+    description: "List event invitations"
+    target_from: event_type_id
+  get_availability:
+    action: read
+    risk: READ-ONLY
+    description: "Get availability"
+    target_from: event_type_id
+    context_from:
+      date_range: date_range
+  set_availability:
+    action: update
+    risk: MEDIUM
+    description: "Set availability"
+    target_from: event_type_id
+    context_from:
+      availability: availability
+  list_groups:
+    action: list
+    risk: READ-ONLY
+    description: "List group event types"
+  create_group:
+    action: create
+    risk: MEDIUM
+    description: "Create group event type"
+    target_from: group_name
+  delete_group:
+    action: delete
+    risk: HIGH
+    description: "Delete group"
+    target_from: group_id

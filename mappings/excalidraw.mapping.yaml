@@ -1,0 +1,73 @@
+server: excalidraw
+description: "Excalidraw — whiteboard drawing and diagramming (11 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "excalidraw-mcp"
+  registry: npm
+  transport: stdio
+  command: "npx -y excalidraw-mcp"
+tools:
+  create_element:
+    action: create
+    risk: LOW
+    description: "Create a drawing element (rectangle, ellipse, text, etc.)"
+    target_from: type
+    context_from:
+      x: x
+      y: y
+  update_element:
+    action: update
+    risk: LOW
+    description: "Update an existing element's properties"
+    target_from: id
+  delete_element:
+    action: delete
+    risk: MEDIUM
+    description: "Delete a drawing element by ID"
+    target_from: id
+  query_elements:
+    action: search
+    risk: READ-ONLY
+    description: "Query elements by type or filter"
+    sql_mapping: false
+    target_from: type
+  get_resource:
+    action: read
+    risk: READ-ONLY
+    description: "Get a canvas resource (elements, state, etc.)"
+    target_from: resource
+  group_elements:
+    action: update
+    risk: LOW
+    description: "Group multiple elements together"
+    target_from: elementIds
+  ungroup_elements:
+    action: update
+    risk: LOW
+    description: "Ungroup a group by ID"
+    target_from: groupId
+  align_elements:
+    action: update
+    risk: LOW
+    description: "Align elements (left, center, right, top, middle, bottom)"
+    target_from: elementIds
+    context_from:
+      alignment: alignment
+  distribute_elements:
+    action: update
+    risk: LOW
+    description: "Distribute elements evenly (horizontal or vertical)"
+    target_from: elementIds
+    context_from:
+      direction: direction
+  lock_elements:
+    action: update
+    risk: LOW
+    description: "Lock elements to prevent editing"
+    target_from: elementIds
+  unlock_elements:
+    action: update
+    risk: LOW
+    description: "Unlock previously locked elements"
+    target_from: elementIds

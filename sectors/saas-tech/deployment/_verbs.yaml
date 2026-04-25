@@ -1,0 +1,26 @@
+taxonomy_version: "2026.03.1"
+sub_sector: deployment
+sector: saas-tech
+
+verbs:
+  deploy-to-production:
+    risk: HIGH
+    description: "Deploy a release to production environment"
+  rollback:
+    risk: HIGH
+    description: "Rollback a deployment to a previous version"
+  canary-promote:
+    risk: HIGH
+    description: "Promote a canary deployment to full traffic"
+  blue-green-switch:
+    risk: HIGH
+    description: "Switch traffic between blue and green environments"
+  drain-traffic:
+    risk: HIGH
+    description: "Drain traffic from a service instance"
+  scale-service:
+    risk: HIGH
+    description: "Scale a service up or down"
+  enable-maintenance-mode:
+    risk: HIGH
+    description: "Enable maintenance mode for a service"

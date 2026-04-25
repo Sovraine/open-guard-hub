@@ -1,0 +1,24 @@
+taxonomy_version: "2026.03.1"
+sub_sector: fleet
+sector: automotive
+
+verbs:
+  assign-vehicle:
+    risk: LOW
+    description: "Assign a vehicle to a driver or department"
+  decommission-vehicle:
+    risk: HIGH
+    description: "Decommission a vehicle from the active fleet"
+  ground-fleet:
+    risk: CRITICAL
+    description: "Ground an entire fleet segment for safety or compliance"
+  override-mileage-limit:
+    risk: HIGH
+    description: "Override the mileage limit policy for a vehicle"
+  transfer-vehicle:
+    risk: HIGH
+    description: "Transfer a vehicle between fleet locations or entities"
+  blacklist-driver:
+    risk: HIGH
+    description: "Blacklist a driver from fleet vehicle access"
+    requires_approval: true

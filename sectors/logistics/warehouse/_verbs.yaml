@@ -1,0 +1,32 @@
+taxonomy_version: "2026.03.1"
+sub_sector: warehouse
+sector: logistics
+
+verbs:
+  release-shipment:
+    risk: HIGH
+    description: "Release shipment for delivery"
+  hold-shipment:
+    risk: MEDIUM
+    description: "Place hold on shipment"
+  reroute-shipment:
+    risk: HIGH
+    description: "Reroute shipment to different destination"
+  declare-customs:
+    risk: HIGH
+    description: "Submit customs declaration"
+    regulatory_reference: "customs regulations"
+  override-customs-value:
+    risk: CRITICAL
+    description: "Override declared customs value"
+    requires_approval: true
+  release-hazardous-goods:
+    risk: CRITICAL
+    description: "Release hazardous materials for transport"
+    requires_approval: true
+  adjust-inventory:
+    risk: MEDIUM
+    description: "Manually adjust inventory count"
+  write-off-inventory:
+    risk: HIGH
+    description: "Write off inventory as lost/damaged"

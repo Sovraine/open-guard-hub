@@ -1,0 +1,13 @@
+name: energy-utilities
+display_name: "Energy & Utilities"
+status: BETA
+regulations: [NERC_CIP, EU_Energy_Directive, nuclear_safety]
+cross_cutting:
+  - core/data-privacy
+  - core/audit-control
+  - core/change-management
+inherits: [core/common]
+overrides:
+  delete: { risk: CRITICAL }
+  execute: { risk: CRITICAL }
+sub_sectors: [grid, trading, metering, renewables]

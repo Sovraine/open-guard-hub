@@ -1,0 +1,158 @@
+server: gcp-storage
+description: "Google Cloud Storage operations"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "gcp-storage-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_buckets:
+    action: list
+    risk: READ-ONLY
+    description: "List all GCS buckets"
+  get_bucket:
+    action: read
+    risk: READ-ONLY
+    description: "Get bucket metadata"
+    target_from: bucket_name
+  create_bucket:
+    action: create
+    risk: MEDIUM
+    description: "Create bucket"
+    target_from: bucket_name
+    context_from:
+      location: location
+  delete_bucket:
+    action: delete
+    risk: HIGH
+    description: "Delete bucket"
+    target_from: bucket_name
+  list_objects:
+    action: list
+    risk: READ-ONLY
+    description: "List objects in bucket"
+    target_from: bucket_name
+    context_from:
+      prefix: prefix
+  get_object:
+    action: read
+    risk: READ-ONLY
+    description: "Get object content"
+    target_from: bucket_name
+    context_from:
+      object_name: object_name
+  upload_object:
+    action: create
+    risk: MEDIUM
+    description: "Upload object"
+    target_from: bucket_name
+    context_from:
+      object_name: object_name
+      content: content
+  delete_object:
+    action: delete
+    risk: MEDIUM
+    description: "Delete object"
+    target_from: bucket_name
+    context_from:
+      object_name: object_name
+  copy_object:
+    action: create
+    risk: MEDIUM
+    description: "Copy object"
+    target_from: source_bucket
+    context_from:
+      source_object: source_object
+      dest_bucket: dest_bucket
+      dest_object: dest_object
+  get_object_metadata:
+    action: read
+    risk: READ-ONLY
+    description: "Get object metadata"
+    target_from: bucket_name
+    context_from:
+      object_name: object_name
+  update_object_metadata:
+    action: update
+    risk: MEDIUM
+    description: "Update object metadata"
+    target_from: bucket_name
+    context_from:
+      object_name: object_name
+      metadata: metadata
+  set_object_acl:
+    action: update
+    risk: HIGH
+    description: "Set object ACL"
+    target_from: bucket_name
+    context_from:
+      object_name: object_name
+      acl: acl
+  get_object_acl:
+    action: read
+    risk: READ-ONLY
+    description: "Get object ACL"
+    target_from: bucket_name
+    context_from:
+      object_name: object_name
+  make_public:
+    action: share
+    risk: HIGH
+    description: "Make object publicly readable"
+    target_from: bucket_name
+    context_from:
+      object_name: object_name
+  make_private:
+    action: update
+    risk: MEDIUM
+    description: "Make object private"
+    target_from: bucket_name
+    context_from:
+      object_name: object_name
+  generate_signed_url:
+    action: create
+    risk: HIGH
+    description: "Generate signed URL"
+    target_from: bucket_name
+    context_from:
+      object_name: object_name
+      expiry: expiry
+  set_bucket_cors:
+    action: configure
+    risk: MEDIUM
+    description: "Set bucket CORS"
+    target_from: bucket_name
+    context_from:
+      cors_config: cors_config
+  set_bucket_policy:
+    action: update
+    risk: HIGH
+    description: "Set bucket IAM policy"
+    target_from: bucket_name
+    context_from:
+      policy: policy
+  get_bucket_policy:
+    action: read
+    risk: READ-ONLY
+    description: "Get bucket IAM policy"
+    target_from: bucket_name
+  enable_versioning:
+    action: enable
+    risk: MEDIUM
+    description: "Enable bucket versioning"
+    target_from: bucket_name
+  list_object_versions:
+    action: list
+    risk: READ-ONLY
+    description: "List object versions"
+    target_from: bucket_name
+  restore_object:
+    action: restore
+    risk: MEDIUM
+    description: "Restore object version"
+    target_from: bucket_name
+    context_from:
+      object_name: object_name
+      generation: generation

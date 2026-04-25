@@ -1,0 +1,97 @@
+server: kubernetes-mcp
+description: Mapping for Kubernetes MCP Server (CRC)
+version: 1.0.0
+license: CC-BY-SA-4.0
+tools:
+  configuration_view:
+    action: read
+    description: Get the current Kubernetes configuration content as a kubeconfig YAML
+    target_from: ""
+  events_list:
+    action: list-resources
+    description: List Kubernetes events for debugging and troubleshooting
+    target_from: ""
+  helm_install:
+    action: create-resource
+    description: Install a Helm chart to create a release
+    target_from: release
+  helm_list:
+    action: list-resources
+    description: List all the Helm releases
+    target_from: ""
+  helm_uninstall:
+    action: delete-resource
+    description: Uninstall a Helm release
+    target_from: release
+  namespaces_list:
+    action: list-resources
+    description: List all Kubernetes namespaces
+    target_from: ""
+  nodes_log:
+    action: read
+    description: Get logs from a Kubernetes node
+    target_from: name
+  nodes_stats_summary:
+    action: get-resource
+    description: Get resource usage statistics from a Kubernetes node
+    target_from: name
+  nodes_top:
+    action: list-resources
+    description: List resource consumption for Kubernetes Nodes
+    target_from: ""
+  pods_delete:
+    action: delete-resource
+    description: Delete a Kubernetes Pod
+    target_from: name
+  pods_exec:
+    action: exec-in-pod
+    description: Execute a command in a Kubernetes Pod
+    target_from: name
+  pods_get:
+    action: get-resource
+    description: Get a Kubernetes Pod
+    target_from: name
+  pods_list:
+    action: list-resources
+    description: List all Kubernetes pods from all namespaces
+    target_from: ""
+  pods_list_in_namespace:
+    action: list-resources
+    description: List all Kubernetes pods in a namespace
+    target_from: namespace
+  pods_log:
+    action: read
+    description: Get the logs of a Kubernetes Pod
+    target_from: name
+  pods_run:
+    action: create-resource
+    description: Run a Kubernetes Pod with a container image
+    target_from: name
+  pods_top:
+    action: list-resources
+    description: List resource consumption for Kubernetes Pods
+    target_from: ""
+  projects_list:
+    action: list-resources
+    description: List all OpenShift projects
+    target_from: ""
+  resources_create_or_update:
+    action: create-resource
+    description: Create or update a Kubernetes resource from YAML/JSON
+    target_from: name
+  resources_delete:
+    action: delete-resource
+    description: Delete a Kubernetes resource
+    target_from: name
+  resources_get:
+    action: get-resource
+    description: Get a Kubernetes resource
+    target_from: name
+  resources_list:
+    action: list-resources
+    description: List Kubernetes resources by apiVersion and kind
+    target_from: ""
+  resources_scale:
+    action: scale
+    description: Get or update the scale of a Kubernetes resource
+    target_from: name

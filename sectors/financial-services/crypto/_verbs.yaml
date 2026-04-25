@@ -1,0 +1,31 @@
+taxonomy_version: "2026.03.1"
+sub_sector: crypto
+sector: financial-services
+
+verbs:
+  deploy-contract:
+    risk: CRITICAL
+    description: "Deploy a smart contract to the blockchain"
+    reversible: false
+  burn-token:
+    risk: CRITICAL
+    description: "Permanently burn tokens from supply"
+    reversible: false
+  mint-token:
+    risk: HIGH
+    description: "Mint new tokens"
+  transfer-custody:
+    risk: CRITICAL
+    description: "Transfer custody of crypto assets"
+    reversible: false
+  detokenize-card:
+    risk: CRITICAL
+    description: "Detokenize a payment card linked to crypto"
+    requires_approval: true
+  pause-contract:
+    risk: CRITICAL
+    description: "Pause a smart contract"
+  upgrade-contract:
+    risk: CRITICAL
+    description: "Upgrade a smart contract implementation"
+    requires_approval: true

@@ -1,0 +1,31 @@
+server: postgres
+description: "PostgreSQL database operations"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+
+tools:
+  query:
+    action: _detect
+    parser: sql
+    sql_mapping:
+      SELECT: select
+      INSERT: insert
+      UPDATE: db-update
+      DELETE: db-delete
+      DROP: drop
+      TRUNCATE: truncate
+      ALTER: alter
+      CREATE: db-create
+      GRANT: grant
+      REVOKE: revoke
+    target_from: database
+    context_from:
+      database: database
+  pg_dump:
+    action: pg-dump
+    target_from: database
+    parser: params
+  pg_restore:
+    action: pg-restore
+    target_from: database
+    parser: params

@@ -1,0 +1,25 @@
+taxonomy_version: "2026.03.1"
+sub_sector: quality
+sector: manufacturing
+
+verbs:
+  approve-inspection:
+    risk: HIGH
+    description: "Approve a quality inspection result for a batch or unit"
+  reject-batch:
+    risk: HIGH
+    description: "Reject an entire production batch on quality grounds"
+  override-quality-check:
+    risk: CRITICAL
+    description: "Override a failed quality check to allow release"
+    requires_approval: true
+  issue-non-conformance:
+    risk: MEDIUM
+    description: "Issue a non-conformance report against a product or process"
+  close-non-conformance:
+    risk: HIGH
+    description: "Close a non-conformance report with corrective actions"
+  waive-specification:
+    risk: CRITICAL
+    description: "Waive a product specification requirement"
+    requires_approval: true

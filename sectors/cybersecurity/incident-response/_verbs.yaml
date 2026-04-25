@@ -1,0 +1,20 @@
+taxonomy_version: "2026.03.1"
+sub_sector: incident-response
+sector: cybersecurity
+
+verbs:
+  isolate-host:
+    risk: CRITICAL
+    description: "Isolate a host from the network"
+  block-ip:
+    risk: HIGH
+    description: "Block an IP address"
+  contain-breach:
+    risk: CRITICAL
+    description: "Execute breach containment procedures"
+  forensic-snapshot:
+    risk: HIGH
+    description: "Take forensic snapshot of system"
+  revoke-session:
+    risk: HIGH
+    description: "Revoke all active sessions for a user"

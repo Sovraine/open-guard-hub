@@ -1,0 +1,71 @@
+taxonomy_version: "2026.03.1"
+domain: core/security
+description: Security operation verbs
+
+verbs:
+  authenticate:
+    risk: LOW
+    description: "Authenticate a user or service"
+  authorize:
+    risk: LOW
+    description: "Check authorization for an action"
+  create-api-key:
+    risk: HIGH
+    description: "Create a new API key"
+  revoke-api-key:
+    risk: HIGH
+    description: "Revoke an existing API key"
+  rotate-secret:
+    risk: HIGH
+    description: "Rotate a secret or credential"
+  create-certificate:
+    risk: HIGH
+    description: "Create a security certificate"
+  revoke-certificate:
+    risk: CRITICAL
+    description: "Revoke a security certificate"
+  encrypt:
+    risk: LOW
+    description: "Encrypt data"
+  decrypt:
+    risk: HIGH
+    description: "Decrypt data"
+  sign:
+    risk: HIGH
+    description: "Digitally sign data or artifact"
+  verify-signature:
+    risk: READ-ONLY
+    description: "Verify a digital signature"
+  scan-vulnerability:
+    risk: LOW
+    description: "Scan for security vulnerabilities"
+  exploit:
+    risk: CRITICAL
+    description: "Exploit a vulnerability"
+  exploit-vulnerability:
+    risk: CRITICAL
+    description: "Actively exploit a known vulnerability"
+  lateral-move:
+    risk: CRITICAL
+    description: "Move laterally within a network after initial access"
+  exfiltrate:
+    risk: CRITICAL
+    description: "Exfiltrate data from a system"
+  exfiltrate-test:
+    risk: CRITICAL
+    description: "Test data exfiltration path"
+  whitelist-ip:
+    risk: HIGH
+    description: "Add IP to allowlist"
+  blacklist-ip:
+    risk: HIGH
+    description: "Add IP to blocklist"
+  disable-mfa:
+    risk: CRITICAL
+    description: "Disable multi-factor authentication"
+  reset-password:
+    risk: HIGH
+    description: "Reset user password"
+  impersonate-user:
+    risk: CRITICAL
+    description: "Impersonate another user"

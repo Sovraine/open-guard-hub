@@ -1,0 +1,102 @@
+server: claude-code
+description: "Claude Code — AI coding agent built-in tools (via `claude mcp serve`)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@anthropic-ai/claude-code"
+  registry: npm
+  transport: stdio
+  homepage: "https://github.com/anthropics/claude-code"
+tools:
+  # ---------------------------------------------------------------------------
+  # Command Execution
+  # ---------------------------------------------------------------------------
+  Bash:
+    action: execute
+    risk: CRITICAL
+    description: "Execute shell commands in persistent bash session"
+    target_from: command
+  Agent:
+    action: execute
+    risk: HIGH
+    description: "Launch specialized sub-agents for complex tasks"
+    target_from: prompt
+
+  # ---------------------------------------------------------------------------
+  # File Read
+  # ---------------------------------------------------------------------------
+  Read:
+    action: read
+    risk: READ-ONLY
+    description: "Read file contents (text, images, PDFs, notebooks)"
+    target_from: file_path
+  Glob:
+    action: read
+    risk: READ-ONLY
+    description: "Find files by glob pattern (e.g. **/*.py)"
+    target_from: pattern
+  Grep:
+    action: read
+    risk: READ-ONLY
+    description: "Search file contents with regex (ripgrep-based)"
+    target_from: pattern
+  LS:
+    action: read
+    risk: READ-ONLY
+    description: "List directory contents"
+    target_from: path
+
+  # ---------------------------------------------------------------------------
+  # File Write / Edit
+  # ---------------------------------------------------------------------------
+  Write:
+    action: create
+    risk: MEDIUM
+    description: "Create or overwrite files"
+    target_from: file_path
+    context_from:
+      content: content
+  Edit:
+    action: update
+    risk: MEDIUM
+    description: "Apply exact string replacements in files"
+    target_from: file_path
+    context_from:
+      old_string: old_string
+      new_string: new_string
+  MultiEdit:
+    action: update
+    risk: MEDIUM
+    description: "Apply multiple edits to a single file"
+    target_from: file_path
+  NotebookEdit:
+    action: update
+    risk: MEDIUM
+    description: "Edit Jupyter notebook cells"
+    target_from: notebook_path
+
+  # ---------------------------------------------------------------------------
+  # Web & Network
+  # ---------------------------------------------------------------------------
+  WebFetch:
+    action: read
+    risk: LOW
+    description: "HTTP GET — fetch web content as markdown"
+    target_from: url
+  WebSearch:
+    action: search
+    risk: LOW
+    description: "Web search for current information"
+    target_from: query
+
+  # ---------------------------------------------------------------------------
+  # Task Management
+  # ---------------------------------------------------------------------------
+  TodoRead:
+    action: read
+    risk: READ-ONLY
+    description: "Read task list"
+  TodoWrite:
+    action: update
+    risk: LOW
+    description: "Update task list"

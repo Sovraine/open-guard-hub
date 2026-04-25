@@ -1,0 +1,32 @@
+taxonomy_version: "2026.03.1"
+sub_sector: orders
+sector: retail-ecommerce
+
+verbs:
+  place-order:
+    risk: MEDIUM
+    description: "Place a new customer order"
+  cancel-order:
+    risk: MEDIUM
+    description: "Cancel a customer order"
+  refund-order:
+    risk: HIGH
+    description: "Process order refund"
+  override-price:
+    risk: HIGH
+    description: "Override product price manually"
+    requires_approval: true
+  bulk-update-prices:
+    risk: CRITICAL
+    description: "Bulk update prices across catalog"
+    reversible: false
+  delete-customer-account:
+    risk: HIGH
+    description: "Delete a customer account and data"
+    reversible: false
+  void-transaction:
+    risk: HIGH
+    description: "Void a payment transaction"
+  apply-bulk-discount:
+    risk: HIGH
+    description: "Apply discount to all products in category"

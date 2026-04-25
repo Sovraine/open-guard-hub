@@ -1,0 +1,24 @@
+taxonomy_version: "2026.03.1"
+sub_sector: billing
+sector: telecom
+
+verbs:
+  generate-invoice:
+    risk: LOW
+    description: "Generate a billing invoice for a subscriber"
+  apply-credit-note:
+    risk: MEDIUM
+    description: "Apply a credit note to a subscriber account"
+  override-billing:
+    risk: HIGH
+    description: "Override billing rules or amounts for a subscriber"
+    requires_approval: true
+  waive-fee:
+    risk: MEDIUM
+    description: "Waive a fee on a subscriber account"
+  process-roaming-charge:
+    risk: MEDIUM
+    description: "Process an international roaming charge"
+  adjust-data-cap:
+    risk: HIGH
+    description: "Adjust the data usage cap for a subscriber plan"

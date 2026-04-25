@@ -1,0 +1,25 @@
+# Template for MCP server action mapping
+# See mappings/ for real examples
+
+server: CHANGE-ME                         # MCP server name
+description: "What the server does"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "@org/mcp-server"              # npm or PyPI package name
+  registry: npm                           # npm or pypi
+  transport: stdio                        # stdio or sse
+
+tools:
+  tool_name:
+    action: read                          # Taxonomy verb (create, read, update, delete, list, etc.)
+    risk: READ-ONLY                       # Risk level
+    description: "What this tool does"
+    target_from: resource_id              # Which parameter identifies the target
+  # another_tool:
+  #   action: delete
+  #   risk: CRITICAL
+  #   description: "Delete a resource"
+  #   target_from: id
+  #   context_from:                       # Optional: additional context parameters
+  #     type: resource_type

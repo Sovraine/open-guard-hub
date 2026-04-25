@@ -1,0 +1,131 @@
+server: twitter
+description: "Twitter/X social media operations"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "twitter-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  get_user:
+    action: read
+    risk: READ-ONLY
+    description: "Get user profile"
+    target_from: user_id
+  search_users:
+    action: search
+    risk: READ-ONLY
+    description: "Search for users"
+    context_from:
+      query: query
+  follow_user:
+    action: create
+    risk: LOW
+    description: "Follow user"
+    target_from: user_id
+  unfollow_user:
+    action: unsubscribe
+    risk: LOW
+    description: "Unfollow user"
+    target_from: user_id
+  block_user:
+    action: delete
+    risk: MEDIUM
+    description: "Block user"
+    target_from: user_id
+  unblock_user:
+    action: restore
+    risk: MEDIUM
+    description: "Unblock user"
+    target_from: user_id
+  mute_user:
+    action: disable
+    risk: LOW
+    description: "Mute user"
+    target_from: user_id
+  unmute_user:
+    action: enable
+    risk: LOW
+    description: "Unmute user"
+    target_from: user_id
+  get_tweet:
+    action: read
+    risk: READ-ONLY
+    description: "Get tweet details"
+    target_from: tweet_id
+  search_tweets:
+    action: search
+    risk: READ-ONLY
+    description: "Search tweets"
+    context_from:
+      query: query
+  post_tweet:
+    action: create
+    risk: LOW
+    description: "Post tweet"
+    context_from:
+      text: text
+      media: media
+  delete_tweet:
+    action: delete
+    risk: MEDIUM
+    description: "Delete tweet"
+    target_from: tweet_id
+  like_tweet:
+    action: create
+    risk: LOW
+    description: "Like tweet"
+    target_from: tweet_id
+  unlike_tweet:
+    action: unsubscribe
+    risk: LOW
+    description: "Remove like"
+    target_from: tweet_id
+  retweet:
+    action: create
+    risk: LOW
+    description: "Retweet"
+    target_from: tweet_id
+  remove_retweet:
+    action: unsubscribe
+    risk: LOW
+    description: "Remove retweet"
+    target_from: tweet_id
+  reply_tweet:
+    action: create
+    risk: LOW
+    description: "Reply to tweet"
+    target_from: tweet_id
+    context_from:
+      text: text
+  get_timeline:
+    action: list
+    risk: READ-ONLY
+    description: "Get timeline"
+  get_home_timeline:
+    action: list
+    risk: READ-ONLY
+    description: "Get home timeline"
+  get_mentions:
+    action: list
+    risk: READ-ONLY
+    description: "Get mentions"
+  get_likes:
+    action: list
+    risk: READ-ONLY
+    description: "Get liked tweets"
+  get_bookmarks:
+    action: list
+    risk: READ-ONLY
+    description: "Get bookmarked tweets"
+  bookmark_tweet:
+    action: create
+    risk: LOW
+    description: "Bookmark tweet"
+    target_from: tweet_id
+  remove_bookmark:
+    action: unsubscribe
+    risk: LOW
+    description: "Remove bookmark"
+    target_from: tweet_id

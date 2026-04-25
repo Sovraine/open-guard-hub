@@ -1,0 +1,158 @@
+server: confluence
+description: "Confluence wiki and documentation management"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "confluence-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_spaces:
+    action: list
+    risk: READ-ONLY
+    description: "List all spaces"
+  get_space:
+    action: read
+    risk: READ-ONLY
+    description: "Get space details"
+    target_from: space_key
+  create_space:
+    action: create
+    risk: MEDIUM
+    description: "Create new space"
+    target_from: space_name
+    context_from:
+      space_key: space_key
+  delete_space:
+    action: delete
+    risk: HIGH
+    description: "Delete space"
+    target_from: space_key
+  list_pages:
+    action: list
+    risk: READ-ONLY
+    description: "List pages in space"
+    target_from: space_key
+  get_page:
+    action: read
+    risk: READ-ONLY
+    description: "Get page content"
+    target_from: page_id
+  create_page:
+    action: create
+    risk: MEDIUM
+    description: "Create new page"
+    target_from: space_key
+    context_from:
+      title: title
+      content: content
+  update_page:
+    action: update
+    risk: MEDIUM
+    description: "Update page content"
+    target_from: page_id
+    context_from:
+      content: content
+  delete_page:
+    action: delete
+    risk: HIGH
+    description: "Delete page"
+    target_from: page_id
+  restore_page:
+    action: restore
+    risk: MEDIUM
+    description: "Restore deleted page"
+    target_from: page_id
+  watch_page:
+    action: tag
+    risk: LOW
+    description: "Watch page for changes"
+    target_from: page_id
+  unwatch_page:
+    action: tag
+    risk: LOW
+    description: "Stop watching page"
+    target_from: page_id
+  list_page_versions:
+    action: list
+    risk: READ-ONLY
+    description: "List page versions"
+    target_from: page_id
+  get_page_version:
+    action: read
+    risk: READ-ONLY
+    description: "Get specific page version"
+    target_from: page_id
+    context_from:
+      version_number: version_number
+  restore_page_version:
+    action: restore
+    risk: MEDIUM
+    description: "Restore specific page version"
+    target_from: page_id
+    context_from:
+      version_number: version_number
+  list_attachments:
+    action: list
+    risk: READ-ONLY
+    description: "List page attachments"
+    target_from: page_id
+  add_attachment:
+    action: create
+    risk: MEDIUM
+    description: "Attach file to page"
+    target_from: page_id
+    context_from:
+      file: file
+  delete_attachment:
+    action: delete
+    risk: MEDIUM
+    description: "Remove attachment"
+    target_from: attachment_id
+  add_comment:
+    action: comment
+    risk: LOW
+    description: "Add comment to page"
+    target_from: page_id
+    context_from:
+      comment: comment
+  update_comment:
+    action: update
+    risk: LOW
+    description: "Edit comment"
+    target_from: page_id
+    context_from:
+      comment_id: comment_id
+      text: text
+  delete_comment:
+    action: delete
+    risk: MEDIUM
+    description: "Delete comment"
+    target_from: page_id
+    context_from:
+      comment_id: comment_id
+  search_pages:
+    action: search
+    risk: READ-ONLY
+    description: "Search pages and content"
+    context_from:
+      query: query
+  list_labels:
+    action: list
+    risk: READ-ONLY
+    description: "List all labels"
+  add_label:
+    action: tag
+    risk: LOW
+    description: "Add label to page"
+    target_from: page_id
+    context_from:
+      label: label
+  remove_label:
+    action: tag
+    risk: LOW
+    description: "Remove label from page"
+    target_from: page_id
+    context_from:
+      label: label

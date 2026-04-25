@@ -1,0 +1,31 @@
+taxonomy_version: "2026.03.1"
+sub_sector: hotel
+sector: hospitality
+
+verbs:
+  evict-guest:
+    risk: CRITICAL
+    description: "Evict a guest from hotel premises"
+    requires_approval: true
+  evacuate-venue:
+    risk: CRITICAL
+    description: "Evacuate venue due to emergency"
+  flag-allergen:
+    risk: HIGH
+    description: "Flag allergen information for guest"
+  override-booking:
+    risk: HIGH
+    description: "Override hotel booking or reservation"
+  charge-no-show:
+    risk: MEDIUM
+    description: "Charge guest for no-show"
+  comp-room:
+    risk: MEDIUM
+    description: "Complimentary room upgrade or comp"
+  blacklist-guest:
+    risk: HIGH
+    description: "Add guest to property blacklist"
+    requires_approval: true
+  override-rate:
+    risk: HIGH
+    description: "Override standard room rate"

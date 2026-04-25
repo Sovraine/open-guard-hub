@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: CC-BY-SA-4.0
+taxonomy_version: "2026.03.1"
+domain: sectors/logistics/transport
+
+verbs:
+  dispatch-vehicle:
+    risk: HIGH
+    description: "Dispatch a vehicle for delivery"
+  reroute-shipment:
+    risk: HIGH
+    description: "Change the route of an in-transit shipment"
+  cancel-transport:
+    risk: HIGH
+    description: "Cancel a scheduled transport"
+  assign-driver:
+    risk: MEDIUM
+    description: "Assign a driver to a route"
+  track-shipment:
+    risk: READ-ONLY
+    description: "Track the location of a shipment"
+  confirm-delivery:
+    risk: MEDIUM
+    description: "Confirm a delivery has been completed"

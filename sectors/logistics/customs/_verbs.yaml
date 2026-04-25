@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: CC-BY-SA-4.0
+taxonomy_version: "2026.03.1"
+domain: sectors/logistics/customs
+
+verbs:
+  submit-declaration:
+    risk: HIGH
+    description: "Submit a customs declaration"
+  approve-clearance:
+    risk: CRITICAL
+    description: "Approve customs clearance for goods"
+  flag-contraband:
+    risk: CRITICAL
+    description: "Flag goods as contraband"
+  calculate-duties:
+    risk: MEDIUM
+    description: "Calculate import/export duties"
+  release-cargo:
+    risk: HIGH
+    description: "Release cargo from customs hold"
+  reject-declaration:
+    risk: HIGH
+    description: "Reject a customs declaration"

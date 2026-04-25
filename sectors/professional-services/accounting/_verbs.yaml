@@ -1,0 +1,37 @@
+taxonomy_version: "2026.03.1"
+sub_sector: accounting
+sector: professional-services
+
+verbs:
+  close-period:
+    risk: CRITICAL
+    description: "Close an accounting period"
+    reversible: false
+  reopen-period:
+    risk: CRITICAL
+    description: "Reopen a closed accounting period"
+    requires_approval: true
+  approve-financial-statement:
+    risk: CRITICAL
+    description: "Approve financial statements for publication"
+    requires_approval: true
+  sign-audit-opinion:
+    risk: CRITICAL
+    description: "Sign an audit opinion"
+    reversible: false
+    requires_approval: true
+  dismiss-finding:
+    risk: CRITICAL
+    description: "Dismiss an audit finding"
+    requires_approval: true
+  adjust-entry:
+    risk: HIGH
+    description: "Post adjusting journal entry"
+  write-off-receivable:
+    risk: HIGH
+    description: "Write off an accounts receivable"
+  override-control:
+    risk: CRITICAL
+    description: "Override an internal control"
+    requires_approval: true
+    regulatory_reference: "SOX Section 404"

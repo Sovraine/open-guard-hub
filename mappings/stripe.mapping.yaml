@@ -1,0 +1,143 @@
+server: stripe
+description: "Stripe — payments, customers, products, invoices, subscriptions (25 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@stripe/mcp"
+  registry: npm
+  transport: stdio
+  command: "npx -y @stripe/mcp --tools=all"
+tools:
+  # --- Account ---
+  get_stripe_account_info:
+    action: read
+    risk: READ-ONLY
+    description: "Retrieve account information and status"
+  retrieve_balance:
+    action: read
+    risk: READ-ONLY
+    description: "Fetch current account balance"
+  # --- Customers ---
+  create_customer:
+    action: create
+    risk: MEDIUM
+    description: "Create a new customer record"
+    target_from: name
+    context_from:
+      email: email
+  list_customers:
+    action: list
+    risk: READ-ONLY
+    description: "List all customers"
+  # --- Products ---
+  create_product:
+    action: create
+    risk: LOW
+    description: "Create a new product in catalog"
+    target_from: name
+  list_products:
+    action: list
+    risk: READ-ONLY
+    description: "List all products"
+  # --- Pricing ---
+  create_price:
+    action: create
+    risk: MEDIUM
+    description: "Create a pricing tier for a product"
+    target_from: product
+    context_from:
+      currency: currency
+      unit_amount: unit_amount
+  list_prices:
+    action: list
+    risk: READ-ONLY
+    description: "List all pricing tiers"
+  # --- Invoices ---
+  create_invoice:
+    action: create
+    risk: HIGH
+    description: "Create a draft invoice for a customer"
+    target_from: customer
+  list_invoices:
+    action: list
+    risk: READ-ONLY
+    description: "List all invoices"
+  create_invoice_item:
+    action: create
+    risk: MEDIUM
+    description: "Add a line item to an invoice"
+    target_from: customer
+    context_from:
+      invoice: invoice
+  finalize_invoice:
+    action: update
+    risk: HIGH
+    description: "Lock an invoice for payment"
+    target_from: invoice
+  # --- Payments ---
+  list_payment_intents:
+    action: list
+    risk: READ-ONLY
+    description: "List payment intents"
+  create_payment_link:
+    action: create
+    risk: HIGH
+    description: "Create a shareable checkout URL"
+  create_refund:
+    action: create
+    risk: HIGH
+    description: "Process a refund for a payment"
+    target_from: payment_intent
+    context_from:
+      amount: amount
+  # --- Coupons ---
+  create_coupon:
+    action: create
+    risk: MEDIUM
+    description: "Create a discount coupon"
+    target_from: name
+  list_coupons:
+    action: list
+    risk: READ-ONLY
+    description: "List all discount coupons"
+  # --- Subscriptions ---
+  list_subscriptions:
+    action: list
+    risk: READ-ONLY
+    description: "List all subscriptions"
+  cancel_subscription:
+    action: delete
+    risk: HIGH
+    description: "Cancel a subscription"
+    target_from: subscription
+  update_subscription:
+    action: update
+    risk: HIGH
+    description: "Modify subscription terms"
+    target_from: subscription
+  # --- Disputes ---
+  list_disputes:
+    action: list
+    risk: READ-ONLY
+    description: "List all payment disputes"
+  update_dispute:
+    action: update
+    risk: MEDIUM
+    description: "Modify dispute status or evidence"
+    target_from: dispute
+  # --- Search ---
+  search_documentation:
+    action: search
+    risk: READ-ONLY
+    description: "Search Stripe documentation"
+    sql_mapping: false
+    target_from: query
+  search_stripe_resources:
+    action: search
+    risk: READ-ONLY
+    description: "Search Stripe objects/resources"
+    sql_mapping: false
+  fetch_stripe_resources:
+    action: read
+    risk: READ-ONLY
+    description: "Retrieve specific Stripe objects by ID"

@@ -1,0 +1,161 @@
+server: discord
+description: "Discord messaging and server management"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "discord-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_servers:
+    action: list
+    risk: READ-ONLY
+    description: "List Discord servers"
+  get_server:
+    action: read
+    risk: READ-ONLY
+    description: "Get server details"
+    target_from: server_id
+  list_channels:
+    action: list
+    risk: READ-ONLY
+    description: "List channels in server"
+    target_from: server_id
+  get_channel:
+    action: read
+    risk: READ-ONLY
+    description: "Get channel details"
+    target_from: channel_id
+  create_channel:
+    action: create
+    risk: MEDIUM
+    description: "Create channel"
+    target_from: server_id
+    context_from:
+      channel_name: channel_name
+      channel_type: channel_type
+  delete_channel:
+    action: delete
+    risk: HIGH
+    description: "Delete channel"
+    target_from: channel_id
+  send_message:
+    action: create
+    risk: LOW
+    description: "Send message to channel"
+    target_from: channel_id
+    context_from:
+      content: content
+  edit_message:
+    action: update
+    risk: LOW
+    description: "Edit message"
+    target_from: channel_id
+    context_from:
+      message_id: message_id
+      content: content
+  delete_message:
+    action: delete
+    risk: MEDIUM
+    description: "Delete message"
+    target_from: channel_id
+    context_from:
+      message_id: message_id
+  get_message:
+    action: read
+    risk: READ-ONLY
+    description: "Get message details"
+    target_from: channel_id
+    context_from:
+      message_id: message_id
+  list_messages:
+    action: list
+    risk: READ-ONLY
+    description: "List channel messages"
+    target_from: channel_id
+  search_messages:
+    action: search
+    risk: READ-ONLY
+    description: "Search messages"
+    context_from:
+      query: query
+  add_reaction:
+    action: comment
+    risk: LOW
+    description: "Add reaction to message"
+    target_from: channel_id
+    context_from:
+      message_id: message_id
+      emoji: emoji
+  remove_reaction:
+    action: unsubscribe
+    risk: LOW
+    description: "Remove reaction"
+    target_from: channel_id
+    context_from:
+      message_id: message_id
+      emoji: emoji
+  list_members:
+    action: list
+    risk: READ-ONLY
+    description: "List server members"
+    target_from: server_id
+  get_member:
+    action: read
+    risk: READ-ONLY
+    description: "Get member profile"
+    target_from: server_id
+    context_from:
+      user_id: user_id
+  kick_member:
+    action: delete
+    risk: HIGH
+    description: "Remove member from server"
+    target_from: server_id
+    context_from:
+      user_id: user_id
+  ban_member:
+    action: delete
+    risk: CRITICAL
+    description: "Ban member from server"
+    target_from: server_id
+    context_from:
+      user_id: user_id
+  unban_member:
+    action: restore
+    risk: MEDIUM
+    description: "Unban member"
+    target_from: server_id
+    context_from:
+      user_id: user_id
+  assign_role:
+    action: assign
+    risk: MEDIUM
+    description: "Assign role to member"
+    target_from: server_id
+    context_from:
+      user_id: user_id
+      role_id: role_id
+  remove_role:
+    action: unassign
+    risk: MEDIUM
+    description: "Remove role from member"
+    target_from: server_id
+    context_from:
+      user_id: user_id
+      role_id: role_id
+  create_role:
+    action: create
+    risk: MEDIUM
+    description: "Create server role"
+    target_from: server_id
+    context_from:
+      role_name: role_name
+  delete_role:
+    action: delete
+    risk: HIGH
+    description: "Delete role"
+    target_from: server_id
+    context_from:
+      role_id: role_id

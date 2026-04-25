@@ -1,0 +1,84 @@
+name: Hub Proposal
+description: Propose a new verb, policy, agent, skill, soul, or mapping for the hub
+labels: ["hub", "proposal"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Contribution type
+      options:
+        - Policy (.guard.md)
+        - Agent (.agent.md)
+        - Soul (.soul.md)
+        - Skill (.skill.md)
+        - Mapping (.mapping.yaml)
+        - Verb (new taxonomy verb)
+        - Sector (new industry sector)
+    validations:
+      required: true
+  - type: dropdown
+    id: sector
+    attributes:
+      label: Sector
+      description: Which sector does this belong to?
+      options:
+        - core
+        - automotive
+        - cybersecurity
+        - education
+        - energy-utilities
+        - financial-services
+        - healthcare
+        - hospitality
+        - human-resources
+        - legal
+        - logistics
+        - manufacturing
+        - media-entertainment
+        - professional-services
+        - public-sector
+        - real-estate
+        - retail-ecommerce
+        - saas-tech
+        - telecom
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Proposed name
+      description: "kebab-case (e.g., deny-plaintext-secrets, kyc-verify)"
+      placeholder: "my-contribution-name"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What does this do and why is it needed?
+    validations:
+      required: true
+  - type: textarea
+    id: verbs
+    attributes:
+      label: Verbs used
+      description: "Which taxonomy verbs does this use? Check `core/common/_verbs.yaml` for available verbs."
+      placeholder: "create, delete, execute"
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Risk level
+      options:
+        - READ-ONLY
+        - LOW
+        - MEDIUM
+        - HIGH
+        - CRITICAL
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission checklist
+      options:
+        - label: I have checked that the verbs I reference exist in the taxonomy
+        - label: I have read the [CONTRIBUTING guide](CONTRIBUTING.md)
+        - label: I am willing to sign the DCO for this contribution

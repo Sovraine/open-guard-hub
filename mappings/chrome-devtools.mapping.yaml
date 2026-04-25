@@ -1,0 +1,163 @@
+server: chrome-devtools
+description: "Chrome DevTools MCP — browser inspection and debugging (29 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "chrome-devtools-mcp"
+  registry: npm
+  transport: stdio
+  command: "npx -y chrome-devtools-mcp"
+tools:
+  navigate_page:
+    action: execute
+    risk: MEDIUM
+    description: "Go to a URL, or back, forward, or reload"
+    target_from: url
+    context_from:
+      type: type
+  new_page:
+    action: create
+    risk: LOW
+    description: "Open a new tab and load a URL"
+    target_from: url
+  close_page:
+    action: close
+    risk: LOW
+    description: "Close a browser page by ID"
+    target_from: pageId
+  select_page:
+    action: read
+    risk: READ-ONLY
+    description: "Select a page as context for future calls"
+    target_from: pageId
+  list_pages:
+    action: list
+    risk: READ-ONLY
+    description: "List pages open in the browser"
+  click:
+    action: execute
+    risk: MEDIUM
+    description: "Click on an element"
+    target_from: uid
+  hover:
+    action: read
+    risk: READ-ONLY
+    description: "Hover over an element"
+    target_from: uid
+  drag:
+    action: execute
+    risk: MEDIUM
+    description: "Drag an element onto another"
+    target_from: from_uid
+    context_from:
+      to_uid: to_uid
+  fill:
+    action: update
+    risk: MEDIUM
+    description: "Type text into input or select option"
+    target_from: uid
+    context_from:
+      value: value
+  fill_form:
+    action: update
+    risk: MEDIUM
+    description: "Fill out multiple form elements"
+    target_from: elements
+  type_text:
+    action: execute
+    risk: MEDIUM
+    description: "Type text using keyboard into focused input"
+    target_from: text
+  press_key:
+    action: execute
+    risk: MEDIUM
+    description: "Press a key or key combination"
+    target_from: key
+  upload_file:
+    action: import
+    risk: MEDIUM
+    description: "Upload a file through an element"
+    target_from: uid
+    context_from:
+      filePath: filePath
+  take_screenshot:
+    action: read
+    risk: READ-ONLY
+    description: "Take a screenshot of page or element"
+    target_from: uid
+  take_snapshot:
+    action: read
+    risk: READ-ONLY
+    description: "Take a11y tree text snapshot of page"
+  take_memory_snapshot:
+    action: read
+    risk: LOW
+    description: "Capture memory heap snapshot for debugging"
+    target_from: filePath
+  list_console_messages:
+    action: list
+    risk: READ-ONLY
+    description: "List all console messages"
+  get_console_message:
+    action: read
+    risk: READ-ONLY
+    description: "Get a console message by ID"
+    target_from: msgid
+  list_network_requests:
+    action: list
+    risk: READ-ONLY
+    description: "List all network requests"
+  get_network_request:
+    action: read
+    risk: READ-ONLY
+    description: "Get a network request by ID"
+    target_from: reqid
+  handle_dialog:
+    action: execute
+    risk: MEDIUM
+    description: "Handle a browser dialog"
+    target_from: action
+  evaluate_script:
+    action: execute
+    risk: HIGH
+    description: "Evaluate JavaScript in the page"
+    target_from: function
+  emulate:
+    action: configure
+    risk: LOW
+    description: "Emulate device features on page"
+    context_from:
+      userAgent: userAgent
+  resize_page:
+    action: configure
+    risk: LOW
+    description: "Resize page window dimensions"
+    context_from:
+      width: width
+      height: height
+  wait_for:
+    action: read
+    risk: READ-ONLY
+    description: "Wait for text to appear on page"
+    target_from: text
+  lighthouse_audit:
+    action: read
+    risk: READ-ONLY
+    description: "Get Lighthouse score for a11y, SEO, best practices"
+    context_from:
+      mode: mode
+  performance_start_trace:
+    action: execute
+    risk: LOW
+    description: "Start a performance trace recording"
+  performance_stop_trace:
+    action: read
+    risk: READ-ONLY
+    description: "Stop performance trace and get results"
+  performance_analyze_insight:
+    action: read
+    risk: READ-ONLY
+    description: "Get detailed info on a performance insight"
+    target_from: insightSetId
+    context_from:
+      insightName: insightName

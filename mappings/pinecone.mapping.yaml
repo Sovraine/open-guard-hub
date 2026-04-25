@@ -1,0 +1,69 @@
+server: pinecone
+description: "Pinecone — vector database indexes, records, search, rerank (10 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@anthropic-ai/pinecone-mcp"
+  registry: npm
+  transport: stdio
+  command: "npx -y @anthropic-ai/pinecone-mcp"
+tools:
+  # --- Indexes ---
+  list-indexes:
+    action: list
+    risk: READ-ONLY
+    description: "List all Pinecone indexes"
+  describe-index:
+    action: read
+    risk: READ-ONLY
+    description: "Describe index configuration"
+    target_from: name
+  describe-index-stats:
+    action: read
+    risk: READ-ONLY
+    description: "Describe index statistics and namespaces"
+    target_from: name
+  create-index-for-model:
+    action: create
+    risk: MEDIUM
+    description: "Create an index with integrated inference"
+    target_from: name
+    context_from:
+      cloud: cloud
+      region: region
+  # --- Records ---
+  upsert-records:
+    action: create
+    risk: MEDIUM
+    description: "Insert or update records in an index"
+    target_from: name
+    context_from:
+      namespace: namespace
+  search-records:
+    action: search
+    risk: READ-ONLY
+    description: "Search for similar records by query text"
+    sql_mapping: false
+    target_from: name
+    context_from:
+      namespace: namespace
+  cascading-search:
+    action: search
+    risk: READ-ONLY
+    description: "Search across multiple indexes and rerank"
+    sql_mapping: false
+  # --- Rerank ---
+  rerank-documents:
+    action: read
+    risk: READ-ONLY
+    description: "Rerank documents based on a query"
+    target_from: query
+    context_from:
+      model: model
+  # --- Docs ---
+  search-docs:
+    action: search
+    risk: READ-ONLY
+    description: "Search Pinecone documentation"
+    sql_mapping: false
+    target_from: query

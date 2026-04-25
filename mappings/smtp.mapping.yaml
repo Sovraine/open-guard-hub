@@ -1,0 +1,110 @@
+server: smtp
+description: "SMTP email sending operations"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "smtp-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  send_email:
+    action: create
+    risk: LOW
+    description: "Send email message"
+    context_from:
+      to: to
+      subject: subject
+      body: body
+  send_bulk_email:
+    action: create
+    risk: MEDIUM
+    description: "Send bulk email messages"
+    context_from:
+      recipients: recipients
+      subject: subject
+      body: body
+  schedule_email:
+    action: schedule
+    risk: LOW
+    description: "Schedule email for later delivery"
+    context_from:
+      to: to
+      subject: subject
+      body: body
+      send_time: send_time
+  cancel_scheduled_email:
+    action: cancel
+    risk: LOW
+    description: "Cancel scheduled email"
+    target_from: email_id
+  attach_file:
+    action: update
+    risk: MEDIUM
+    description: "Add attachment to email"
+    target_from: email_id
+    context_from:
+      file_path: file_path
+  set_reply_to:
+    action: configure
+    risk: LOW
+    description: "Set reply-to address"
+    target_from: email_id
+    context_from:
+      reply_to: reply_to
+  add_cc:
+    action: update
+    risk: LOW
+    description: "Add CC recipient"
+    target_from: email_id
+    context_from:
+      email: email
+  add_bcc:
+    action: update
+    risk: LOW
+    description: "Add BCC recipient"
+    target_from: email_id
+    context_from:
+      email: email
+  set_priority:
+    action: configure
+    risk: LOW
+    description: "Set email priority"
+    target_from: email_id
+    context_from:
+      priority: priority
+  set_read_receipt:
+    action: configure
+    risk: LOW
+    description: "Request read receipt"
+    target_from: email_id
+  get_server_status:
+    action: read
+    risk: READ-ONLY
+    description: "Get SMTP server status"
+  get_quota:
+    action: read
+    risk: READ-ONLY
+    description: "Get email quota"
+  list_templates:
+    action: list
+    risk: READ-ONLY
+    description: "List email templates"
+  get_template:
+    action: read
+    risk: READ-ONLY
+    description: "Get email template content"
+    target_from: template_id
+  create_template:
+    action: create
+    risk: MEDIUM
+    description: "Create email template"
+    target_from: template_name
+    context_from:
+      subject: subject
+      body: body
+  delete_template:
+    action: delete
+    risk: MEDIUM
+    description: "Delete email template"
+    target_from: template_id

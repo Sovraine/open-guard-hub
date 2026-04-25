@@ -1,0 +1,37 @@
+taxonomy_version: "2026.03.1"
+sub_sector: litigation
+sector: legal
+
+verbs:
+  file-motion:
+    risk: HIGH
+    description: "File a motion with the court"
+  waive-privilege:
+    risk: CRITICAL
+    description: "Waive attorney-client privilege"
+    reversible: false
+    requires_approval: true
+  release-legal-hold:
+    risk: CRITICAL
+    description: "Release a litigation hold on documents"
+    reversible: false
+    requires_approval: true
+  settle-case:
+    risk: CRITICAL
+    description: "Settle a legal case"
+    reversible: false
+    requires_approval: true
+  disclose-to-opposing:
+    risk: CRITICAL
+    description: "Disclose information to opposing party"
+    reversible: false
+  produce-documents:
+    risk: HIGH
+    description: "Produce documents in discovery"
+  seal-record:
+    risk: HIGH
+    description: "Seal a court record from public access"
+  unseal-record:
+    risk: CRITICAL
+    description: "Unseal a previously sealed court record"
+    reversible: false

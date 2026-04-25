@@ -1,0 +1,128 @@
+server: playwright
+description: "Playwright — browser automation by Microsoft (22 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@playwright/mcp"
+  registry: npm
+  transport: stdio
+  command: "npx -y @playwright/mcp"
+tools:
+  browser_navigate:
+    action: execute
+    risk: MEDIUM
+    description: "Navigate to a URL"
+    target_from: url
+  browser_navigate_back:
+    action: execute
+    risk: LOW
+    description: "Go back to the previous page"
+  browser_click:
+    action: execute
+    risk: MEDIUM
+    description: "Click on a web page element"
+    target_from: ref
+    context_from:
+      element: element
+  browser_type:
+    action: execute
+    risk: MEDIUM
+    description: "Type text into editable element"
+    target_from: ref
+    context_from:
+      text: text
+  browser_fill_form:
+    action: update
+    risk: MEDIUM
+    description: "Fill multiple form fields"
+    target_from: fields
+  browser_press_key:
+    action: execute
+    risk: MEDIUM
+    description: "Press a key on the keyboard"
+    target_from: key
+  browser_select_option:
+    action: update
+    risk: LOW
+    description: "Select an option in a dropdown"
+    target_from: ref
+    context_from:
+      values: values
+  browser_hover:
+    action: read
+    risk: READ-ONLY
+    description: "Hover over element on page"
+    target_from: ref
+  browser_drag:
+    action: execute
+    risk: MEDIUM
+    description: "Drag and drop between two elements"
+    target_from: startRef
+    context_from:
+      endRef: endRef
+  browser_take_screenshot:
+    action: read
+    risk: READ-ONLY
+    description: "Take a screenshot of the current page"
+    target_from: ref
+  browser_snapshot:
+    action: read
+    risk: READ-ONLY
+    description: "Capture accessibility snapshot of page"
+  browser_console_messages:
+    action: read
+    risk: READ-ONLY
+    description: "Returns all console messages"
+    context_from:
+      level: level
+  browser_network_requests:
+    action: read
+    risk: READ-ONLY
+    description: "Returns all network requests"
+  browser_tabs:
+    action: list
+    risk: READ-ONLY
+    description: "List, create, close, or select a browser tab"
+    target_from: action
+    context_from:
+      index: index
+  browser_resize:
+    action: configure
+    risk: LOW
+    description: "Resize the browser window"
+    context_from:
+      width: width
+      height: height
+  browser_close:
+    action: close
+    risk: LOW
+    description: "Close the current browser page"
+  browser_evaluate:
+    action: execute
+    risk: HIGH
+    description: "Evaluate JavaScript expression on page"
+    target_from: function
+  browser_run_code:
+    action: execute
+    risk: HIGH
+    description: "Run Playwright code snippet"
+    target_from: code
+  browser_file_upload:
+    action: import
+    risk: MEDIUM
+    description: "Upload one or multiple files"
+    target_from: paths
+  browser_install:
+    action: execute
+    risk: HIGH
+    description: "Install the browser specified in config"
+  browser_wait_for:
+    action: read
+    risk: READ-ONLY
+    description: "Wait for text to appear or disappear"
+    target_from: text
+  browser_handle_dialog:
+    action: execute
+    risk: MEDIUM
+    description: "Handle a browser dialog"
+    target_from: accept

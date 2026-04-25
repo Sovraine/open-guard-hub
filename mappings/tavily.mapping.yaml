@@ -1,0 +1,41 @@
+server: tavily
+description: "Tavily — AI-powered web search, extract, crawl, and research (5 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "tavily-mcp"
+  registry: npm
+  transport: stdio
+  command: "npx -y tavily-mcp"
+tools:
+  tavily_search:
+    action: search
+    risk: READ-ONLY
+    description: "Search the web for current information on any topic"
+    target_from: query
+    context_from:
+      topic: topic
+      search_depth: search_depth
+  tavily_extract:
+    action: read
+    risk: READ-ONLY
+    description: "Extract content from URLs as markdown or text"
+    target_from: urls
+  tavily_crawl:
+    action: read
+    risk: LOW
+    description: "Crawl a website starting from a URL"
+    target_from: url
+    context_from:
+      max_depth: max_depth
+      limit: limit
+  tavily_map:
+    action: search
+    risk: READ-ONLY
+    description: "Map a website's structure and discover URLs"
+    target_from: url
+  tavily_research:
+    action: search
+    risk: READ-ONLY
+    description: "Perform comprehensive research on a topic"
+    target_from: input

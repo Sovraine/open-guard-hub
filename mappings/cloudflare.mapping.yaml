@@ -1,0 +1,159 @@
+server: cloudflare
+description: "Cloudflare — Workers, KV, D1, R2, Hyperdrive, zones (27 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@cloudflare/mcp-server-cloudflare"
+  registry: npm
+  transport: stdio
+  command: "npx -y @cloudflare/mcp-server-cloudflare"
+tools:
+  # --- Account ---
+  accounts_list:
+    action: list
+    risk: READ-ONLY
+    description: "List all Cloudflare accounts"
+  set_active_account:
+    action: configure
+    risk: LOW
+    description: "Set active account for subsequent calls"
+    target_from: activeAccountIdParam
+  # --- Workers ---
+  workers_list:
+    action: list
+    risk: READ-ONLY
+    description: "List all Workers"
+  workers_get_worker:
+    action: read
+    risk: READ-ONLY
+    description: "Get Worker details"
+    target_from: scriptName
+  workers_get_worker_code:
+    action: read
+    risk: READ-ONLY
+    description: "Get Worker source code"
+    target_from: scriptName
+  # --- Zones ---
+  zones_list:
+    action: list
+    risk: READ-ONLY
+    description: "List all zones"
+  zone_details:
+    action: read
+    risk: READ-ONLY
+    description: "Get zone details"
+    target_from: zoneId
+  # --- KV ---
+  kv_namespaces_list:
+    action: list
+    risk: READ-ONLY
+    description: "List all KV namespaces"
+  kv_namespace_create:
+    action: create
+    risk: MEDIUM
+    description: "Create a new KV namespace"
+    target_from: title
+  kv_namespace_get:
+    action: read
+    risk: READ-ONLY
+    description: "Get KV namespace details"
+    target_from: namespace_id
+  kv_namespace_update:
+    action: update
+    risk: LOW
+    description: "Update KV namespace title"
+    target_from: namespace_id
+    context_from:
+      title: title
+  kv_namespace_delete:
+    action: delete
+    risk: HIGH
+    description: "Delete a KV namespace"
+    target_from: namespace_id
+  # --- D1 ---
+  d1_databases_list:
+    action: list
+    risk: READ-ONLY
+    description: "List all D1 databases"
+  d1_database_create:
+    action: create
+    risk: MEDIUM
+    description: "Create a new D1 database"
+    target_from: name
+  d1_database_get:
+    action: read
+    risk: READ-ONLY
+    description: "Get D1 database details"
+    target_from: database_id
+  d1_database_query:
+    action: _detect
+    risk: CRITICAL
+    parser: sql
+    description: "Query a D1 database with SQL"
+    sql_mapping:
+      SELECT: read
+      INSERT: create
+      UPDATE: update
+      DELETE: delete
+      DROP: delete
+      CREATE: create
+      ALTER: update
+    target_from: database_id
+    context_from:
+      sql: sql
+  d1_database_delete:
+    action: delete
+    risk: CRITICAL
+    description: "Delete a D1 database"
+    target_from: database_id
+  # --- R2 ---
+  r2_buckets_list:
+    action: list
+    risk: READ-ONLY
+    description: "List R2 buckets"
+  r2_bucket_create:
+    action: create
+    risk: MEDIUM
+    description: "Create a new R2 bucket"
+    target_from: name
+  r2_bucket_get:
+    action: read
+    risk: READ-ONLY
+    description: "Get R2 bucket details"
+    target_from: name
+  r2_bucket_delete:
+    action: delete
+    risk: HIGH
+    description: "Delete an R2 bucket"
+    target_from: name
+  # --- Hyperdrive ---
+  hyperdrive_configs_list:
+    action: list
+    risk: READ-ONLY
+    description: "List Hyperdrive configurations"
+  hyperdrive_config_get:
+    action: read
+    risk: READ-ONLY
+    description: "Get Hyperdrive config details"
+    target_from: hyperdrive_id
+  hyperdrive_config_delete:
+    action: delete
+    risk: HIGH
+    description: "Delete a Hyperdrive configuration"
+    target_from: hyperdrive_id
+  hyperdrive_config_edit:
+    action: update
+    risk: MEDIUM
+    description: "Edit a Hyperdrive configuration"
+    target_from: hyperdrive_id
+  # --- Docs ---
+  search_cloudflare_documentation:
+    action: search
+    risk: READ-ONLY
+    description: "Search Cloudflare documentation"
+    sql_mapping: false
+    target_from: query
+  migrate_pages_to_workers_guide:
+    action: read
+    risk: READ-ONLY
+    description: "Get Pages to Workers migration guide"

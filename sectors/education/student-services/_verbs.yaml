@@ -1,0 +1,25 @@
+taxonomy_version: "2026.03.1"
+sub_sector: student-services
+sector: education
+
+verbs:
+  enroll-student:
+    risk: MEDIUM
+    description: "Enroll a student in a program or course"
+  withdraw-student:
+    risk: HIGH
+    description: "Withdraw a student from a program or course"
+  defer-admission:
+    risk: MEDIUM
+    description: "Defer a student's admission to a future term"
+  revoke-scholarship:
+    risk: CRITICAL
+    description: "Revoke a scholarship or financial aid award"
+    requires_approval: true
+  grant-accommodation:
+    risk: HIGH
+    description: "Grant an academic accommodation for a student"
+  override-prerequisite:
+    risk: HIGH
+    description: "Override a course prerequisite requirement for a student"
+    requires_approval: true

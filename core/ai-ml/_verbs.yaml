@@ -1,0 +1,56 @@
+taxonomy_version: "2026.03.1"
+domain: core/ai-ml
+description: AI and Machine Learning operation verbs
+
+verbs:
+  train-model:
+    risk: HIGH
+    description: "Train a machine learning model"
+  fine-tune:
+    risk: HIGH
+    description: "Fine-tune an existing model"
+  deploy-model:
+    risk: HIGH
+    description: "Deploy model to production"
+  undeploy-model:
+    risk: HIGH
+    description: "Remove model from production"
+  evaluate-model:
+    risk: LOW
+    description: "Evaluate model performance"
+  predict:
+    risk: LOW
+    description: "Make a prediction"
+  batch-predict:
+    risk: MEDIUM
+    description: "Run batch prediction"
+  explain-prediction:
+    risk: LOW
+    description: "Explain a prediction"
+  retrain:
+    risk: HIGH
+    description: "Retrain model with new data"
+  rollback-model:
+    risk: HIGH
+    description: "Rollback to previous model version"
+  set-threshold:
+    risk: HIGH
+    description: "Set model confidence threshold"
+  export-model:
+    risk: HIGH
+    description: "Export model artifacts"
+  import-model:
+    risk: HIGH
+    description: "Import model artifacts"
+  label-data:
+    risk: LOW
+    description: "Label training data"
+  generate-synthetic-data:
+    risk: MEDIUM
+    description: "Generate synthetic training data"
+  run-ab-test:
+    risk: MEDIUM
+    description: "Run A/B test between models"
+  promote-to-production:
+    risk: CRITICAL
+    description: "Promote model to production"

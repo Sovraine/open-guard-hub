@@ -1,0 +1,28 @@
+taxonomy_version: "2026.03.1"
+sub_sector: payroll
+sector: human-resources
+
+verbs:
+  run-payroll:
+    risk: CRITICAL
+    description: "Execute payroll run for employees"
+    reversible: false
+  garnish-wages:
+    risk: CRITICAL
+    description: "Apply wage garnishment to an employee"
+    reversible: false
+    requires_approval: true
+  adjust-salary:
+    risk: HIGH
+    description: "Adjust an employee's salary"
+    requires_approval: true
+  process-bonus:
+    risk: HIGH
+    description: "Process a bonus payment"
+  override-tax-withholding:
+    risk: CRITICAL
+    description: "Override tax withholding configuration"
+    requires_approval: true
+  issue-final-pay:
+    risk: HIGH
+    description: "Issue final pay to a departing employee"

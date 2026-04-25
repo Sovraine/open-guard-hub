@@ -1,0 +1,41 @@
+taxonomy_version: "2026.03.1"
+sub_sector: recruitment
+sector: human-resources
+
+verbs:
+  score-candidate-ai:
+    risk: HIGH
+    description: "Score a candidate using AI algorithms"
+    regulatory_reference: "AI Act Art.6"
+  withdraw-offer:
+    risk: CRITICAL
+    description: "Withdraw a job offer"
+    reversible: false
+  reject-candidate:
+    risk: MEDIUM
+    description: "Reject a candidate application"
+  override-ai-recommendation:
+    risk: HIGH
+    description: "Override AI hiring recommendation"
+    requires_approval: true
+  access-background-check:
+    risk: HIGH
+    description: "Access candidate background check results"
+  terminate-employee:
+    risk: CRITICAL
+    description: "Terminate an employee"
+    reversible: false
+    requires_approval: true
+  demote-employee:
+    risk: CRITICAL
+    description: "Demote an employee"
+    requires_approval: true
+  run-payroll:
+    risk: CRITICAL
+    description: "Execute payroll processing"
+    reversible: false
+  garnish-wages:
+    risk: CRITICAL
+    description: "Garnish employee wages"
+    reversible: false
+    requires_approval: true

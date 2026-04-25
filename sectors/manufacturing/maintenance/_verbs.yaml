@@ -1,0 +1,26 @@
+taxonomy_version: "2026.03.1"
+sub_sector: maintenance
+sector: manufacturing
+
+verbs:
+  schedule-preventive:
+    risk: LOW
+    description: "Schedule a preventive maintenance task for equipment"
+  override-maintenance-schedule:
+    risk: HIGH
+    description: "Override the planned maintenance schedule for equipment"
+  lock-out-tag-out:
+    risk: CRITICAL
+    description: "Apply lock-out/tag-out procedure on equipment for safety"
+  clear-lock-out:
+    risk: CRITICAL
+    description: "Clear a lock-out/tag-out and return equipment to service"
+    requires_approval: true
+  authorize-hot-work:
+    risk: CRITICAL
+    description: "Authorize hot work (welding, cutting) in a restricted area"
+    requires_approval: true
+  bypass-safety-system:
+    risk: CRITICAL
+    description: "Bypass a safety interlock or protection system"
+    requires_approval: true

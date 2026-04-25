@@ -1,0 +1,85 @@
+server: shopify
+description: "Shopify — products, customers, orders, discounts, collections (15 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "shopify-mcp-server"
+  registry: npm
+  transport: stdio
+  command: "npx -y shopify-mcp-server"
+tools:
+  # --- Products ---
+  get_products:
+    action: list
+    risk: READ-ONLY
+    description: "List products"
+  get_product:
+    action: read
+    risk: READ-ONLY
+    description: "Get product details"
+    target_from: productId
+  create_product:
+    action: create
+    risk: MEDIUM
+    description: "Create a new product"
+    target_from: title
+  update_product:
+    action: update
+    risk: MEDIUM
+    description: "Update a product"
+    target_from: productId
+  # --- Customers ---
+  get_customers:
+    action: list
+    risk: READ-ONLY
+    description: "List customers"
+  search_customers:
+    action: search
+    risk: READ-ONLY
+    description: "Search customers"
+    sql_mapping: false
+    target_from: query
+  # --- Orders ---
+  get_orders:
+    action: list
+    risk: READ-ONLY
+    description: "List orders"
+  get_order:
+    action: read
+    risk: READ-ONLY
+    description: "Get order details"
+    target_from: orderId
+  create_draft_order:
+    action: create
+    risk: MEDIUM
+    description: "Create a draft order"
+  complete_draft_order:
+    action: update
+    risk: HIGH
+    description: "Complete a draft order (triggers payment)"
+    target_from: draftOrderId
+  # --- Discounts ---
+  create_discount:
+    action: create
+    risk: MEDIUM
+    description: "Create a discount code"
+    target_from: code
+  get_discounts:
+    action: list
+    risk: READ-ONLY
+    description: "List discount codes"
+  # --- Collections ---
+  get_collections:
+    action: list
+    risk: READ-ONLY
+    description: "List product collections"
+  # --- Webhooks ---
+  manage_webhooks:
+    action: configure
+    risk: MEDIUM
+    description: "Create, list, or delete webhooks"
+  # --- Shop ---
+  get_shop_info:
+    action: read
+    risk: READ-ONLY
+    description: "Get shop information"

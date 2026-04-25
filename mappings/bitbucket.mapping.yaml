@@ -1,0 +1,73 @@
+server: bitbucket
+description: "Bitbucket repository and CI/CD"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "bitbucket-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_repositories:
+    action: list
+    risk: READ-ONLY
+    description: "List repositories"
+    target_from: workspace
+  get_repository:
+    action: read
+    risk: READ-ONLY
+    description: "Get repository"
+    target_from: repo_slug
+  create_repository:
+    action: create
+    risk: MEDIUM
+    description: "Create repository"
+    target_from: workspace
+    context_from:
+      repo_name: repo_name
+  delete_repository:
+    action: delete
+    risk: CRITICAL
+    description: "Delete repository"
+    target_from: repo_slug
+  list_pull_requests:
+    action: list
+    risk: READ-ONLY
+    description: "List pull requests"
+    target_from: repo_slug
+  create_pull_request:
+    action: create
+    risk: MEDIUM
+    description: "Create pull request"
+    target_from: repo_slug
+    context_from:
+      source_branch: source_branch
+      target_branch: target_branch
+      title: title
+  approve_pull_request:
+    action: approve
+    risk: MEDIUM
+    description: "Approve pull request"
+    target_from: pr_id
+  decline_pull_request:
+    action: delete
+    risk: MEDIUM
+    description: "Decline pull request"
+    target_from: pr_id
+  merge_pull_request:
+    action: execute
+    risk: HIGH
+    description: "Merge pull request"
+    target_from: pr_id
+  list_pipelines:
+    action: list
+    risk: READ-ONLY
+    description: "List pipelines"
+    target_from: repo_slug
+  trigger_pipeline:
+    action: execute
+    risk: HIGH
+    description: "Trigger pipeline"
+    target_from: repo_slug
+    context_from:
+      branch: branch

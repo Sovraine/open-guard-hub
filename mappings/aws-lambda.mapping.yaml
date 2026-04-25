@@ -1,0 +1,98 @@
+server: aws-lambda
+description: "AWS Lambda serverless functions"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "aws-lambda-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_functions:
+    action: list
+    risk: READ-ONLY
+    description: "List functions"
+  get_function:
+    action: read
+    risk: READ-ONLY
+    description: "Get function"
+    target_from: function_name
+  create_function:
+    action: create
+    risk: MEDIUM
+    description: "Create function"
+    target_from: function_name
+    context_from:
+      code: code
+      handler: handler
+      runtime: runtime
+  update_function_code:
+    action: update
+    risk: MEDIUM
+    description: "Update function code"
+    target_from: function_name
+    context_from:
+      code: code
+  update_function_config:
+    action: update
+    risk: MEDIUM
+    description: "Update function config"
+    target_from: function_name
+    context_from:
+      config: config
+  delete_function:
+    action: delete
+    risk: HIGH
+    description: "Delete function"
+    target_from: function_name
+  invoke:
+    action: execute
+    risk: MEDIUM
+    description: "Invoke function"
+    target_from: function_name
+    context_from:
+      payload: payload
+  list_versions:
+    action: list
+    risk: READ-ONLY
+    description: "List versions"
+    target_from: function_name
+  publish_version:
+    action: create
+    risk: MEDIUM
+    description: "Publish version"
+    target_from: function_name
+  create_alias:
+    action: create
+    risk: MEDIUM
+    description: "Create alias"
+    target_from: function_name
+    context_from:
+      alias_name: alias_name
+      version: version
+  update_alias:
+    action: update
+    risk: MEDIUM
+    description: "Update alias"
+    target_from: alias_name
+  delete_alias:
+    action: delete
+    risk: MEDIUM
+    description: "Delete alias"
+    target_from: alias_name
+  list_event_source_mappings:
+    action: list
+    risk: READ-ONLY
+    description: "List event sources"
+  create_event_source_mapping:
+    action: create
+    risk: MEDIUM
+    description: "Create event source"
+    target_from: function_name
+    context_from:
+      event_source: event_source
+  delete_event_source_mapping:
+    action: delete
+    risk: MEDIUM
+    description: "Delete event source"
+    target_from: uuid

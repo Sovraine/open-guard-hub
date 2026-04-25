@@ -1,0 +1,20 @@
+taxonomy_version: "2026.03.1"
+sub_sector: feature-flags
+sector: saas-tech
+
+verbs:
+  enable-feature:
+    risk: MEDIUM
+    description: "Enable a feature flag"
+  rollout-percentage:
+    risk: MEDIUM
+    description: "Set percentage rollout for a feature"
+  kill-switch:
+    risk: CRITICAL
+    description: "Activate kill switch to disable a feature globally"
+  target-segment:
+    risk: MEDIUM
+    description: "Target a specific user segment for a feature"
+  override-feature:
+    risk: HIGH
+    description: "Override a feature flag for a specific tenant or user"

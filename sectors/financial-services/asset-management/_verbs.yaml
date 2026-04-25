@@ -1,0 +1,28 @@
+taxonomy_version: "2026.03.1"
+sub_sector: asset-management
+sector: financial-services
+
+verbs:
+  liquidate-position:
+    risk: CRITICAL
+    description: "Liquidate an investment position"
+    reversible: false
+  rebalance-portfolio:
+    risk: HIGH
+    description: "Rebalance investment portfolio"
+  override-risk-limit:
+    risk: CRITICAL
+    description: "Override portfolio risk limit"
+    requires_approval: true
+  execute-trade:
+    risk: HIGH
+    description: "Execute a securities trade"
+  margin-call:
+    risk: CRITICAL
+    description: "Issue margin call to client"
+  suspend-trading:
+    risk: CRITICAL
+    description: "Suspend trading on an account"
+  modify-allocation:
+    risk: HIGH
+    description: "Modify asset allocation strategy"

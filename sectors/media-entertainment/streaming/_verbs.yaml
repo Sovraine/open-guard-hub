@@ -1,0 +1,24 @@
+taxonomy_version: "2026.03.1"
+sub_sector: streaming
+sector: media-entertainment
+
+verbs:
+  geo-block-content:
+    risk: HIGH
+    description: "Apply geographic blocking to content in specific regions"
+  remove-from-catalog:
+    risk: HIGH
+    description: "Remove content from the streaming catalog"
+  override-recommendation:
+    risk: MEDIUM
+    description: "Override the algorithmic recommendation for a user or segment"
+  throttle-stream:
+    risk: HIGH
+    description: "Throttle streaming bitrate or quality for a user or region"
+  grant-early-access:
+    risk: MEDIUM
+    description: "Grant early access to unreleased content"
+  revoke-license:
+    risk: CRITICAL
+    description: "Revoke a content distribution license"
+    requires_approval: true

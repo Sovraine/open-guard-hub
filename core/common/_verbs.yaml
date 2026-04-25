@@ -1,0 +1,158 @@
+taxonomy_version: "2026.03.1"
+domain: core/common
+description: Universal CRUD and lifecycle verbs inherited by ALL sectors
+
+verbs:
+  create:
+    risk: LOW
+    description: "Create a new resource or entity"
+    reversible: true
+    examples: ["Agent creates a new user account"]
+  read:
+    risk: READ-ONLY
+    description: "Read or view a resource"
+    reversible: true
+    examples: ["Agent reads configuration file"]
+  update:
+    risk: MEDIUM
+    description: "Modify an existing resource"
+    reversible: true
+    examples: ["Agent updates user profile"]
+  delete:
+    risk: HIGH
+    description: "Remove a resource permanently"
+    reversible: false
+    examples: ["Agent deletes a file from storage"]
+  list:
+    risk: READ-ONLY
+    description: "List multiple resources"
+    reversible: true
+    examples: ["Agent lists all running pods"]
+  search:
+    risk: READ-ONLY
+    description: "Search for resources matching criteria"
+    reversible: true
+    examples: ["Agent searches logs for errors"]
+  export:
+    risk: HIGH
+    description: "Export data outside the system"
+    reversible: false
+    examples: ["Agent exports customer database to CSV"]
+  import:
+    risk: MEDIUM
+    description: "Import data into the system"
+    reversible: true
+    examples: ["Agent imports configuration from file"]
+  archive:
+    risk: MEDIUM
+    description: "Archive a resource for long-term storage"
+    reversible: true
+    examples: ["Agent archives old project data"]
+  restore:
+    risk: MEDIUM
+    description: "Restore a previously archived resource"
+    reversible: true
+    examples: ["Agent restores backup from archive"]
+  approve:
+    risk: HIGH
+    description: "Approve a pending action or request"
+    reversible: true
+    examples: ["Agent approves deployment request"]
+  reject:
+    risk: MEDIUM
+    description: "Reject a pending action or request"
+    reversible: true
+    examples: ["Agent rejects access request"]
+  escalate:
+    risk: MEDIUM
+    description: "Escalate to higher authority"
+    reversible: true
+    examples: ["Agent escalates incident to on-call"]
+  assign:
+    risk: LOW
+    description: "Assign a resource or task to someone"
+    reversible: true
+    examples: ["Agent assigns ticket to developer"]
+  unassign:
+    risk: LOW
+    description: "Remove assignment from a resource"
+    reversible: true
+    examples: ["Agent unassigns ticket"]
+  enable:
+    risk: MEDIUM
+    description: "Enable a feature or service"
+    reversible: true
+    examples: ["Agent enables maintenance mode"]
+  disable:
+    risk: HIGH
+    description: "Disable a feature or service"
+    reversible: true
+    examples: ["Agent disables user account"]
+  configure:
+    risk: MEDIUM
+    description: "Change configuration settings"
+    reversible: true
+    examples: ["Agent configures logging level"]
+  execute:
+    risk: HIGH
+    description: "Execute a command or operation"
+    reversible: false
+    examples: ["Agent executes database migration"]
+  schedule:
+    risk: LOW
+    description: "Schedule a future action"
+    reversible: true
+    examples: ["Agent schedules backup for midnight"]
+  cancel:
+    risk: MEDIUM
+    description: "Cancel a scheduled or pending action"
+    reversible: false
+    examples: ["Agent cancels scheduled deployment"]
+  notify:
+    risk: LOW
+    description: "Send a notification"
+    reversible: false
+    examples: ["Agent sends alert to team channel"]
+  comment:
+    risk: LOW
+    description: "Add a comment to a resource"
+    reversible: true
+    examples: ["Agent comments on pull request"]
+  tag:
+    risk: LOW
+    description: "Add metadata tag to a resource"
+    reversible: true
+    examples: ["Agent tags resource with environment label"]
+  share:
+    risk: MEDIUM
+    description: "Share a resource with others"
+    reversible: true
+    examples: ["Agent shares document with team"]
+  clone:
+    risk: LOW
+    description: "Create a copy of a resource"
+    reversible: true
+    examples: ["Agent clones repository"]
+  lock:
+    risk: MEDIUM
+    description: "Lock a resource to prevent changes"
+    reversible: true
+    examples: ["Agent locks deployment configuration"]
+  unlock:
+    risk: MEDIUM
+    description: "Unlock a previously locked resource"
+    reversible: true
+    examples: ["Agent unlocks locked account"]
+  close:
+    risk: READ-ONLY
+    description: "Close a session, tab, or connection without data loss"
+    reversible: true
+    examples: ["Agent closes browser tab", "Agent closes database connection"]
+  unsubscribe:
+    risk: LOW
+    description: "Remove a subscription, follow, or like (reversible toggle)"
+    reversible: true
+    examples: ["Agent unfollows a channel", "Agent removes a bookmark"]
+  _detect:
+    risk: MEDIUM
+    description: "Auto-detect verb from tool input (e.g., SQL parsing)"

@@ -1,0 +1,12 @@
+name: manufacturing
+display_name: "Manufacturing & Industry"
+status: BETA
+regulations: [ISO_9001, REACH, safety_directives, GMP]
+cross_cutting:
+  - core/data-privacy
+  - core/audit-control
+  - core/change-management
+inherits: [core/common]
+overrides:
+  execute: { risk: HIGH }
+sub_sectors: [production, quality, supply-chain, maintenance]

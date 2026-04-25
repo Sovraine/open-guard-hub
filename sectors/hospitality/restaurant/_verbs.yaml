@@ -1,0 +1,24 @@
+taxonomy_version: "2026.03.1"
+sub_sector: restaurant
+sector: hospitality
+
+verbs:
+  flag-allergen:
+    risk: HIGH
+    description: "Flag an allergen presence in a menu item"
+  override-allergen-alert:
+    risk: CRITICAL
+    description: "Override an allergen alert for a menu item or order"
+    requires_approval: true
+  close-kitchen:
+    risk: CRITICAL
+    description: "Close the kitchen and halt food service"
+  modify-menu:
+    risk: LOW
+    description: "Modify the restaurant menu items or pricing"
+  void-check:
+    risk: HIGH
+    description: "Void a guest check or bill"
+  comp-meal:
+    risk: MEDIUM
+    description: "Comp a meal for a guest"

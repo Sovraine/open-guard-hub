@@ -1,0 +1,100 @@
+server: asana
+description: "Asana project management and task tracking"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "asana-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_workspaces:
+    action: list
+    risk: READ-ONLY
+    description: "List workspaces"
+  get_workspace:
+    action: read
+    risk: READ-ONLY
+    description: "Get workspace"
+    target_from: workspace_id
+  list_projects:
+    action: list
+    risk: READ-ONLY
+    description: "List projects"
+    target_from: workspace_id
+  get_project:
+    action: read
+    risk: READ-ONLY
+    description: "Get project"
+    target_from: project_id
+  create_project:
+    action: create
+    risk: MEDIUM
+    description: "Create project"
+    target_from: workspace_id
+    context_from:
+      name: name
+  delete_project:
+    action: delete
+    risk: HIGH
+    description: "Delete project"
+    target_from: project_id
+  list_tasks:
+    action: list
+    risk: READ-ONLY
+    description: "List tasks"
+    target_from: project_id
+  get_task:
+    action: read
+    risk: READ-ONLY
+    description: "Get task"
+    target_from: task_id
+  create_task:
+    action: create
+    risk: LOW
+    description: "Create task"
+    target_from: project_id
+    context_from:
+      name: name
+      assignee: assignee
+  update_task:
+    action: update
+    risk: MEDIUM
+    description: "Update task"
+    target_from: task_id
+    context_from:
+      fields: fields
+  delete_task:
+    action: delete
+    risk: MEDIUM
+    description: "Delete task"
+    target_from: task_id
+  list_sections:
+    action: list
+    risk: READ-ONLY
+    description: "List sections"
+    target_from: project_id
+  add_task_to_section:
+    action: create
+    risk: MEDIUM
+    description: "Add task to section"
+    target_from: task_id
+    context_from:
+      section_id: section_id
+  add_comment:
+    action: create
+    risk: LOW
+    description: "Add comment"
+    target_from: task_id
+    context_from:
+      text: text
+  list_teams:
+    action: list
+    risk: READ-ONLY
+    description: "List teams"
+    target_from: workspace_id
+  get_team:
+    action: read
+    risk: READ-ONLY
+    description: "Get team"
+    target_from: team_id

@@ -1,0 +1,91 @@
+server: aws-ec2
+description: "AWS EC2 compute instances"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "aws-ec2-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  describe_instances:
+    action: list
+    risk: READ-ONLY
+    description: "List instances"
+  get_instance:
+    action: read
+    risk: READ-ONLY
+    description: "Get instance details"
+    target_from: instance_id
+  run_instances:
+    action: create
+    risk: MEDIUM
+    description: "Launch instances"
+    context_from:
+      image_id: image_id
+      instance_type: instance_type
+  start_instances:
+    action: execute
+    risk: MEDIUM
+    description: "Start instances"
+    target_from: instance_id
+  stop_instances:
+    action: disable
+    risk: MEDIUM
+    description: "Stop instances"
+    target_from: instance_id
+  reboot_instances:
+    action: execute
+    risk: MEDIUM
+    description: "Reboot instances"
+    target_from: instance_id
+  terminate_instances:
+    action: delete
+    risk: CRITICAL
+    description: "Terminate instances"
+    target_from: instance_id
+  describe_security_groups:
+    action: list
+    risk: READ-ONLY
+    description: "List security groups"
+  authorize_security_group_ingress:
+    action: update
+    risk: HIGH
+    description: "Add ingress rule"
+    target_from: group_id
+    context_from:
+      rule: rule
+  revoke_security_group_ingress:
+    action: delete
+    risk: MEDIUM
+    description: "Remove ingress rule"
+    target_from: group_id
+  describe_volumes:
+    action: list
+    risk: READ-ONLY
+    description: "List volumes"
+  create_volume:
+    action: create
+    risk: MEDIUM
+    description: "Create volume"
+    context_from:
+      size: size
+      availability_zone: availability_zone
+  delete_volume:
+    action: delete
+    risk: HIGH
+    description: "Delete volume"
+    target_from: volume_id
+  attach_volume:
+    action: create
+    risk: MEDIUM
+    description: "Attach volume"
+    target_from: volume_id
+    context_from:
+      instance_id: instance_id
+      device: device
+  detach_volume:
+    action: delete
+    risk: MEDIUM
+    description: "Detach volume"
+    target_from: volume_id

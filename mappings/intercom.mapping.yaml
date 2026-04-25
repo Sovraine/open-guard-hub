@@ -1,0 +1,78 @@
+server: intercom
+description: "Intercom customer messaging platform"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "intercom-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_conversations:
+    action: list
+    risk: READ-ONLY
+    description: "List conversations"
+  get_conversation:
+    action: read
+    risk: READ-ONLY
+    description: "Get conversation"
+    target_from: conversation_id
+  create_conversation:
+    action: create
+    risk: LOW
+    description: "Create conversation"
+    context_from:
+      user_id: user_id
+      body: body
+  add_message:
+    action: create
+    risk: LOW
+    description: "Add message"
+    target_from: conversation_id
+    context_from:
+      body: body
+  close_conversation:
+    action: execute
+    risk: MEDIUM
+    description: "Close conversation"
+    target_from: conversation_id
+  reopen_conversation:
+    action: execute
+    risk: MEDIUM
+    description: "Reopen conversation"
+    target_from: conversation_id
+  assign_conversation:
+    action: assign
+    risk: MEDIUM
+    description: "Assign conversation"
+    target_from: conversation_id
+    context_from:
+      admin_id: admin_id
+  list_contacts:
+    action: list
+    risk: READ-ONLY
+    description: "List contacts"
+  get_contact:
+    action: read
+    risk: READ-ONLY
+    description: "Get contact"
+    target_from: contact_id
+  create_contact:
+    action: create
+    risk: MEDIUM
+    description: "Create contact"
+    context_from:
+      email: email
+      name: name
+  update_contact:
+    action: update
+    risk: MEDIUM
+    description: "Update contact"
+    target_from: contact_id
+    context_from:
+      fields: fields
+  delete_contact:
+    action: delete
+    risk: HIGH
+    description: "Delete contact"
+    target_from: contact_id

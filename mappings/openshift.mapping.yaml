@@ -1,0 +1,56 @@
+server: openshift
+description: "OpenShift/Kubernetes cluster management"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+
+tools:
+  get_resource:
+    action: get-resource
+    target_from: resource_type
+    context_from:
+      namespace: namespace
+    parser: params
+  list_resources:
+    action: list-resources
+    target_from: resource_type
+    context_from:
+      namespace: namespace
+    parser: params
+  create_resource:
+    action: create-resource
+    target_from: resource_type
+    context_from:
+      namespace: namespace
+    parser: params
+  delete_resource:
+    action: delete-resource
+    target_from: resource_type
+    context_from:
+      namespace: namespace
+    parser: params
+  scale_deployment:
+    action: scale
+    target_from: deployment_name
+    context_from:
+      namespace: namespace
+      replicas: replicas
+    parser: params
+  rollout_restart:
+    action: rollout-restart
+    target_from: deployment_name
+    context_from:
+      namespace: namespace
+    parser: params
+  exec_in_pod:
+    action: exec-in-pod
+    target_from: pod_name
+    context_from:
+      namespace: namespace
+      command: command
+    parser: params
+  apply_manifest:
+    action: apply-manifest
+    target_from: manifest
+    context_from:
+      namespace: namespace
+    parser: params

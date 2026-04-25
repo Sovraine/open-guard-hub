@@ -1,0 +1,11 @@
+name: hospitality
+display_name: "Hospitality & Tourism"
+status: BETA
+regulations: [PCI_DSS, health_safety, tourism_law]
+cross_cutting:
+  - core/data-privacy
+inherits: [core/common]
+overrides:
+  delete: { risk: MEDIUM }
+  export: { risk: MEDIUM }
+sub_sectors: [hotel, restaurant, events, travel]

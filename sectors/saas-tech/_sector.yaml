@@ -1,0 +1,12 @@
+name: saas-tech
+display_name: "SaaS & Technology"
+status: STABLE
+regulations: [SOC2, GDPR, CCPA]
+cross_cutting:
+  - core/data-privacy
+  - core/audit-control
+  - core/change-management
+inherits: [core/common]
+overrides:
+  delete: { risk: CRITICAL }
+sub_sectors: [tenant-management, billing, feature-flags, deployment, platform-ops]

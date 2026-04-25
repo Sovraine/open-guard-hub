@@ -1,0 +1,85 @@
+server: ansible
+description: "Ansible configuration management and orchestration"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "ansible-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_inventory:
+    action: list
+    risk: READ-ONLY
+    description: "List inventory hosts and groups"
+  list_playbooks:
+    action: list
+    risk: READ-ONLY
+    description: "List available playbooks"
+  get_playbook:
+    action: read
+    risk: READ-ONLY
+    description: "Get playbook content"
+    target_from: playbook_path
+  get_inventory:
+    action: read
+    risk: READ-ONLY
+    description: "Get inventory details"
+    target_from: inventory_file
+  run_playbook:
+    action: execute
+    risk: HIGH
+    description: "Execute an Ansible playbook"
+    target_from: playbook_path
+    context_from:
+      inventory: inventory
+      extra_vars: extra_vars
+  run_ad_hoc:
+    action: execute
+    risk: HIGH
+    description: "Run ad hoc Ansible command"
+    target_from: host_pattern
+    context_from:
+      module: module
+      args: args
+  validate_playbook:
+    action: read
+    risk: READ-ONLY
+    description: "Validate playbook syntax"
+    target_from: playbook_path
+  list_roles:
+    action: list
+    risk: READ-ONLY
+    description: "List available roles"
+  get_role:
+    action: read
+    risk: READ-ONLY
+    description: "Get role details"
+    target_from: role_name
+  get_host_vars:
+    action: read
+    risk: READ-ONLY
+    description: "Get host variables"
+    target_from: host_name
+  set_host_vars:
+    action: update
+    risk: MEDIUM
+    description: "Set host variables"
+    target_from: host_name
+    context_from:
+      variables: variables
+  create_playbook:
+    action: create
+    risk: MEDIUM
+    description: "Create a new playbook"
+    target_from: playbook_path
+  delete_playbook:
+    action: delete
+    risk: HIGH
+    description: "Delete a playbook"
+    target_from: playbook_path
+  check_mode:
+    action: read
+    risk: READ-ONLY
+    description: "Run playbook in check/dry-run mode"
+    target_from: playbook_path

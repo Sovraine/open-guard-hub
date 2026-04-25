@@ -1,0 +1,34 @@
+server: notion-database
+description: "Notion database sync and queries"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "notion-database-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  query_database:
+    action: search
+    risk: READ-ONLY
+    description: "Query database"
+    target_from: database_id
+    context_from:
+      filter: filter
+  get_page_properties:
+    action: read
+    risk: READ-ONLY
+    description: "Get page properties"
+    target_from: page_id
+  update_page_properties:
+    action: update
+    risk: MEDIUM
+    description: "Update page properties"
+    target_from: page_id
+    context_from:
+      properties: properties
+  sync_database:
+    action: execute
+    risk: MEDIUM
+    description: "Sync database"
+    target_from: database_id

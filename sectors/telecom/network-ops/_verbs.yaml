@@ -1,0 +1,32 @@
+taxonomy_version: "2026.03.1"
+sub_sector: network-ops
+sector: telecom
+
+verbs:
+  provision-line:
+    risk: MEDIUM
+    description: "Provision a new telecommunications line"
+  disconnect-line:
+    risk: HIGH
+    description: "Disconnect a customer line"
+  throttle-bandwidth:
+    risk: HIGH
+    description: "Throttle bandwidth for a customer or service"
+  intercept-communication:
+    risk: CRITICAL
+    description: "Enable lawful interception on a line"
+    requires_approval: true
+    regulatory_reference: "lawful interception directive"
+  allocate-spectrum:
+    risk: CRITICAL
+    description: "Allocate radio spectrum band"
+    requires_approval: true
+  override-billing:
+    risk: HIGH
+    description: "Override billing amount for customer"
+  suspend-service:
+    risk: HIGH
+    description: "Suspend telecom service for customer"
+  restore-service:
+    risk: MEDIUM
+    description: "Restore suspended telecom service"

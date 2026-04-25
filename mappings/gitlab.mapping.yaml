@@ -1,0 +1,90 @@
+server: gitlab
+description: "GitLab repository and project management"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "gitlab-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_projects:
+    action: list
+    risk: READ-ONLY
+    description: "List projects"
+  get_project:
+    action: read
+    risk: READ-ONLY
+    description: "Get project"
+    target_from: project_id
+  create_project:
+    action: create
+    risk: MEDIUM
+    description: "Create project"
+    target_from: project_name
+  delete_project:
+    action: delete
+    risk: CRITICAL
+    description: "Delete project"
+    target_from: project_id
+  list_issues:
+    action: list
+    risk: READ-ONLY
+    description: "List issues"
+    target_from: project_id
+  create_issue:
+    action: create
+    risk: LOW
+    description: "Create issue"
+    target_from: project_id
+    context_from:
+      title: title
+  delete_issue:
+    action: delete
+    risk: MEDIUM
+    description: "Delete issue"
+    target_from: issue_id
+  list_merge_requests:
+    action: list
+    risk: READ-ONLY
+    description: "List merge requests"
+    target_from: project_id
+  create_merge_request:
+    action: create
+    risk: MEDIUM
+    description: "Create merge request"
+    target_from: project_id
+    context_from:
+      source_branch: source_branch
+      target_branch: target_branch
+      title: title
+  merge_merge_request:
+    action: execute
+    risk: HIGH
+    description: "Merge merge request"
+    target_from: mr_id
+  close_merge_request:
+    action: delete
+    risk: MEDIUM
+    description: "Close merge request"
+    target_from: mr_id
+  list_members:
+    action: list
+    risk: READ-ONLY
+    description: "List project members"
+    target_from: project_id
+  add_member:
+    action: create
+    risk: MEDIUM
+    description: "Add project member"
+    target_from: project_id
+    context_from:
+      user_id: user_id
+      access_level: access_level
+  remove_member:
+    action: delete
+    risk: MEDIUM
+    description: "Remove project member"
+    target_from: project_id
+    context_from:
+      user_id: user_id

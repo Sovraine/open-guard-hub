@@ -1,0 +1,25 @@
+taxonomy_version: "2026.03.1"
+sub_sector: dealership
+sector: automotive
+
+verbs:
+  approve-financing:
+    risk: HIGH
+    description: "Approve a vehicle financing application"
+  override-credit-check:
+    risk: CRITICAL
+    description: "Override a failed credit check for vehicle financing"
+    requires_approval: true
+  process-trade-in:
+    risk: HIGH
+    description: "Process a vehicle trade-in valuation and transaction"
+  void-sale:
+    risk: CRITICAL
+    description: "Void a completed vehicle sale transaction"
+    requires_approval: true
+  modify-warranty:
+    risk: HIGH
+    description: "Modify warranty terms or coverage for a vehicle"
+  recall-notify:
+    risk: HIGH
+    description: "Send a safety recall notification to vehicle owners"

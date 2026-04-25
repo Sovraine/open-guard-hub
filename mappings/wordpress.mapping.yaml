@@ -1,0 +1,161 @@
+server: wordpress
+description: "WordPress content management system"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "wordpress-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_posts:
+    action: list
+    risk: READ-ONLY
+    description: "List posts"
+  get_post:
+    action: read
+    risk: READ-ONLY
+    description: "Get post content"
+    target_from: post_id
+  create_post:
+    action: create
+    risk: MEDIUM
+    description: "Create post"
+    context_from:
+      title: title
+      content: content
+      status: status
+  update_post:
+    action: update
+    risk: MEDIUM
+    description: "Update post"
+    target_from: post_id
+    context_from:
+      fields: fields
+  delete_post:
+    action: delete
+    risk: HIGH
+    description: "Delete post"
+    target_from: post_id
+  publish_post:
+    action: execute
+    risk: MEDIUM
+    description: "Publish post"
+    target_from: post_id
+  list_pages:
+    action: list
+    risk: READ-ONLY
+    description: "List pages"
+  get_page:
+    action: read
+    risk: READ-ONLY
+    description: "Get page content"
+    target_from: page_id
+  create_page:
+    action: create
+    risk: MEDIUM
+    description: "Create page"
+    context_from:
+      title: title
+      content: content
+  update_page:
+    action: update
+    risk: MEDIUM
+    description: "Update page"
+    target_from: page_id
+    context_from:
+      fields: fields
+  delete_page:
+    action: delete
+    risk: HIGH
+    description: "Delete page"
+    target_from: page_id
+  list_categories:
+    action: list
+    risk: READ-ONLY
+    description: "List categories"
+  create_category:
+    action: create
+    risk: MEDIUM
+    description: "Create category"
+    target_from: category_name
+  delete_category:
+    action: delete
+    risk: MEDIUM
+    description: "Delete category"
+    target_from: category_id
+  list_tags:
+    action: list
+    risk: READ-ONLY
+    description: "List tags"
+  create_tag:
+    action: create
+    risk: MEDIUM
+    description: "Create tag"
+    target_from: tag_name
+  delete_tag:
+    action: delete
+    risk: MEDIUM
+    description: "Delete tag"
+    target_from: tag_id
+  upload_media:
+    action: create
+    risk: MEDIUM
+    description: "Upload media file"
+    target_from: file
+  delete_media:
+    action: delete
+    risk: MEDIUM
+    description: "Delete media"
+    target_from: media_id
+  list_comments:
+    action: list
+    risk: READ-ONLY
+    description: "List comments"
+    target_from: post_id
+  create_comment:
+    action: create
+    risk: LOW
+    description: "Create comment"
+    target_from: post_id
+    context_from:
+      content: content
+  update_comment:
+    action: update
+    risk: MEDIUM
+    description: "Update comment"
+    target_from: comment_id
+    context_from:
+      content: content
+  delete_comment:
+    action: delete
+    risk: MEDIUM
+    description: "Delete comment"
+    target_from: comment_id
+  approve_comment:
+    action: approve
+    risk: MEDIUM
+    description: "Approve comment"
+    target_from: comment_id
+  spam_comment:
+    action: delete
+    risk: MEDIUM
+    description: "Mark comment as spam"
+    target_from: comment_id
+  list_users:
+    action: list
+    risk: READ-ONLY
+    description: "List users"
+  create_user:
+    action: create
+    risk: MEDIUM
+    description: "Create user"
+    context_from:
+      username: username
+      email: email
+      role: role
+  delete_user:
+    action: delete
+    risk: HIGH
+    description: "Delete user"
+    target_from: user_id

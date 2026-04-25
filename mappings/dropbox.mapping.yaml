@@ -1,0 +1,121 @@
+server: dropbox
+description: "Dropbox file management and sync"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "dropbox-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_files:
+    action: list
+    risk: READ-ONLY
+    description: "List files in folder"
+    target_from: folder_path
+  get_file_metadata:
+    action: read
+    risk: READ-ONLY
+    description: "Get file metadata"
+    target_from: file_path
+  download_file:
+    action: read
+    risk: READ-ONLY
+    description: "Download file content"
+    target_from: file_path
+  upload_file:
+    action: create
+    risk: MEDIUM
+    description: "Upload file"
+    target_from: file_path
+    context_from:
+      content: content
+  delete_file:
+    action: delete
+    risk: MEDIUM
+    description: "Delete file"
+    target_from: file_path
+  move_file:
+    action: update
+    risk: MEDIUM
+    description: "Move file"
+    target_from: file_path
+    context_from:
+      destination_path: destination_path
+  copy_file:
+    action: clone
+    risk: MEDIUM
+    description: "Copy file"
+    target_from: file_path
+    context_from:
+      destination_path: destination_path
+  create_folder:
+    action: create
+    risk: MEDIUM
+    description: "Create folder"
+    target_from: folder_path
+  delete_folder:
+    action: delete
+    risk: HIGH
+    description: "Delete folder"
+    target_from: folder_path
+  restore_file:
+    action: restore
+    risk: MEDIUM
+    description: "Restore deleted file"
+    target_from: file_path
+  get_file_revisions:
+    action: list
+    risk: READ-ONLY
+    description: "List file versions"
+    target_from: file_path
+  restore_file_version:
+    action: restore
+    risk: MEDIUM
+    description: "Restore specific file version"
+    target_from: file_path
+    context_from:
+      revision_id: revision_id
+  search_files:
+    action: search
+    risk: READ-ONLY
+    description: "Search for files"
+    context_from:
+      query: query
+      path: path
+  share_file:
+    action: share
+    risk: MEDIUM
+    description: "Create shared link for file"
+    target_from: file_path
+    context_from:
+      access_level: access_level
+  list_shared_links:
+    action: list
+    risk: READ-ONLY
+    description: "List file shared links"
+    target_from: file_path
+  revoke_shared_link:
+    action: delete
+    risk: MEDIUM
+    target_from: url
+    description: "Revoke shared link"
+    context_from:
+      url: url
+  get_space_usage:
+    action: read
+    risk: READ-ONLY
+    description: "Get account space usage"
+  batch_upload:
+    action: create
+    risk: MEDIUM
+    description: "Batch upload files"
+    context_from:
+      files: files
+  batch_delete:
+    action: delete
+    risk: HIGH
+    target_from: paths
+    description: "Batch delete files"
+    context_from:
+      paths: paths

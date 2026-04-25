@@ -1,0 +1,81 @@
+server: aws-dynamodb
+description: "AWS DynamoDB NoSQL database"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "aws-dynamodb-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_tables:
+    action: list
+    risk: READ-ONLY
+    description: "List tables"
+  get_table:
+    action: read
+    risk: READ-ONLY
+    description: "Get table"
+    target_from: table_name
+  create_table:
+    action: create
+    risk: MEDIUM
+    description: "Create table"
+    target_from: table_name
+    context_from:
+      key_schema: key_schema
+      attribute_definitions: attribute_definitions
+  delete_table:
+    action: delete
+    risk: HIGH
+    description: "Delete table"
+    target_from: table_name
+  put_item:
+    action: create
+    risk: MEDIUM
+    description: "Put item"
+    target_from: table_name
+    context_from:
+      item: item
+  get_item:
+    action: read
+    risk: READ-ONLY
+    description: "Get item"
+    target_from: table_name
+    context_from:
+      key: key
+  update_item:
+    action: update
+    risk: MEDIUM
+    description: "Update item"
+    target_from: table_name
+    context_from:
+      key: key
+      update_expression: update_expression
+  delete_item:
+    action: delete
+    risk: MEDIUM
+    description: "Delete item"
+    target_from: table_name
+    context_from:
+      key: key
+  query:
+    action: search
+    risk: READ-ONLY
+    description: "Query items"
+    target_from: table_name
+    context_from:
+      key_condition_expression: key_condition_expression
+  scan:
+    action: search
+    risk: READ-ONLY
+    description: "Scan table"
+    target_from: table_name
+  batch_get_item:
+    action: read
+    risk: READ-ONLY
+    description: "Batch get items"
+  batch_write_item:
+    action: execute
+    risk: MEDIUM
+    description: "Batch write items"

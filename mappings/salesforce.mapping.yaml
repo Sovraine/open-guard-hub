@@ -1,0 +1,273 @@
+server: salesforce
+description: "Salesforce DX — org management, metadata, DevOps, code analysis (47 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@salesforce/mcp"
+  registry: npm
+  transport: stdio
+  command: "npx -y @salesforce/mcp"
+tools:
+  # --- DX Core: Org Management ---
+  list_all_orgs:
+    action: list
+    risk: READ-ONLY
+    description: "List all configured Salesforce orgs"
+  get_username:
+    action: read
+    risk: READ-ONLY
+    description: "Determine appropriate username or org alias"
+  open_org:
+    action: read
+    risk: LOW
+    description: "Open a Salesforce org in the browser"
+    target_from: usernameOrAlias
+  create_scratch_org:
+    action: create
+    risk: HIGH
+    description: "Create a new scratch org"
+    target_from: alias
+    context_from:
+      devHub: devHub
+      edition: edition
+  delete_org:
+    action: delete
+    risk: HIGH
+    description: "Delete a locally authorized org"
+    target_from: usernameOrAlias
+  create_org_snapshot:
+    action: create
+    risk: MEDIUM
+    description: "Create a snapshot of a scratch org"
+    target_from: name
+    context_from:
+      sourceOrg: sourceOrg
+  assign_permission_set:
+    action: update
+    risk: HIGH
+    description: "Assign a permission set to org users"
+    target_from: permissionSetName
+    context_from:
+      usernameOrAlias: usernameOrAlias
+  # --- DX Core: Metadata ---
+  deploy_metadata:
+    action: create
+    risk: HIGH
+    description: "Deploy metadata to an org"
+    target_from: usernameOrAlias
+    context_from:
+      sourceDir: sourceDir
+  retrieve_metadata:
+    action: read
+    risk: LOW
+    description: "Retrieve metadata from an org"
+    target_from: usernameOrAlias
+  # --- DX Core: Testing ---
+  run_apex_test:
+    action: execute
+    risk: MEDIUM
+    description: "Run Apex tests in an org"
+    target_from: usernameOrAlias
+    context_from:
+      testLevel: testLevel
+  run_agent_test:
+    action: execute
+    risk: MEDIUM
+    description: "Run Agent tests in an org"
+    target_from: agentApiName
+    context_from:
+      usernameOrAlias: usernameOrAlias
+  run_soql_query:
+    action: read
+    risk: READ-ONLY
+    description: "Run a SOQL query against an org"
+    sql_mapping: false
+    target_from: query
+    context_from:
+      usernameOrAlias: usernameOrAlias
+  resume_tool_operation:
+    action: read
+    risk: LOW
+    description: "Resume a long-running operation"
+    target_from: resumableId
+  # --- Code Analyzer ---
+  run_code_analyzer:
+    action: execute
+    risk: LOW
+    description: "Run code analysis on source code"
+    target_from: target
+  describe_code_analyzer_rule:
+    action: read
+    risk: READ-ONLY
+    description: "Get details about a code analyzer rule"
+    target_from: ruleName
+  list_code_analyzer_rules:
+    action: list
+    risk: READ-ONLY
+    description: "List available code analyzer rules"
+  query_code_analyzer_results:
+    action: search
+    risk: READ-ONLY
+    description: "Query and filter code analysis results"
+    sql_mapping: false
+  get_ast_nodes_to_generate_xpath:
+    action: read
+    risk: READ-ONLY
+    description: "Generate AST nodes for XPath rules"
+    target_from: language
+    context_from:
+      sourceCode: sourceCode
+  create_custom_rule:
+    action: create
+    risk: LOW
+    description: "Create a custom code analyzer rule"
+    target_from: ruleName
+  # --- DevOps Center ---
+  list_devops_center_projects:
+    action: list
+    risk: READ-ONLY
+    description: "List DevOps Center projects"
+    target_from: usernameOrAlias
+  list_devops_center_work_items:
+    action: list
+    risk: READ-ONLY
+    description: "List work items for a project"
+    target_from: projectId
+    context_from:
+      usernameOrAlias: usernameOrAlias
+  create_devops_center_work_item:
+    action: create
+    risk: LOW
+    description: "Create a DevOps Center work item"
+    target_from: title
+    context_from:
+      projectId: projectId
+  promote_devops_center_work_item:
+    action: update
+    risk: HIGH
+    description: "Promote a work item to the next stage"
+    target_from: workItemId
+  detect_devops_center_merge_conflict:
+    action: read
+    risk: READ-ONLY
+    description: "Detect merge conflicts for a work item"
+    target_from: workItemId
+  resolve_devops_center_merge_conflict:
+    action: update
+    risk: HIGH
+    description: "Resolve merge conflicts"
+    target_from: workItemId
+  resolve_devops_center_deployment_failure:
+    action: read
+    risk: READ-ONLY
+    description: "Analyze deployment failure and suggest fixes"
+    target_from: workItemId
+  checkout_devops_center_work_item:
+    action: update
+    risk: LOW
+    description: "Check out a work item branch"
+    target_from: workItemId
+  commit_devops_center_work_item:
+    action: update
+    risk: MEDIUM
+    description: "Commit changes and register in DevOps Center"
+    target_from: workItemId
+    context_from:
+      commitMessage: commitMessage
+  update_devops_center_work_item_status:
+    action: update
+    risk: LOW
+    description: "Update work item status"
+    target_from: workItemId
+    context_from:
+      status: status
+  check_devops_center_commit_status:
+    action: read
+    risk: READ-ONLY
+    description: "Check commit status of a work item"
+    target_from: workItemId
+  create_devops_center_pull_request:
+    action: create
+    risk: MEDIUM
+    description: "Create a pull request for a work item"
+    target_from: workItemId
+  # --- Metadata Enrichment ---
+  enrich_metadata:
+    action: read
+    risk: READ-ONLY
+    description: "Analyze and enrich Salesforce metadata"
+    target_from: metadataType
+    context_from:
+      metadataName: metadataName
+  # --- Mobile ---
+  get_mobile_lwc_offline_analysis:
+    action: read
+    risk: READ-ONLY
+    description: "Analyze LWC components for offline capability"
+    target_from: componentPath
+  get_mobile_lwc_offline_guidance:
+    action: read
+    risk: READ-ONLY
+    description: "Get guidance for offline-capable LWC"
+    target_from: componentPath
+  create_mobile_lwc_barcode_scanner:
+    action: create
+    risk: LOW
+    description: "Create LWC with barcode scanner capability"
+    target_from: componentPath
+  create_mobile_lwc_biometrics:
+    action: create
+    risk: LOW
+    description: "Create LWC with biometric authentication"
+    target_from: componentPath
+  create_mobile_lwc_location:
+    action: create
+    risk: LOW
+    description: "Create LWC with location services"
+    target_from: componentPath
+  create_mobile_lwc_nfc:
+    action: create
+    risk: LOW
+    description: "Create LWC with NFC capability"
+    target_from: componentPath
+  create_mobile_lwc_contacts:
+    action: create
+    risk: LOW
+    description: "Create LWC with contacts integration"
+    target_from: componentPath
+  create_mobile_lwc_calendar:
+    action: create
+    risk: LOW
+    description: "Create LWC with calendar integration"
+    target_from: componentPath
+  create_mobile_lwc_document_scanner:
+    action: create
+    risk: LOW
+    description: "Create LWC with document scanner"
+    target_from: componentPath
+  create_mobile_lwc_payments:
+    action: create
+    risk: LOW
+    description: "Create LWC with mobile payments"
+    target_from: componentPath
+  create_mobile_lwc_geofencing:
+    action: create
+    risk: LOW
+    description: "Create LWC with geofencing"
+    target_from: componentPath
+  create_mobile_lwc_ar_space_capture:
+    action: create
+    risk: LOW
+    description: "Create LWC with AR space capture"
+    target_from: componentPath
+  create_mobile_lwc_app_review:
+    action: create
+    risk: LOW
+    description: "Create LWC with app review"
+    target_from: componentPath
+  # --- Scale Products ---
+  scan_apex_class_for_antipatterns:
+    action: read
+    risk: READ-ONLY
+    description: "Scan Apex classes for antipatterns"
+    target_from: apexClassName

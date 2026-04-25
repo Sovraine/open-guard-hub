@@ -1,0 +1,25 @@
+taxonomy_version: "2026.03.1"
+sub_sector: pricing
+sector: retail-ecommerce
+
+verbs:
+  set-price:
+    risk: MEDIUM
+    description: "Set the price of a product"
+  bulk-update-prices:
+    risk: CRITICAL
+    description: "Bulk update prices across the catalog"
+    reversible: false
+  apply-discount:
+    risk: MEDIUM
+    description: "Apply a discount to a product or order"
+  override-price:
+    risk: HIGH
+    description: "Override the listed price for a transaction"
+    requires_approval: true
+  set-dynamic-pricing:
+    risk: HIGH
+    description: "Configure dynamic pricing rules"
+  price-match:
+    risk: MEDIUM
+    description: "Match a competitor's price"

@@ -1,0 +1,26 @@
+taxonomy_version: "2026.03.1"
+sub_sector: compliance
+sector: legal
+
+verbs:
+  file-regulatory-report:
+    risk: HIGH
+    description: "File a report with a regulatory authority"
+  submit-disclosure:
+    risk: HIGH
+    description: "Submit a mandatory disclosure"
+  override-compliance-check:
+    risk: CRITICAL
+    description: "Override an automated compliance check"
+    requires_approval: true
+  waive-requirement:
+    risk: CRITICAL
+    description: "Waive a compliance requirement"
+    requires_approval: true
+  certify-compliance:
+    risk: HIGH
+    description: "Certify compliance with a regulation or standard"
+  revoke-certification:
+    risk: CRITICAL
+    description: "Revoke a compliance certification"
+    reversible: false

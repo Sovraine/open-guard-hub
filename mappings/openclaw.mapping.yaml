@@ -1,0 +1,293 @@
+server: openclaw
+description: "OpenClaw — personal AI assistant built-in tools (~50 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "openclaw"
+  registry: npm
+  transport: stdio
+  homepage: "https://github.com/openclaw/openclaw"
+tools:
+  # ---------------------------------------------------------------------------
+  # Core File & Command Tools
+  # ---------------------------------------------------------------------------
+  exec:
+    action: execute
+    risk: CRITICAL
+    description: "Execute shell commands in sandbox or host"
+    target_from: command
+  elevated:
+    action: execute
+    risk: CRITICAL
+    description: "Execute commands on gateway host (bypasses sandbox)"
+    target_from: command
+  system_run:
+    action: execute
+    risk: CRITICAL
+    description: "Execute system-level commands (platform-specific)"
+    target_from: command
+  read:
+    action: read
+    risk: READ-ONLY
+    description: "Read file contents within workspace"
+    target_from: path
+  write:
+    action: create
+    risk: MEDIUM
+    description: "Create or overwrite files in workspace"
+    target_from: path
+    context_from:
+      content: content
+  edit:
+    action: update
+    risk: MEDIUM
+    description: "Modify existing files line-by-line in workspace"
+    target_from: path
+  apply_patch:
+    action: update
+    risk: MEDIUM
+    description: "Apply multi-file unified diff patches"
+    target_from: patch
+  diffs:
+    action: read
+    risk: READ-ONLY
+    description: "Create diff viewers and render changes as artifacts"
+
+  # ---------------------------------------------------------------------------
+  # Web Search Tools
+  # ---------------------------------------------------------------------------
+  web_search:
+    action: search
+    risk: LOW
+    description: "Generic web search (multiple backends)"
+    target_from: query
+  brave_search:
+    action: search
+    risk: LOW
+    description: "Brave Search API integration"
+    target_from: query
+  duckduckgo_search:
+    action: search
+    risk: LOW
+    description: "DuckDuckGo search (unofficial)"
+    target_from: query
+  exa_search:
+    action: search
+    risk: LOW
+    description: "Exa AI semantic search"
+    target_from: query
+  gemini_search:
+    action: search
+    risk: LOW
+    description: "Google Gemini with live search grounding"
+    target_from: query
+  grok_search:
+    action: search
+    risk: LOW
+    description: "xAI Grok search with AI-synthesized answers"
+    target_from: query
+  kimi_search:
+    action: search
+    risk: LOW
+    description: "Moonshot Kimi search"
+    target_from: query
+  perplexity_search:
+    action: search
+    risk: LOW
+    description: "Perplexity Search API"
+    target_from: query
+  tavily_search:
+    action: search
+    risk: LOW
+    description: "Tavily AI-optimized search"
+    target_from: query
+
+  # ---------------------------------------------------------------------------
+  # Web Content & Document Tools
+  # ---------------------------------------------------------------------------
+  web_fetch:
+    action: read
+    risk: LOW
+    description: "HTTP GET — extract readable content as markdown"
+    target_from: url
+  firecrawl:
+    action: read
+    risk: MEDIUM
+    description: "Web scraping with bot circumvention and JS support"
+    target_from: url
+  pdf:
+    action: read
+    risk: LOW
+    description: "Analyze PDF documents with text extraction"
+    target_from: path
+  image:
+    action: read
+    risk: LOW
+    description: "Image analysis and understanding"
+    target_from: path
+
+  # ---------------------------------------------------------------------------
+  # Browser Automation
+  # ---------------------------------------------------------------------------
+  browser:
+    action: execute
+    risk: HIGH
+    description: "Full Chromium automation with navigation, clicks, typing"
+    target_from: url
+  browser_login:
+    action: execute
+    risk: HIGH
+    description: "Credential handling and login automation"
+    target_from: url
+  browser_snapshot:
+    action: read
+    risk: READ-ONLY
+    description: "Capture UI tree with element references"
+  browser_screenshot:
+    action: read
+    risk: READ-ONLY
+    description: "Capture rendered pixels of pages"
+
+  # ---------------------------------------------------------------------------
+  # Agent & Session Coordination
+  # ---------------------------------------------------------------------------
+  sessions_list:
+    action: list
+    risk: READ-ONLY
+    description: "Discover active agent sessions"
+  sessions_history:
+    action: read
+    risk: READ-ONLY
+    description: "Fetch session transcripts and logs"
+  sessions_send:
+    action: send
+    risk: LOW
+    description: "Send messages to other agent sessions"
+    target_from: session_id
+    context_from:
+      message: message
+  sessions_spawn:
+    action: create
+    risk: MEDIUM
+    description: "Spawn background sub-agents for task delegation"
+    target_from: agent
+  agents_list:
+    action: list
+    risk: READ-ONLY
+    description: "List all configured agents"
+  agent_send:
+    action: send
+    risk: LOW
+    description: "Execute single agent turns with message delivery"
+    target_from: agent
+    context_from:
+      message: message
+  subagents:
+    action: execute
+    risk: MEDIUM
+    description: "Manage background sub-agent runs"
+    target_from: agent
+  acp_agents:
+    action: execute
+    risk: CRITICAL
+    description: "Run external agent harnesses (Claude Code, Codex, etc.)"
+    target_from: harness
+
+  # ---------------------------------------------------------------------------
+  # Communication & User Interaction
+  # ---------------------------------------------------------------------------
+  message:
+    action: send
+    risk: LOW
+    description: "Send messages across channels (Discord, Slack, Telegram, etc.)"
+    target_from: channel
+    context_from:
+      text: text
+  reactions:
+    action: update
+    risk: LOW
+    description: "Add/remove emoji reactions to messages"
+    target_from: message_id
+  system_notify:
+    action: send
+    risk: LOW
+    description: "Send system notifications"
+    target_from: message
+  btw:
+    action: read
+    risk: READ-ONLY
+    description: "Ask ephemeral side questions without affecting context"
+
+  # ---------------------------------------------------------------------------
+  # Automation & System
+  # ---------------------------------------------------------------------------
+  cron:
+    action: configure
+    risk: MEDIUM
+    description: "Manage scheduled jobs and automated triggers"
+    target_from: schedule
+  gateway:
+    action: configure
+    risk: HIGH
+    description: "Gateway restart and lifecycle management"
+  nodes:
+    action: execute
+    risk: HIGH
+    description: "Discover and target paired devices for remote execution"
+    target_from: node
+  canvas:
+    action: update
+    risk: LOW
+    description: "Drive Canvas visual workspace"
+    target_from: action
+
+  # ---------------------------------------------------------------------------
+  # AI & Processing
+  # ---------------------------------------------------------------------------
+  thinking:
+    action: configure
+    risk: READ-ONLY
+    description: "Control AI reasoning levels"
+  llm_task:
+    action: execute
+    risk: LOW
+    description: "Run JSON-only LLM tasks with schema validation"
+    target_from: prompt
+  tts:
+    action: execute
+    risk: LOW
+    description: "Text-to-speech conversion"
+    target_from: text
+
+  # ---------------------------------------------------------------------------
+  # Skills & Plugins
+  # ---------------------------------------------------------------------------
+  skills:
+    action: execute
+    risk: HIGH
+    description: "Load and execute custom skills (potential untrusted code)"
+    target_from: skill
+  clawhub:
+    action: execute
+    risk: HIGH
+    description: "Public registry for discovering and installing skills (untrusted code)"
+    target_from: query
+  plugin:
+    action: execute
+    risk: HIGH
+    description: "Plugin system for extending OpenClaw"
+    target_from: plugin
+
+  # ---------------------------------------------------------------------------
+  # Developer & Workflow
+  # ---------------------------------------------------------------------------
+  lobster:
+    action: execute
+    risk: MEDIUM
+    description: "Typed workflow runtime for multi-step tool sequences"
+    target_from: workflow
+  image_generate:
+    action: create
+    risk: MEDIUM
+    description: "Image generation and editing"
+    target_from: prompt

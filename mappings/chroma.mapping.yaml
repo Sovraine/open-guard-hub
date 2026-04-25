@@ -1,0 +1,92 @@
+server: chroma
+description: "Chroma — vector database collection and document management (13 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "chroma-mcp"
+  registry: pypi
+  transport: stdio
+  command: "uvx chroma-mcp"
+tools:
+  # --- Collection Management ---
+  chroma_list_collections:
+    action: list
+    risk: READ-ONLY
+    description: "List all collection names with pagination"
+  chroma_create_collection:
+    action: create
+    risk: LOW
+    description: "Create a new collection with configurable HNSW params"
+    target_from: collection_name
+    context_from:
+      embedding_function_name: embedding_function_name
+  chroma_peek_collection:
+    action: read
+    risk: READ-ONLY
+    description: "Peek at documents in a collection"
+    target_from: collection_name
+  chroma_get_collection_info:
+    action: read
+    risk: READ-ONLY
+    description: "Get information about a collection"
+    target_from: collection_name
+  chroma_get_collection_count:
+    action: read
+    risk: READ-ONLY
+    description: "Get the number of documents in a collection"
+    target_from: collection_name
+  chroma_modify_collection:
+    action: update
+    risk: LOW
+    description: "Modify a collection's name or metadata"
+    target_from: collection_name
+    context_from:
+      new_name: new_name
+  chroma_fork_collection:
+    action: create
+    risk: LOW
+    description: "Fork a collection into a new one"
+    target_from: collection_name
+    context_from:
+      new_collection_name: new_collection_name
+  chroma_delete_collection:
+    action: delete
+    risk: HIGH
+    description: "Delete a collection"
+    target_from: collection_name
+  # --- Document Management ---
+  chroma_add_documents:
+    action: create
+    risk: MEDIUM
+    description: "Add documents to a collection"
+    target_from: collection_name
+    context_from:
+      ids: ids
+  chroma_query_documents:
+    action: search
+    risk: READ-ONLY
+    description: "Query documents with advanced filtering"
+    sql_mapping: false
+    target_from: collection_name
+    context_from:
+      query_texts: query_texts
+      n_results: n_results
+  chroma_get_documents:
+    action: read
+    risk: READ-ONLY
+    description: "Get documents with optional filtering"
+    target_from: collection_name
+  chroma_update_documents:
+    action: update
+    risk: MEDIUM
+    description: "Update documents in a collection"
+    target_from: collection_name
+    context_from:
+      ids: ids
+  chroma_delete_documents:
+    action: delete
+    risk: MEDIUM
+    description: "Delete documents from a collection"
+    target_from: collection_name
+    context_from:
+      ids: ids

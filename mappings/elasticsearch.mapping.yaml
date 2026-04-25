@@ -1,0 +1,157 @@
+server: elasticsearch
+description: "Elasticsearch search and analytics engine"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "elasticsearch-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_indices:
+    action: list
+    risk: READ-ONLY
+    description: "List all indices"
+  get_index:
+    action: read
+    risk: READ-ONLY
+    description: "Get index details"
+    target_from: index_name
+  create_index:
+    action: create
+    risk: MEDIUM
+    description: "Create new index"
+    target_from: index_name
+    context_from:
+      settings: settings
+  delete_index:
+    action: delete
+    risk: HIGH
+    description: "Delete index"
+    target_from: index_name
+  put_mapping:
+    action: update
+    risk: MEDIUM
+    description: "Set index mapping"
+    target_from: index_name
+    context_from:
+      mapping: mapping
+  get_mapping:
+    action: read
+    risk: READ-ONLY
+    description: "Get index mapping"
+    target_from: index_name
+  search:
+    action: search
+    risk: READ-ONLY
+    description: "Search documents"
+    target_from: index_name
+    context_from:
+      query: query
+  search_all:
+    action: search
+    risk: READ-ONLY
+    description: "Search across all indices"
+    context_from:
+      query: query
+  index_document:
+    action: create
+    risk: MEDIUM
+    description: "Index a document"
+    target_from: index_name
+    context_from:
+      document: document
+  update_document:
+    action: update
+    risk: MEDIUM
+    description: "Update indexed document"
+    target_from: index_name
+    context_from:
+      doc_id: doc_id
+      document: document
+  delete_document:
+    action: delete
+    risk: MEDIUM
+    description: "Delete document"
+    target_from: index_name
+    context_from:
+      doc_id: doc_id
+  get_document:
+    action: read
+    risk: READ-ONLY
+    description: "Get document by ID"
+    target_from: index_name
+    context_from:
+      doc_id: doc_id
+  bulk_index:
+    action: create
+    risk: MEDIUM
+    description: "Bulk index documents"
+    target_from: index_name
+    context_from:
+      documents: documents
+  bulk_delete:
+    action: delete
+    risk: HIGH
+    description: "Bulk delete documents"
+    target_from: index_name
+    context_from:
+      query: query
+  count:
+    action: read
+    risk: READ-ONLY
+    description: "Count matching documents"
+    target_from: index_name
+    context_from:
+      query: query
+  exists_document:
+    action: read
+    risk: READ-ONLY
+    description: "Check if document exists"
+    target_from: index_name
+    context_from:
+      doc_id: doc_id
+  list_templates:
+    action: list
+    risk: READ-ONLY
+    description: "List index templates"
+  create_template:
+    action: create
+    risk: MEDIUM
+    description: "Create index template"
+    target_from: template_name
+    context_from:
+      template: template
+  delete_template:
+    action: delete
+    risk: HIGH
+    description: "Delete index template"
+    target_from: template_name
+  refresh_index:
+    action: execute
+    risk: MEDIUM
+    description: "Refresh index"
+    target_from: index_name
+  flush_index:
+    action: execute
+    risk: MEDIUM
+    description: "Flush index"
+    target_from: index_name
+  force_merge:
+    action: execute
+    risk: HIGH
+    description: "Force merge index segments"
+    target_from: index_name
+  clear_cache:
+    action: execute
+    risk: MEDIUM
+    description: "Clear index cache"
+    target_from: index_name
+  get_cluster_health:
+    action: read
+    risk: READ-ONLY
+    description: "Get cluster health status"
+  get_cluster_stats:
+    action: read
+    risk: READ-ONLY
+    description: "Get cluster statistics"

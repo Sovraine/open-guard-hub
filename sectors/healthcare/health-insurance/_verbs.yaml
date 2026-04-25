@@ -1,0 +1,26 @@
+taxonomy_version: "2026.03.1"
+sub_sector: health-insurance
+sector: healthcare
+
+verbs:
+  deny-coverage:
+    risk: CRITICAL
+    description: "Deny health insurance coverage for a procedure"
+    requires_approval: true
+  approve-preauthorization:
+    risk: HIGH
+    description: "Approve a preauthorization request"
+  revoke-preauthorization:
+    risk: CRITICAL
+    description: "Revoke a previously approved preauthorization"
+    requires_approval: true
+  adjust-benefit:
+    risk: HIGH
+    description: "Adjust benefit levels or coverage terms"
+  terminate-coverage:
+    risk: CRITICAL
+    description: "Terminate health insurance coverage"
+    requires_approval: true
+  override-formulary:
+    risk: HIGH
+    description: "Override formulary restrictions for a medication"

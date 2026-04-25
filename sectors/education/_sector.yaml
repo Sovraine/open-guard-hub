@@ -1,0 +1,11 @@
+name: education
+display_name: "Education & Research"
+status: BETA
+regulations: [FERPA, COPPA, GDPR, research_ethics]
+cross_cutting:
+  - core/data-privacy
+  - core/audit-control
+inherits: [core/common]
+overrides:
+  delete: { risk: CRITICAL }
+sub_sectors: [academic, e-learning, research, student-services]

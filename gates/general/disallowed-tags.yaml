@@ -1,0 +1,63 @@
+# Source: gatekeeper-library/src/general/disallowedtags
+# License: Apache-2.0 (CNCF)
+# Open-Guard mapping: actions=["create","update"], targets=["pod"], verdict=DENY
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8sdisallowedtags
+  annotations:
+    metadata.gatekeeper.sh/title: "Disallowed Tags"
+    metadata.gatekeeper.sh/version: 1.0.1
+    description: >-
+      Requires container images to have an image tag different from the ones
+      specified. Prevents usage of 'latest' or other mutable tags.
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sDisallowedTags
+      validation:
+        openAPIV3Schema:
+          type: object
+          properties:
+            exemptImages:
+              description: Images excluded from enforcement.
+              type: array
+              items:
+                type: string
+            tags:
+              description: Disallowed container image tags.
+              type: array
+              items:
+                type: string
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8sdisallowedtags
+
+        import data.lib.exempt_container.is_exempt
+
+        violation[{"msg": msg}] {
+            container := input_containers[_]
+            not is_exempt(container)
+            tag := [x | x := split(container.image, ":")[1]]
+            disallowed := {x | x := input.parameters.tags[_]}
+            tag_value := tag[_]
+            disallowed[tag_value]
+            msg := sprintf("Container <%v> uses a disallowed tag <%v>; disallowed tags are %v", [container.name, tag_value, disallowed])
+        }
+
+        violation[{"msg": msg}] {
+            container := input_containers[_]
+            not is_exempt(container)
+            not contains(container.image, ":")
+            msg := sprintf("Container <%v> has no image tag (implicit :latest is disallowed)", [container.name])
+        }
+
+        input_containers[c] {
+            c := input.review.object.spec.containers[_]
+        }
+
+        input_containers[c] {
+            c := input.review.object.spec.initContainers[_]
+        }

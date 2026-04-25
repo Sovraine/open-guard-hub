@@ -1,0 +1,129 @@
+server: puppeteer
+description: "Puppeteer browser automation"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "puppeteer-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  launch_browser:
+    action: create
+    risk: MEDIUM
+    description: "Launch a new browser instance"
+  close_browser:
+    action: close
+    risk: LOW
+    description: "Close browser instance"
+    target_from: browser_id
+  open_page:
+    action: create
+    risk: MEDIUM
+    description: "Open a new page"
+    target_from: browser_id
+    context_from:
+      url: url
+  close_page:
+    action: close
+    risk: LOW
+    description: "Close a page"
+    target_from: page_id
+  navigate:
+    action: execute
+    risk: MEDIUM
+    description: "Navigate to URL"
+    target_from: page_id
+    context_from:
+      url: url
+  wait_for_navigation:
+    action: read
+    risk: READ-ONLY
+    description: "Wait for page navigation to complete"
+    target_from: page_id
+  get_page_content:
+    action: read
+    risk: READ-ONLY
+    description: "Get page HTML content"
+    target_from: page_id
+  get_page_text:
+    action: read
+    risk: READ-ONLY
+    description: "Get page text content"
+    target_from: page_id
+  take_screenshot:
+    action: export
+    risk: MEDIUM
+    description: "Take page screenshot"
+    target_from: page_id
+  evaluate_script:
+    action: execute
+    risk: HIGH
+    description: "Execute JavaScript in page"
+    target_from: page_id
+    context_from:
+      script: script
+  fill_form:
+    action: update
+    risk: MEDIUM
+    description: "Fill form fields"
+    target_from: page_id
+    context_from:
+      form_data: form_data
+  click_element:
+    action: execute
+    risk: MEDIUM
+    description: "Click an element"
+    target_from: page_id
+    context_from:
+      selector: selector
+  submit_form:
+    action: execute
+    risk: MEDIUM
+    description: "Submit a form"
+    target_from: page_id
+    context_from:
+      form_selector: form_selector
+  wait_for_element:
+    action: read
+    risk: READ-ONLY
+    description: "Wait for element to appear"
+    target_from: page_id
+    context_from:
+      selector: selector
+  get_element_text:
+    action: read
+    risk: READ-ONLY
+    description: "Get element text content"
+    target_from: page_id
+    context_from:
+      selector: selector
+  set_cookies:
+    action: create
+    risk: MEDIUM
+    description: "Set cookies"
+    target_from: page_id
+    context_from:
+      cookies: cookies
+  get_cookies:
+    action: read
+    risk: READ-ONLY
+    description: "Get page cookies"
+    target_from: page_id
+  clear_cookies:
+    action: delete
+    risk: MEDIUM
+    description: "Clear page cookies"
+    target_from: page_id
+  set_user_agent:
+    action: configure
+    risk: LOW
+    description: "Set user agent string"
+    target_from: page_id
+    context_from:
+      user_agent: user_agent
+  intercept_request:
+    action: configure
+    risk: MEDIUM
+    description: "Intercept network requests"
+    target_from: page_id

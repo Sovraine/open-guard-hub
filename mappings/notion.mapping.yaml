@@ -1,0 +1,129 @@
+server: notion
+description: "Notion — official API for pages, databases, blocks, comments (22 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@notionhq/notion-mcp-server"
+  registry: npm
+  transport: stdio
+  command: "npx -y @notionhq/notion-mcp-server"
+tools:
+  API-get-user:
+    action: read
+    risk: READ-ONLY
+    description: "Get a Notion user by ID"
+    target_from: user_id
+  API-get-users:
+    action: list
+    risk: READ-ONLY
+    description: "List all Notion users"
+  API-get-self:
+    action: read
+    risk: READ-ONLY
+    description: "Get the current bot user"
+  API-post-search:
+    action: search
+    risk: READ-ONLY
+    description: "Search pages and databases"
+    target_from: query
+  API-get-block-children:
+    action: read
+    risk: READ-ONLY
+    description: "Get child blocks of a block"
+    target_from: block_id
+  API-patch-block-children:
+    action: update
+    risk: MEDIUM
+    description: "Append child blocks to a block"
+    target_from: block_id
+    context_from:
+      children: children
+  API-retrieve-a-block:
+    action: read
+    risk: READ-ONLY
+    description: "Retrieve a block by ID"
+    target_from: block_id
+  API-update-a-block:
+    action: update
+    risk: MEDIUM
+    description: "Update a block"
+    target_from: block_id
+    context_from:
+      type: type
+  API-delete-a-block:
+    action: delete
+    risk: HIGH
+    description: "Delete a block"
+    target_from: block_id
+  API-retrieve-a-page:
+    action: read
+    risk: READ-ONLY
+    description: "Retrieve a page by ID"
+    target_from: page_id
+  API-patch-page:
+    action: update
+    risk: MEDIUM
+    description: "Update page properties"
+    target_from: page_id
+  API-post-page:
+    action: create
+    risk: LOW
+    description: "Create a new page"
+    target_from: parent
+    context_from:
+      properties: properties
+  API-retrieve-a-page-property:
+    action: read
+    risk: READ-ONLY
+    description: "Retrieve a page property value"
+    target_from: page_id
+    context_from:
+      property_id: property_id
+  API-retrieve-a-comment:
+    action: read
+    risk: READ-ONLY
+    description: "Retrieve comments on a block"
+    target_from: block_id
+  API-create-a-comment:
+    action: create
+    risk: LOW
+    description: "Create a comment on a page or discussion"
+    target_from: parent
+  API-query-data-source:
+    action: search
+    risk: READ-ONLY
+    description: "Query a data source (database) with filters and sorts"
+    sql_mapping: false
+    target_from: data_source_id
+  API-retrieve-a-data-source:
+    action: read
+    risk: READ-ONLY
+    description: "Retrieve a data source by ID"
+    target_from: data_source_id
+  API-update-a-data-source:
+    action: update
+    risk: MEDIUM
+    description: "Update a data source title, description, or properties"
+    target_from: data_source_id
+  API-create-a-data-source:
+    action: create
+    risk: MEDIUM
+    description: "Create a new data source (database)"
+    target_from: parent
+  API-list-data-source-templates:
+    action: list
+    risk: READ-ONLY
+    description: "List data source templates"
+    target_from: data_source_id
+  API-retrieve-a-database:
+    action: read
+    risk: READ-ONLY
+    description: "Retrieve a database by ID"
+    target_from: database_id
+  API-move-page:
+    action: update
+    risk: MEDIUM
+    description: "Move a page to a different parent"
+    target_from: page_id
+    context_from:
+      parent: parent

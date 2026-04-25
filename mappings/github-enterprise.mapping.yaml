@@ -1,0 +1,44 @@
+server: github-enterprise
+description: "GitHub Enterprise server integration"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "github-enterprise-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_repositories:
+    action: list
+    risk: READ-ONLY
+    description: "List repositories"
+  get_repository:
+    action: read
+    risk: READ-ONLY
+    description: "Get repository"
+    target_from: repo_name
+  create_repository:
+    action: create
+    risk: MEDIUM
+    description: "Create repository"
+    target_from: repo_name
+  delete_repository:
+    action: delete
+    risk: CRITICAL
+    description: "Delete repository"
+    target_from: repo_name
+  list_users:
+    action: list
+    risk: READ-ONLY
+    description: "List users"
+  create_user:
+    action: create
+    risk: MEDIUM
+    description: "Create user"
+    context_from:
+      username: username
+  delete_user:
+    action: delete
+    risk: CRITICAL
+    description: "Delete user"
+    target_from: user_id

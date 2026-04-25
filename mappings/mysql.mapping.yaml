@@ -1,0 +1,155 @@
+server: mysql
+description: "MySQL relational database operations"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "mysql-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_databases:
+    action: list
+    risk: READ-ONLY
+    description: "List all databases"
+  list_tables:
+    action: list
+    risk: READ-ONLY
+    description: "List tables in database"
+    target_from: database_name
+  get_table_structure:
+    action: read
+    risk: READ-ONLY
+    description: "Get table schema and structure"
+    target_from: table_name
+    context_from:
+      database: database
+  execute_query:
+    action: _detect
+    risk: HIGH
+    parser: sql
+    description: "Execute SQL query"
+    target_from: database_name
+    sql_mapping:
+      SELECT: read
+      INSERT: create
+      UPDATE: update
+      DELETE: delete
+      DROP: delete
+      CREATE: create
+      ALTER: update
+    context_from:
+      query: query
+  select:
+    action: read
+    risk: READ-ONLY
+    description: "Execute SELECT query"
+    target_from: table_name
+    context_from:
+      database: database
+      columns: columns
+      where: where
+  insert:
+    action: create
+    risk: MEDIUM
+    description: "Insert rows into table"
+    target_from: table_name
+    context_from:
+      database: database
+      values: values
+  update:
+    action: update
+    risk: MEDIUM
+    description: "Update rows in table"
+    target_from: table_name
+    context_from:
+      database: database
+      where: where
+      values: values
+  delete:
+    action: delete
+    risk: HIGH
+    description: "Delete rows from table"
+    target_from: table_name
+    context_from:
+      database: database
+      where: where
+  create_table:
+    action: create
+    risk: MEDIUM
+    description: "Create new table"
+    target_from: table_name
+    context_from:
+      database: database
+      schema: schema
+  alter_table:
+    action: update
+    risk: HIGH
+    description: "Modify table structure"
+    target_from: table_name
+    context_from:
+      database: database
+      changes: changes
+  drop_table:
+    action: delete
+    risk: HIGH
+    description: "Drop table"
+    target_from: table_name
+    context_from:
+      database: database
+  create_index:
+    action: create
+    risk: MEDIUM
+    description: "Create index on table"
+    target_from: table_name
+    context_from:
+      database: database
+      index_name: index_name
+      columns: columns
+  drop_index:
+    action: delete
+    risk: MEDIUM
+    description: "Drop index"
+    target_from: table_name
+    context_from:
+      database: database
+      index_name: index_name
+  list_indexes:
+    action: list
+    risk: READ-ONLY
+    description: "List table indexes"
+    target_from: table_name
+    context_from:
+      database: database
+  create_database:
+    action: create
+    risk: MEDIUM
+    description: "Create new database"
+    target_from: database_name
+  drop_database:
+    action: delete
+    risk: CRITICAL
+    description: "Drop entire database"
+    target_from: database_name
+  backup_database:
+    action: export
+    risk: HIGH
+    description: "Export database backup"
+    target_from: database_name
+  restore_database:
+    action: import
+    risk: CRITICAL
+    description: "Restore database from backup"
+    target_from: database_name
+  start_transaction:
+    action: execute
+    risk: MEDIUM
+    description: "Start transaction"
+  commit_transaction:
+    action: execute
+    risk: MEDIUM
+    description: "Commit transaction"
+  rollback_transaction:
+    action: execute
+    risk: MEDIUM
+    description: "Rollback transaction"

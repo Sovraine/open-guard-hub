@@ -1,0 +1,164 @@
+server: aws-s3
+description: "AWS S3 object storage operations"
+version: "1.0.0"
+license: CC-BY-SA-4.0
+upstream:
+  package: "aws-s3-mcp"
+  registry: npm
+  transport: stdio
+
+tools:
+  list_buckets:
+    action: list
+    risk: READ-ONLY
+    description: "List all S3 buckets"
+  get_bucket:
+    action: read
+    risk: READ-ONLY
+    description: "Get bucket details"
+    target_from: bucket_name
+  create_bucket:
+    action: create
+    risk: MEDIUM
+    description: "Create S3 bucket"
+    target_from: bucket_name
+    context_from:
+      region: region
+  delete_bucket:
+    action: delete
+    risk: HIGH
+    description: "Delete S3 bucket"
+    target_from: bucket_name
+  list_objects:
+    action: list
+    risk: READ-ONLY
+    description: "List objects in bucket"
+    target_from: bucket_name
+    context_from:
+      prefix: prefix
+  get_object:
+    action: read
+    risk: READ-ONLY
+    description: "Get object content"
+    target_from: bucket_name
+    context_from:
+      key: key
+  put_object:
+    action: create
+    risk: MEDIUM
+    description: "Upload object to bucket"
+    target_from: bucket_name
+    context_from:
+      key: key
+      content: content
+  delete_object:
+    action: delete
+    risk: MEDIUM
+    description: "Delete object from bucket"
+    target_from: bucket_name
+    context_from:
+      key: key
+  copy_object:
+    action: create
+    risk: MEDIUM
+    description: "Copy object within or between buckets"
+    target_from: source_bucket
+    context_from:
+      source_key: source_key
+      dest_bucket: dest_bucket
+      dest_key: dest_key
+  head_object:
+    action: read
+    risk: READ-ONLY
+    description: "Get object metadata"
+    target_from: bucket_name
+    context_from:
+      key: key
+  set_object_acl:
+    action: update
+    risk: HIGH
+    description: "Set object ACL"
+    target_from: bucket_name
+    context_from:
+      key: key
+      acl: acl
+  get_object_acl:
+    action: read
+    risk: READ-ONLY
+    description: "Get object ACL"
+    target_from: bucket_name
+    context_from:
+      key: key
+  enable_versioning:
+    action: enable
+    risk: MEDIUM
+    description: "Enable bucket versioning"
+    target_from: bucket_name
+  disable_versioning:
+    action: disable
+    risk: MEDIUM
+    description: "Disable bucket versioning"
+    target_from: bucket_name
+  list_object_versions:
+    action: list
+    risk: READ-ONLY
+    description: "List object versions"
+    target_from: bucket_name
+  delete_object_version:
+    action: delete
+    risk: HIGH
+    description: "Delete specific object version"
+    target_from: bucket_name
+    context_from:
+      key: key
+      version_id: version_id
+  set_bucket_policy:
+    action: update
+    risk: HIGH
+    description: "Set bucket policy"
+    target_from: bucket_name
+    context_from:
+      policy: policy
+  get_bucket_policy:
+    action: read
+    risk: READ-ONLY
+    description: "Get bucket policy"
+    target_from: bucket_name
+  delete_bucket_policy:
+    action: delete
+    risk: HIGH
+    description: "Delete bucket policy"
+    target_from: bucket_name
+  enable_encryption:
+    action: enable
+    risk: MEDIUM
+    description: "Enable bucket encryption"
+    target_from: bucket_name
+  set_bucket_cors:
+    action: configure
+    risk: MEDIUM
+    description: "Set bucket CORS"
+    target_from: bucket_name
+    context_from:
+      cors_config: cors_config
+  initiate_multipart:
+    action: create
+    risk: MEDIUM
+    description: "Initiate multipart upload"
+    target_from: bucket_name
+    context_from:
+      key: key
+  complete_multipart:
+    action: update
+    risk: MEDIUM
+    description: "Complete multipart upload"
+    target_from: bucket_name
+    context_from:
+      key: key
+  abort_multipart:
+    action: cancel
+    risk: LOW
+    description: "Abort multipart upload"
+    target_from: bucket_name
+    context_from:
+      key: key

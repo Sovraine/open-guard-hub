@@ -1,0 +1,124 @@
+server: netlify
+description: "Netlify — deploy, projects, extensions, teams, env vars (20 tools)"
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: "@anthropic-ai/netlify-mcp-server"
+  registry: npm
+  transport: stdio
+  command: "npx -y @anthropic-ai/netlify-mcp-server"
+tools:
+  # --- Deploy ---
+  netlify-deploy-get-deploy:
+    action: read
+    risk: READ-ONLY
+    description: "Get deployment info by ID"
+    target_from: deployId
+  netlify-deploy-get-deploy-for-site:
+    action: read
+    risk: READ-ONLY
+    description: "Get deployment info for a site"
+    target_from: siteId
+    context_from:
+      deployId: deployId
+  netlify-deploy-deploy-site:
+    action: create
+    risk: HIGH
+    description: "Upload and deploy a project directory"
+    target_from: deployDirectory
+    context_from:
+      siteId: siteId
+  netlify-deploy-deploy-site-remotely:
+    action: create
+    risk: HIGH
+    description: "Generate remote deploy command"
+    target_from: siteId
+  # --- Projects ---
+  netlify-project-get-project:
+    action: read
+    risk: READ-ONLY
+    description: "Get project site data"
+    target_from: siteId
+  netlify-project-get-projects:
+    action: list
+    risk: READ-ONLY
+    description: "List projects with optional filtering"
+  netlify-project-create-new-project:
+    action: create
+    risk: MEDIUM
+    description: "Create a new project/site"
+    target_from: name
+  netlify-project-get-forms-for-project:
+    action: read
+    risk: READ-ONLY
+    description: "Get forms for a project"
+    target_from: siteId
+  netlify-project-manage-form-submissions:
+    action: read
+    risk: MEDIUM
+    description: "Get or delete form submissions"
+    target_from: siteId
+    context_from:
+      action: action
+  netlify-project-update-project-forms:
+    action: update
+    risk: LOW
+    description: "Enable/disable form processing"
+    target_from: siteId
+  netlify-project-update-project-name:
+    action: update
+    risk: LOW
+    description: "Update project name"
+    target_from: siteId
+    context_from:
+      name: name
+  netlify-project-manage-env-vars:
+    action: update
+    risk: HIGH
+    description: "Manage environment variables (CRUD)"
+    target_from: siteId
+    context_from:
+      envVarKey: envVarKey
+  netlify-project-update-visitor-access-controls:
+    action: update
+    risk: HIGH
+    description: "Update visitor access controls"
+    target_from: siteId
+  # --- Extensions ---
+  netlify-extension-get-extensions:
+    action: list
+    risk: READ-ONLY
+    description: "List available extensions"
+  netlify-extension-get-full-extension-details:
+    action: read
+    risk: READ-ONLY
+    description: "Get extension details"
+    target_from: extensionSlug
+    context_from:
+      teamId: teamId
+  netlify-extension-change-extension-installation:
+    action: update
+    risk: MEDIUM
+    description: "Install or uninstall an extension"
+    target_from: extensionSlug
+    context_from:
+      teamId: teamId
+  netlify-extension-initialize-database:
+    action: configure
+    risk: LOW
+    description: "Initialize Neon database for extension"
+  # --- Teams ---
+  netlify-team-get-team:
+    action: read
+    risk: READ-ONLY
+    description: "Get team information"
+    target_from: teamId
+  netlify-team-get-teams:
+    action: list
+    risk: READ-ONLY
+    description: "List all teams"
+  # --- User ---
+  netlify-user-get-user:
+    action: read
+    risk: READ-ONLY
+    description: "Get current user info"

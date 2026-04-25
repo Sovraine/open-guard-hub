@@ -1,0 +1,25 @@
+taxonomy_version: "2026.03.1"
+sub_sector: e-learning
+sector: education
+
+verbs:
+  publish-course:
+    risk: MEDIUM
+    description: "Publish a course to the e-learning platform"
+  unpublish-course:
+    risk: HIGH
+    description: "Unpublish a course from the e-learning platform"
+  override-assessment:
+    risk: HIGH
+    description: "Override a student assessment score or grade"
+    requires_approval: true
+  reset-progress:
+    risk: HIGH
+    description: "Reset a student's course progress"
+  grant-certificate:
+    risk: HIGH
+    description: "Grant a completion certificate to a student"
+  revoke-certificate:
+    risk: CRITICAL
+    description: "Revoke a previously granted certificate"
+    requires_approval: true

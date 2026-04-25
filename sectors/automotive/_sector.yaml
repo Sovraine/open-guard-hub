@@ -1,0 +1,12 @@
+name: automotive
+display_name: "Automotive & Mobility"
+status: BETA
+regulations: [UNECE, ISO_26262, type_approval, emissions]
+cross_cutting:
+  - core/data-privacy
+  - core/audit-control
+  - core/change-management
+inherits: [core/common]
+overrides:
+  execute: { risk: CRITICAL }
+sub_sectors: [vehicle, fleet, connected-car, dealership]
