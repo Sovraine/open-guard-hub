@@ -11,7 +11,7 @@ Specialized review for pull requests on the OpenGuard Hub.
 
 - `gh` CLI authenticated
 - `sg` CLI installed (download from GitHub Releases)
-- Be in the openguard-hub repo
+- Be in the open-guard-hub repo
 
 ## Agent Comment Marker
 

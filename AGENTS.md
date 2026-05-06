@@ -1,4 +1,4 @@
-# Agents & Skills — openguard-hub
+# Agents & Skills — open-guard-hub
 
 Claude Code agents and skills for AI-assisted hub contribution.
 

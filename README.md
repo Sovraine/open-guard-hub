@@ -22,8 +22,8 @@ The OpenGuard Hub provides a **shared taxonomy** of action verbs, **security pol
 
 ```bash
 # 1. Clone the hub
-git clone https://github.com/Sovraine/openguard-hub.git
-cd openguard-hub
+git clone https://github.com/Sovraine/open-guard-hub.git
+cd open-guard-hub
 
 # 2. Download the sg binary (macOS ARM64)
 curl -sL https://github.com/Sovraine/open-guard-cli/releases/latest/download/sg-darwin-arm64 -o sg
