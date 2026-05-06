@@ -1,4 +1,4 @@
-# CLAUDE.md — openguard-hub
+# CLAUDE.md — open-guard-hub
 
 ## Project Overview
 

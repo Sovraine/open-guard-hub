@@ -58,7 +58,7 @@ git --version
 gh auth status
 
 # sg CLI (Sovraine Guard binary)
-sg --version 2>/dev/null || echo "sg not installed — download from GitHub Releases: https://github.com/Sovraine/openguard-hub/releases"
+sg --version 2>/dev/null || echo "sg not installed — download from GitHub Releases: https://github.com/Sovraine/open-guard-hub/releases"
 
 # SSH signing configured? (required for main)
 git config --get gpg.format           # expect: ssh (or openpgp if GPG)
@@ -98,9 +98,9 @@ Ask the user:
 
 ```bash
 # Fork the repo (if not a collaborator)
-gh repo fork Sovraine/openguard-hub --clone
+gh repo fork Sovraine/open-guard-hub --clone
 
-cd openguard-hub
+cd open-guard-hub
 
 # Verify that scanning works
 sg guard scan .
