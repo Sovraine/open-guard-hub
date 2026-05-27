@@ -135,6 +135,5 @@ Examples:
 ## Scan command
 
 ```bash
-sg guard scan souls/                     # Scan all souls
-sg guard scan souls/cybersecurity/       # Scan a sector
+sg guard scan .                          # Always scan from repo root (subdirectory scan produces false GUARD-070)
 ```

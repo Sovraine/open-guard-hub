@@ -159,14 +159,13 @@ gh pr create --template hub_proposal.md
 
 ## Step 9: Wait for CI
 
-CI runs automatically. The checks:
+CI runs 3 jobs automatically:
 
-| # | Check | What it does |
-|---|---|---|
-| 1 | `yaml-lint` | YAML structure validation, reject bombs |
-| 2 | `self-cert` | Reject `certified: true` or non-null `signature` |
-| 3 | `grade-a-scan` | `sg guard scan .` must return Grade A |
-| 4 | `dco-check` | Verify `Signed-off-by` on all commits |
+| Job | Trigger | What it does |
+|-----|---------|--------------|
+| **Content security lint** | `pull_request` | 13 checks: YAML bombs, self-certification, symlinks, binary files, executable perms, hidden files, ASCII filenames, git config tampering, workflow isolation, template injection, priority/author cap, YAML anchor abuse, file-type allowlist |
+| **Guard scan (Grade A)** | `pull_request_target` | Trusted scanner from `open-guard:main`, 105+ GUARD checks, Grade A required. Scan report posted as PR comment. |
+| **DCO sign-off** | `pull_request` | Verify `Signed-off-by` on all commits + email match |
 
 A PR can show all green and **still be BLOCKED** if:
 - Commits are unsigned (`required_signatures`)
