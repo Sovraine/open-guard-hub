@@ -1,0 +1,169 @@
+server: sovraine-demo-skills
+description: MCP server mapping for sovraine-demo-skills
+version: 1.0.0
+license: CC-BY-SA-4.0
+upstream:
+  package: sovraine-demo-skills
+  registry: npm
+  transport: stdio
+tools:
+  data-reader:
+    action: execute
+    risk: MEDIUM
+    description: Read data from storage
+  cache-flush:
+    action: execute
+    risk: MEDIUM
+    description: cache-flush operation
+  chaos-monkey:
+    action: execute
+    risk: MEDIUM
+    description: chaos-monkey operation
+  orphan-cleaner:
+    action: execute
+    risk: MEDIUM
+    description: Remove orphan records
+  deploy-trigger:
+    action: execute
+    risk: MEDIUM
+    description: Trigger deployment pipeline
+  data-writer:
+    action: execute
+    risk: MEDIUM
+    description: Write data to storage
+  dns-updater:
+    action: execute
+    risk: MEDIUM
+    description: Update DNS records
+  data-exporter:
+    action: execute
+    risk: MEDIUM
+    description: Export all data
+  token-revoker:
+    action: execute
+    risk: MEDIUM
+    description: Revoke API tokens
+  api-caller:
+    action: execute
+    risk: MEDIUM
+    description: Call external API
+  log-analyzer:
+    action: execute
+    risk: MEDIUM
+    description: Analyze log files for patterns
+  secret-rotator:
+    action: execute
+    risk: MEDIUM
+    description: Rotate secrets
+  email-sender:
+    action: execute
+    risk: MEDIUM
+    description: Send emails
+  payment-processor:
+    action: execute
+    risk: MEDIUM
+    description: Process payments
+  user-lookup:
+    action: search
+    risk: READ-ONLY
+    description: Look up user by ID
+  notification-hub:
+    action: execute
+    risk: MEDIUM
+    description: Send notifications via multiple channels
+  schema-validator:
+    action: execute
+    risk: MEDIUM
+    description: Validate JSON schemas
+  db-migrator:
+    action: execute
+    risk: MEDIUM
+    description: Run database migrations
+  image-resizer:
+    action: execute
+    risk: MEDIUM
+    description: Resize images
+  file-deleter:
+    action: execute
+    risk: MEDIUM
+    description: Delete files from disk
+  cost-estimator:
+    action: execute
+    risk: MEDIUM
+    description: Estimate cloud costs
+  report-generator:
+    action: execute
+    risk: MEDIUM
+    description: Generate PDF reports
+  config-loader:
+    action: execute
+    risk: MEDIUM
+    description: Load configuration
+  queue-consumer:
+    action: execute
+    risk: MEDIUM
+    description: Consume messages from queue
+  backup-creator:
+    action: execute
+    risk: MEDIUM
+    description: Create system backups
+  paranoid-agent:
+    action: execute
+    risk: MEDIUM
+    description: Over-escalates
+  skeleton-agent:
+    action: execute
+    risk: MEDIUM
+    description: Minimal agent
+  devops-bot:
+    action: execute
+    risk: MEDIUM
+    description: Automate DevOps tasks
+  rogue-agent:
+    action: execute
+    risk: MEDIUM
+    description: No policies applied
+  data-analyst:
+    action: execute
+    risk: MEDIUM
+    description: Analyze data and create reports
+  prod-deployer:
+    action: execute
+    risk: MEDIUM
+    description: Deploy to production
+  open-agent:
+    action: execute
+    risk: MEDIUM
+    description: No deny list
+  secure-agent:
+    action: execute
+    risk: MEDIUM
+    description: Fully compliant agent
+  ghost-agent:
+    action: execute
+    risk: MEDIUM
+    description: Mystery agent
+  soulless:
+    action: execute
+    risk: MEDIUM
+    description: Agent without soul
+  quick-responder:
+    action: execute
+    risk: MEDIUM
+    description: Respond to incidents
+  lazy-agent:
+    action: execute
+    risk: MEDIUM
+    description: Agent without verb config
+  god-mode:
+    action: execute
+    risk: MEDIUM
+    description: Unrestricted agent
+  db-admin:
+    action: execute
+    risk: MEDIUM
+    description: Database administration
+  confused-agent:
+    action: execute
+    risk: MEDIUM
+    description: Bad risk level
