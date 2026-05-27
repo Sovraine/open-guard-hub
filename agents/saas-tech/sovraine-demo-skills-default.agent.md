@@ -7,10 +7,10 @@ schema_version: 1
 soul: sovraine-demo-skills
 model: null
 skills: []
-allowed_verbs: [read, list, search, get, describe, show]
-denied_verbs: [delete, drop, destroy, purge, wipe, format, execute]
+allowed_verbs: [read, list, search, get-resource, describe-resource]
+denied_verbs: [delete, drop, execute]
 max_risk: MEDIUM
-requires_human_above: HIGH
+requires_human_above: MEDIUM
 sandbox: false
 policies: [sovraine-demo-skills-deny-destructive, sovraine-demo-skills-warn-high-risk]
 sector: saas-tech
@@ -41,3 +41,8 @@ operations outright.
 
 - Deleting, dropping, or destroying resources
 - Any action classified as CRITICAL risk
+
+## Escalation
+
+- Actions exceeding MEDIUM risk require human approval
+- Denied verbs are blocked outright, no escalation path
