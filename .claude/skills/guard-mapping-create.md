@@ -83,7 +83,7 @@ sg guard init-mapping mcp-postgresql
 ## Validation
 
 ```bash
-sg guard scan mappings/
+sg guard scan .                          # Always scan from repo root (subdirectory scan produces false GUARD-070)
 ```
 
 ### Checks
