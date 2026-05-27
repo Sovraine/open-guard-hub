@@ -1,0 +1,20 @@
+# Workflow and CI — only maintainers
+.github/                @Sovraine/hub-maintainers
+
+# Core taxonomy — changes affect all downstream consumers
+core/                   @Sovraine/hub-maintainers
+
+# OGS specification
+spec/                   @Sovraine/hub-maintainers
+
+# Repo configuration
+CLAUDE.md               @Sovraine/hub-maintainers
+AGENTS.md               @Sovraine/hub-maintainers
+SECURITY.md             @Sovraine/hub-maintainers
+CONTRIBUTING.md         @Sovraine/hub-maintainers
+
+# Templates — scaffolding for contributors
+templates/              @Sovraine/hub-maintainers
+
+# Gate policies (Kubernetes admission)
+gates/                  @Sovraine/hub-maintainers
