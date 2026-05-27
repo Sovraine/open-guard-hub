@@ -31,7 +31,7 @@ tools:
     target_from: user_id
   block_user:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Block user"
     target_from: user_id
   unblock_user:
@@ -41,12 +41,12 @@ tools:
     target_from: user_id
   mute_user:
     action: disable
-    risk: LOW
+    risk: HIGH
     description: "Mute user"
     target_from: user_id
   unmute_user:
     action: enable
-    risk: LOW
+    risk: MEDIUM
     description: "Unmute user"
     target_from: user_id
   get_tweet:
@@ -69,7 +69,7 @@ tools:
       media: media
   delete_tweet:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete tweet"
     target_from: tweet_id
   like_tweet:

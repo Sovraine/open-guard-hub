@@ -51,7 +51,7 @@ tools:
       content: content
   delete_blob:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete blob"
     target_from: container_name
     context_from:

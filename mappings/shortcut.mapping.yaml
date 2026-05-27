@@ -25,12 +25,12 @@ tools:
     target_from: name
   update_story:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update a story"
     target_from: story_id
   delete_story:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete a story"
     target_from: story_id
   search_stories:
@@ -41,7 +41,7 @@ tools:
     target_from: query
   move_story:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Move a story to a different state"
     target_from: story_id
   add_story_comment:
@@ -56,14 +56,14 @@ tools:
     target_from: story_id
   update_story_comment:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update a story comment"
     target_from: comment_id
     context_from:
       story_id: story_id
   delete_story_comment:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete a story comment"
     target_from: comment_id
     context_from:
@@ -75,14 +75,14 @@ tools:
     target_from: story_id
   update_story_task:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update a story task"
     target_from: task_id
     context_from:
       story_id: story_id
   delete_story_task:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete a story task"
     target_from: task_id
     context_from:
@@ -111,12 +111,12 @@ tools:
     target_from: name
   update_iteration:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update an iteration"
     target_from: iteration_id
   delete_iteration:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete an iteration"
     target_from: iteration_id
   list_iteration_stories:
@@ -141,12 +141,12 @@ tools:
     target_from: name
   update_epic:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update an epic"
     target_from: epic_id
   delete_epic:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete an epic"
     target_from: epic_id
   list_epic_stories:
@@ -176,12 +176,12 @@ tools:
     target_from: name
   update_objective:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update an objective"
     target_from: objective_id
   delete_objective:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete an objective"
     target_from: objective_id
   # --- Teams ---
@@ -221,12 +221,12 @@ tools:
     target_from: name
   update_document:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update a document"
     target_from: document_id
   delete_document:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete a document"
     target_from: document_id
   # --- Labels ---
@@ -246,12 +246,12 @@ tools:
     target_from: name
   update_label:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update a label"
     target_from: label_id
   delete_label:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete a label"
     target_from: label_id
   # --- Projects ---

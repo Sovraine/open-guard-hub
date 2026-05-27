@@ -50,7 +50,7 @@ tools:
       definition: definition
   delete_segment:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete segment"
     target_from: segment_id
   list_segments:

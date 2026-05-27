@@ -50,7 +50,7 @@ tools:
       definition: definition
   delete_cohort:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete cohort"
     target_from: cohort_id
   list_cohorts:

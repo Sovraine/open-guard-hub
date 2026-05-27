@@ -72,7 +72,7 @@ tools:
       language: language
   firecrawl_browser_delete:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Destroy a browser session"
     target_from: sessionId
   firecrawl_browser_list:

@@ -33,7 +33,7 @@ tools:
       fields: fields
   close_ticket:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Close ticket"
     target_from: ticket_id
   delete_ticket:
@@ -78,7 +78,7 @@ tools:
       fields: fields
   deactivate_user:
     action: disable
-    risk: MEDIUM
+    risk: HIGH
     description: "Deactivate user"
     target_from: user_id
   list_organizations:

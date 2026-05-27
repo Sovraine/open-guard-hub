@@ -45,21 +45,21 @@ tools:
     target_from: model_id
   inference_text_classification:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Run text classification inference"
     target_from: model_id
     context_from:
       text: text
   inference_text_generation:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Run text generation inference"
     target_from: model_id
     context_from:
       prompt: prompt
   inference_question_answering:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Run Q&A inference"
     target_from: model_id
     context_from:
@@ -67,35 +67,35 @@ tools:
       context: context
   inference_summarization:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Summarize text"
     target_from: model_id
     context_from:
       text: text
   inference_translation:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Translate text"
     target_from: model_id
     context_from:
       text: text
   inference_named_entity_recognition:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Extract named entities"
     target_from: model_id
     context_from:
       text: text
   inference_sentiment_analysis:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Analyze sentiment"
     target_from: model_id
     context_from:
       text: text
   inference_zero_shot_classification:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Zero-shot classification"
     target_from: model_id
     context_from:
@@ -103,14 +103,14 @@ tools:
       labels: labels
   inference_image_classification:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Classify image"
     target_from: model_id
     context_from:
       image: image
   inference_object_detection:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Detect objects in image"
     target_from: model_id
     context_from:

@@ -95,7 +95,7 @@ tools:
 
   query_prometheus:
     action: execute
-    risk: LOW
+    risk: HIGH
     description: "Execute a PromQL query"
     context_from:
       query: expr

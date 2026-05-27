@@ -93,7 +93,7 @@ tools:
       pipeline: pipeline
   export:
     action: export
-    risk: LOW
+    risk: HIGH
     description: "Export query results in EJSON format"
     target_from: collection
     context_from:
@@ -289,12 +289,12 @@ tools:
     description: "List local Atlas deployments"
   atlas-local-connect-deployment:
     action: configure
-    risk: LOW
+    risk: MEDIUM
     description: "Connect to a local Atlas deployment"
     target_from: deploymentName
   atlas-local-delete-deployment:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete a local Atlas deployment"
     target_from: deploymentName
   # --- Assistant ---

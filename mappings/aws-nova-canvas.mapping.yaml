@@ -22,6 +22,6 @@ tools:
       colors: colors
   background_removal:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Remove the background of an image"
     target_from: image_path

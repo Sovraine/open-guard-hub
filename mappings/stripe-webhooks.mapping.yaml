@@ -34,7 +34,7 @@ tools:
       events: events
   delete_webhook:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete webhook"
     target_from: webhook_id
   list_webhook_logs:
@@ -49,6 +49,6 @@ tools:
     target_from: log_id
   resend_webhook:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Resend webhook"
     target_from: webhook_id

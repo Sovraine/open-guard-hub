@@ -29,6 +29,6 @@ tools:
       properties: properties
   sync_database:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Sync database"
     target_from: database_id

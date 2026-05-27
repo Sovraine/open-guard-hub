@@ -47,7 +47,7 @@ tools:
     target_from: function_name
   invoke:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Invoke function"
     target_from: function_name
     context_from:
@@ -77,7 +77,7 @@ tools:
     target_from: alias_name
   delete_alias:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete alias"
     target_from: alias_name
   list_event_source_mappings:
@@ -93,6 +93,6 @@ tools:
       event_source: event_source
   delete_event_source_mapping:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete event source"
     target_from: uuid

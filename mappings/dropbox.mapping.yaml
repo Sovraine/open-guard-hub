@@ -32,7 +32,7 @@ tools:
       content: content
   delete_file:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete file"
     target_from: file_path
   move_file:
@@ -97,7 +97,7 @@ tools:
     target_from: file_path
   revoke_shared_link:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     target_from: url
     description: "Revoke shared link"
     context_from:

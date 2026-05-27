@@ -54,7 +54,7 @@ tools:
       update_expression: update_expression
   delete_item:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete item"
     target_from: table_name
     context_from:
@@ -77,5 +77,5 @@ tools:
     description: "Batch get items"
   batch_write_item:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Batch write items"

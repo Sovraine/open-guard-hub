@@ -10,7 +10,7 @@ upstream:
 tools:
   navigate_page:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Go to a URL, or back, forward, or reload"
     target_from: url
     context_from:
@@ -36,7 +36,7 @@ tools:
     description: "List pages open in the browser"
   click:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Click on an element"
     target_from: uid
   hover:
@@ -46,7 +46,7 @@ tools:
     target_from: uid
   drag:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Drag an element onto another"
     target_from: from_uid
     context_from:
@@ -65,12 +65,12 @@ tools:
     target_from: elements
   type_text:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Type text using keyboard into focused input"
     target_from: text
   press_key:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Press a key or key combination"
     target_from: key
   upload_file:
@@ -114,7 +114,7 @@ tools:
     target_from: reqid
   handle_dialog:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Handle a browser dialog"
     target_from: action
   evaluate_script:
@@ -124,13 +124,13 @@ tools:
     target_from: function
   emulate:
     action: configure
-    risk: LOW
+    risk: MEDIUM
     description: "Emulate device features on page"
     context_from:
       userAgent: userAgent
   resize_page:
     action: configure
-    risk: LOW
+    risk: MEDIUM
     description: "Resize page window dimensions"
     context_from:
       width: width
@@ -148,7 +148,7 @@ tools:
       mode: mode
   performance_start_trace:
     action: execute
-    risk: LOW
+    risk: HIGH
     description: "Start a performance trace recording"
   performance_stop_trace:
     action: read

@@ -53,7 +53,7 @@ tools:
       content: content
   delete_object:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete object from bucket"
     target_from: bucket_name
     context_from:
@@ -96,7 +96,7 @@ tools:
     target_from: bucket_name
   disable_versioning:
     action: disable
-    risk: MEDIUM
+    risk: HIGH
     description: "Disable bucket versioning"
     target_from: bucket_name
   list_object_versions:
@@ -157,7 +157,7 @@ tools:
       key: key
   abort_multipart:
     action: cancel
-    risk: LOW
+    risk: MEDIUM
     description: "Abort multipart upload"
     target_from: bucket_name
     context_from:

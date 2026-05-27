@@ -54,7 +54,7 @@ tools:
       fields: fields
   delete_member:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete member"
     target_from: member_id
   list_campaigns:
@@ -77,12 +77,12 @@ tools:
       subject: subject
   send_campaign:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Send campaign"
     target_from: campaign_id
   delete_campaign:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete campaign"
     target_from: campaign_id
   list_automations:

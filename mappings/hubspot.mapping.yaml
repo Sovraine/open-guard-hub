@@ -205,7 +205,7 @@ tools:
       toObjectId: toObjectId
   crm_archive_association:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete association between objects"
     target_from: fromObjectId
     context_from:
@@ -217,7 +217,7 @@ tools:
     target_from: fromObjectType
   crm_batch_archive_associations:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete multiple associations"
     target_from: fromObjectType
   # --- Meetings ---
@@ -236,12 +236,12 @@ tools:
     description: "Create a meeting"
   meetings_update:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update a meeting"
     target_from: meetingId
   meetings_archive:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Archive a meeting"
     target_from: meetingId
   meetings_search:
@@ -259,7 +259,7 @@ tools:
     description: "Update multiple meetings"
   meetings_batch_archive:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     target_from: inputs
     description: "Archive multiple meetings"
   # --- Notes ---
@@ -275,12 +275,12 @@ tools:
     target_from: noteId
   notes_update:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update a note"
     target_from: noteId
   notes_archive:
     action: archive
-    risk: LOW
+    risk: MEDIUM
     description: "Archive a note"
     target_from: noteId
   notes_list:
@@ -302,11 +302,11 @@ tools:
     description: "Read multiple notes"
   notes_batch_update:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update multiple notes"
   notes_batch_archive:
     action: archive
-    risk: LOW
+    risk: MEDIUM
     description: "Archive multiple notes"
   # --- Tasks ---
   tasks_create:
@@ -321,12 +321,12 @@ tools:
     target_from: taskId
   tasks_update:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update a task"
     target_from: taskId
   tasks_archive:
     action: archive
-    risk: LOW
+    risk: MEDIUM
     description: "Archive a task"
     target_from: taskId
   tasks_list:
@@ -348,11 +348,11 @@ tools:
     description: "Read multiple tasks"
   tasks_batch_update:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update multiple tasks"
   tasks_batch_archive:
     action: archive
-    risk: LOW
+    risk: MEDIUM
     description: "Archive multiple tasks"
   # --- Calls ---
   calls_create:
@@ -367,12 +367,12 @@ tools:
     target_from: callId
   calls_update:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update a call record"
     target_from: callId
   calls_archive:
     action: archive
-    risk: LOW
+    risk: MEDIUM
     description: "Archive a call record"
     target_from: callId
   calls_list:
@@ -394,11 +394,11 @@ tools:
     description: "Read multiple call records"
   calls_batch_update:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update multiple call records"
   calls_batch_archive:
     action: archive
-    risk: LOW
+    risk: MEDIUM
     description: "Archive multiple call records"
   # --- Emails ---
   emails_create:
@@ -413,12 +413,12 @@ tools:
     target_from: emailId
   emails_update:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update an email record"
     target_from: emailId
   emails_archive:
     action: archive
-    risk: LOW
+    risk: MEDIUM
     description: "Archive an email record"
     target_from: emailId
   emails_list:
@@ -440,11 +440,11 @@ tools:
     description: "Read multiple email records"
   emails_batch_update:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update multiple email records"
   emails_batch_archive:
     action: archive
-    risk: LOW
+    risk: MEDIUM
     description: "Archive multiple email records"
   # --- Communications ---
   communications_get_preferences:
@@ -493,7 +493,7 @@ tools:
     description: "Create an engagement"
   engagement_details_update:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update an engagement"
     target_from: engagementId
   engagement_details_list:
@@ -502,7 +502,7 @@ tools:
     description: "List engagements"
   engagement_details_archive:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Archive an engagement"
     target_from: engagementId
   engagement_details_get_associated:
@@ -529,12 +529,12 @@ tools:
     target_from: properties
   products_update:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update a product"
     target_from: productId
   products_archive:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Archive a product"
     target_from: productId
   products_search:
@@ -544,7 +544,7 @@ tools:
     sql_mapping: false
   products_batch_archive:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     target_from: inputs
     description: "Archive multiple products"
   products_batch_create:
@@ -557,5 +557,5 @@ tools:
     description: "Read multiple products"
   products_batch_update:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update multiple products"

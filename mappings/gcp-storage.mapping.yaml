@@ -53,7 +53,7 @@ tools:
       content: content
   delete_object:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete object"
     target_from: bucket_name
     context_from:

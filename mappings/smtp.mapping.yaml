@@ -35,7 +35,7 @@ tools:
       send_time: send_time
   cancel_scheduled_email:
     action: cancel
-    risk: LOW
+    risk: MEDIUM
     description: "Cancel scheduled email"
     target_from: email_id
   attach_file:
@@ -47,35 +47,35 @@ tools:
       file_path: file_path
   set_reply_to:
     action: configure
-    risk: LOW
+    risk: MEDIUM
     description: "Set reply-to address"
     target_from: email_id
     context_from:
       reply_to: reply_to
   add_cc:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Add CC recipient"
     target_from: email_id
     context_from:
       email: email
   add_bcc:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Add BCC recipient"
     target_from: email_id
     context_from:
       email: email
   set_priority:
     action: configure
-    risk: LOW
+    risk: MEDIUM
     description: "Set email priority"
     target_from: email_id
     context_from:
       priority: priority
   set_read_receipt:
     action: configure
-    risk: LOW
+    risk: MEDIUM
     description: "Request read receipt"
     target_from: email_id
   get_server_status:
@@ -105,6 +105,6 @@ tools:
       body: body
   delete_template:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete email template"
     target_from: template_id

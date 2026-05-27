@@ -35,9 +35,12 @@ tools:
       INSERT: create
       UPDATE: update
       DELETE: delete
-      DROP: delete
+      DROP: drop
       CREATE: create
-      ALTER: update
+      ALTER: alter
+      GRANT: grant
+      REVOKE: revoke
+      TRUNCATE: truncate
     context_from:
       query: query
   select:
@@ -108,7 +111,7 @@ tools:
       columns: columns
   drop_index:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Drop index"
     target_from: table_name
     context_from:
@@ -143,13 +146,13 @@ tools:
     target_from: database_name
   start_transaction:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Start transaction"
   commit_transaction:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Commit transaction"
   rollback_transaction:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Rollback transaction"
