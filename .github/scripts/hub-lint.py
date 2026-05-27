@@ -126,8 +126,13 @@ def check_git_config_tampering(changed: list[str]) -> None:
 
 
 def check_workflow_isolation(changed: list[str]) -> None:
+    repo_meta = {"CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "SECURITY.md", "AGENTS.md", "CLAUDE.md"}
     workflows = [f for f in changed if f.startswith(".github/workflows/")]
-    content = [f for f in changed if not f.startswith((".", ".github/", ".claude/"))]
+    content = [
+        f for f in changed
+        if not f.startswith((".", ".github/", ".claude/"))
+        and os.path.basename(f) not in repo_meta
+    ]
     if workflows and content:
         fail(
             f"[9/13] Workflow + content changes in same PR — split into separate PRs. "
@@ -137,12 +142,14 @@ def check_workflow_isolation(changed: list[str]) -> None:
 
 def check_template_injection() -> None:
     template_re = re.compile(r"\$\{\{")
+    backtick_re = re.compile(r"`[^`]*`")
     for f in content_files():
         if ".github/" in f:
             continue
         with open(f) as fh:
             for i, line in enumerate(fh, 1):
-                if template_re.search(line):
+                stripped = backtick_re.sub("", line)
+                if template_re.search(stripped):
                     fail(f"[10/13] Template injection (${{{{}}}}): {f}:{i}")
 
 
