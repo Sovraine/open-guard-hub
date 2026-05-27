@@ -313,7 +313,31 @@ If you use Claude Code, you can run the review locally before pushing:
 
 ## Quality Gates
 
-CI scans every hub PR with the scanner. **Grade A required** to merge. No PR is auto-merged — all require human review.
+CI runs three jobs on every PR. All must pass to merge.
+
+### Content security lint (13 checks)
+
+These checks run without secrets and catch supply-chain attacks before the scanner even runs.
+
+| # | Check | What it blocks | Fix |
+|---|-------|----------------|-----|
+| 1 | YAML bomb | Files > 1MB | Split large files or reduce content |
+| 2 | Self-certification | `certified: true` or non-null `signature` | Set `certified: false` and `signature: null` |
+| 3 | Symlinks | Any symbolic link | Use regular files only |
+| 4 | Binary content | Null bytes in `.yaml`/`.yml`/`.md` | Remove binary data |
+| 5 | Executable permissions | Files with +x bit | Run `chmod -x <file>` |
+| 6 | Hidden files | Dotfiles outside `.github/`, `.claude/` | Remove hidden files |
+| 7 | Non-ASCII filenames | Unicode in file/dir names | Use ASCII-only names (kebab-case) |
+| 8 | Git config tampering | Changes to `.gitmodules`, `.mailmap` | Remove these changes |
+| 9 | Workflow isolation | Workflow + content in same PR | Split into two PRs |
+| 10 | Template injection | `${{ }}` in content files | Remove template expressions |
+| 11 | Priority/author | `priority > 500` or `author != community` | Set `priority` <= 500 and `author: community` |
+| 12 | YAML anchor abuse | > 20 anchors, > 50 aliases, > 40 indent | Simplify YAML structure |
+| 13 | File type allowlist | Files not `.yaml`/`.yml`/`.md`/`.json`/`.html` | Use an allowed extension |
+
+### Guard scan (Grade A)
+
+The scanner runs 105+ GUARD checks and assigns a grade. **Grade A required** to merge. No PR is auto-merged — all require human review.
 
 ### Common GUARD checks and how to fix them
 
@@ -344,7 +368,7 @@ CI scans every hub PR with the scanner. **Grade A required** to merge. No PR is 
 
 By contributing, you certify that you have the right to submit the work under the CC-BY-SA-4.0 license.
 
-Sign your commits with `Signed-off-by`:
+Sign your commits with `Signed-off-by`. CI verifies the sign-off is present **and** that the email matches the commit author:
 
 ```bash
 git commit -s -m "hub: add patient-discharge skill for healthcare"

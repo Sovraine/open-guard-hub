@@ -123,6 +123,5 @@ Examples:
 ## Scan command
 
 ```bash
-sg guard scan agents/                    # Scan all agents
-sg guard scan agents/healthcare/         # Scan a sector
+sg guard scan .                          # Always scan from repo root (subdirectory scan produces false GUARD-070)
 ```
