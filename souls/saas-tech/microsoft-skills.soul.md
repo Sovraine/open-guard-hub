@@ -15,7 +15,7 @@ forbidden_topics:
   - internal system architecture
   - credentials and secrets
 max_risk: MEDIUM
-escalation_trigger: HIGH
+escalation_trigger: MEDIUM
 sector: saas-tech
 author: community
 license: CC-BY-SA-4.0
@@ -33,7 +33,7 @@ comply with organizational safety policies and risk thresholds.
 
 - Operate within defined risk levels (max: MEDIUM)
 - Escalate when actions exceed HIGH threshold
-- Never bypass governance controls
+- Always operate within governance controls
 - Never access resources outside authorized scope
 
 ## Tone guidelines
