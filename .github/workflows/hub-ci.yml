@@ -9,7 +9,7 @@ on:
     branches: [main]
 
 concurrency:
-  group: hub-${{ github.ref }}
+  group: hub-${{ github.event_name == 'pull_request_target' && format('pr-{0}', github.event.pull_request.number) || github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -18,7 +18,7 @@ permissions:
 jobs:
   # ── Content security lint (no secrets, safe for forks) ──────────────
   lint:
-    name: Content security lint (12 checks)
+    name: Content security lint (13 checks)
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
@@ -64,11 +64,12 @@ jobs:
         with:
           python-version: "3.12"
 
+      # scanner-src/ is trusted (open-guard:main). Never replace with pr/.
       - name: Install trusted scanner
         run: |
           python -m venv .venv
           source .venv/bin/activate
-          pip install --no-deps scanner-src/
+          pip install scanner-src/
 
       - name: Guard scan
         working-directory: pr
@@ -79,6 +80,10 @@ jobs:
       - name: Verify grade A
         run: |
           grade=$(grep -oP 'Grade: \K[A-F]' /tmp/hub-scan-report.txt | head -1)
+          if [ -z "$grade" ]; then
+            echo "::error::No grade found in scan output"
+            exit 1
+          fi
           echo "Hub scan grade: $grade"
           if [ "$grade" != "A" ]; then
             echo "::error::Grade $grade — grade A required for merge"
@@ -141,8 +146,13 @@ jobs:
           head="${{ github.event.pull_request.head.sha }}"
           errors=0
           for sha in $(git log --format='%H' "$base".."$head"); do
-            if ! git log -1 --format='%B' "$sha" | grep -q '^Signed-off-by:'; then
+            author_email=$(git log -1 --format='%ae' "$sha")
+            body=$(git log -1 --format='%B' "$sha")
+            if ! echo "$body" | grep -q '^Signed-off-by:'; then
               echo "::error::Commit $sha missing Signed-off-by. Use: git commit -s"
+              errors=$((errors + 1))
+            elif ! echo "$body" | grep -q "^Signed-off-by:.*<${author_email}>"; then
+              echo "::error::Commit $sha Signed-off-by email does not match author ($author_email)"
               errors=$((errors + 1))
             fi
           done
