@@ -41,7 +41,7 @@ tools:
     target_from: user_id
   deactivate_user:
     action: disable
-    risk: MEDIUM
+    risk: HIGH
     description: "Deactivate user"
     target_from: user_id
   activate_user:

@@ -77,7 +77,7 @@ tools:
       permission: permission
   remove_permission:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Remove permission"
     target_from: role_id
     context_from:

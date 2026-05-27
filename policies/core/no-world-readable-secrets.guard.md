@@ -32,7 +32,7 @@ Secret files must be readable only by their owner (mode 600 or 400). Common mist
 - Docker COPY → may reset permissions to 644
 
 Real incident from this investigation:
-- `/Users/hoko/Downloads/sovraine.2026-03-31.private-key.pem` was mode 644 (world-readable). Fixed to 600.
+- `~/Downloads/app.2026-03-31.private-key.pem` was mode 644 (world-readable). Fixed to 600.
 
 Many tools refuse to use world-readable keys:
 - `ssh` refuses keys with mode > 600 ("Permissions too open")

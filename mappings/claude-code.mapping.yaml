@@ -98,5 +98,5 @@ tools:
     description: "Read task list"
   TodoWrite:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update task list"

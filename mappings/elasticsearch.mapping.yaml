@@ -71,7 +71,7 @@ tools:
       document: document
   delete_document:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete document"
     target_from: index_name
     context_from:
@@ -129,12 +129,12 @@ tools:
     target_from: template_name
   refresh_index:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Refresh index"
     target_from: index_name
   flush_index:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Flush index"
     target_from: index_name
   force_merge:
@@ -144,7 +144,7 @@ tools:
     target_from: index_name
   clear_cache:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Clear index cache"
     target_from: index_name
   get_cluster_health:

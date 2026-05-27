@@ -42,7 +42,7 @@ Command shadowing places a malicious script earlier in `$PATH` than the legitima
 In the nirholas attack:
 - The Docker entrypoint creates `/usr/local/bin/claude` as a wrapper script
 - `gitpretty-apply.sh` clones scripts to `~/.gitpretty/` and makes them executable
-- The `$PATH` modification in `.zshrc` (`export PATH="/Users/hoko/bin/:$PATH"`) means any script in `~/bin/` shadows system commands
+- The `$PATH` modification in `.zshrc` (`export PATH="$HOME/bin/:$PATH"`) means any script in `~/bin/` shadows system commands
 
 ## What gets blocked
 

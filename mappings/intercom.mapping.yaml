@@ -33,12 +33,12 @@ tools:
       body: body
   close_conversation:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Close conversation"
     target_from: conversation_id
   reopen_conversation:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Reopen conversation"
     target_from: conversation_id
   assign_conversation:

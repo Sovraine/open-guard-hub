@@ -65,14 +65,14 @@ tools:
   # --- DX Core: Testing ---
   run_apex_test:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Run Apex tests in an org"
     target_from: usernameOrAlias
     context_from:
       testLevel: testLevel
   run_agent_test:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Run Agent tests in an org"
     target_from: agentApiName
     context_from:
@@ -93,7 +93,7 @@ tools:
   # --- Code Analyzer ---
   run_code_analyzer:
     action: execute
-    risk: LOW
+    risk: HIGH
     description: "Run code analysis on source code"
     target_from: target
   describe_code_analyzer_rule:
@@ -164,7 +164,7 @@ tools:
     target_from: workItemId
   checkout_devops_center_work_item:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Check out a work item branch"
     target_from: workItemId
   commit_devops_center_work_item:
@@ -176,7 +176,7 @@ tools:
       commitMessage: commitMessage
   update_devops_center_work_item_status:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update work item status"
     target_from: workItemId
     context_from:

@@ -52,7 +52,7 @@ tools:
     target_from: vulnerabilityId
   unmute_vulnerability:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Unmute a vulnerability"
     target_from: vulnerabilityId
   # --- Davis AI ---

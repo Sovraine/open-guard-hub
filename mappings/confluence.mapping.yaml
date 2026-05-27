@@ -107,7 +107,7 @@ tools:
       file: file
   delete_attachment:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Remove attachment"
     target_from: attachment_id
   add_comment:
@@ -119,7 +119,7 @@ tools:
       comment: comment
   update_comment:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Edit comment"
     target_from: page_id
     context_from:
@@ -127,7 +127,7 @@ tools:
       text: text
   delete_comment:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete comment"
     target_from: page_id
     context_from:

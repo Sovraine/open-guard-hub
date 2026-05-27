@@ -68,7 +68,7 @@ tools:
     target_from: broadcaster_id
   delete_clip:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete clip"
     target_from: clip_id
   ban_user:

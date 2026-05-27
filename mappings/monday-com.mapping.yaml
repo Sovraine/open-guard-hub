@@ -65,7 +65,7 @@ tools:
       fields: fields
   delete_item:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete item"
     target_from: item_id
   add_update:

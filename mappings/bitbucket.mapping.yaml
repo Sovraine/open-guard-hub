@@ -46,12 +46,12 @@ tools:
       title: title
   approve_pull_request:
     action: approve
-    risk: MEDIUM
+    risk: HIGH
     description: "Approve pull request"
     target_from: pr_id
   decline_pull_request:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Decline pull request"
     target_from: pr_id
   merge_pull_request:

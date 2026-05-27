@@ -39,17 +39,17 @@ tools:
       parameters: parameters
   reboot_db_instance:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Reboot DB instance"
     target_from: db_instance_id
   start_db_instance:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Start DB instance"
     target_from: db_instance_id
   stop_db_instance:
     action: disable
-    risk: MEDIUM
+    risk: HIGH
     description: "Stop DB instance"
     target_from: db_instance_id
   describe_db_clusters:

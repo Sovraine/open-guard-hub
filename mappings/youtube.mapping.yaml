@@ -46,7 +46,7 @@ tools:
     target_from: video_id
   publish_video:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Publish video"
     target_from: video_id
   get_channel:
@@ -79,14 +79,14 @@ tools:
       text: text
   update_comment:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Edit comment"
     target_from: comment_id
     context_from:
       text: text
   delete_comment:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete comment"
     target_from: comment_id
   like_video:
@@ -120,7 +120,7 @@ tools:
     target_from: playlist_name
   delete_playlist:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete playlist"
     target_from: playlist_id
   add_to_playlist:
@@ -132,7 +132,7 @@ tools:
       video_id: video_id
   remove_from_playlist:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Remove video from playlist"
     target_from: playlist_id
     context_from:

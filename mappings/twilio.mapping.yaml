@@ -41,7 +41,7 @@ tools:
       send_time: send_time
   cancel_scheduled_sms:
     action: cancel
-    risk: LOW
+    risk: MEDIUM
     description: "Cancel scheduled SMS"
     target_from: message_sid
   make_call:
@@ -67,12 +67,12 @@ tools:
     target_from: call_sid
   end_call:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Terminate call"
     target_from: call_sid
   transfer_call:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Transfer call to another number"
     target_from: call_sid
     context_from:
@@ -92,7 +92,7 @@ tools:
       phone_number: phone_number
   remove_participant:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Remove conference participant"
     target_from: conference_sid
     context_from:

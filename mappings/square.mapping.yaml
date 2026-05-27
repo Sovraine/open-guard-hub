@@ -67,7 +67,7 @@ tools:
     target_from: order_id
   cancel_order:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Cancel order"
     target_from: order_id
   list_payments:
@@ -88,7 +88,7 @@ tools:
       amount_money: amount_money
   refund_payment:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Refund payment"
     target_from: payment_id
   list_catalogs:
@@ -104,6 +104,6 @@ tools:
       price: price
   delete_catalog_item:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete catalog item"
     target_from: item_id

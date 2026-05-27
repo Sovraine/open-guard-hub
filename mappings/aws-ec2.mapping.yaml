@@ -26,17 +26,17 @@ tools:
       instance_type: instance_type
   start_instances:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Start instances"
     target_from: instance_id
   stop_instances:
     action: disable
-    risk: MEDIUM
+    risk: HIGH
     description: "Stop instances"
     target_from: instance_id
   reboot_instances:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Reboot instances"
     target_from: instance_id
   terminate_instances:
@@ -57,7 +57,7 @@ tools:
       rule: rule
   revoke_security_group_ingress:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Remove ingress rule"
     target_from: group_id
   describe_volumes:
@@ -86,6 +86,6 @@ tools:
       device: device
   detach_volume:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Detach volume"
     target_from: volume_id

@@ -55,7 +55,7 @@ tools:
     target_from: event_id
   cancel_scheduled_event:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Cancel scheduled event"
     target_from: event_id
   reschedule_event:

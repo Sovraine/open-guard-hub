@@ -56,7 +56,7 @@ tools:
       fields: fields
   delete_record:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete record"
     target_from: record_id
   batch_create:
@@ -75,7 +75,7 @@ tools:
       records: records
   batch_delete:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Batch delete records"
     target_from: table_id
     context_from:

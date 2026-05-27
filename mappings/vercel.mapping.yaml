@@ -89,7 +89,7 @@ tools:
   # --- CLI ---
   use_vercel_cli:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Run Vercel CLI commands"
     target_from: action
   deploy_to_vercel:

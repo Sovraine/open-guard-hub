@@ -91,7 +91,7 @@ tools:
       key: key
   delete_key_value_store_record:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete a record from a key-value store"
     target_from: storeId
     context_from:

@@ -10,23 +10,23 @@ upstream:
 tools:
   browser_navigate:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Navigate to a URL"
     target_from: url
   browser_navigate_back:
     action: execute
-    risk: LOW
+    risk: HIGH
     description: "Go back to the previous page"
   browser_click:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Click on a web page element"
     target_from: ref
     context_from:
       element: element
   browser_type:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Type text into editable element"
     target_from: ref
     context_from:
@@ -38,12 +38,12 @@ tools:
     target_from: fields
   browser_press_key:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Press a key on the keyboard"
     target_from: key
   browser_select_option:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Select an option in a dropdown"
     target_from: ref
     context_from:
@@ -55,7 +55,7 @@ tools:
     target_from: ref
   browser_drag:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Drag and drop between two elements"
     target_from: startRef
     context_from:
@@ -88,7 +88,7 @@ tools:
       index: index
   browser_resize:
     action: configure
-    risk: LOW
+    risk: MEDIUM
     description: "Resize the browser window"
     context_from:
       width: width
@@ -123,6 +123,6 @@ tools:
     target_from: text
   browser_handle_dialog:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Handle a browser dialog"
     target_from: accept

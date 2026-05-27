@@ -18,12 +18,12 @@ tools:
       y: y
   update_element:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update an existing element's properties"
     target_from: id
   delete_element:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete a drawing element by ID"
     target_from: id
   query_elements:
@@ -39,35 +39,35 @@ tools:
     target_from: resource
   group_elements:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Group multiple elements together"
     target_from: elementIds
   ungroup_elements:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Ungroup a group by ID"
     target_from: groupId
   align_elements:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Align elements (left, center, right, top, middle, bottom)"
     target_from: elementIds
     context_from:
       alignment: alignment
   distribute_elements:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Distribute elements evenly (horizontal or vertical)"
     target_from: elementIds
     context_from:
       direction: direction
   lock_elements:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Lock elements to prevent editing"
     target_from: elementIds
   unlock_elements:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Unlock previously locked elements"
     target_from: elementIds

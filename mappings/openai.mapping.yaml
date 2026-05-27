@@ -19,7 +19,7 @@ tools:
     target_from: model_id
   create_completion:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Generate text completion"
     target_from: model_id
     context_from:
@@ -27,7 +27,7 @@ tools:
       max_tokens: max_tokens
   create_chat_completion:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Generate chat response"
     target_from: model_id
     context_from:
@@ -35,28 +35,28 @@ tools:
       max_tokens: max_tokens
   create_embedding:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Generate embeddings"
     target_from: model_id
     context_from:
       input: input
   create_transcription:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Transcribe audio file"
     target_from: model_id
     context_from:
       audio_file: audio_file
   create_translation:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Translate audio file"
     target_from: model_id
     context_from:
       audio_file: audio_file
   create_image:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Generate image from text"
     target_from: model_id
     context_from:
@@ -64,7 +64,7 @@ tools:
       size: size
   create_image_edit:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Edit image"
     target_from: model_id
     context_from:
@@ -73,7 +73,7 @@ tools:
       prompt: prompt
   create_image_variation:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Create image variation"
     target_from: model_id
     context_from:
@@ -106,7 +106,7 @@ tools:
     target_from: model_id
   create_moderation:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Check content moderation"
     context_from:
       input: input
@@ -127,7 +127,7 @@ tools:
     target_from: file_id
   delete_file:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete uploaded file"
     target_from: file_id
   get_file_content:

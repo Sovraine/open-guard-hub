@@ -29,13 +29,13 @@ tools:
     target_from: session_id
   skyvern_browser_session_connect:
     action: configure
-    risk: LOW
+    risk: MEDIUM
     description: "Connect to an existing browser session"
     target_from: session_id
   # --- Primary AI Tools ---
   skyvern_navigate:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Open a website in a real browser"
     target_from: url
     context_from:
@@ -92,7 +92,7 @@ tools:
   # --- Precision Browser Tools ---
   skyvern_click:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Click an element on the page"
     target_from: intent
     context_from:
@@ -100,14 +100,14 @@ tools:
       selector: selector
   skyvern_hover:
     action: execute
-    risk: LOW
+    risk: HIGH
     description: "Hover over an element"
     target_from: intent
     context_from:
       session_id: session_id
   skyvern_type:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Type text into an input field"
     target_from: text
     context_from:
@@ -115,7 +115,7 @@ tools:
       intent: intent
   skyvern_select_option:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Select an option from a dropdown"
     target_from: value
     context_from:
@@ -123,14 +123,14 @@ tools:
       intent: intent
   skyvern_scroll:
     action: execute
-    risk: LOW
+    risk: HIGH
     description: "Scroll the page or an element"
     target_from: direction
     context_from:
       session_id: session_id
   skyvern_press_key:
     action: execute
-    risk: LOW
+    risk: HIGH
     description: "Press a keyboard key"
     target_from: key
     context_from:
@@ -169,7 +169,7 @@ tools:
     target_from: workflow_id
   skyvern_workflow_update_folder:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Move a workflow to a different folder"
     target_from: workflow_id
     context_from:
@@ -223,12 +223,12 @@ tools:
     target_from: folder_id
   skyvern_folder_update:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update a folder's title or description"
     target_from: folder_id
   skyvern_folder_delete:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete a folder"
     target_from: folder_id
   # --- Block Schema ---

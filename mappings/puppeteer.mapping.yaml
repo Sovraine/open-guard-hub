@@ -31,7 +31,7 @@ tools:
     target_from: page_id
   navigate:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Navigate to URL"
     target_from: page_id
     context_from:
@@ -53,7 +53,7 @@ tools:
     target_from: page_id
   take_screenshot:
     action: export
-    risk: MEDIUM
+    risk: HIGH
     description: "Take page screenshot"
     target_from: page_id
   evaluate_script:
@@ -72,14 +72,14 @@ tools:
       form_data: form_data
   click_element:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Click an element"
     target_from: page_id
     context_from:
       selector: selector
   submit_form:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Submit a form"
     target_from: page_id
     context_from:
@@ -112,12 +112,12 @@ tools:
     target_from: page_id
   clear_cookies:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Clear page cookies"
     target_from: page_id
   set_user_agent:
     action: configure
-    risk: LOW
+    risk: MEDIUM
     description: "Set user agent string"
     target_from: page_id
     context_from:

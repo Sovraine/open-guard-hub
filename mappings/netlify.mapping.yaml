@@ -62,12 +62,12 @@ tools:
       action: action
   netlify-project-update-project-forms:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Enable/disable form processing"
     target_from: siteId
   netlify-project-update-project-name:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update project name"
     target_from: siteId
     context_from:
@@ -105,7 +105,7 @@ tools:
       teamId: teamId
   netlify-extension-initialize-database:
     action: configure
-    risk: LOW
+    risk: MEDIUM
     description: "Initialize Neon database for extension"
   # --- Teams ---
   netlify-team-get-team:

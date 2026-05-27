@@ -19,7 +19,7 @@ tools:
     target_from: model_id
   create_message:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Create Claude message"
     target_from: model_id
     context_from:
@@ -27,7 +27,7 @@ tools:
       max_tokens: max_tokens
   batch_messages:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Process batch of messages"
     target_from: model_id
     context_from:
