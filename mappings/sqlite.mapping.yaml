@@ -19,9 +19,12 @@ tools:
       INSERT: create
       UPDATE: update
       DELETE: delete
-      DROP: delete
+      DROP: drop
       CREATE: create
-      ALTER: update
+      ALTER: alter
+      GRANT: grant
+      REVOKE: revoke
+      TRUNCATE: truncate
     context_from:
       query: query
   select:
@@ -50,7 +53,7 @@ tools:
       values: values
   delete:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete rows"
     target_from: table_name
     context_from:
@@ -100,7 +103,7 @@ tools:
       database_path: database_path
   vacuum:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Optimize database file"
     target_from: database_path
   pragma:
@@ -118,7 +121,7 @@ tools:
       definition: definition
   drop_trigger:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Drop trigger"
     target_from: trigger_name
     context_from:

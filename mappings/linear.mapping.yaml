@@ -11,7 +11,7 @@ tools:
   # --- Auth ---
   linear_auth_callback:
     action: configure
-    risk: LOW
+    risk: MEDIUM
     description: "Handle OAuth callback"
     target_from: code
   # --- Issues ---
@@ -89,12 +89,12 @@ tools:
       projectId: projectId
   linear_update_project_milestone:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update a project milestone"
     target_from: id
   linear_delete_project_milestone:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete a project milestone"
     target_from: id
   # --- Comments ---
@@ -107,22 +107,22 @@ tools:
       body: body
   linear_update_comment:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update an existing comment"
     target_from: id
   linear_delete_comment:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete a comment"
     target_from: id
   linear_resolve_comment:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Resolve a comment"
     target_from: id
   linear_unresolve_comment:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Unresolve a comment"
     target_from: id
   # --- Teams & Users ---

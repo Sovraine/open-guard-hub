@@ -70,7 +70,7 @@ tools:
   # --- Usage ---
   download_usage_api_data:
     action: export
-    risk: LOW
+    risk: HIGH
     description: "Download usage data CSV"
     target_from: orgId
     context_from:
@@ -93,7 +93,7 @@ tools:
     target_from: template
   run_evaluation_tests:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Run evaluation tests on a pipeline"
     target_from: projectSlug
   # --- Analysis ---

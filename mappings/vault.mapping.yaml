@@ -120,7 +120,7 @@ tools:
       type: type
   disable_audit_backend:
     action: disable
-    risk: MEDIUM
+    risk: HIGH
     description: "Disable audit backend"
     target_from: path
   list_audit_backends:

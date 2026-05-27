@@ -41,7 +41,7 @@ tools:
     target_from: file_id
   delete_file:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete file"
     target_from: file_id
   copy_file:
@@ -75,7 +75,7 @@ tools:
       role: role
   revoke_access:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Revoke file access"
     target_from: file_id
     context_from:
@@ -112,7 +112,7 @@ tools:
     target_from: file_id
   trash_file:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Move file to trash"
     target_from: file_id
   restore_file:

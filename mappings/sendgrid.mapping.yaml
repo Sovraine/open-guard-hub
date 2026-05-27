@@ -33,7 +33,7 @@ tools:
       fields: fields
   delete_contact:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete contact"
     target_from: contact_id
   send_email:
@@ -71,7 +71,7 @@ tools:
       html_content: html_content
   delete_template:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete template"
     target_from: template_id
   list_campaigns:
@@ -93,7 +93,7 @@ tools:
       template_id: template_id
   send_campaign:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Send campaign"
     target_from: campaign_id
   list_lists:
@@ -107,7 +107,7 @@ tools:
     target_from: list_name
   delete_list:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete list"
     target_from: list_id
   add_contact_to_list:
@@ -119,7 +119,7 @@ tools:
       contact_id: contact_id
   remove_contact_from_list:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Remove contact from list"
     target_from: list_id
     context_from:

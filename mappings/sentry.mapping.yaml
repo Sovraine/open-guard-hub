@@ -36,17 +36,17 @@ tools:
     target_from: issue_id
   resolve_issue:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Resolve an issue"
     target_from: issue_id
   archive_issue:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Archive an issue"
     target_from: issue_id
   assign_issue:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Assign an issue to a user"
     target_from: issue_id
     context_from:

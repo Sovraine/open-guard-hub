@@ -37,7 +37,7 @@ tools:
     target_from: collection_name
   chroma_modify_collection:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Modify a collection's name or metadata"
     target_from: collection_name
     context_from:
@@ -85,7 +85,7 @@ tools:
       ids: ids
   chroma_delete_documents:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete documents from a collection"
     target_from: collection_name
     context_from:

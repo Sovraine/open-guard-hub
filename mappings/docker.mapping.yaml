@@ -36,27 +36,27 @@ tools:
       ports: ports
   start_container:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Start a stopped container"
     target_from: container_id
   stop_container:
     action: disable
-    risk: MEDIUM
+    risk: HIGH
     description: "Stop a running container"
     target_from: container_id
   restart_container:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Restart a container"
     target_from: container_id
   pause_container:
     action: disable
-    risk: LOW
+    risk: HIGH
     description: "Pause a running container"
     target_from: container_id
   unpause_container:
     action: enable
-    risk: LOW
+    risk: MEDIUM
     description: "Unpause a paused container"
     target_from: container_id
   remove_container:

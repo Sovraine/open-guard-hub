@@ -40,7 +40,7 @@ tools:
 
   add_reaction:
     action: tag
-    risk: READ-ONLY
+    risk: LOW
     description: "Add an emoji reaction to a message"
     target_from: timestamp
 
@@ -69,7 +69,7 @@ tools:
 
   invite_to_channel:
     action: share
-    risk: LOW
+    risk: MEDIUM
     description: "Invite a user to a channel"
     target_from: channel_id
     context_from:

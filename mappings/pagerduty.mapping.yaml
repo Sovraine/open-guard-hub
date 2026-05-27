@@ -32,7 +32,7 @@ tools:
     target_from: incident_id
   acknowledge_incident:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Acknowledge an incident"
     target_from: incident_id
   resolve_incident:
@@ -47,7 +47,7 @@ tools:
     target_from: incident_id
   snooze_incident:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Snooze an incident"
     target_from: incident_id
   reassign_incident:
@@ -126,7 +126,7 @@ tools:
     target_from: name
   update_team:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update a team"
     target_from: team_id
   delete_team:
@@ -297,7 +297,7 @@ tools:
     target_from: description
   delete_maintenance_window:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete a maintenance window"
     target_from: maintenance_window_id
   # --- Analytics ---

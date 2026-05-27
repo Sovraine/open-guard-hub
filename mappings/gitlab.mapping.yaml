@@ -41,7 +41,7 @@ tools:
       title: title
   delete_issue:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete issue"
     target_from: issue_id
   list_merge_requests:
@@ -65,7 +65,7 @@ tools:
     target_from: mr_id
   close_merge_request:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Close merge request"
     target_from: mr_id
   list_members:
@@ -83,7 +83,7 @@ tools:
       access_level: access_level
   remove_member:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Remove project member"
     target_from: project_id
     context_from:

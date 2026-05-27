@@ -39,7 +39,7 @@ tools:
     target_from: post_id
   publish_post:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Publish post"
     target_from: post_id
   list_pages:
@@ -81,7 +81,7 @@ tools:
     target_from: category_name
   delete_category:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete category"
     target_from: category_id
   list_tags:
@@ -95,7 +95,7 @@ tools:
     target_from: tag_name
   delete_tag:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete tag"
     target_from: tag_id
   upload_media:
@@ -105,7 +105,7 @@ tools:
     target_from: file
   delete_media:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete media"
     target_from: media_id
   list_comments:
@@ -129,17 +129,17 @@ tools:
       content: content
   delete_comment:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete comment"
     target_from: comment_id
   approve_comment:
     action: approve
-    risk: MEDIUM
+    risk: HIGH
     description: "Approve comment"
     target_from: comment_id
   spam_comment:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Mark comment as spam"
     target_from: comment_id
   list_users:

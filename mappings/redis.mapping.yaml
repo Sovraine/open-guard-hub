@@ -22,7 +22,7 @@ tools:
       value: value
   del_key:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete a key"
     target_from: key
   exists:
@@ -71,7 +71,7 @@ tools:
       values: values
   pop_list:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Pop element from list"
     target_from: key
   get_list:
@@ -104,7 +104,7 @@ tools:
     target_from: key
   hash_del:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete hash field"
     target_from: key
     context_from:
@@ -123,7 +123,7 @@ tools:
     target_from: key
   set_remove:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Remove from set"
     target_from: key
     context_from:
@@ -142,7 +142,7 @@ tools:
     target_from: key
   sorted_set_remove:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Remove from sorted set"
     target_from: key
     context_from:

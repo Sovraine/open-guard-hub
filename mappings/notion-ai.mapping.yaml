@@ -10,7 +10,7 @@ upstream:
 tools:
   ask_ai:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Ask Notion AI"
     context_from:
       question: question

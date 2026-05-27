@@ -90,7 +90,7 @@ tools:
       comment: comment
   update_comment:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Edit issue comment"
     target_from: issue_key
     context_from:
@@ -98,7 +98,7 @@ tools:
       text: text
   delete_comment:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete issue comment"
     target_from: issue_key
     context_from:
@@ -117,7 +117,7 @@ tools:
       file: file
   delete_attachment:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Remove attachment"
     target_from: attachment_id
   list_issue_links:
@@ -135,7 +135,7 @@ tools:
       link_type: link_type
   delete_issue_link:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Remove issue link"
     target_from: link_id
   list_boards:

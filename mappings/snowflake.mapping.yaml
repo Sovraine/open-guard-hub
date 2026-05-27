@@ -157,7 +157,7 @@ tools:
     target_from: warehouse_name
   suspend_warehouse:
     action: disable
-    risk: MEDIUM
+    risk: HIGH
     description: "Suspend warehouse"
     target_from: warehouse_name
   resume_warehouse:
@@ -176,6 +176,6 @@ tools:
       schedule: schedule
   execute_task:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Execute task immediately"
     target_from: task_name

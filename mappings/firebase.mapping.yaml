@@ -70,7 +70,7 @@ tools:
       data: data
   delete_document:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete document"
     target_from: document_path
   query_documents:
@@ -82,7 +82,7 @@ tools:
       query: query
   batch_write:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Batch write operations"
     context_from:
       operations: operations
@@ -124,7 +124,7 @@ tools:
     target_from: file_path
   delete_file:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete file"
     target_from: file_path
   list_auth_users:

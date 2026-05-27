@@ -60,7 +60,7 @@ tools:
     target_from: transaction_id
   refund_transaction:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Refund transaction"
     target_from: transaction_id
   list_payment_methods:
@@ -77,6 +77,6 @@ tools:
       nonce: nonce
   delete_payment_method:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete payment method"
     target_from: payment_method_id

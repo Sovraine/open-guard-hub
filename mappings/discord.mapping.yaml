@@ -49,7 +49,7 @@ tools:
       content: content
   edit_message:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Edit message"
     target_from: channel_id
     context_from:
@@ -57,7 +57,7 @@ tools:
       content: content
   delete_message:
     action: delete
-    risk: MEDIUM
+    risk: HIGH
     description: "Delete message"
     target_from: channel_id
     context_from:

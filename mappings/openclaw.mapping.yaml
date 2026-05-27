@@ -160,7 +160,7 @@ tools:
     risk: READ-ONLY
     description: "Fetch session transcripts and logs"
   sessions_send:
-    action: send
+    action: notify
     risk: LOW
     description: "Send messages to other agent sessions"
     target_from: session_id
@@ -176,7 +176,7 @@ tools:
     risk: READ-ONLY
     description: "List all configured agents"
   agent_send:
-    action: send
+    action: notify
     risk: LOW
     description: "Execute single agent turns with message delivery"
     target_from: agent
@@ -184,7 +184,7 @@ tools:
       message: message
   subagents:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Manage background sub-agent runs"
     target_from: agent
   acp_agents:
@@ -197,7 +197,7 @@ tools:
   # Communication & User Interaction
   # ---------------------------------------------------------------------------
   message:
-    action: send
+    action: notify
     risk: LOW
     description: "Send messages across channels (Discord, Slack, Telegram, etc.)"
     target_from: channel
@@ -205,11 +205,11 @@ tools:
       text: text
   reactions:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Add/remove emoji reactions to messages"
     target_from: message_id
   system_notify:
-    action: send
+    action: notify
     risk: LOW
     description: "Send system notifications"
     target_from: message
@@ -237,7 +237,7 @@ tools:
     target_from: node
   canvas:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Drive Canvas visual workspace"
     target_from: action
 
@@ -246,16 +246,16 @@ tools:
   # ---------------------------------------------------------------------------
   thinking:
     action: configure
-    risk: READ-ONLY
+    risk: MEDIUM
     description: "Control AI reasoning levels"
   llm_task:
     action: execute
-    risk: LOW
+    risk: HIGH
     description: "Run JSON-only LLM tasks with schema validation"
     target_from: prompt
   tts:
     action: execute
-    risk: LOW
+    risk: HIGH
     description: "Text-to-speech conversion"
     target_from: text
 
@@ -283,7 +283,7 @@ tools:
   # ---------------------------------------------------------------------------
   lobster:
     action: execute
-    risk: MEDIUM
+    risk: HIGH
     description: "Typed workflow runtime for multi-step tool sequences"
     target_from: workflow
   image_generate:

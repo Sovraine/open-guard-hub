@@ -15,7 +15,7 @@ tools:
     description: "List all Cloudflare accounts"
   set_active_account:
     action: configure
-    risk: LOW
+    risk: MEDIUM
     description: "Set active account for subsequent calls"
     target_from: activeAccountIdParam
   # --- Workers ---
@@ -60,7 +60,7 @@ tools:
     target_from: namespace_id
   kv_namespace_update:
     action: update
-    risk: LOW
+    risk: MEDIUM
     description: "Update KV namespace title"
     target_from: namespace_id
     context_from:
