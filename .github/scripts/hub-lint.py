@@ -174,8 +174,8 @@ def check_priority_author(changed: list[str]) -> None:
         if isinstance(priority, int) and priority > 500:
             fail(f"[11/13] Priority too high: {f} ({priority}, max 500 for community)")
         author = fm.get("author")
-        if author is not None and author != "community":
-            fail(f"[11/13] Invalid author: {f} ('{author}', must be 'community')")
+        if author is not None and author not in ("community", "sovraine"):
+            fail(f"[11/13] Invalid author: {f} ('{author}', must be 'community' or 'sovraine')")
 
 
 def check_yaml_anchors_depth() -> None:
