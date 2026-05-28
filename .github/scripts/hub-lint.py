@@ -155,11 +155,14 @@ def check_template_injection() -> None:
 
 def check_priority_author(changed: list[str]) -> None:
     fm_re = re.compile(r"\A---\s*\n(.*?)\n---", re.DOTALL)
+    hub_exts = (".guard.md", ".agent.md", ".soul.md", ".skill.md", ".mapping.yaml")
     for f in changed:
-        if not f.endswith(".guard.md") or not os.path.isfile(f):
+        if not any(f.endswith(ext) for ext in hub_exts) or not os.path.isfile(f):
             continue
         with open(f) as fh:
             content = fh.read()
+        if content.startswith("﻿"):
+            content = content[1:]
         m = fm_re.search(content)
         if not m:
             continue
