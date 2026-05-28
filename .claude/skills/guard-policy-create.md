@@ -128,7 +128,7 @@ Is the action ALWAYS forbidden, without exception?
 
 **General rule**: cybersecurity DENY policies are highest (300-400), followed by core infrastructure DENY (100-250), then ESCALATE (80-120), then WARN (50-200).
 
-- Onboarding policies (`sg guard init`): 5-20 (low, easily overridden)
+- Onboarding policies (`sovctl guard init`): 5-20 (low, easily overridden)
 
 ## Match Syntax — Glob v1
 
@@ -154,8 +154,8 @@ Examples:
 
 ## Scanner
 
-- `sg guard scan` only takes **directories**, never individual files
-- Always scan `.` (the repo root) as a whole: `sg guard scan .`
+- `sovctl guard scan` only takes **directories**, never individual files
+- Always scan `.` (the repo root) as a whole: `sovctl guard scan .`
 - Scanning a subdirectory (`policies/core/`) will produce false GUARD-070 because verbs from other sectors are not in scope
 
 ## Validation Checklist

@@ -21,7 +21,7 @@ The Hub is licensed under **CC-BY-SA-4.0**. Contributions require a [DCO sign-of
 
 If you use [Claude Code](https://claude.com/claude-code), type `/contributor-onboard` to get an interactive guide. It will:
 
-1. Check your prerequisites (`git`, `sg` CLI)
+1. Check your prerequisites (`git`, `sovctl` CLI)
 2. Ask what you want to contribute (policy, agent, mapping, skill, verb)
 3. Scaffold the artifact with correct frontmatter and body sections
 4. Validate against the taxonomy and run `sovctl guard scan`

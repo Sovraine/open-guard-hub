@@ -1,3 +1,7 @@
+<p align="center">
+  <img src=".github/assets/logo.png" alt="Sovraine" width="120">
+</p>
+
 # OpenGuard Hub
 
 Community registry of governance artifacts for AI agent actions.
@@ -15,7 +19,7 @@ The OpenGuard Hub provides a **shared taxonomy** of action verbs, **security pol
 | `agents/` | Agent definitions (`.agent.md`) | 18 |
 | `souls/` | Agent personas (`.soul.md`) | 18 |
 | `skills/` | Atomic capabilities (`.skill.md`) | 7 |
-| `gates/` | Kubernetes admission policies | 15 |
+| `gates/` | Kubernetes admission policies | 13 |
 | `spec/` | OGS format specification | 7 docs |
 
 ## Quick Start

@@ -8,7 +8,7 @@
 #
 # Usage:
 #   kubectl apply -f gates/pod-security/disallow-privileged.yaml
-#   sg guard scan gates/
+#   sovctl guard scan gates/
 
 categories:
   pod-security:
