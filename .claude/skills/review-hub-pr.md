@@ -10,7 +10,7 @@ Specialized review for pull requests on the OpenGuard Hub.
 ## Prerequisites
 
 - `gh` CLI authenticated
-- `sg` CLI installed (download from GitHub Releases)
+- `sovctl` CLI installed (download from GitHub Releases)
 - Be in the open-guard-hub repo
 
 ## Agent Comment Marker
@@ -44,7 +44,7 @@ GUARD checks:
 - **GUARD-027** — agent `allowed_verbs` / `denied_verbs` contains an unknown verb
 
 ```bash
-sg guard scan --taxonomy . 2>/dev/null | grep "^  "
+sovctl guard scan --taxonomy . 2>/dev/null | grep "^  "
 # OR
 grep -r "^  [a-z]" core/ sectors/ --include="_verbs.yaml" | awk -F: '{print $2}' | sed 's/:.*//' | sort -u
 ```
@@ -107,11 +107,11 @@ For agents:
 - Correct extensions (`.guard.md`, `.agent.md`, `.soul.md`, `.skill.md`, `.mapping.yaml`)
 - In the correct directory (`<type>/<sector>/`)
 
-## Step 9: Run sg guard scan (if local)
+## Step 9: Run sovctl guard scan (if local)
 
 If the repo is checked out locally:
 ```bash
-sg guard scan . --format text
+sovctl guard scan . --format text
 ```
 
 Verify grade A.

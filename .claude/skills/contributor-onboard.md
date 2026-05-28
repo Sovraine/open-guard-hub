@@ -9,8 +9,8 @@ Guide a new contributor through setup and the first commit.
 
 ## Important — Scanner rules
 
-- `sg guard scan` only takes **directories**, never individual files
-- Always scan `.` (the repo root) as a whole: `sg guard scan .`
+- `sovctl guard scan` only takes **directories**, never individual files
+- Always scan `.` (the repo root) as a whole: `sovctl guard scan .`
 - Scanning a subdirectory (`policies/core/`) will produce false GUARD-070 because verbs from other subdirectories are not in scope
 - Grade A required for merge
 
@@ -57,8 +57,8 @@ git --version
 # gh CLI
 gh auth status
 
-# sg CLI (Sovraine Guard binary)
-sg --version 2>/dev/null || echo "sg not installed — download from GitHub Releases: https://github.com/Sovraine/open-guard-hub/releases"
+# sovctl CLI (Sovraine Guard binary)
+sovctl --version 2>/dev/null || echo "sovctl not installed — download from GitHub Releases: https://github.com/Sovraine/open-guard-hub/releases"
 
 # SSH signing configured? (required for main)
 git config --get gpg.format           # expect: ssh (or openpgp if GPG)
@@ -74,7 +74,7 @@ When a check fails, you (the assistant) are responsible for running the setup **
 |---|---|
 | `git --version < 2.34` | Stop. Ask the contributor to upgrade git (Homebrew, apt, etc.) and resume. |
 | `gh auth status` not logged in | Run `gh auth login` with the contributor, pick HTTPS + browser flow. |
-| `sg --version` not found | Direct to GitHub Releases page for their platform. |
+| `sovctl --version` not found | Direct to GitHub Releases page for their platform. |
 | Signing config missing | Generate ed25519 key, upload to GitHub as Signing Key, configure git, verify with a test commit. |
 
 Do not let the contributor proceed to Step 2 with any of these unresolved.
@@ -103,7 +103,7 @@ gh repo fork Sovraine/open-guard-hub --clone
 cd open-guard-hub
 
 # Verify that scanning works
-sg guard scan .
+sovctl guard scan .
 ```
 
 ## Step 4: Create a branch
@@ -122,10 +122,10 @@ Based on the type identified in Step 2, launch the corresponding skill.
 
 Remind:
 - `certified: false`, `signature: null` mandatory
-- Verbs must exist in the taxonomy (`sg guard scan --taxonomy .`)
+- Verbs must exist in the taxonomy (`sovctl guard scan --taxonomy .`)
 - Exact body sections (see CONTRIBUTING.md)
 - Cross-refs must point to artifacts on `main`
-- `sg guard scan .` must return grade A
+- `sovctl guard scan .` must return grade A
 
 ## Step 6: Consistency with existing content
 
@@ -148,7 +148,7 @@ Questions to ask:
 
 Before pushing, run `/hub-contribution-check`.
 
-**Reminder**: always `sg guard scan .` (entire repo root), never a subdirectory.
+**Reminder**: always `sovctl guard scan .` (entire repo root), never a subdirectory.
 
 ## Step 8: Create the PR
 

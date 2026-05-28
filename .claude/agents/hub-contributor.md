@@ -30,7 +30,7 @@ You are the hub-contributor agent. You guide contributors in creating hub artifa
 
 ### Scanner
 
-- `sg guard scan` only takes **directories**, never individual files
+- `sovctl guard scan` only takes **directories**, never individual files
 - Always scan `.` (the repo root) in its entirety, not a subdirectory (`policies/core/` will produce false GUARD-070)
 - Verbs are only resolved when the entire hub is in scope
 
@@ -79,5 +79,5 @@ Is the action ALWAYS forbidden, with no exception?
 2. Scaffold with the appropriate skill (`/guard-policy-create`, etc.)
 3. Check consistency with existing policies from the same sector
 4. `/hub-contribution-check` → full pre-flight
-5. `sg guard scan .` → Grade A mandatory
+5. `sovctl guard scan .` → Grade A mandatory
 6. Create the PR with `/create-github-pr`

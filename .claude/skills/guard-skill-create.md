@@ -118,5 +118,5 @@ Examples:
 ## Scan command
 
 ```bash
-sg guard scan .                          # Always scan from repo root (subdirectory scan produces false GUARD-070)
+sovctl guard scan .                          # Always scan from repo root (subdirectory scan produces false GUARD-070)
 ```

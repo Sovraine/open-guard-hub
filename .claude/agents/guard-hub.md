@@ -14,7 +14,7 @@ skills:
 
 **BEFORE each commit**, verify that the hub passes the scanner:
 ```bash
-sg guard scan .
+sovctl guard scan .
 ```
 
 ---
@@ -198,24 +198,24 @@ match:
 ### Commands
 
 ```bash
-sg guard scan --taxonomy .
+sovctl guard scan --taxonomy .
 
-sg guard hub list sectors/financial-services/banking
+sovctl guard hub list sectors/financial-services/banking
 
-sg guard hub search "transfer"
+sovctl guard hub search "transfer"
 
-sg guard init-mapping mcp-postgresql
+sovctl guard init-mapping mcp-postgresql
 
-sg guard scan .
+sovctl guard scan .
 
-sg guard test --action transfer-funds --target account-123 --context agent=ops environment=production
+sovctl guard test --action transfer-funds --target account-123 --context agent=ops environment=production
 ```
 
 ### Responsibilities
 
 1. **Add verbs** in the correct _verbs.yaml with all fields
 2. **Create _sector.yaml** for new sectors
-3. **Validate consistency** (`sg guard scan --taxonomy .`): duplicates, naming, risk, coverage
+3. **Validate consistency** (`sovctl guard scan --taxonomy .`): duplicates, naming, risk, coverage
 4. **Manage overrides** of risk between core and sectors
 5. **Deprecate verbs**: `deprecated: true, use: <canonical>`
 6. **Write policies** with the correct format (frontmatter + 5 mandatory body headers)

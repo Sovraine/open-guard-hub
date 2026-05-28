@@ -73,7 +73,7 @@ mappings:
 ## Scaffold
 
 ```bash
-sg guard init-mapping mcp-postgresql
+sovctl guard init-mapping mcp-postgresql
 
 # Generates:
 # mappings/postgresql.mapping.yaml
@@ -83,7 +83,7 @@ sg guard init-mapping mcp-postgresql
 ## Validation
 
 ```bash
-sg guard scan .                          # Always scan from repo root (subdirectory scan produces false GUARD-070)
+sovctl guard scan .                          # Always scan from repo root (subdirectory scan produces false GUARD-070)
 ```
 
 ### Checks

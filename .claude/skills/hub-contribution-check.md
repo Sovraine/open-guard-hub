@@ -1,6 +1,6 @@
 ---
 name: hub-contribution-check
-description: Local pre-flight before pushing a hub contribution. Checks frontmatter, taxonomy verbs, body sections, cross-refs, fast-path traps, and runs sg guard scan. Trigger keywords — check contribution, pre-flight, validate, ready to push, hub check.
+description: Local pre-flight before pushing a hub contribution. Checks frontmatter, taxonomy verbs, body sections, cross-refs, fast-path traps, and runs sovctl guard scan. Trigger keywords — check contribution, pre-flight, validate, ready to push, hub check.
 ---
 
 # Hub Contribution Check
@@ -56,10 +56,10 @@ Missing verb → ERROR.
 - Check that referenced souls/policies/skills exist on `main` or in the same PR
 - DENY on READ-ONLY verbs → WARNING (fast-path trap: engine ALLOWs before policy evaluation)
 
-## Step 6: Run sg guard scan
+## Step 6: Run sovctl guard scan
 
 ```bash
-sg guard scan . --format text
+sovctl guard scan . --format text
 ```
 **Always scan `.` (the repo root) as a whole** (subdirectory scan produces false GUARD-070). Target: Grade A.
 

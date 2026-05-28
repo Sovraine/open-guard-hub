@@ -127,7 +127,7 @@ sectors/X/sub-sector/     → can override parent risk level (explicit in _secto
 
 These verbs MUST NOT appear in _verbs.yaml files.
 
-## Validation Checks (sg guard scan --taxonomy .)
+## Validation Checks (sovctl guard scan --taxonomy .)
 
 ### 1. Naming (BLOCKING)
 - [ ] All verbs are kebab-case lowercase
