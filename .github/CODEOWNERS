@@ -1,11 +1,32 @@
 # Workflow and CI — only maintainers
 .github/                @Sovraine/hub-maintainers
 
+# Claude Code agents and skills
+.claude/                @Sovraine/hub-maintainers
+
 # Core taxonomy — changes affect all downstream consumers
 core/                   @Sovraine/hub-maintainers
 
+# Industry-specific verb taxonomies
+sectors/                @Sovraine/hub-maintainers
+
 # OGS specification
 spec/                   @Sovraine/hub-maintainers
+
+# Governance policies — enforced at runtime
+policies/               @Sovraine/hub-maintainers
+
+# Agent definitions — control verb access and risk ceilings
+agents/                 @Sovraine/hub-maintainers
+
+# Agent personas — injected into LLM debate prompts
+souls/                  @Sovraine/hub-maintainers
+
+# Atomic capabilities — expand agent verb sets
+skills/                 @Sovraine/hub-maintainers
+
+# MCP server action mappings — tool-to-verb translation
+mappings/               @Sovraine/hub-maintainers
 
 # Repo configuration
 CLAUDE.md               @Sovraine/hub-maintainers
