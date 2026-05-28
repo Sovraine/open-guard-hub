@@ -10,12 +10,12 @@ The OpenGuard Hub provides a **shared taxonomy** of action verbs, **security pol
 |-----------|---------|-------|
 | `core/` | Cross-sector verb definitions | 9 domains |
 | `sectors/` | Industry-specific verbs | 18 sectors |
-| `policies/` | Governance policies (`.guard.md`) | 56 |
-| `mappings/` | MCP server action mappings (`.mapping.yaml`) | 102 |
-| `agents/` | Agent definitions (`.agent.md`) | 16 |
-| `souls/` | Agent personas (`.soul.md`) | 16 |
+| `policies/` | Governance policies (`.guard.md`) | 60 |
+| `mappings/` | MCP server action mappings (`.mapping.yaml`) | 104 |
+| `agents/` | Agent definitions (`.agent.md`) | 18 |
+| `souls/` | Agent personas (`.soul.md`) | 18 |
 | `skills/` | Atomic capabilities (`.skill.md`) | 7 |
-| `gates/` | Kubernetes admission policies | 13 |
+| `gates/` | Kubernetes admission policies | 15 |
 | `spec/` | OGS format specification | 7 docs |
 
 ## Quick Start
@@ -25,12 +25,13 @@ The OpenGuard Hub provides a **shared taxonomy** of action verbs, **security pol
 git clone https://github.com/Sovraine/open-guard-hub.git
 cd open-guard-hub
 
-# 2. Download the sg binary (macOS ARM64)
-curl -sL https://github.com/Sovraine/open-guard-cli/releases/latest/download/sg-darwin-arm64 -o sg
-chmod +x sg
+# 2. Browse the taxonomy
+ls core/common/_verbs.yaml          # Universal verbs (create, read, update, delete, ...)
+ls sectors/                         # 18 industry sectors
 
-# 3. Validate the hub
-./sg guard scan .
+# 3. Contribute
+# See CONTRIBUTING.md — CI validates everything automatically on PR.
+# Using Claude Code? Type /contributor-onboard for an interactive guide.
 ```
 
 ## 18 Industry Sectors

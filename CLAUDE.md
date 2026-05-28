@@ -10,13 +10,10 @@ Licensed under **CC-BY-SA-4.0**. Contributions require DCO sign-off.
 
 ```bash
 # Validate the full hub
-sg guard scan .
+sovctl guard scan .
 
 # Validate taxonomy only
-sg guard scan --taxonomy .
-
-# Download sg binary
-# https://github.com/Sovraine/open-guard-cli/releases
+sovctl guard scan --taxonomy .
 ```
 
 ## Structure
@@ -38,7 +35,7 @@ spec/       — OGS format specification (CC-BY-4.0)
 
 ## Key Rules
 
-- `sg guard scan` takes **directories**, never individual files
+- `sovctl guard scan` takes **directories**, never individual files
 - Always scan `.` (root), not subdirectories — subdirectory scan produces false GUARD-070
 - **Grade A required** for merge
 - Community contributions: `certified: false`, `signature: null`, `author: community`
