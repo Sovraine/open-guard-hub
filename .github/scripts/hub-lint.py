@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: LicenseRef-Proprietary
-# Copyright (c) 2026 SOVRAINE PTE.LTD. All rights reserved.
+# SPDX-License-Identifier: CC-BY-SA-4.0
+# Copyright (c) 2026 SOVRAINE PTE.LTD.
 """Hub content security lint — 13 paranoid checks for supply-chain integrity."""
 from __future__ import annotations
 
