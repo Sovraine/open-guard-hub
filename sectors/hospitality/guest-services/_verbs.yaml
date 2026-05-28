@@ -1,0 +1,36 @@
+taxonomy_version: "2026.03.1"
+sub_sector: guest-services
+sector: hospitality
+
+verbs:
+  check-in-guest:
+    risk: MEDIUM
+    description: "Check in a guest and assign a room"
+  check-out-guest:
+    risk: MEDIUM
+    description: "Check out a guest and finalize the bill"
+  late-checkout:
+    risk: LOW
+    description: "Grant a late checkout to a guest"
+  early-checkin:
+    risk: LOW
+    description: "Grant an early check-in to a guest"
+  upgrade-room:
+    risk: LOW
+    description: "Upgrade a guest to a higher room category"
+  apply-incidental-charge:
+    risk: MEDIUM
+    description: "Apply an incidental charge to a guest folio"
+  waive-fee:
+    risk: HIGH
+    description: "Waive a fee on a guest's bill"
+    requires_approval: true
+  issue-guest-credit:
+    risk: HIGH
+    description: "Issue a monetary credit to a guest folio"
+  flag-vip:
+    risk: LOW
+    description: "Flag a guest as VIP for priority service"
+  log-complaint:
+    risk: LOW
+    description: "Log a guest complaint for follow-up"

@@ -40,7 +40,7 @@
   <g transform="translate(640, 340)">
     <!-- Verb count -->
     <g transform="translate(-380, 0)">
-      <text x="0" y="0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#5c7cfa" filter="url(#glow)">660</text>
+      <text x="0" y="0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#5c7cfa" filter="url(#glow)">676</text>
       <text x="0" y="30" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#4a5a80" letter-spacing="2">VERBS</text>
     </g>
     <!-- Separator -->
@@ -53,7 +53,7 @@
     <line x1="30" y1="-25" x2="30" y2="35" stroke="#1e2a4a" stroke-width="1"/>
     <!-- Policies -->
     <g transform="translate(160, 0)">
-      <text x="0" y="0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#5c7cfa" filter="url(#glow)">60</text>
+      <text x="0" y="0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#5c7cfa" filter="url(#glow)">63</text>
       <text x="0" y="30" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#4a5a80" letter-spacing="2">POLICIES</text>
     </g>
     <line x1="270" y1="-25" x2="270" y2="35" stroke="#1e2a4a" stroke-width="1"/>
