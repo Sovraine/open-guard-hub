@@ -6,7 +6,7 @@ description: Escalate order refunds for human review before processing
 schema_version: 1
 match:
   actions: ["refund-order", "void-transaction"]
-verdict: ESCALATE
+verdict: ESCALATE_HUMAN
 severity: HIGH
 priority: 80
 author: community
