@@ -1,41 +1,75 @@
 <p align="center">
-  <img src=".github/assets/logo.png" alt="Sovraine" width="120">
+  <img src=".github/assets/logo.png" alt="Sovraine" width="400">
 </p>
 
-# OpenGuard Hub
+<p align="center">
+  <strong>The governance layer between AI agents and the tools they call.</strong>
+</p>
 
-Community registry of governance artifacts for AI agent actions.
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-CC--BY--SA--4.0-blue" alt="License"></a>
+  <a href="https://github.com/Sovraine/open-guard-hub/releases"><img src="https://img.shields.io/github/v/release/Sovraine/open-guard-hub" alt="Release"></a>
+  <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen" alt="PRs Welcome"></a>
+</p>
 
-The OpenGuard Hub provides a **shared taxonomy** of action verbs, **security policies**, **agent definitions**, and **MCP server mappings** that any AI agent framework can use to enforce governance at runtime.
+---
+
+AI agents act autonomously. One hallucinated tool call in production, and the damage is done before anyone notices.
+
+OpenGuard Hub is a **community registry** of governance artifacts -- action verbs, security policies, agent definitions, and MCP server mappings -- that any AI agent framework can use to **evaluate every action before it executes**.
+
+- **660 verbs** across 18 industry sectors
+- **104 MCP server mappings** covering 2,100+ tools
+- **60 governance policies** ready to enforce
+- **18 agent definitions** with risk ceilings and verb access control
 
 ## What's Inside
 
 | Directory | Content | Count |
 |-----------|---------|-------|
-| `core/` | Cross-sector verb definitions | 9 domains |
-| `sectors/` | Industry-specific verbs | 18 sectors |
+| `core/` | Cross-sector verb definitions | 9 domains, 165 verbs |
+| `sectors/` | Industry-specific verbs | 18 sectors, 495 verbs |
 | `policies/` | Governance policies (`.guard.md`) | 60 |
-| `mappings/` | MCP server action mappings (`.mapping.yaml`) | 104 |
+| `mappings/` | MCP server action mappings (`.mapping.yaml`) | 104 servers, 2,100+ tools |
 | `agents/` | Agent definitions (`.agent.md`) | 18 |
 | `souls/` | Agent personas (`.soul.md`) | 18 |
 | `skills/` | Atomic capabilities (`.skill.md`) | 7 |
-| `gates/` | Kubernetes admission policies | 15 |
+| `gates/` | Kubernetes admission policies | 13 |
 | `spec/` | OGS format specification | 7 docs |
+
+## How It Works
+
+Every AI agent action maps to a **verb** in the taxonomy. Verbs have risk levels. Policies match verbs and return verdicts. The runtime enforces them.
+
+```
+Agent wants to call stripe.delete_customer
+    |
+    v
+Mapping: stripe/delete_customer --> verb: "delete", risk: HIGH
+    |
+    v
+Policy: "no-delete-in-production" --> verdict: DENY
+    |
+    v
+Action blocked. Audit record created.
+```
+
+Hub content feeds into the [Sovraine](https://sovraine.io) governance engine, but the taxonomy and policies are open and usable by any framework.
 
 ## Quick Start
 
 ```bash
-# 1. Clone the hub
+# Clone the hub
 git clone https://github.com/Sovraine/open-guard-hub.git
 cd open-guard-hub
 
-# 2. Browse the taxonomy
-ls core/common/_verbs.yaml          # Universal verbs (create, read, update, delete, ...)
-ls sectors/                         # 18 industry sectors
+# Browse the taxonomy
+cat core/common/_verbs.yaml       # Universal verbs (create, read, update, delete, ...)
+ls sectors/                       # 18 industry sectors
+ls mappings/                      # 104 MCP server mappings
 
-# 3. Contribute
-# See CONTRIBUTING.md — CI validates everything automatically on PR.
-# Using Claude Code? Type /contributor-onboard for an interactive guide.
+# Validate with the scanner
+sovctl guard scan .               # 126 automated checks, Grade A required
 ```
 
 ## 18 Industry Sectors
@@ -56,18 +90,28 @@ ls sectors/                         # 18 industry sectors
 
 The [OpenGuard Specification](spec/) defines the file formats:
 
-- [GuardFile](spec/guardfile.md) — `.guard.md` policy format
-- [Agent](spec/agent.md) — `.agent.md` agent definition
-- [Soul](spec/soul.md) — `.soul.md` persona/system prompt
-- [Skill](spec/skill.md) — `.skill.md` capability definition
-- [Mapping](spec/mapping.md) — `.mapping.yaml` MCP tool translation
-- [Taxonomy](spec/taxonomy.md) — `_verbs.yaml` / `_sector.yaml` format
+- [GuardFile](spec/guardfile.md) -- `.guard.md` policy format
+- [Agent](spec/agent.md) -- `.agent.md` agent definition
+- [Soul](spec/soul.md) -- `.soul.md` persona/system prompt
+- [Skill](spec/skill.md) -- `.skill.md` capability definition
+- [Mapping](spec/mapping.md) -- `.mapping.yaml` MCP tool translation
+- [Taxonomy](spec/taxonomy.md) -- `_verbs.yaml` / `_sector.yaml` format
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide. Contributions require a [DCO sign-off](DCO), not a CLA.
 
-**Using Claude Code?** Type `/contributor-onboard` for an interactive guide, or `/guard-policy-create` to scaffold a new policy. See [AGENTS.md](AGENTS.md) for all available AI-assisted skills.
+**Using Claude Code?** Type `/contributor-onboard` for an interactive guide. See [AGENTS.md](AGENTS.md) for all available AI-assisted skills.
+
+### What you can contribute
+
+- **Policies** -- governance rules for specific use cases (`.guard.md`)
+- **Mappings** -- translate MCP server tools to taxonomy verbs (`.mapping.yaml`)
+- **Agents** -- define agent personas with verb access control (`.agent.md`)
+- **Verbs** -- extend the taxonomy for your industry sector
+- **Skills** -- atomic capabilities that expand agent permissions (`.skill.md`)
+
+CI validates every PR automatically: 13 content security checks + 126 GUARD scanner checks. Grade A required to merge.
 
 ## License
 
@@ -76,4 +120,4 @@ OGS specification is licensed under [CC-BY-4.0](spec/README.md).
 
 ---
 
-Built by [Sovraine](https://sovraine.com) — AI agent safety governance.
+Built by [Sovraine](https://sovraine.io) -- AI agent safety governance.
