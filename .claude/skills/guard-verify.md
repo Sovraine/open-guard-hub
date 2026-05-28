@@ -33,13 +33,13 @@ done
 ### 2. Guard scan — Grade A required
 
 ```bash
-sg guard scan .
+sovctl guard scan .
 ```
 
 ### 3. Taxonomy validation
 
 ```bash
-sg guard scan --taxonomy .
+sovctl guard scan --taxonomy .
 ```
 
 ### 4. No self-certification
@@ -74,13 +74,13 @@ Verify required headers per type:
 ## Full Command
 
 ```bash
-sg guard scan . && sg guard scan --taxonomy . && echo "ALL CHECKS PASSED"
+sovctl guard scan . && sovctl guard scan --taxonomy . && echo "ALL CHECKS PASSED"
 ```
 
 ## Pre-Commit Checklist
 
-- [ ] `sg guard scan .`: Grade A
-- [ ] `sg guard scan --taxonomy .`: 0 blocking errors
+- [ ] `sovctl guard scan .`: Grade A
+- [ ] `sovctl guard scan --taxonomy .`: 0 blocking errors
 - [ ] No `certified: true` in community files
 - [ ] No non-null `signature` in community files
 - [ ] All cross-references resolve

@@ -1,3 +1,7 @@
+<p align="center">
+  <img src=".github/assets/logo.png" alt="Sovraine" width="120">
+</p>
+
 # OpenGuard Hub
 
 Community registry of governance artifacts for AI agent actions.
