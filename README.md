@@ -41,34 +41,9 @@ OpenGuard Hub is a **community registry** of governance artifacts -- action verb
 
 Every AI agent action maps to a **verb** in the taxonomy. Verbs carry risk levels. Policies match verbs and return verdicts. The runtime enforces them before the tool executes.
 
-```
-                    AI Agent
-                       |
-                       |  calls stripe.delete_customer
-                       v
-              +------------------+
-              |     MAPPING      |     mappings/stripe.mapping.yaml
-              |                  |
-              |  delete_customer |
-              |    --> delete    |     verb: delete    risk: HIGH
-              +--------+---------+
-                       |
-                       v
-              +------------------+
-              |     POLICY       |     policies/saas-tech/no-delete-prod.guard.md
-              |                  |
-              |  match: [delete] |
-              |  verdict: DENY   |     severity: HIGH   priority: 85
-              +--------+---------+
-                       |
-                       v
-              +------------------+
-              |     VERDICT      |
-              |                  |
-              |   DENY           |     Action blocked.
-              |   audit: logged  |     Hash-chained record created.
-              +------------------+
-```
+<p align="center">
+  <img src=".github/assets/how-it-works.svg" alt="How it works: Agent call → Mapping → Policy → Verdict" width="680">
+</p>
 
 Hub content feeds into the [Sovraine](https://sovraine.io) governance engine, but the taxonomy and policies are open and usable by any framework.
 
