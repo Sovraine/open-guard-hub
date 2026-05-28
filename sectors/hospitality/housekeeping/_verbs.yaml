@@ -1,0 +1,27 @@
+taxonomy_version: "2026.03.1"
+sub_sector: housekeeping
+sector: hospitality
+
+verbs:
+  assign-room-cleaning:
+    risk: LOW
+    description: "Assign a room for cleaning to housekeeping staff"
+  mark-room-clean:
+    risk: LOW
+    description: "Mark a room as cleaned and ready for check-in"
+  mark-room-out-of-order:
+    risk: MEDIUM
+    description: "Mark a room as out of order, removing it from available inventory"
+  request-deep-clean:
+    risk: LOW
+    description: "Request a deep cleaning for a room or area"
+  report-maintenance:
+    risk: LOW
+    description: "Report a maintenance issue found during cleaning"
+  override-inspection:
+    risk: HIGH
+    description: "Override a failed room inspection result"
+    requires_approval: true
+  bulk-reassign-floors:
+    risk: HIGH
+    description: "Reassign all rooms on a floor to different housekeeping staff"

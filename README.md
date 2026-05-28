@@ -18,9 +18,9 @@ AI agents act autonomously. One hallucinated tool call in production, and the da
 
 OpenGuard Hub is a **community registry** of governance artifacts -- action verbs, security policies, agent definitions, and MCP server mappings -- that any AI agent framework can use to **evaluate every action before it executes**.
 
-- **660 verbs** across 18 industry sectors
+- **676 verbs** across 18 industry sectors
 - **104 MCP server mappings** covering 2,100+ tools
-- **60 governance policies** ready to enforce
+- **63 governance policies** ready to enforce
 - **18 agent definitions** with risk ceilings and verb access control
 
 ## What's Inside
@@ -28,11 +28,11 @@ OpenGuard Hub is a **community registry** of governance artifacts -- action verb
 | Directory | Content | Count |
 |-----------|---------|-------|
 | `core/` | Cross-sector verb definitions | 9 domains, 165 verbs |
-| `sectors/` | Industry-specific verbs | 18 sectors, 495 verbs |
-| `policies/` | Governance policies (`.guard.md`) | 60 |
+| `sectors/` | Industry-specific verbs | 18 sectors, 512 verbs |
+| `policies/` | Governance policies (`.guard.md`) | 63 |
 | `mappings/` | MCP server action mappings (`.mapping.yaml`) | 104 servers, 2,100+ tools |
 | `agents/` | Agent definitions (`.agent.md`) | 18 |
-| `souls/` | Agent personas (`.soul.md`) | 18 |
+| `souls/` | Agent personas (`.soul.md`) | 19 |
 | `skills/` | Atomic capabilities (`.skill.md`) | 7 |
 | `gates/` | Kubernetes admission policies | 13 |
 | `spec/` | OGS format specification | 7 docs |
