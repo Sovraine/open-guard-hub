@@ -24,7 +24,7 @@ If you use [Claude Code](https://claude.com/claude-code), type `/contributor-onb
 1. Check your prerequisites (`git`, `sg` CLI)
 2. Ask what you want to contribute (policy, agent, mapping, skill, verb)
 3. Scaffold the artifact with correct frontmatter and body sections
-4. Validate against the taxonomy and run `sg guard scan`
+4. Validate against the taxonomy and run `sovctl guard scan`
 5. Guide you through creating the PR
 
 Other useful skills: `/guard-policy-create`, `/guard-agent-create`, `/guard-mapping-create`, `/hub-contribution-check` (pre-flight before push).
@@ -39,7 +39,7 @@ Every verb referenced in policies, agents, or skills **must exist** in the taxon
 
 ```bash
 # List all verbs in the taxonomy
-sg guard scan --taxonomy .
+sovctl guard scan --taxonomy .
 
 # Browse verb files directly
 ls core/common/_verbs.yaml      # Universal verbs (create, read, update, delete, list, search, ...)
@@ -60,7 +60,7 @@ ls core/database/_verbs.yaml     # Database verbs (query, migrate, backup-databa
 Always run the scanner before pushing:
 
 ```bash
-sg guard scan .
+sovctl guard scan .
 ```
 
 The scanner runs 105+ GUARD-XXX checks and assigns a grade. **Grade A is required** to pass CI.
@@ -177,7 +177,7 @@ certified: false
 ## Escalation
 ```
 
-> **GUARD-027 — agent-unknown-verb:** Every verb in `allowed_verbs` and `denied_verbs` must exist in the taxonomy. Use `sg guard scan --taxonomy .` to list all available verbs.
+> **GUARD-027 — agent-unknown-verb:** Every verb in `allowed_verbs` and `denied_verbs` must exist in the taxonomy. Use `sovctl guard scan --taxonomy .` to list all available verbs.
 
 ### Cross-references
 
@@ -302,7 +302,7 @@ See [`mappings/aws-rds.mapping.yaml`](mappings/aws-rds.mapping.yaml) for a compl
 
 Every hub PR goes through two reviews:
 
-1. **Automated hub review** — The `review-hub-pr` agent checks taxonomy verbs, body sections, cross-references, self-certification, fast-path traps, risk coherence, naming conventions, and runs `sg guard scan`. Results are posted as a structured PR comment starting with `📋 hub-review-agent`.
+1. **Automated hub review** — The `review-hub-pr` agent checks taxonomy verbs, body sections, cross-references, self-certification, fast-path traps, risk coherence, naming conventions, and runs `sovctl guard scan`. Results are posted as a structured PR comment starting with `📋 hub-review-agent`.
 2. **Human maintainer review** — Required for merge. The maintainer reviews the policy logic, not just the format.
 
 If you use Claude Code, you can run the review locally before pushing:
@@ -344,7 +344,7 @@ The scanner runs 105+ GUARD checks and assigns a grade. **Grade A required** to 
 | Check | Severity | What it means | Fix |
 |---|---|---|---|
 | **GUARD-070** | MEDIUM | Policy references an action not in the taxonomy | Use a verb from `*/_verbs.yaml` or a glob pattern |
-| **GUARD-027** | MEDIUM | Agent references an unknown verb | Use `sg guard scan --taxonomy .` to find valid verbs |
+| **GUARD-027** | MEDIUM | Agent references an unknown verb | Use `sovctl guard scan --taxonomy .` to find valid verbs |
 | **GUARD-014** | MEDIUM | Soul is missing a required body section | Add all 4 sections: `## Identity`, `## Boundaries`, `## Tone guidelines`, `## Safety instructions` |
 | **GUARD-044** | MEDIUM | Skill is missing a required body section | Add all 5 sections (see [Adding a Skill](#adding-a-skill)) |
 | **GUARD-028** | MEDIUM | Agent references a soul that doesn't exist | Check the `soul:` field matches a `.soul.md` name |
