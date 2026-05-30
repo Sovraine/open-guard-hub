@@ -6,6 +6,7 @@ description: Deny database queries containing SQL injection patterns
 schema_version: 1
 match:
   actions: ["execute", "insert", "update", "delete"]
+  servers: ["sqlite", "mysql", "postgres", "postgresql", "mssql", "database", "db"]
 verdict: DENY
 severity: CRITICAL
 priority: 95
