@@ -10,8 +10,8 @@ schema_version: 1
 soul: claude-code-soul
 model: null
 skills: []
-allowed_verbs: [read, list-resources, get-resource, search, describe-resource, create-resource, update, apply-manifest, execute]
-denied_verbs: [delete-resource, drop, truncate, exec-in-pod]
+allowed_verbs: [read, list, search, create, update, execute, list-resources, get-resource, describe-resource, create-resource, apply-manifest]
+denied_verbs: [delete, drop, truncate, delete-resource, exec-in-pod]
 max_risk: MEDIUM
 requires_human_above: MEDIUM
 sandbox: false
