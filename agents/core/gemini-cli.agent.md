@@ -7,11 +7,11 @@ version: "1.0.0"
 domain: core/common
 description: "Gemini CLI AI assistant — development and operations agent"
 schema_version: 1
-soul: cautious
+soul: helpful-professional
 model: null
 skills: []
-allowed_verbs: [read, list-resources, get-resource, search, describe-resource, create-resource, update, apply-manifest, execute]
-denied_verbs: [delete-resource, drop, truncate, exec-in-pod]
+allowed_verbs: [read, list, search, create, update, execute, list-resources, get-resource, describe-resource, create-resource, apply-manifest]
+denied_verbs: [delete, drop, truncate, delete-resource, exec-in-pod]
 max_risk: MEDIUM
 requires_human_above: MEDIUM
 sandbox: false
@@ -35,5 +35,22 @@ Agent profile for Gemini CLI operating through the open-guard-gateway. Permits r
 ## Guardrails
 
 - **Max risk level**: MEDIUM — most read/write operations allowed
-- **Destructive denied**: delete-resource, drop, truncate, exec-in-pod
+- **Destructive denied**: delete, drop, truncate, delete-resource, exec-in-pod
 - **Human escalation**: MEDIUM-risk operations and above require human approval
+
+## Allowed actions
+
+- Reading files and resources
+- Listing and searching resources
+- Creating and updating resources
+- Executing standard operations
+
+## Denied actions
+
+- Deleting resources directly (must escalate)
+- Database destructive operations (drop, truncate)
+- Executing commands inside pods (exec-in-pod)
+
+## Escalation
+
+MEDIUM-risk and above operations escalate to human review.

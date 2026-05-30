@@ -8,7 +8,23 @@ tools:
     action: read
     target_from: path
     parser: params
+  read_text_file:
+    action: read
+    target_from: path
+    parser: params
+  read_media_file:
+    action: read
+    target_from: path
+    parser: params
+  read_multiple_files:
+    action: read
+    target_from: paths
+    parser: params
   write_file:
+    action: update
+    target_from: path
+    parser: params
+  edit_file:
     action: update
     target_from: path
     parser: params
@@ -19,6 +35,22 @@ tools:
   list_directory:
     action: list
     target_from: path
+    parser: params
+  list_directory_with_sizes:
+    action: list
+    target_from: path
+    parser: params
+  directory_tree:
+    action: list
+    target_from: path
+    parser: params
+  get_file_info:
+    action: read
+    target_from: path
+    parser: params
+  list_allowed_directories:
+    action: list
+    target_from: null
     parser: params
   delete_file:
     action: delete
