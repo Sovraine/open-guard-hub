@@ -6,6 +6,8 @@ description: Deny actions that embed plaintext secrets, API keys, or tokens in s
 schema_version: 1
 match:
   actions: ["create", "update", "configure", "execute"]
+  contexts:
+    privacy_classification: "RESTRICTED"
 verdict: DENY
 severity: HIGH
 priority: 85
